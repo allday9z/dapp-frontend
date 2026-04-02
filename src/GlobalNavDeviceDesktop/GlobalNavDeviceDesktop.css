@@ -10,22 +10,16 @@
   gap: 1.75rem;
   align-items: center;
   justify-content: center;
-  /* fixed: removed from flow — no more layout gap when hidden */
-  position: fixed;
-  left: 0;
-  right: 0;
-  /* top set via inline style (JS-driven, follows announcement bar) */
+  position: sticky;
+  top: 0;
   z-index: 100;
   box-shadow: inset 0rem -0.03125rem 0rem 0rem rgba(210, 210, 215, 1);
-  /* only transition transform, NOT top (top follows scroll events directly) */
-  transition: transform 0.25s ease;
+  transition: transform 0.3s ease-in-out;
 }
-.global-nav-device-desktop.nav--hidden {
-  transform: translateY(-110%);
+.global-nav-device-desktop.nav-hidden {
+  transform: translateY(-100%);
 }
-.global-nav-device-desktop.nav--visible {
-  transform: translateY(0);
-}
+
 .global-nav-device-desktop .frame-751 {
   padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
   display: flex;

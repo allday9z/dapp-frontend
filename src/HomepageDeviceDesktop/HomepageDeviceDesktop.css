@@ -44,12 +44,6 @@
 .homepage-device-desktop .global-nav-instance {
   flex-shrink: 0 !important;
 }
-/* Spacer that holds the layout space the fixed nav no longer occupies */
-.homepage-device-desktop .nav-layout-spacer {
-  height: 8.5rem;  /* approximate nav height — banner starts below this */
-  flex-shrink: 0;
-  width: 100%;
-}
 
 /* ── Banner carousel ── */
 .homepage-device-desktop .banner-carousel-instance {

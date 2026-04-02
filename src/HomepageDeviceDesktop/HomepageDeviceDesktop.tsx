@@ -2,23 +2,10 @@ import "./HomepageDeviceDesktop.css";
 import { AnnouncementBarSize1440PxRows1RowColorBlue } from "../AnnouncementBarSize1440PxRows1RowColorBlue/AnnouncementBarSize1440PxRows1RowColorBlue";
 import { GlobalNavDeviceDesktop } from "../GlobalNavDeviceDesktop/GlobalNavDeviceDesktop";
 import { BannerCarouselProperty1OrganismProperty2HomepageBannerSection } from "../BannerCarouselProperty1OrganismProperty2HomepageBannerSection/BannerCarouselProperty1OrganismProperty2HomepageBannerSection";
-import { LobStripeTileLobMac } from "../LobStripeTileLobMac/LobStripeTileLobMac";
-import { LobStripeTileLobIPad } from "../LobStripeTileLobIPad/LobStripeTileLobIPad";
-import { LobStripeTileLobIPhone } from "../LobStripeTileLobIPhone/LobStripeTileLobIPhone";
-import { LobStripeTileLobWatch } from "../LobStripeTileLobWatch/LobStripeTileLobWatch";
-import { LobStripeTileLobMusic } from "../LobStripeTileLobMusic/LobStripeTileLobMusic";
-import { LobStripeTileLobTvHome } from "../LobStripeTileLobTvHome/LobStripeTileLobTvHome";
-import { LobStripeTileLobAccessories } from "../LobStripeTileLobAccessories/LobStripeTileLobAccessories";
-import { LobStripeTileLobEntertainment } from "../LobStripeTileLobEntertainment/LobStripeTileLobEntertainment";
-import { LobStripeTileLobAirtag } from "../LobStripeTileLobAirtag/LobStripeTileLobAirtag";
+import { LobStripeTileList } from "../LobStripeTile";
 import { ProductStripe } from "../ProductStripe/ProductStripe";
+import { AppStripeTextTileList } from "../AppStripeTextTile";
 import { OrganismDeviceDesktop } from "../OrganismDeviceDesktop/OrganismDeviceDesktop";
-import { AppTextTileAppStripeTilesNewDeviceDesktop } from "../AppTextTileAppStripeTilesNewDeviceDesktop/AppTextTileAppStripeTilesNewDeviceDesktop";
-import { AppTextTileAppStripeTilesFinancingDeviceDesktop } from "../AppTextTileAppStripeTilesFinancingDeviceDesktop/AppTextTileAppStripeTilesFinancingDeviceDesktop";
-import { AppTextTileAppStripeTilesCyberMondayDeviceDesktop } from "../AppTextTileAppStripeTilesCyberMondayDeviceDesktop/AppTextTileAppStripeTilesCyberMondayDeviceDesktop";
-import { AppTextTileAppStripeTilesInStoreDeviceDesktop } from "../AppTextTileAppStripeTilesInStoreDeviceDesktop/AppTextTileAppStripeTilesInStoreDeviceDesktop";
-import { AppTextTileAppStripeTilesSaleDeviceDesktop } from "../AppTextTileAppStripeTilesSaleDeviceDesktop/AppTextTileAppStripeTilesSaleDeviceDesktop";
-import { AppTextTileAppStripeTilesTradeInDeviceDesktop } from "../AppTextTileAppStripeTilesTradeInDeviceDesktop/AppTextTileAppStripeTilesTradeInDeviceDesktop";
 import { BentoBoxTileDeviceDesktopBigLobAppleWatchFathers } from "../BentoBoxTileDeviceDesktopBigLobAppleWatchFathers/BentoBoxTileDeviceDesktopBigLobAppleWatchFathers";
 import { BentoBoxTileDeviceDesktopSmallLobAirPods } from "../BentoBoxTileDeviceDesktopSmallLobAirPods/BentoBoxTileDeviceDesktopSmallLobAirPods";
 import { BentoBoxTileDeviceDesktopSmallLobAppleWatchBand } from "../BentoBoxTileDeviceDesktopSmallLobAppleWatchBand/BentoBoxTileDeviceDesktopSmallLobAppleWatchBand";
@@ -83,8 +70,6 @@ export const HomepageDeviceDesktop = ({
               className="announcement-bar-instance"
             ></AnnouncementBarSize1440PxRows1RowColorBlue>
             <GlobalNavDeviceDesktop className="global-nav-instance"></GlobalNavDeviceDesktop>
-            {/* Spacer replaces fixed nav's layout space — height ≈ nav height */}
-            <div className="nav-layout-spacer" aria-hidden="true" />
             <BannerCarouselProperty1OrganismProperty2HomepageBannerSection className="banner-carousel-instance"></BannerCarouselProperty1OrganismProperty2HomepageBannerSection>
             <div className="view-all-apple-products">
               <div className="frame-1550">
@@ -93,39 +78,7 @@ export const HomepageDeviceDesktop = ({
                 </div>
               </div>
               <ProductStripe className="frame-1549">
-                <LobStripeTileLobMac className="lob-stripe-tile-instance"></LobStripeTileLobMac>
-                <LobStripeTileLobIPad
-                  lob="i-pad"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobIPad>
-                <LobStripeTileLobIPhone
-                  lob="i-phone"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobIPhone>
-                <LobStripeTileLobWatch
-                  lob="watch"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobWatch>
-                <LobStripeTileLobMusic
-                  lob="music"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobMusic>
-                <LobStripeTileLobTvHome
-                  lob="tv-home"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobTvHome>
-                <LobStripeTileLobAccessories
-                  lob="accessories"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobAccessories>
-                <LobStripeTileLobEntertainment
-                  lob="entertainment"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobEntertainment>
-                <LobStripeTileLobAirtag
-                  lob="airtag"
-                  className="lob-stripe-tile-instance"
-                ></LobStripeTileLobAirtag>
+                <LobStripeTileList className="lob-stripe-tile-instance" />
               </ProductStripe>
               <div className="line-21"></div>
             </div>
@@ -141,27 +94,7 @@ export const HomepageDeviceDesktop = ({
                 </div>
               </div>
               <ProductStripe className="frame-1541">
-                <AppTextTileAppStripeTilesNewDeviceDesktop className="app-text-tile-instance"></AppTextTileAppStripeTilesNewDeviceDesktop>
-                <AppTextTileAppStripeTilesFinancingDeviceDesktop
-                  appStripeTiles="financing"
-                  className="app-text-tile-instance"
-                ></AppTextTileAppStripeTilesFinancingDeviceDesktop>
-                <AppTextTileAppStripeTilesCyberMondayDeviceDesktop
-                  appStripeTiles="cyber-monday"
-                  className="app-text-tile-instance"
-                ></AppTextTileAppStripeTilesCyberMondayDeviceDesktop>
-                <AppTextTileAppStripeTilesInStoreDeviceDesktop
-                  appStripeTiles="in-store"
-                  className="app-text-tile-instance"
-                ></AppTextTileAppStripeTilesInStoreDeviceDesktop>
-                <AppTextTileAppStripeTilesSaleDeviceDesktop
-                  appStripeTiles="sale"
-                  className="app-text-tile-instance"
-                ></AppTextTileAppStripeTilesSaleDeviceDesktop>
-                <AppTextTileAppStripeTilesTradeInDeviceDesktop
-                  appStripeTiles="trade-in"
-                  className="app-text-tile-instance"
-                ></AppTextTileAppStripeTilesTradeInDeviceDesktop>
+                <AppStripeTextTileList className="app-text-tile-instance" />
               </ProductStripe>
               <div className="line-21"></div>
             </div>
@@ -198,6 +131,7 @@ export const HomepageDeviceDesktop = ({
               className="attach-module-section-instance"
             ></AttachModuleSectionDeviceDesktop>
             <OrganismDeviceDesktop
+              heading="View in-store classes and support."
               component={
                 <AppTileDeviceDesktopTitleJoinAClassCategoryStoreService
                   className="app-tile-instance"
@@ -233,7 +167,6 @@ export const HomepageDeviceDesktop = ({
                   category="store-service"
                 />
               }
-              text="View in-store classes and support."
               className="organism-instance"
             ></OrganismDeviceDesktop>
             <AttachModuleSectionDeviceDesktop
@@ -262,6 +195,7 @@ export const HomepageDeviceDesktop = ({
               className="attach-module-section-instance"
             ></AttachModuleSectionDeviceDesktop>
             <OrganismDeviceDesktop
+              heading="Featured Apple Accessories."
               component={
                 <AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories
                   className="app-tile-instance"
@@ -297,7 +231,6 @@ export const HomepageDeviceDesktop = ({
                   category="accessories"
                 />
               }
-              text="Featured Apple Accessories."
               className="organism-instance"
             ></OrganismDeviceDesktop>
             <OrganismAppZigzagSectionDeviceDesktop className="frame-1825-instance"></OrganismAppZigzagSectionDeviceDesktop>

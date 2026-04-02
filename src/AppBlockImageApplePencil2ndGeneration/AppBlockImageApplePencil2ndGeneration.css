@@ -1,0 +1,19 @@
+.app-block-image-apple-pencil-2nd-generation,
+.app-block-image-apple-pencil-2nd-generation * {
+  box-sizing: border-box;
+}
+.app-block-image-apple-pencil-2nd-generation {
+  width: 13.0625rem;
+  height: 13.0625rem;
+  position: relative;
+}
+.app-block-image-apple-pencil-2nd-generation .image-63 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  object-fit: cover;
+}

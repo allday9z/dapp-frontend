@@ -1,0 +1,18 @@
+.bag-cart-property-1-bag,
+.bag-cart-property-1-bag * {
+  box-sizing: border-box;
+}
+.bag-cart-property-1-bag {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  position: relative;
+}
+.bag-cart-property-1-bag .group-1412 {
+  height: auto;
+  position: absolute;
+  left: 50%;
+  translate: -50% -50%;
+  top: 50%;
+  overflow: visible;
+}

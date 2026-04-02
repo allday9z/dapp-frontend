@@ -1,0 +1,34 @@
+.text-global-nav-category,
+.text-global-nav-category * {
+  box-sizing: border-box;
+}
+.text-global-nav-category {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+}
+.text-global-nav-category .frame-1177 {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+}
+.text-global-nav-category .qorem {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+}

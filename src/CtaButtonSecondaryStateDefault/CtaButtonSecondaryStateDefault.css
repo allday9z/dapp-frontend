@@ -1,0 +1,35 @@
+.cta-button-secondary-state-default,
+.cta-button-secondary-state-default * {
+  box-sizing: border-box;
+}
+.cta-button-secondary-state-default {
+  cursor: pointer;
+  outline: none;
+  background: transparent;
+  border-radius: 2rem;
+  border-style: solid;
+  border-color: var(--backround-and-border-aos-blue, #0071e3);
+  border-width: 0.075rem;
+  padding: 0.875rem 2rem 0.875rem 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cta-button-secondary-state-default .buy-now {
+  color: var(--color-blue, #0071e3);
+  text-align: center;
+  font-family: var(
+    --body-body-s-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--body-body-s-semibold-font-size, 0.875rem);
+  line-height: var(--body-body-s-semibold-line-height, 1rem);
+  font-weight: var(--body-body-s-semibold-font-weight, 600);
+  position: relative;
+}
+
+/* nested override styles */

@@ -1,0 +1,33 @@
+.cta-button-primary-state-default,
+.cta-button-primary-state-default * {
+  box-sizing: border-box;
+}
+.cta-button-primary-state-default {
+  border: none;
+  cursor: pointer;
+  outline: none;
+  background: var(--backround-and-border-aos-blue, #0071e3);
+  border-radius: 2rem;
+  padding: 1rem 2rem 1rem 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  width: 13.375rem;
+  height: 3rem;
+  position: relative;
+}
+.cta-button-primary-state-default .add-to-cart {
+  color: var(--color-white, #ffffff);
+  text-align: center;
+  font-family: var(
+    --body-body-s-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--body-body-s-semibold-font-size, 0.875rem);
+  line-height: var(--body-body-s-semibold-line-height, 1rem);
+  font-weight: var(--body-body-s-semibold-font-weight, 600);
+  position: relative;
+}

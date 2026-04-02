@@ -1,0 +1,19 @@
+.app-block-image-magic-keyboard-folio-for-i-pad-109-inch,
+.app-block-image-magic-keyboard-folio-for-i-pad-109-inch * {
+  box-sizing: border-box;
+}
+.app-block-image-magic-keyboard-folio-for-i-pad-109-inch {
+  width: 13.0625rem;
+  height: 13.0625rem;
+  position: relative;
+}
+.app-block-image-magic-keyboard-folio-for-i-pad-109-inch .image-72 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  object-fit: cover;
+}

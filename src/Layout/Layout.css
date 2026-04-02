@@ -1,0 +1,43 @@
+/* ── Layout shell ── */
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Sticky header */
+.layout__header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.layout__announcement {
+  background: var(--color-tokens-accent-2, #0199b9) !important;
+  width: 100% !important;
+  height: unset !important;
+  flex-shrink: 0 !important;
+}
+
+.layout__nav {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* Page content grows to fill space */
+.layout__main {
+  flex: 1;
+  width: 100%;
+}
+
+.layout__footer {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}

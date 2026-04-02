@@ -1,0 +1,19 @@
+.dawn-divider,
+.dawn-divider * {
+  box-sizing: border-box;
+}
+.dawn-divider {
+  width: 18.75rem;
+  height: 0.0625rem;
+  position: relative;
+}
+.dawn-divider .rectangle-6 {
+  background: var(--color-tokens-border-light, #d0d0d0);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+}

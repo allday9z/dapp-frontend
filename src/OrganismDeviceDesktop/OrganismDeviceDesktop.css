@@ -1,0 +1,56 @@
+.organism-device-desktop,
+.organism-device-desktop * {
+  box-sizing: border-box;
+}
+.organism-device-desktop {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.organism-device-desktop .frame-1538 {
+  padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100%;
+  position: relative;
+}
+.organism-device-desktop .see-what-s-new {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --display-display-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--display-display-s-font-size, 2rem);
+  line-height: var(--display-display-s-line-height, 2.375rem);
+  font-weight: var(--display-display-s-font-weight, 600);
+  position: relative;
+}
+/* ProductStripe tile gap for "See what's new" */
+.organism-device-desktop .frame-1539 .product-stripe__inner {
+  gap: 1.5rem;
+}
+.organism-device-desktop .app-tile-instance {
+  flex-shrink: 0 !important;
+}
+.organism-device-desktop .line-21 {
+  margin-top: -0.0625rem;
+  border-style: solid;
+  border-color: var(--color-gray-4, #f2f2f2);
+  border-width: 0.0625rem 0 0 0;
+  flex-shrink: 0;
+  width: 100%;
+  height: 0rem;
+  position: relative;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}

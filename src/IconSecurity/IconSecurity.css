@@ -1,0 +1,11 @@
+.icon-security,
+.icon-security * {
+  box-sizing: border-box;
+}
+.icon-security {
+  flex-shrink: 0;
+  width: 4.25rem;
+  height: 4.25rem;
+  position: relative;
+  overflow: visible;
+}

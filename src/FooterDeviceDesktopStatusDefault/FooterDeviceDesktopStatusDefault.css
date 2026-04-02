@@ -1,0 +1,826 @@
+.footer-device-desktop-status-default,
+.footer-device-desktop-status-default * {
+  box-sizing: border-box;
+}
+.footer-device-desktop-status-default {
+  background: var(--color-tokens-background-1, #ffffff);
+  padding: 0rem 0rem 4rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.footer-device-desktop-status-default .dawn-divider-instance {
+  flex-shrink: 0 !important;
+  width: 76.25rem !important;
+}
+.footer-device-desktop-status-default .group-6 {
+  flex-shrink: 0;
+  width: 66.234375rem;
+  height: 17.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1470 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 65.64875rem;
+  top: 4.0625rem;
+}
+.footer-device-desktop-status-default .group-68 {
+  flex-shrink: 0;
+  width: 12.46875rem;
+  height: 1.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1465 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+}
+.footer-device-desktop-status-default .apple-premium-partner {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --headline-headline-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--headline-headline-s-font-size, 1.125rem);
+  line-height: var(--headline-headline-s-line-height, 1.375rem);
+  letter-spacing: var(--headline-headline-s-letter-spacing, 0.02em);
+  font-weight: var(--headline-headline-s-font-weight, 600);
+  position: relative;
+  width: 12.46875rem;
+}
+.footer-device-desktop-status-default .frame-1469 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-device-desktop-status-default .logo-wip-app-instance {
+  flex-shrink: 0 !important;
+  width: 5.54125rem !important;
+  height: 2.625rem !important;
+}
+.footer-device-desktop-status-default .group {
+  flex-shrink: 0;
+  width: 8rem;
+  height: 1.5rem;
+  position: static;
+}
+.footer-device-desktop-status-default .vector {
+  width: 3.55%;
+  height: 3.84%;
+  position: absolute;
+  right: 89.17%;
+  left: 7.28%;
+  bottom: 48.34%;
+  top: 47.83%;
+  overflow: visible;
+}
+.footer-device-desktop-status-default .vector2 {
+  width: 14.56%;
+  height: 12.48%;
+  position: absolute;
+  right: 85.44%;
+  left: 0%;
+  bottom: 35.67%;
+  top: 51.85%;
+  overflow: visible;
+}
+.footer-device-desktop-status-default .authorized-education-specialist {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: "SfProText-Medium", sans-serif;
+  font-size: 0.625rem;
+  line-height: 100%;
+  font-weight: 500;
+  position: absolute;
+  left: 1.5625rem;
+  top: 4.375rem;
+  width: 6.4375rem;
+}
+.footer-device-desktop-status-default .vector3 {
+  width: 3.55%;
+  height: 3.84%;
+  position: absolute;
+  right: 89.17%;
+  left: 7.28%;
+  bottom: 13.55%;
+  top: 82.61%;
+  overflow: visible;
+}
+.footer-device-desktop-status-default .vector4 {
+  width: 14.56%;
+  height: 12.48%;
+  position: absolute;
+  right: 85.44%;
+  left: 0%;
+  bottom: 0.89%;
+  top: 86.63%;
+  overflow: visible;
+}
+.footer-device-desktop-status-default .authorized-service-provider {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: "SfProText-Medium", sans-serif;
+  font-size: 0.625rem;
+  line-height: 100%;
+  font-weight: 500;
+  position: absolute;
+  left: 1.5625rem;
+  top: 7.375rem;
+  width: 6.4375rem;
+}
+.footer-device-desktop-status-default .group-60 {
+  width: 9.875rem;
+  height: 11.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1463 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 38.77375rem;
+  top: 4.0625rem;
+}
+.footer-device-desktop-status-default .frame-1467 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-device-desktop-status-default .app-name {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --headline-headline-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--headline-headline-s-font-size, 1.125rem);
+  line-height: var(--headline-headline-s-line-height, 1.375rem);
+  letter-spacing: var(--headline-headline-s-letter-spacing, 0.02em);
+  font-weight: var(--headline-headline-s-font-weight, 600);
+  position: relative;
+}
+.footer-device-desktop-status-default .frame-75 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 9.875rem;
+  position: relative;
+}
+.footer-device-desktop-status-default .about {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .contact-us {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .find-a-store {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .careers {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .blog {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .group-62 {
+  width: 9.875rem;
+  height: 17.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1464 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.9375rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 52.21125rem;
+  top: 4.0625rem;
+}
+.footer-device-desktop-status-default .frame-1468 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-device-desktop-status-default .information {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --headline-headline-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--headline-headline-s-font-size, 1.125rem);
+  line-height: var(--headline-headline-s-line-height, 1.375rem);
+  letter-spacing: var(--headline-headline-s-letter-spacing, 0.02em);
+  font-weight: var(--headline-headline-s-font-weight, 600);
+  position: relative;
+}
+.footer-device-desktop-status-default .shipping-policy {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .return-policy {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+}
+.footer-device-desktop-status-default .privacy {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .warranty {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .cookie-policy {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .site-map {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .services {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .my-account {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .group-61 {
+  width: 9.875rem;
+  height: 15.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .group-622 {
+  width: 9.875rem;
+  height: 15.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1462 {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 25.33625rem;
+  top: 4.0625rem;
+}
+.footer-device-desktop-status-default .frame-1466 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.footer-device-desktop-status-default .services2 {
+  color: #000000;
+  text-align: left;
+  font-family: var(
+    --headline-headline-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--headline-headline-s-font-size, 1.125rem);
+  line-height: var(--headline-headline-s-line-height, 1.375rem);
+  letter-spacing: var(--headline-headline-s-letter-spacing, 0.02em);
+  font-weight: var(--headline-headline-s-font-weight, 600);
+  position: relative;
+}
+.footer-device-desktop-status-default .frame-77 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 9.875rem;
+  position: relative;
+}
+.footer-device-desktop-status-default .customer-support {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .financing {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .click-collect {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .trade-in {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .apple-classes {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .i-phone-for-life {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .apple-care {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .group-59 {
+  width: 9.875rem;
+  height: 17.375rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1461 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 11.883125rem;
+  top: 4.0625rem;
+}
+.footer-device-desktop-status-default .shop {
+  color: #121212;
+  text-align: left;
+  font-family: var(
+    --headline-headline-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--headline-headline-s-font-size, 1.125rem);
+  line-height: var(--headline-headline-s-line-height, 1.375rem);
+  letter-spacing: var(--headline-headline-s-letter-spacing, 0.02em);
+  font-weight: var(--headline-headline-s-font-weight, 600);
+  position: relative;
+}
+.footer-device-desktop-status-default .frame-76 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 9.875rem;
+  position: relative;
+}
+.footer-device-desktop-status-default .mac {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .i-pad {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .i-phone {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .apple-watch {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .tv {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .air-pods {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .home-pod-mini {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .accessories {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-medium-font-family,
+    "SfProText-Medium",
+    sans-serif
+  );
+  font-size: var(--body-body-s-medium-font-size, 0.875rem);
+  line-height: var(--body-body-s-medium-line-height, 1rem);
+  font-weight: var(--body-body-s-medium-font-weight, 500);
+  position: relative;
+  width: 9.875rem;
+}
+.footer-device-desktop-status-default .group-7 {
+  flex-shrink: 0;
+  width: 67rem;
+  height: 7.625rem;
+  position: static;
+}
+.footer-device-desktop-status-default .frame-1519 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 11.5rem;
+  top: 25.4375rem;
+}
+.footer-device-desktop-status-default .subscribe-to-our-emails {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --title-title-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--title-title-regular-font-size, 1rem);
+  line-height: var(--title-title-regular-line-height, 1.25rem);
+  font-weight: var(--title-title-regular-font-weight, 400);
+  position: relative;
+}
+.footer-device-desktop-status-default .social-icons-instance {
+  position: absolute !important;
+  left: 66.25rem !important;
+  top: 27.9375rem !important;
+}
+.footer-device-desktop-status-default .frame-387 {
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 58.125rem;
+  top: 31.5625rem;
+}
+.footer-device-desktop-status-default .frame-36 {
+  border-radius: 0.1875rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 2.375rem;
+  height: 1.5rem;
+  position: relative;
+  overflow: visible;
+}
+.footer-device-desktop-status-default .image-6 {
+  flex-shrink: 0;
+  width: 17.375rem;
+  height: 1.5rem;
+  position: relative;
+  object-fit: cover;
+}
+.footer-device-desktop-status-default .frame-8 {
+  flex-shrink: 0;
+  width: 67rem;
+  height: 3.8125rem;
+  position: relative;
+  overflow: hidden;
+}
+.footer-device-desktop-status-default .frame-1520 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0rem;
+  top: 0.0625rem;
+}
+.footer-device-desktop-status-default .language {
+  color: var(--color-black, #000000);
+  text-align: left;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--body-body-s-regular-font-size, 0.875rem);
+  line-height: var(--body-body-s-regular-line-height, 1rem);
+  font-weight: var(--body-body-s-regular-font-weight, 400);
+  position: relative;
+}
+.footer-device-desktop-status-default .dropdown-instance {
+  height: 2.125rem !important;
+}
+.footer-device-desktop-status-default
+  .copyright-2022-apr-business-name-here-inc-all-rights-reserved {
+  color: var(--color-gray-2, #595959);
+  text-align: right;
+  font-family: "SfProText-Regular", sans-serif;
+  font-size: 0.625rem;
+  font-weight: 400;
+  position: absolute;
+  left: 47rem;
+  top: 3.0625rem;
+}

@@ -1,0 +1,23 @@
+.icon-education-2,
+.icon-education-2 * {
+  box-sizing: border-box;
+}
+.icon-education-2 {
+  width: 2.75rem;
+  height: 2.75rem;
+  position: relative;
+}
+.icon-education-2 .icon-menu {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+}
+.icon-education-2 .group-7 {
+  height: auto;
+  position: absolute;
+  left: 0.5rem;
+  top: 0.5625rem;
+  overflow: visible;
+}

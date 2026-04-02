@@ -1,0 +1,16 @@
+.drag-scroll {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: flex-start;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  cursor: grab;
+  user-select: none;
+  touch-action: pan-y;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  width: 100%;
+}
+.drag-scroll::-webkit-scrollbar { display: none; }
+.drag-scroll:active { cursor: grabbing; }

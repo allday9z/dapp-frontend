@@ -1,0 +1,19 @@
+.app-block-image-property-1-variant-12-device-desktop,
+.app-block-image-property-1-variant-12-device-desktop * {
+  box-sizing: border-box;
+}
+.app-block-image-property-1-variant-12-device-desktop {
+  width: 16rem;
+  height: 10.75rem;
+  position: relative;
+}
+.app-block-image-property-1-variant-12-device-desktop .image-117 {
+  width: 76.65%;
+  height: 91.86%;
+  position: absolute;
+  right: 11.67%;
+  left: 11.67%;
+  bottom: 4.07%;
+  top: 4.07%;
+  object-fit: cover;
+}

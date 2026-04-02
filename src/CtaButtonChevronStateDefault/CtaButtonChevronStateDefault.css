@@ -1,0 +1,38 @@
+.cta-button-chevron-state-default,
+.cta-button-chevron-state-default * {
+  box-sizing: border-box;
+}
+.cta-button-chevron-state-default {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+}
+.cta-button-chevron-state-default .learn-more {
+  color: var(--color-blue, #0071e3);
+  text-align: center;
+  font-family: var(
+    --body-body-s-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--body-body-s-semibold-font-size, 0.875rem);
+  line-height: var(--body-body-s-semibold-line-height, 1rem);
+  font-weight: var(--body-body-s-semibold-font-weight, 600);
+  position: relative;
+}
+.cta-button-chevron-state-default .icon-chevron-instance {
+  flex-shrink: 0 !important;
+  width: 1.25rem !important;
+  height: 1.25rem !important;
+}
+
+/* nested override styles */

@@ -1,0 +1,125 @@
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers,
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers * {
+  box-sizing: border-box;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers {
+  background: var(--color-tokens-background-1, #ffffff);
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  height: 37.625rem;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .text-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .contents {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .copy-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .new-badge {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .father-s-day {
+  color: #5856d6;
+  text-align: center;
+  font-family: "SfProText-Semibold", sans-serif;
+  font-size: 0.7499998807907104rem;
+  font-weight: 600;
+  position: relative;
+  flex: 1;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .heading {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .apple-watch {
+  color: var(--color-tokens-accent-1, #121212);
+  text-align: center;
+  font-family: "SfProText-Semibold", sans-serif;
+  font-size: 1.9999998807907104rem;
+  line-height: 2.5rem;
+  letter-spacing: -0.125rem;
+  font-weight: 600;
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .subhead {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers
+  .there-s-an-apple-watch-for-every-dad-from-299 {
+  color: var(--text-color-default-text, #121212);
+  text-align: center;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--body-body-s-regular-font-size, 0.875rem);
+  line-height: var(--body-body-s-regular-line-height, 1rem);
+  font-weight: var(--body-body-s-regular-font-weight, 400);
+  position: relative;
+  flex: 1;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .cta-instance {
+  flex-shrink: 0 !important;
+  width: 10.1875rem !important;
+  height: 3.25rem !important;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .image-120 {
+  flex-shrink: 0;
+  width: 22.625rem;
+  height: 22.625rem;
+  position: relative;
+  object-fit: cover;
+}

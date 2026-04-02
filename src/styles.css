@@ -1,0 +1,153 @@
+/* ============================================
+   UFicon / iStudio Fonts
+   ============================================ */
+
+@font-face {
+  font-family: 'SFProThai';
+  font-style: normal;
+  font-weight: 1 1000;
+  src: url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProTH.woff2?v=1713897600") format('woff2-variations'),
+       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProTH.woff2?v=1713897600") format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff2?v=1721802674") format('woff2'),
+       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff?v=1721802674") format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff2?v=1721802674') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff?v=1721802675') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff?v=1720517556') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SF Pro Text';
+  src: url('//www.uficon.com/cdn/shop/t/9/assets/SFProText-Bold.woff2?v=81066619648910226671760411808') format('woff2'),
+       url('//www.uficon.com/cdn/shop/t/9/assets/SFProText-Bold.woff?v=11034071917097156431760411808') format('woff');
+  font-weight: 700;
+  font-style: bold;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Free';
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("//www.uficon.com/cdn/shop/t/9/assets/fa-solid-900.woff2?v=118991557498766039071760411807") format("woff2"),
+       url("//www.uficon.com/cdn/shop/t/9/assets/fa-solid-900.ttf?v=11227793290438786691760411807") format("truetype");
+}
+
+@font-face {
+  font-family: 'Font Awesome 6 Brands';
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("//www.uficon.com/cdn/shop/t/9/assets/fa-brands-400.woff2?v=20488") format("woff2"),
+       url("//www.uficon.com/cdn/shop/t/9/assets/fa-brands-400.ttf?v=20488") format("truetype");
+}
+
+@font-face {
+  font-family: Assistant;
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("//www.uficon.com/cdn/fonts/assistant/assistant_n4.9120912a469cad1cc292572851508ca49d12e768.woff2") format("woff2"),
+       url("//www.uficon.com/cdn/fonts/assistant/assistant_n4.6e9875ce64e0fefcd3f4446b7ec9036b3ddd2985.woff") format("woff");
+}
+
+@font-face {
+  font-family: Assistant;
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("//www.uficon.com/cdn/fonts/assistant/assistant_n7.bf44452348ec8b8efa3aa3068825305886b1c83c.woff2") format("woff2"),
+       url("//www.uficon.com/cdn/fonts/assistant/assistant_n7.0c887fee83f6b3bda822f1150b912c72da0f7b64.woff") format("woff");
+}
+
+/* Alias: Figma export uses "SfProText-*" names — map to loaded SF Pro Text */
+@font-face {
+  font-family: 'SfProText-Regular';
+  src: local('SF Pro Text'),
+       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff2?v=1721802674") format('woff2');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'SfProText-Medium';
+  src: local('SF Pro Text'),
+       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff2?v=1721802674') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'SfProText-Semibold';
+  src: local('SF Pro Text'),
+       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'SfProText-Bold';
+  src: local('SF Pro Text'),
+       url('//www.uficon.com/cdn/shop/t/9/assets/SFProText-Bold.woff2?v=81066619648910226671760411808') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'SfProDisplay-Semibold';
+  src: local('SF Pro Text'),
+       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2');
+  font-weight: 600;
+}
+
+/* html must stay at overflow: visible (default) so body's overflow-x: hidden
+   propagates to the viewport — not body itself (which would create a nested scroll container). */
+html {
+  width: 100%;
+}
+
+body {
+  font-family: 'SFProThai', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden; /* propagates to viewport because html has default overflow: visible */
+  width: 100%;
+}
+
+a,
+button,
+input,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    background: none;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+menu, ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

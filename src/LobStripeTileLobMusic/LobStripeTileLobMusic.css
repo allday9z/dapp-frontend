@@ -1,0 +1,70 @@
+.lob-stripe-tile-lob-music,
+.lob-stripe-tile-lob-music * {
+  box-sizing: border-box;
+}
+.lob-stripe-tile-lob-music {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 7.5rem;
+  height: 7.5rem;
+  position: relative;
+}
+.lob-stripe-tile-lob-music .frame-1526 {
+  padding: 0.625rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 6.25rem;
+  height: 3.75rem;
+  position: relative;
+}
+.lob-stripe-tile-lob-music .mac {
+  flex-shrink: 0;
+  width: 4.828125rem;
+  height: 3.72rem;
+  position: relative;
+  object-fit: cover;
+}
+.lob-stripe-tile-lob-music .product-description {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+}
+.lob-stripe-tile-lob-music .lob-name {
+  color: var(--color-black, #000000);
+  text-align: center;
+  font-family: var(
+    --title-title-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
+  font-size: var(--title-title-semibold-font-size, 1rem);
+  line-height: var(--title-title-semibold-line-height, 1.25rem);
+  font-weight: var(--title-title-semibold-font-weight, 600);
+  position: relative;
+}
+.lob-stripe-tile-lob-music .price {
+  color: var(--color-black, #000000);
+  text-align: center;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--body-body-s-regular-font-size, 0.875rem);
+  line-height: var(--body-body-s-regular-line-height, 1rem);
+  font-weight: var(--body-body-s-regular-font-weight, 400);
+  position: relative;
+}

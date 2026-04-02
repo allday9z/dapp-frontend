@@ -1,0 +1,198 @@
+.homepage-device-desktop,
+.homepage-device-desktop * {
+  box-sizing: border-box;
+}
+.homepage-device-desktop {
+  width: 100%;
+  position: relative;
+  overflow-x: clip; /* clip without creating a scroll container */
+}
+.homepage-device-desktop .frame-1816 {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+}
+.homepage-device-desktop .frame-1826 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+}
+.homepage-device-desktop .frame-1825 {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+/* ── Top bar + Nav ── */
+.homepage-device-desktop .announcement-bar-instance {
+  background: var(--color-tokens-accent-2, #52aaa6) !important;
+  width: 100% !important;
+  height: unset !important;
+  flex-shrink: 0 !important;
+}
+.homepage-device-desktop .global-nav-instance {
+  flex-shrink: 0 !important;
+}
+/* Spacer that holds the layout space the fixed nav no longer occupies */
+.homepage-device-desktop .nav-layout-spacer {
+  height: 8.5rem;  /* approximate nav height — banner starts below this */
+  flex-shrink: 0;
+  width: 100%;
+}
+
+/* ── Banner carousel ── */
+.homepage-device-desktop .banner-carousel-instance {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── Product stripe section ── */
+.homepage-device-desktop .view-all-apple-products {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.homepage-device-desktop .frame-1550 {
+  padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+.homepage-device-desktop .view-all-apple-products2 {
+  color: var(--color-black, #000000);
+  font-family: var(--display-display-s-font-family, 'SFProThai', sans-serif);
+  font-size: var(--display-display-s-font-size, 2rem);
+  line-height: var(--display-display-s-line-height, 2.375rem);
+  font-weight: var(--display-display-s-font-weight, 600);
+  position: relative;
+}
+
+/* ProductStripe handles .frame-1549 */
+.homepage-device-desktop .frame-1549 {
+  /* wrapper class kept for specificity; ProductStripe manages internally */
+}
+
+/* ── Divider line ── */
+.homepage-device-desktop .line-21 {
+  border-top: 0.0625rem solid var(--color-gray-4, #f2f2f2);
+  width: 100%;
+  height: 0;
+  margin-top: -0.0625rem;
+}
+
+/* ── Organism/partner section ── */
+.homepage-device-desktop .organism-instance {
+  width: 100% !important;
+}
+.homepage-device-desktop .discover-partner-services-and-more {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.homepage-device-desktop .frame-1540 {
+  padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  align-items: flex-start;
+  width: 100%;
+  position: relative;
+}
+.homepage-device-desktop .discover-partner-services-and-more2 {
+  color: var(--color-black, #000000);
+  font-family: var(--title-title-semibold-font-family, 'SFProThai', sans-serif);
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
+  position: relative;
+}
+/* frame-1541 is now a ProductStripe — override inner gap to match original */
+.homepage-device-desktop .frame-1541 .product-stripe__inner {
+  gap: 1.5rem;
+}
+.homepage-device-desktop .app-text-tile-instance {
+  flex-shrink: 0 !important;
+}
+
+/* ── Bento box ── */
+.homepage-device-desktop .bento-box {
+  background: var(--color-gray-5, #f2f2f2);
+  padding: 2rem max(1rem, calc((100% - 76.25rem) / 2));
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 100%;
+}
+.homepage-device-desktop .frame-1547 {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 100%;
+}
+.homepage-device-desktop .bento-box-tile-instance {
+  flex: 1 1 37.625rem !important;
+  max-width: 37.625rem !important;
+  flex-shrink: 0 !important;
+}
+.homepage-device-desktop .frame-1546 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 1 1 37.625rem;
+}
+.homepage-device-desktop .bento-box-tile-instance2 {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  height: unset !important;
+}
+
+/* ── Footer ── */
+.homepage-device-desktop .footer-instance {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
+
+/* ── Nested overrides ── */
+.homepage-device-desktop .attach-module-set-instance {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  max-width: 81rem !important;
+}
+.homepage-device-desktop .app-tile-instance { flex-shrink: 0 !important; }
+.homepage-device-desktop .attach-module-set-instance2 { flex-shrink: 0 !important; }
+
+/* ── Responsive breakpoints ── */
+@media (max-width: 768px) {
+  .homepage-device-desktop .bento-box-tile-instance { max-width: 100% !important; }
+}
+
+/* ── Tile cards: auto height, no text truncation, clickable ── */
+.homepage-device-desktop .lob-stripe-tile-instance {
+  height: auto !important;
+  cursor: pointer !important;
+  border-radius: 0.75rem !important;
+  padding: 0.5rem !important;
+}
+.homepage-device-desktop .lob-stripe-tile-instance .price {
+  white-space: normal !important;
+  word-break: break-word !important;
+}

@@ -1,0 +1,19 @@
+.app-block-image-apple-watch-ultra-orange-alpine-loop,
+.app-block-image-apple-watch-ultra-orange-alpine-loop * {
+  box-sizing: border-box;
+}
+.app-block-image-apple-watch-ultra-orange-alpine-loop {
+  width: 13.0625rem;
+  height: 13.0625rem;
+  position: relative;
+}
+.app-block-image-apple-watch-ultra-orange-alpine-loop .image-69 {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  right: 0%;
+  left: 0%;
+  bottom: 0%;
+  top: 0%;
+  object-fit: cover;
+}

@@ -1,0 +1,72 @@
+.announcement-bar-size-1440-px-rows-1-row-color-blue,
+.announcement-bar-size-1440-px-rows-1-row-color-blue * {
+  box-sizing: border-box;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue {
+  background: var(--color-tokens-accent-2, #52aaa6);
+  padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 2.375rem;
+  position: relative;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue .ann-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue .frame-534 {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue
+  .icon-chevron-left-instance {
+  flex-shrink: 0 !important;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue
+  .get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now {
+  text-align: center;
+  font-family: "SfProText-Regular", sans-serif;
+  font-size: 0.8125rem;
+  line-height: 100%;
+  font-weight: 400;
+  position: relative;
+  flex: 1;
+  height: 2.4375rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now-span {
+  color: var(--text-color-inverse-text, #ffffff);
+}
+.get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now-span2 {
+  color: var(--color-tokens-accent-1, #121212);
+}
+.get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now-span3 {
+  color: var(--color-tokens-border-light, #d0d0d0);
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue .frame-535 {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.announcement-bar-size-1440-px-rows-1-row-color-blue
+  .icon-chevron-left-instance2 {
+  flex-shrink: 0 !important;
+}

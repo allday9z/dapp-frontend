@@ -1,0 +1,85 @@
+.banner-carousel-property-1-organism-property-2-homepage-banner-section,
+.banner-carousel-property-1-organism-property-2-homepage-banner-section * {
+  box-sizing: border-box;
+}
+
+.banner-carousel-property-1-organism-property-2-homepage-banner-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+/* ── Splide: fixed 410px height ── */
+.banner-carousel-splide {
+  width: 100%;
+}
+.banner-carousel-splide .splide__track {
+  height: 25.625rem; /* 410px */
+}
+.banner-carousel-splide .splide__slide {
+  height: 25.625rem;
+  overflow: hidden;
+}
+.banner-carousel-splide .splide__slide a.banner-carousel-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.banner-carousel-splide .splide__slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* ── Dots: white strip below the banner stage ── */
+.banner-carousel-dots-wrap {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.375rem 0 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* White pill */
+.banner-carousel-dots {
+  background: #ffffff;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Individual dot */
+.banner-carousel-dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(29, 29, 31, 0.25);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.banner-carousel-dot.active {
+  background: #1d1d1f;
+}
+
+/* ── Divider: below the dots strip ── */
+.banner-carousel-divider {
+  width: 100%;
+  height: 0.0625rem;
+  background: var(--color-gray-4, #f2f2f2);
+  flex-shrink: 0;
+}

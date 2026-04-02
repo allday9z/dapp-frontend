@@ -1,0 +1,27 @@
+.logo-wip-app,
+.logo-wip-app * {
+  box-sizing: border-box;
+}
+.logo-wip-app {
+  width: 4.75rem;
+  height: 2.25rem;
+  position: relative;
+  overflow: hidden;
+}
+.logo-wip-app .lock-up {
+  display: flex;
+  flex-direction: row;
+  gap: 4.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  left: 0rem;
+  top: 0rem;
+}
+.logo-wip-app .group {
+  flex-shrink: 0;
+  width: 4.75rem;
+  height: 2.229375rem;
+  position: relative;
+  overflow: visible;
+}

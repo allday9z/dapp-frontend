@@ -1,0 +1,34 @@
+.text-field-status-default,
+.text-field-status-default * {
+  box-sizing: border-box;
+}
+.text-field-status-default {
+  background: var(--color-white, #ffffff);
+  border-radius: 0.25rem;
+  border-style: solid;
+  border-color: var(--color-gray-3, #d9d9d9);
+  border-width: 0.075rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.625rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 18rem;
+  position: relative;
+}
+.text-field-status-default .full-name {
+  color: var(--color-gray-2, #595959);
+  text-align: left;
+  font-family: var(
+    --title-title-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--title-title-regular-font-size, 1rem);
+  line-height: var(--title-title-regular-line-height, 1.25rem);
+  font-weight: var(--title-title-regular-font-weight, 400);
+  position: relative;
+  flex: 1;
+}

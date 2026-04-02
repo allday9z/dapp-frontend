@@ -1,0 +1,10 @@
+.icon-youtube,
+.icon-youtube * {
+  box-sizing: border-box;
+}
+.icon-youtube {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: relative;
+  overflow: visible;
+}

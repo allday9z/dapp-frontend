@@ -7,7 +7,7 @@
 /* Scrollable area — no visible scrollbar */
 .product-stripe__viewport {
   overflow-x: auto;
-  overflow-y: visible;
+  overflow-y: hidden; /* ต้องเป็น hidden — ห้าม visible เวลา overflow-x: auto */
   scrollbar-width: none;
   cursor: grab;
   user-select: none;

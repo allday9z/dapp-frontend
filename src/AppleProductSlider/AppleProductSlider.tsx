@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Mousewheel } from "swiper/modules";
+import { Mousewheel } from "swiper/modules";
 import "swiper/css";
 
 /* ── Types ── */
@@ -59,12 +59,14 @@ const ProductCard = styled.a`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  cursor: pointer;
+  cursor: grab;
   text-decoration: none;
-  transition: transform 0.3s ease;
+  /* ป้องกัน browser native drag บน <a> */
+  -webkit-user-drag: none;
+  user-select: none;
 
-  &:hover {
-    transform: scale(1.05);
+  &:active {
+    cursor: grabbing;
   }
 `;
 
@@ -80,9 +82,10 @@ const ImageWrapper = styled.div`
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    user-select: none;
+    /* ป้องกัน browser ghosting รูปตอนลาก */
     -webkit-user-drag: none;
-    pointer-events: none;
+    user-select: none;
+    draggable: false;
   }
 `;
 
@@ -126,22 +129,37 @@ export const AppleProductSlider = ({
 
       <SliderWrapper>
         <Swiper
-          modules={[FreeMode, Mousewheel]}
-          freeMode={true}
+          modules={[Mousewheel]}
           mousewheel={{ forceToAxis: true }}
           grabCursor={true}
           spaceBetween={20}
           slidesPerView={2.5}
+          /* snap — หยุดตรงสไลด์ ไม่ลอย */
+          slidesPerGroup={1}
           breakpoints={{
-            768: { slidesPerView: 4.5 },
-            1024: { slidesPerView: 6.5 },
+            768: { slidesPerView: 4.5, slidesPerGroup: 1 },
+            1024: { slidesPerView: 6.5, slidesPerGroup: 1 },
           }}
+          /* ป้องกัน click ขณะลาก */
+          preventClicks={true}
+          preventClicksPropagation={true}
+          threshold={5}
         >
           {products.map((item, i) => (
             <SwiperSlide key={i}>
-              <ProductCard href={item.href ?? "#"} draggable={false}>
+              {/* onDragStart preventDefault ป้องกัน browser native drag บน <a> */}
+              <ProductCard
+                href={item.href ?? "#"}
+                draggable={false}
+                onDragStart={(e) => e.preventDefault()}
+              >
                 <ImageWrapper>
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    draggable={false}
+                    onDragStart={(e) => e.preventDefault()}
+                  />
                 </ImageWrapper>
                 <ProductDescription>
                   <ProductTitle>{item.name}</ProductTitle>

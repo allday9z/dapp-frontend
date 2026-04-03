@@ -32,7 +32,7 @@ export const BentoBoxTileDeviceDesktopSmallLobAppleWatchBand = ({
       }
     >
       <div className="image-area">
-        <img className="image-120" src="image-1200.png" />
+        <img className="image-120" src="image-1200.png"  alt="" />
       </div>
       <div className="frame-487">
         <div className="contents">

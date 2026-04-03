@@ -51,7 +51,7 @@ export const BentoBoxTileDeviceDesktopBigLobAppleWatchFathers = ({
           <CtaButtonPrimaryStateDefault className="cta-instance"></CtaButtonPrimaryStateDefault>
         </div>
       </div>
-      <img className="image-120" src="image-1200.png" />
+      <img className="image-120" src="image-1200.png"  alt="" />
     </div>
   );
 };

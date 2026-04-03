@@ -72,9 +72,11 @@ export const BannerCarouselProperty1OrganismProperty2HomepageBannerSection = ({
           {slides.map((_, i) => (
             <button
               key={i}
+              type="button"
               className={"banner-carousel-dot" + (i === activeIdx ? " active" : "")}
               onClick={() => splideRef.current?.splide?.go(i)}
               aria-label={`สไลด์ ${i + 1}`}
+              aria-current={i === activeIdx ? "true" : undefined}
             />
           ))}
         </div>

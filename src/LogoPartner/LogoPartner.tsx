@@ -13,6 +13,7 @@ export const LogoPartner = ({
       <img
         className="microsoft-teams-image-25-1"
         src="microsoft-teams-image-25-10.png"
+        alt="โลโก้พาร์ทเนอร์"
       />
     </div>
   );

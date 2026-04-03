@@ -20,6 +20,7 @@ export const AppZigzagProperty1JoinAClassDeviceDesktop = ({
         <img
           className="screen-shot-2022-02-22-at-2-10-2"
           src="screen-shot-2022-02-22-at-2-10-20.png"
+          alt="ภาพกิจกรรมเข้าร่วมคลาสในร้าน"
         />
       </div>
       <div className="text-area">

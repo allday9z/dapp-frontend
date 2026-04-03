@@ -14,7 +14,7 @@ export const AttachModuleImageProperty1AppleCareIPhone = ({
         "attach-module-image-property-1-apple-care-i-phone " + className
       }
     >
-      <img className="image-60" src="image-600.png" />
+      <img className="image-60" src="image-600.png"  alt="" />
     </div>
   );
 };

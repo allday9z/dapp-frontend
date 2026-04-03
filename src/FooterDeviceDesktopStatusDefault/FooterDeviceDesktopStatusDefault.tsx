@@ -41,15 +41,15 @@ export const FooterDeviceDesktopStatusDefault = ({
           <div className="frame-1469">
             <LogoWipApp className="logo-wip-app-instance"></LogoWipApp>
             <div className="group">
-              <img className="vector" src="vector0.svg" />
-              <img className="vector2" src="vector1.svg" />
+              <img className="vector" src="vector0.svg"  alt="" />
+              <img className="vector2" src="vector1.svg"  alt="" />
               <div className="authorized-education-specialist">
                 Authorized Education Specialist{" "}
               </div>
             </div>
             <div className="group">
-              <img className="vector3" src="vector2.svg" />
-              <img className="vector4" src="vector3.svg" />
+              <img className="vector3" src="vector2.svg"  alt="" />
+              <img className="vector4" src="vector3.svg"  alt="" />
               <div className="authorized-service-provider">
                 Authorized Service Provider{" "}
               </div>
@@ -136,8 +136,8 @@ export const FooterDeviceDesktopStatusDefault = ({
           className="social-icons-instance"
         ></SocialIcons>
         <div className="frame-387">
-          <img className="frame-36" src="frame-360.svg" />
-          <img className="image-6" src="image-60.png" />
+          <img className="frame-36" src="frame-360.svg"  alt="" />
+          <img className="image-6" src="image-60.png"  alt="" />
         </div>
       </div>
       <DawnDivider className="dawn-divider-instance"></DawnDivider>

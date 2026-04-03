@@ -18,7 +18,7 @@ export const BagCartProperty1Bag = ({
         "bag-cart-property-1-bag " + className + " " + variantsClassName
       }
     >
-      <img className="group-1412" src="group-14120.svg" />
+      <img className="group-1412" src="group-14120.svg"  alt="" />
     </div>
   );
 };

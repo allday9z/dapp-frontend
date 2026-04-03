@@ -39,6 +39,7 @@ export const AppZigzagProperty1StoreNearYouDeviceDesktop = ({
         <img
           className="tienda-apple-nevada-granada-2"
           src="tienda-apple-nevada-granada-20.png"
+          alt="ภาพหน้าร้าน Apple Store"
         />
       </div>
     </div>

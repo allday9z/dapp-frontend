@@ -4,11 +4,13 @@ import "./ProductStripe.css";
 interface ProductStripeProps {
   className?: string;
   children: ReactNode;
+  ariaLabel?: string;
 }
 
 export const ProductStripe: FC<ProductStripeProps> = ({
   className = "",
   children,
+  ariaLabel = "รายการสินค้าแบบเลื่อนแนวนอน",
 }) => {
   const viewRef = useRef<HTMLDivElement>(null);
   const [canPrev, setCanPrev] = useState(false);
@@ -96,6 +98,8 @@ export const ProductStripe: FC<ProductStripeProps> = ({
       <div
         ref={viewRef}
         className="product-stripe__viewport"
+        role="region"
+        aria-label={ariaLabel}
         onMouseDown={onMouseDown}
         onMouseLeave={onMouseLeave}
         onMouseUp={onMouseUp}

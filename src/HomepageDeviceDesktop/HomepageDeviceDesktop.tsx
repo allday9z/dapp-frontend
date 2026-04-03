@@ -59,6 +59,7 @@ export const HomepageDeviceDesktop = ({
         "homepage-device-desktop " + className + " " + variantsClassName
       }
     >
+      <h1 className="sr-only">iStudio Homepage</h1>
       <div className="frame-1816">
         <div className="frame-1826">
           <div className="frame-1825">
@@ -71,33 +72,51 @@ export const HomepageDeviceDesktop = ({
             ></AnnouncementBarSize1440PxRows1RowColorBlue>
             <GlobalNavDeviceDesktop className="global-nav-instance"></GlobalNavDeviceDesktop>
             <BannerCarouselProperty1OrganismProperty2HomepageBannerSection className="banner-carousel-instance"></BannerCarouselProperty1OrganismProperty2HomepageBannerSection>
-            <div className="view-all-apple-products">
+            <section
+              className="view-all-apple-products"
+              aria-labelledby="all-apple-products-heading"
+            >
               <div className="frame-1550">
-                <div className="view-all-apple-products2">
+                <h2
+                  id="all-apple-products-heading"
+                  className="view-all-apple-products2"
+                >
                   ผลิตภัณฑ์ของ Apple ทั้งหมด
-                </div>
+                </h2>
               </div>
-              <ProductStripe className="frame-1549">
+              <ProductStripe
+                className="frame-1549"
+                ariaLabel="ผลิตภัณฑ์ของ Apple ทั้งหมด"
+              >
                 <LobStripeTileList className="lob-stripe-tile-instance" />
               </ProductStripe>
               <div className="line-21"></div>
-            </div>
+            </section>
             <OrganismDeviceDesktop
               text="Available starting 1.24 from $1999 or $333/mo. for 6 mo.* before trade-in"
               text2="Available starting 1.24 from $738 or $123/mo. for 6 mo.* before trade-in"
               className="organism-instance"
             ></OrganismDeviceDesktop>
-            <div className="discover-partner-services-and-more">
+            <section
+              className="discover-partner-services-and-more"
+              aria-labelledby="partner-services-heading"
+            >
               <div className="frame-1540">
-                <div className="discover-partner-services-and-more2">
+                <h2
+                  id="partner-services-heading"
+                  className="discover-partner-services-and-more2"
+                >
                   บริการและสิทธิพิเศษเพิ่มเติม
-                </div>
+                </h2>
               </div>
-              <ProductStripe className="frame-1541">
+              <ProductStripe
+                className="frame-1541"
+                ariaLabel="บริการและสิทธิพิเศษเพิ่มเติม"
+              >
                 <AppStripeTextTileList className="app-text-tile-instance" />
               </ProductStripe>
               <div className="line-21"></div>
-            </div>
+            </section>
             <div className="bento-box">
               <div className="frame-1547">
                 <BentoBoxTileDeviceDesktopBigLobAppleWatchFathers

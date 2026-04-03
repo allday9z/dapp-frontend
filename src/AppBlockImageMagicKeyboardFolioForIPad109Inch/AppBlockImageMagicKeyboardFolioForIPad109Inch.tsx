@@ -14,7 +14,7 @@ export const AppBlockImageMagicKeyboardFolioForIPad109Inch = ({
         "app-block-image-magic-keyboard-folio-for-i-pad-109-inch " + className
       }
     >
-      <img className="image-72" src="image-720.png" />
+      <img className="image-72" src="image-720.png"  alt="" />
     </div>
   );
 };

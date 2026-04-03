@@ -71,3 +71,85 @@
   font-weight: var(--body-body-s-regular-font-weight, 400);
   position: relative;
 }
+
+.lob-stripe-tile--mac .lob-stripe-tile__image {
+  width: 6.1875rem;
+  height: 2.25rem;
+}
+
+.lob-stripe-tile--i-pad .lob-stripe-tile__image-frame,
+.lob-stripe-tile--watch .lob-stripe-tile__image-frame,
+.lob-stripe-tile--music .lob-stripe-tile__image-frame,
+.lob-stripe-tile--tv-home .lob-stripe-tile__image-frame,
+.lob-stripe-tile--accessories .lob-stripe-tile__image-frame,
+.lob-stripe-tile--airtag .lob-stripe-tile__image-frame {
+  padding: 0.625rem;
+}
+
+.lob-stripe-tile--i-pad .lob-stripe-tile__image {
+  width: 4.78125rem;
+  height: 3.7525rem;
+}
+
+.lob-stripe-tile--i-phone .lob-stripe-tile__description,
+.lob-stripe-tile--entertainment .lob-stripe-tile__description {
+  justify-content: center;
+}
+
+.lob-stripe-tile--i-phone .lob-stripe-tile__image {
+  width: 3.758125rem;
+  height: 3.758125rem;
+}
+
+.lob-stripe-tile--watch .lob-stripe-tile__image {
+  width: 5.125rem;
+  height: 3.74rem;
+}
+
+.lob-stripe-tile--watch .lob-stripe-tile__name {
+  width: 4.625rem;
+}
+
+.lob-stripe-tile--watch .lob-stripe-tile__price {
+  width: 4.5625rem;
+}
+
+.lob-stripe-tile--music .lob-stripe-tile__image {
+  width: 4.828125rem;
+  height: 3.72rem;
+}
+
+.lob-stripe-tile--tv-home .lob-stripe-tile__image {
+  width: 3.9375rem;
+  height: 3.76375rem;
+}
+
+.lob-stripe-tile--accessories .lob-stripe-tile__image {
+  width: 3.75rem;
+  height: 3.75rem;
+}
+
+.lob-stripe-tile--entertainment {
+  justify-content: flex-start;
+}
+
+.lob-stripe-tile--entertainment .lob-stripe-tile__image-frame {
+  align-items: stretch;
+  justify-content: flex-start;
+  width: 100%;
+  height: 4.125rem;
+}
+
+.lob-stripe-tile--entertainment .lob-stripe-tile__image {
+  width: 100%;
+  height: 4.125rem;
+}
+
+.lob-stripe-tile--airtag .lob-stripe-tile__image-frame {
+  justify-content: flex-start;
+}
+
+.lob-stripe-tile--airtag .lob-stripe-tile__image {
+  width: 5rem;
+  height: 2.75rem;
+}

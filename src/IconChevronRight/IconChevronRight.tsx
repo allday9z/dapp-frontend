@@ -12,6 +12,8 @@ export const IconChevronRight = ({
     <img
       className={"icon-chevron-right " + className}
       src="icon-chevron-right.svg"
+      alt=""
+      aria-hidden="true"
     />
   );
 };

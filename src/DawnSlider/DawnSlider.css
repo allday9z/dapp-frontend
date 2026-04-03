@@ -69,6 +69,12 @@
 .dawn-slider__button[disabled] .dawn-slider__icon {
   color: #d0d0d0;
 }
+.dawn-slider__button:focus-visible,
+.dawn-slider__dot-btn:focus-visible,
+.dawn-slider__autoplay:focus-visible {
+  outline: 0.125rem solid rgba(0, 113, 227, 0.45);
+  outline-offset: 0.125rem;
+}
 
 .dawn-slider__icon {
   width: 10px;

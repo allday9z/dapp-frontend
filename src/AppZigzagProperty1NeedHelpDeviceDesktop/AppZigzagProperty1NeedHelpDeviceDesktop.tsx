@@ -15,7 +15,7 @@ export const AppZigzagProperty1NeedHelpDeviceDesktop = ({
       className={"app-zigzag-property-1-need-help-device-desktop " + className}
     >
       <div className="image-area">
-        <img className="download-2-2" src="download-2-20.png" />
+        <img className="download-2-2" src="download-2-20.png"  alt="" />
       </div>
       <div className="text">
         <div className="frame-438">

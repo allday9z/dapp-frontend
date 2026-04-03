@@ -9,6 +9,6 @@ export const IconInstagram = ({
   ...props
 }: IIconInstagramProps): JSX.Element => {
   return (
-    <img className={"icon-instagram " + className} src="icon-instagram.svg" />
+    <img className={"icon-instagram " + className} src="icon-instagram.svg"  alt="" />
   );
 };

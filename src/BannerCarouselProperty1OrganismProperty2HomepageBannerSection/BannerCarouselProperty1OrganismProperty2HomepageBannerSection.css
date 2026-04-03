@@ -75,6 +75,10 @@
 .banner-carousel-dot.active {
   background: #1d1d1f;
 }
+.banner-carousel-dot:focus-visible {
+  outline: 0.125rem solid rgba(0, 113, 227, 0.45);
+  outline-offset: 0.125rem;
+}
 
 /* ── Divider: below the dots strip ── */
 .banner-carousel-divider {

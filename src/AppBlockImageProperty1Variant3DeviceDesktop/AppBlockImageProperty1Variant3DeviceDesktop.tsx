@@ -15,7 +15,7 @@ export const AppBlockImageProperty1Variant3DeviceDesktop = ({
       }
     >
       <div className="image-116"></div>
-      <img className="image-117" src="image-1170.png" />
+      <img className="image-117" src="image-1170.png"  alt="" />
     </div>
   );
 };

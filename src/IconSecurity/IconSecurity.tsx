@@ -9,6 +9,6 @@ export const IconSecurity = ({
   ...props
 }: IIconSecurityProps): JSX.Element => {
   return (
-    <img className={"icon-security " + className} src="icon-security.svg" />
+    <img className={"icon-security " + className} src="icon-security.svg"  alt="" />
   );
 };

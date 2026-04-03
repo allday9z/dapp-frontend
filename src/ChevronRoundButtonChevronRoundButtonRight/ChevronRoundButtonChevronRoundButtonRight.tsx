@@ -21,6 +21,8 @@ export const ChevronRoundButtonChevronRoundButtonRight = ({
         variantsClassName
       }
       src="chevron-round-button-chevron-round-button-right.svg"
+      alt=""
+      aria-hidden="true"
     />
   );
 };

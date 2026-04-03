@@ -18,6 +18,7 @@ export const AttachModuleImageProperty1AppleCareMacbook = ({
       <img
         className="mac-book-air-15-in-m-2-chip-starlight-pure-front-mac-book-air-13-in-m-2-chip-starlight-pure-back-screen-usen-1"
         src="mac-book-air-15-in-m-2-chip-starlight-pure-front-mac-book-air-13-in-m-2-chip-starlight-pure-back-screen-usen-10.png"
+        alt="MacBook Air พร้อมข้อเสนอ AppleCare"
       />
       <LogoAppleCare className="logo-apple-care-instance"></LogoAppleCare>
     </div>

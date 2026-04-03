@@ -154,11 +154,19 @@ export const DawnSlider = ({
       <div
         ref={trackRef}
         className="dawn-slider__track"
+        role="region"
+        aria-label="สไลด์คอนเทนต์"
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
         {slides.map((slide, i) => (
-          <div key={i} className="dawn-slider__slide">
+          <div
+            key={i}
+            id={`dawn-slide-${i}`}
+            className="dawn-slider__slide"
+            role="tabpanel"
+            aria-label={`Slide ${i + 1}`}
+          >
             {slide.href ? (
               <a href={slide.href} draggable={false} style={{ display: "block", width: "100%", height: "100%" }}>
                 {slide.content}
@@ -176,6 +184,7 @@ export const DawnSlider = ({
           {/* Prev */}
           {showArrows && (
             <button
+              type="button"
               className="dawn-slider__button dawn-slider__button--prev"
               onClick={prev}
               disabled={count <= 1}
@@ -191,11 +200,14 @@ export const DawnSlider = ({
               {slides.map((_, i) => (
                 <button
                   key={i}
+                  type="button"
                   className={`dawn-slider__dot-btn${i === activeIdx ? " is-active" : ""}`}
                   onClick={() => goTo(i)}
                   role="tab"
                   aria-selected={i === activeIdx}
                   aria-label={`Go to slide ${i + 1}`}
+                  aria-controls={`dawn-slide-${i}`}
+                  tabIndex={i === activeIdx ? 0 : -1}
                 >
                   <span className="dawn-slider__dot" />
                 </button>
@@ -206,6 +218,7 @@ export const DawnSlider = ({
           {/* Autoplay toggle */}
           {showAutoplayButton && autoplay > 0 && (
             <button
+              type="button"
               className="dawn-slider__autoplay"
               onClick={() => setIsPlaying((p) => !p)}
               aria-label={isPlaying ? "Pause autoplay" : "Start autoplay"}
@@ -217,6 +230,7 @@ export const DawnSlider = ({
           {/* Next */}
           {showArrows && (
             <button
+              type="button"
               className="dawn-slider__button dawn-slider__button--next"
               onClick={next}
               disabled={count <= 1}

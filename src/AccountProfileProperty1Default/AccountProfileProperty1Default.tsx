@@ -21,6 +21,8 @@ export const AccountProfileProperty1Default = ({
         variantsClassName
       }
       src="account-profile-property-1-default.svg"
+      alt=""
+      aria-hidden="true"
     />
   );
 };

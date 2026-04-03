@@ -10,7 +10,7 @@ export const AppBlockImageApplePencil2ndGeneration = ({
 }: IAppBlockImageApplePencil2ndGenerationProps): JSX.Element => {
   return (
     <div className={"app-block-image-apple-pencil-2nd-generation " + className}>
-      <img className="image-63" src="image-630.png" />
+      <img className="image-63" src="image-630.png"  alt="" />
     </div>
   );
 };

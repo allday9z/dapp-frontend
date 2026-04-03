@@ -8,5 +8,5 @@ export const IconSearch = ({
   className,
   ...props
 }: IIconSearchProps): JSX.Element => {
-  return <img className={"icon-search " + className} src="icon-search.svg" />;
+  return <img className={"icon-search " + className} src="icon-search.svg"  alt="" />;
 };

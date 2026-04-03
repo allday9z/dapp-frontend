@@ -10,7 +10,7 @@ export const AppBlockImageIPadPro = ({
 }: IAppBlockImageIPadProProps): JSX.Element => {
   return (
     <div className={"app-block-image-i-pad-pro " + className}>
-      <img className="image-71" src="image-710.png" />
+      <img className="image-71" src="image-710.png"  alt="" />
     </div>
   );
 };

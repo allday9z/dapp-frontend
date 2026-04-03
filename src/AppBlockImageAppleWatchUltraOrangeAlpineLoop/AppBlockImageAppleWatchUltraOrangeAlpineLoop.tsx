@@ -14,7 +14,7 @@ export const AppBlockImageAppleWatchUltraOrangeAlpineLoop = ({
         "app-block-image-apple-watch-ultra-orange-alpine-loop " + className
       }
     >
-      <img className="image-69" src="image-690.png" />
+      <img className="image-69" src="image-690.png"  alt="" />
     </div>
   );
 };

@@ -10,7 +10,7 @@ export const LogoAppleCare = ({
 }: ILogoAppleCareProps): JSX.Element => {
   return (
     <div className={"logo-apple-care " + className}>
-      <img className="logos-apple-care" src="logos-apple-care0.svg" />
+      <img className="logos-apple-care" src="logos-apple-care0.svg"  alt="" />
     </div>
   );
 };

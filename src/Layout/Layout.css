@@ -6,11 +6,10 @@
   width: 100%;
 }
 
-/* display: contents makes header a logical wrapper only —
-   children (announcement + nav) become direct flex children of .layout,
-   allowing position: sticky on nav to work across full page height */
 .layout__header {
-  display: contents;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .layout__announcement {
@@ -25,7 +24,7 @@
   flex-shrink: 0 !important;
 }
 
-/* Page content grows to fill space */
+/* Sticky nav stays in flow — no padding-top needed */
 .layout__main {
   flex: 1;
   width: 100%;

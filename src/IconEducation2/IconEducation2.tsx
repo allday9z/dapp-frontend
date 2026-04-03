@@ -13,7 +13,7 @@ export const IconEducation2 = ({
   return (
     <div className={"icon-education-2 " + className}>
       <div className="icon-menu"></div>
-      <img className="group-7" src="group-70.svg" />
+      <img className="group-7" src="group-70.svg"  alt="" />
     </div>
   );
 };

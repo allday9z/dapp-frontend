@@ -10,7 +10,7 @@ export const AppBlockImageIMac = ({
 }: IAppBlockImageIMacProps): JSX.Element => {
   return (
     <div className={"app-block-image-i-mac " + className}>
-      <img className="image-60" src="image-600.png" />
+      <img className="image-60" src="image-600.png"  alt="" />
     </div>
   );
 };

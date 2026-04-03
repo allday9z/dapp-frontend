@@ -10,7 +10,7 @@ export const MapPinScenarioDefault = ({
 }: IMapPinScenarioDefaultProps): JSX.Element => {
   return (
     <div className={"map-pin-scenario-default " + className}>
-      <img className="frame-1529" src="frame-15290.svg" />
+      <img className="frame-1529" src="frame-15290.svg"  alt="" />
     </div>
   );
 };

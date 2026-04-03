@@ -30,7 +30,7 @@ export const ChevronRoundButtonProperty1ChevronRoundButtonProperty2Left = ({
       }
     >
       <div className="ellipse-8"></div>
-      <img className="frame-1489" src="frame-14890.svg" />
+      <img className="frame-1489" src="frame-14890.svg"  alt="" />
     </button>
   );
 };

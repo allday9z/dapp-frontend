@@ -50,7 +50,10 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
         <IconChevronLeft className="icon-chevron-left-instance"></IconChevronLeft>
       </button>
       <div className="get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now">
-        <span className="get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now-span">
+        <span
+          key={idx}
+          className="get-up-to-235-with-extra-trade-in-savings-on-apple-watch-series-7-when-you-upgrade-during-heart-month-shop-now-span ann-slide"
+        >
           {messages[idx]}
         </span>
       </div>

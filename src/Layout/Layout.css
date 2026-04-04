@@ -15,7 +15,6 @@
 .layout__announcement {
   background: var(--color-tokens-accent-2, #52aaa6) !important;
   width: 100% !important;
-  height: unset !important;
   flex-shrink: 0 !important;
 }
 

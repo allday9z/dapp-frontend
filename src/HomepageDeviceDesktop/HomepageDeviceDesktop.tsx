@@ -9,19 +9,10 @@ import { BentoBoxTileDeviceDesktopSmallLobAirPods } from "../BentoBoxTileDeviceD
 import { BentoBoxTileDeviceDesktopSmallLobAppleWatchBand } from "../BentoBoxTileDeviceDesktopSmallLobAppleWatchBand/BentoBoxTileDeviceDesktopSmallLobAppleWatchBand";
 import { AttachModuleSetProperty1TradeIn1DeviceDesktop } from "../AttachModuleSetProperty1TradeIn1DeviceDesktop/AttachModuleSetProperty1TradeIn1DeviceDesktop";
 import { AttachModuleSectionDeviceDesktop } from "../AttachModuleSectionDeviceDesktop/AttachModuleSectionDeviceDesktop";
-import { AppTileDeviceDesktopTitleJoinAClassCategoryStoreService } from "../AppTileDeviceDesktopTitleJoinAClassCategoryStoreService/AppTileDeviceDesktopTitleJoinAClassCategoryStoreService";
-import { AppTileDeviceDesktopTitleAppointmentCategoryStoreService } from "../AppTileDeviceDesktopTitleAppointmentCategoryStoreService/AppTileDeviceDesktopTitleAppointmentCategoryStoreService";
-import { AppTileDeviceDesktopTitleDeliveryAndPickupCategoryStoreService } from "../AppTileDeviceDesktopTitleDeliveryAndPickupCategoryStoreService/AppTileDeviceDesktopTitleDeliveryAndPickupCategoryStoreService";
-import { AppTileDeviceDesktopTitleFindAStoreCategoryStoreService } from "../AppTileDeviceDesktopTitleFindAStoreCategoryStoreService/AppTileDeviceDesktopTitleFindAStoreCategoryStoreService";
-import { AppTileDeviceDesktopTitleAppleRepairCategoryStoreService } from "../AppTileDeviceDesktopTitleAppleRepairCategoryStoreService/AppTileDeviceDesktopTitleAppleRepairCategoryStoreService";
+import { AppTile } from "../AppTile/AppTile";
 import { AttachModuleSetProperty1BackToSchool3DeviceDesktop } from "../AttachModuleSetProperty1BackToSchool3DeviceDesktop/AttachModuleSetProperty1BackToSchool3DeviceDesktop";
 import { OrganismValuePropSectionDeviceDesktop } from "../OrganismValuePropSectionDeviceDesktop/OrganismValuePropSectionDeviceDesktop";
 import { AttachModuleSetProperty1AllThingsIPad1DeviceDesktop } from "../AttachModuleSetProperty1AllThingsIPad1DeviceDesktop/AttachModuleSetProperty1AllThingsIPad1DeviceDesktop";
-import { AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories } from "../AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories/AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories";
-import { AppTileDeviceDesktopTitleIPadAccessoriesCategoryAccessories } from "../AppTileDeviceDesktopTitleIPadAccessoriesCategoryAccessories/AppTileDeviceDesktopTitleIPadAccessoriesCategoryAccessories";
-import { AppTileDeviceDesktopTitleAppleTvAccessoriesCategoryAccessories } from "../AppTileDeviceDesktopTitleAppleTvAccessoriesCategoryAccessories/AppTileDeviceDesktopTitleAppleTvAccessoriesCategoryAccessories";
-import { AppTileDeviceDesktopTitleWatchAccessoriesCategoryAccessories } from "../AppTileDeviceDesktopTitleWatchAccessoriesCategoryAccessories/AppTileDeviceDesktopTitleWatchAccessoriesCategoryAccessories";
-import { AppTileDeviceDesktopTitleIPhoneAccessoriesCategoryAccessories } from "../AppTileDeviceDesktopTitleIPhoneAccessoriesCategoryAccessories/AppTileDeviceDesktopTitleIPhoneAccessoriesCategoryAccessories";
 import { OrganismAppZigzagSectionDeviceDesktop } from "../OrganismAppZigzagSectionDeviceDesktop/OrganismAppZigzagSectionDeviceDesktop";
 import { AttachModuleSetProperty1AppleCare1DeviceDesktop } from "../AttachModuleSetProperty1AppleCare1DeviceDesktop/AttachModuleSetProperty1AppleCare1DeviceDesktop";
 import { AttachModuleSetProperty1QuickCheckout1DeviceDesktop } from "../AttachModuleSetProperty1QuickCheckout1DeviceDesktop/AttachModuleSetProperty1QuickCheckout1DeviceDesktop";
@@ -103,11 +94,11 @@ export const HomepageDeviceDesktop = ({
 
       <OrganismDeviceDesktop
         heading="View in-store classes and support."
-        component={<AppTileDeviceDesktopTitleJoinAClassCategoryStoreService className="app-tile-instance" title="join-a-class" category="store-service" />}
-        component2={<AppTileDeviceDesktopTitleAppointmentCategoryStoreService className="app-tile-instance" title="appointment" category="store-service" />}
-        component3={<AppTileDeviceDesktopTitleDeliveryAndPickupCategoryStoreService className="app-tile-instance" title="delivery-and-pickup" category="store-service" />}
-        component4={<AppTileDeviceDesktopTitleFindAStoreCategoryStoreService className="app-tile-instance" title="find-a-store" category="store-service" />}
-        component5={<AppTileDeviceDesktopTitleAppleRepairCategoryStoreService className="app-tile-instance" title="apple-repair" category="store-service" />}
+        component={<AppTile image="image-1170.png" badge="IN-STORE" title="Join a class" cta="Free sessions" description="Free sessions that inspire hands-on creativity in photography, art, music, and more." />}
+        component2={<AppTile image="image-1100.png" badge="IN-STORE" title="Appointment" cta="Apple Support has you covered" description="From setting up your device to recovering your Apple ID to replacing the screen, Apple Support has you covered." />}
+        component3={<AppTile image="image-1180.png" badge="IN-STORE" title="Delivery and Pickup" cta="Get free delivery or in-store pick-up" description="Pick up your online order at the Apple Store." />}
+        component4={<AppTile image="image-1180.png" badge="IN-STORE" title="Find a Store" cta="Shop the latest Apple products" description="More ways to shop: Find an Apple Store or other retailer near you." />}
+        component5={<AppTile image="screen-shot-2022-11-01-at-9-27-10.png" badge="IN-STORE" title="Apple Repair" cta="Schedule a visit" description="Online or over the phone, we'll arrange shipment for your product to an Apple Repair Center." />}
         className="organism-instance"
       />
 
@@ -131,11 +122,11 @@ export const HomepageDeviceDesktop = ({
 
       <OrganismDeviceDesktop
         heading="Featured Apple Accessories."
-        component={<AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories className="app-tile-instance" title="mac-accessories" category="accessories" />}
-        component2={<AppTileDeviceDesktopTitleIPadAccessoriesCategoryAccessories className="app-tile-instance" title="i-pad-accessories" category="accessories" />}
-        component3={<AppTileDeviceDesktopTitleAppleTvAccessoriesCategoryAccessories className="app-tile-instance" title="apple-tv-accessories" category="accessories" />}
-        component4={<AppTileDeviceDesktopTitleWatchAccessoriesCategoryAccessories className="app-tile-instance" title="watch-accessories" category="accessories" />}
-        component5={<AppTileDeviceDesktopTitleIPhoneAccessoriesCategoryAccessories className="app-tile-instance" title="i-phone-accessories" category="accessories" />}
+        component={<AppTile image="image-1170.png" badge="IN-STORE" title="Mac Accessories" cta="Shop Mac accessories here" description="Available from $342 or $57/mo. for 6 mo.* before trade-in" />}
+        component2={<AppTile image="image-1110.png" badge="NEW" title="iPad Accessories" cta="Shop iPad accessories here" description="Available from $42 or $7/mo. for 6 mo.* before trade-in" />}
+        component3={<AppTile image="screen-shot-2022-11-01-at-9-27-20.png" badge="SALE" title="Apple TV Accessories" cta="Shop Apple TV accessories here" description="Available from $102 or $17/mo. for 6 mo.* before trade-in" />}
+        component4={<AppTile image="image-1170.png" badge="CYBER MONDAY" title="Watch Accessories" cta="Shop Watch accessories here" description="Available from $138 or $23/mo. for 6 mo.* before trade-in" />}
+        component5={<AppTile image="image-1170.png" badge="IN-STORE" title="iPhone Accessories" cta="Shop iPhone accessories here" description="Available from $54 or $9/mo. for 6 mo.* before trade-in" />}
         className="organism-instance"
       />
 

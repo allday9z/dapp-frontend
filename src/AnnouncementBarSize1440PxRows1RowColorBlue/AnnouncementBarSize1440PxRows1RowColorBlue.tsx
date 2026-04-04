@@ -41,36 +41,61 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
   const [trackIdx, setTrackIdx] = useState(infinite ? 1 : 0);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Auto-advance every 4 s
+  const cloneFirst = extended.length - 1; // index of clone-of-first (upper bound)
+
+  const silentJump = (newIdx: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.style.transition = "none";
+    setTrackIdx(newIdx);
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => {
+        if (el) el.style.transition = "";
+      })
+    );
+  };
+
+  // Auto-advance every 4 s (clamped so it never goes past the upper clone)
   useEffect(() => {
     if (messages.length <= 1) return;
-    const t = setInterval(() => setTrackIdx((i) => i + 1), 4000);
+    const t = setInterval(
+      () => setTrackIdx((i) => (i < cloneFirst ? i + 1 : i)),
+      4000
+    );
     return () => clearInterval(t);
-  }, [messages.length]);
+  }, [messages.length, cloneFirst]);
 
-  // When trackIdx lands on a clone slide, wait for the CSS transition to
-  // finish (TRANSITION_MS), then silently jump to the matching real slide.
-  // Using setTimeout instead of onTransitionEnd avoids stale-closure and
-  // browser event-timing issues.
+  // Handle clone positions and out-of-bounds indices:
+  //  - Out of bounds (rapid clicks past the clone): instant reset
+  //  - At clone-of-first / clone-of-last: wait for CSS transition, then reset
   useEffect(() => {
     if (!infinite) return;
-    if (trackIdx !== 0 && trackIdx !== extended.length - 1) return;
 
-    const newIdx = trackIdx === 0 ? messages.length : 1;
-    const timer = setTimeout(() => {
-      const el = trackRef.current;
-      if (!el) return;
-      el.style.transition = "none";
-      setTrackIdx(newIdx);
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => {
-          if (el) el.style.transition = "";
-        })
-      );
-    }, TRANSITION_MS);
+    // Went past upper bound — instant reset to real first
+    if (trackIdx > cloneFirst) {
+      silentJump(1);
+      return;
+    }
 
-    return () => clearTimeout(timer);
-  }, [trackIdx, infinite, extended.length, messages.length]);
+    // Went past lower bound — instant reset to real last
+    if (trackIdx < 0) {
+      silentJump(messages.length);
+      return;
+    }
+
+    // Landed on clone-of-first — wait for transition, then jump to real first
+    if (trackIdx === cloneFirst) {
+      const timer = setTimeout(() => silentJump(1), TRANSITION_MS);
+      return () => clearTimeout(timer);
+    }
+
+    // Landed on clone-of-last — wait for transition, then jump to real last
+    if (trackIdx === 0) {
+      const timer = setTimeout(() => silentJump(messages.length), TRANSITION_MS);
+      return () => clearTimeout(timer);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trackIdx, infinite, cloneFirst, messages.length]);
 
   // Auto-hide when no messages
   if (messages.length === 0) return null;

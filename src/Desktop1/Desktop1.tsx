@@ -12,9 +12,6 @@ export const Desktop1 = ({
   return (
     <div className={"desktop-1 " + className}>
       <HomepageDeviceDesktop
-        text="สมัคร U•Joy        |       ผ่อนไม่ใช้บัตร       |       โปรโมชันประจำเดือน"
-        text2="ผลิตภัณฑ์ของ Apple ทั้งหมด"
-        text3="ผลิตภัณฑ์ล่าสุดของ Apple"
         className="homepage-instance"
       ></HomepageDeviceDesktop>
     </div>

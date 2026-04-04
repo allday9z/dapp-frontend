@@ -18,43 +18,6 @@
   white-space: nowrap;
   border: 0;
 }
-.homepage-device-desktop .frame-1816 {
-  background: #ffffff;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: stretch;
-  justify-content: flex-start;
-  position: relative;
-  width: 100%;
-}
-.homepage-device-desktop .frame-1826 {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-}
-.homepage-device-desktop .frame-1825 {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: stretch;
-  justify-content: flex-start;
-  width: 100%;
-}
-
-/* ── Top bar + Nav ── */
-.homepage-device-desktop .announcement-bar-instance {
-  background: var(--color-tokens-accent-2, #52aaa6) !important;
-  width: 100% !important;
-  height: unset !important;
-  flex-shrink: 0 !important;
-}
-.homepage-device-desktop .global-nav-instance {
-  flex-shrink: 0 !important;
-}
 
 /* ── Banner carousel ── */
 .homepage-device-desktop .banner-carousel-instance {
@@ -63,13 +26,13 @@
 }
 
 /* ── Product stripe section ── */
-.homepage-device-desktop .view-all-apple-products {
+.homepage-device-desktop .hp-products {
   display: flex;
   flex-direction: column;
   gap: 0;
   width: 100%;
 }
-.homepage-device-desktop .frame-1550 {
+.homepage-device-desktop .hp-heading-row {
   padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
   display: flex;
   flex-direction: column;
@@ -79,7 +42,7 @@
   width: 100%;
   position: relative;
 }
-.homepage-device-desktop .view-all-apple-products2 {
+.homepage-device-desktop .hp-heading {
   color: var(--color-black, #000000);
   font-family: var(--display-display-s-font-family, 'SFProThai', sans-serif);
   font-size: var(--display-display-s-font-size, 2rem);
@@ -89,13 +52,13 @@
   position: relative;
 }
 
-/* ProductStripe handles .frame-1549 */
-.homepage-device-desktop .frame-1549 {
+/* ProductStripe handles .hp-product-stripe */
+.homepage-device-desktop .hp-product-stripe {
   /* wrapper class kept for specificity; ProductStripe manages internally */
 }
 
 /* ── Divider line ── */
-.homepage-device-desktop .line-21 {
+.homepage-device-desktop .hp-divider {
   border-top: 0.0625rem solid var(--color-gray-4, #f2f2f2);
   width: 100%;
   height: 0;
@@ -106,32 +69,14 @@
 .homepage-device-desktop .organism-instance {
   width: 100% !important;
 }
-.homepage-device-desktop .discover-partner-services-and-more {
+.homepage-device-desktop .hp-partners {
   display: flex;
   flex-direction: column;
   gap: 0;
   width: 100%;
 }
-.homepage-device-desktop .frame-1540 {
-  padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  align-items: flex-start;
-  width: 100%;
-  position: relative;
-}
-.homepage-device-desktop .discover-partner-services-and-more2 {
-  color: var(--color-black, #000000);
-  font-family: var(--title-title-semibold-font-family, 'SFProThai', sans-serif);
-  font-size: 2rem;
-  letter-spacing: -0.02em;
-  font-weight: 600;
-  margin: 0;
-  position: relative;
-}
-/* frame-1541 is now a ProductStripe — override inner gap to match original */
-.homepage-device-desktop .frame-1541 .product-stripe__inner {
+/* frame-1541 is now hp-partner-stripe — override inner gap to match original */
+.homepage-device-desktop .hp-partner-stripe .product-stripe__inner {
   gap: 1.5rem;
 }
 .homepage-device-desktop .app-text-tile-instance {
@@ -139,7 +84,7 @@
 }
 
 /* ── Bento box ── */
-.homepage-device-desktop .bento-box {
+.homepage-device-desktop .hp-bento {
   background: var(--color-gray-5, #f2f2f2);
   padding: 2rem max(1rem, calc((100% - 76.25rem) / 2));
   display: flex;
@@ -147,7 +92,7 @@
   gap: 0;
   width: 100%;
 }
-.homepage-device-desktop .frame-1547 {
+.homepage-device-desktop .hp-bento__grid {
   display: flex;
   flex-direction: row;
   gap: 1rem;
@@ -160,7 +105,7 @@
   max-width: 37.625rem !important;
   flex-shrink: 0 !important;
 }
-.homepage-device-desktop .frame-1546 {
+.homepage-device-desktop .hp-bento__col {
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -170,12 +115,6 @@
   flex-shrink: 0 !important;
   width: 100% !important;
   height: unset !important;
-}
-
-/* ── Footer ── */
-.homepage-device-desktop .footer-instance {
-  width: 100% !important;
-  flex-shrink: 0 !important;
 }
 
 /* ── Nested overrides ── */

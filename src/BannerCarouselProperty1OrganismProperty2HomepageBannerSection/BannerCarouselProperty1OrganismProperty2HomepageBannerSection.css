@@ -10,23 +10,32 @@
   user-select: none;
 }
 
-/* ── Splide: fixed 410px height ── */
-.banner-carousel-splide {
-  width: 100%;
+/* ── Hide Fancyapps built-in UI (we use custom dots) ── */
+.banner-carousel-stage .f-progressbar,
+.banner-carousel-stage .f-button {
+  display: none !important;
 }
-.banner-carousel-splide .splide__track {
+
+/* ── Fancyapps stage: fixed 410px height ── */
+.banner-carousel-stage {
+  width: 100%;
   height: 25.625rem; /* 410px */
 }
-.banner-carousel-splide .splide__slide {
+.banner-carousel-stage .f-carousel__viewport,
+.banner-carousel-stage .f-carousel__track {
+  height: 100%;
+}
+.banner-carousel-stage .f-carousel__slide {
   height: 25.625rem;
   overflow: hidden;
+  width: 100%;
 }
-.banner-carousel-splide .splide__slide a.banner-carousel-link {
+.banner-carousel-stage .f-carousel__slide a.banner-carousel-link {
   display: block;
   width: 100%;
   height: 100%;
 }
-.banner-carousel-splide .splide__slide img {
+.banner-carousel-stage .f-carousel__slide img {
   width: 100%;
   height: 100%;
   display: block;

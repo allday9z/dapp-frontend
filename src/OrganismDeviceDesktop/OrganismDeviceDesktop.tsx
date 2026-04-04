@@ -5,7 +5,7 @@ import { AppTileDeviceDesktopTitleMacMiniCategoryWhatSNew } from "../AppTileDevi
 import { AppTileDeviceDesktopTitleHomePodCategoryWhatSNew } from "../AppTileDeviceDesktopTitleHomePodCategoryWhatSNew/AppTileDeviceDesktopTitleHomePodCategoryWhatSNew";
 import { AppTileDeviceDesktopTitleSwitchToMacCategoryWhatSNew } from "../AppTileDeviceDesktopTitleSwitchToMacCategoryWhatSNew/AppTileDeviceDesktopTitleSwitchToMacCategoryWhatSNew";
 import { AppTileDeviceDesktopTitleAppleTvHdCategoryWhatSNew } from "../AppTileDeviceDesktopTitleAppleTvHdCategoryWhatSNew/AppTileDeviceDesktopTitleAppleTvHdCategoryWhatSNew";
-import type { JSX } from "react";
+import { cloneElement, type JSX } from "react";
 
 export interface IOrganismDeviceDesktopProps {
   device?: "mobile" | "desktop";
@@ -37,7 +37,9 @@ export const OrganismDeviceDesktop = ({
   ) as JSX.Element[];
   const tiles =
     customTiles.length > 0
-      ? customTiles
+      ? customTiles.map((tile, i) =>
+          tile.key != null ? tile : cloneElement(tile, { key: `tile-${i}` })
+        )
       : [
           <AppTileDeviceDesktopCategoryWhatSNewTitleMacBookPro
             key="mac-book-pro"

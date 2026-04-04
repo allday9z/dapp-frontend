@@ -1,6 +1,9 @@
-import { useRef, useState } from "react";
-import { Splide, SplideSlide } from "@splidejs/react-splide";
-import "@splidejs/react-splide/css/core";
+import { useEffect, useRef, useState } from "react";
+import type { CarouselInstance } from "@fancyapps/ui/dist/carousel/carousel.js";
+import { Carousel } from "@fancyapps/ui/dist/carousel/carousel.js";
+import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.js";
+import "@fancyapps/ui/dist/carousel/carousel.css";
+import "@fancyapps/ui/dist/carousel/carousel.autoplay.css";
 import "./BannerCarouselProperty1OrganismProperty2HomepageBannerSection.css";
 
 interface Slide {
@@ -24,8 +27,44 @@ export const BannerCarouselProperty1OrganismProperty2HomepageBannerSection = ({
   slides = SLIDES,
   className = "",
 }: IBannerCarouselProperty1OrganismProperty2HomepageBannerSectionProps): JSX.Element => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const instanceRef = useRef<CarouselInstance | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
-  const splideRef = useRef<Splide>(null);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (!container) return;
+
+    const instance = Carousel(
+      container,
+      {
+        infinite: true,
+        transition: "slide",
+        slidesPerPage: 1,
+        Autoplay: {
+          timeout: 5000,
+          pauseOnHover: true,
+        },
+      },
+      { Autoplay }
+    );
+
+    instance.on("change", (_api: unknown, newPageIndex: number) => {
+      setActiveIdx(newPageIndex);
+    });
+
+    instance.init();
+
+    instanceRef.current = instance;
+    return () => {
+      instance.destroy();
+      instanceRef.current = null;
+    };
+  }, []);
+
+  const goTo = (i: number) => {
+    instanceRef.current?.goTo(i);
+  };
 
   return (
     <div
@@ -34,27 +73,9 @@ export const BannerCarouselProperty1OrganismProperty2HomepageBannerSection = ({
         className
       }
     >
-      <Splide
-        ref={splideRef}
-        className="banner-carousel-splide"
-        options={{
-          type: "loop",
-          autoplay: true,
-          interval: 5000,
-          pauseOnHover: true,
-          pauseOnFocus: false,
-          speed: 450,
-          easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
-          arrows: false,
-          pagination: false,
-          height: "25.625rem",
-          cover: true,
-          snap: true,
-        }}
-        onMoved={(splide) => setActiveIdx(splide.index)}
-      >
+      <div ref={containerRef} className="f-carousel banner-carousel-stage">
         {slides.map((slide, i) => (
-          <SplideSlide key={i}>
+          <div key={i} className="f-carousel__slide">
             {slide.href ? (
               <a href={slide.href} className="banner-carousel-link" draggable={false}>
                 <img src={slide.src} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
@@ -62,9 +83,9 @@ export const BannerCarouselProperty1OrganismProperty2HomepageBannerSection = ({
             ) : (
               <img src={slide.src} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
             )}
-          </SplideSlide>
+          </div>
         ))}
-      </Splide>
+      </div>
 
       {/* Dots — white pill strip below the banner image */}
       <div className="banner-carousel-dots-wrap">
@@ -74,7 +95,7 @@ export const BannerCarouselProperty1OrganismProperty2HomepageBannerSection = ({
               key={i}
               type="button"
               className={"banner-carousel-dot" + (i === activeIdx ? " active" : "")}
-              onClick={() => splideRef.current?.splide?.go(i)}
+              onClick={() => goTo(i)}
               aria-label={`สไลด์ ${i + 1}`}
               aria-current={i === activeIdx ? "true" : undefined}
             />

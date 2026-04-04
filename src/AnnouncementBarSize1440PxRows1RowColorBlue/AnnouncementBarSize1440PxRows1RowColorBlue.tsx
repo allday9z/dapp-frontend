@@ -16,6 +16,9 @@ const MESSAGES = [
   "โปรโมชันประจำเดือน — ดูสินค้าทั้งหมด >",
 ];
 
+/** Must match .ann-track CSS transition duration */
+const TRANSITION_MS = 700;
+
 export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
   size = "1440-px",
   rows = "1-row",
@@ -38,39 +41,36 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
   const [trackIdx, setTrackIdx] = useState(infinite ? 1 : 0);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // Silently jump to a new index without animation
-  const silentJump = (newIdx: number) => {
-    const el = trackRef.current;
-    if (!el) return;
-    el.style.transition = "none";
-    setTrackIdx(newIdx);
-    // Re-enable transition after the DOM has painted the new position
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      if (el) el.style.transition = "";
-    }));
-  };
-
-  // After a slide transition ends, check if we landed on a clone and jump
-  const handleTransitionEnd = () => {
-    if (!infinite) return;
-    if (trackIdx === 0) {
-      // Landed on clone-of-last → jump to real last
-      silentJump(messages.length);
-    } else if (trackIdx === extended.length - 1) {
-      // Landed on clone-of-first → jump to real first
-      silentJump(1);
-    }
-  };
-
-  // Auto-advance
+  // Auto-advance every 4 s
   useEffect(() => {
     if (messages.length <= 1) return;
-    const t = setInterval(
-      () => setTrackIdx((i) => i + 1),
-      4000
-    );
+    const t = setInterval(() => setTrackIdx((i) => i + 1), 4000);
     return () => clearInterval(t);
   }, [messages.length]);
+
+  // When trackIdx lands on a clone slide, wait for the CSS transition to
+  // finish (TRANSITION_MS), then silently jump to the matching real slide.
+  // Using setTimeout instead of onTransitionEnd avoids stale-closure and
+  // browser event-timing issues.
+  useEffect(() => {
+    if (!infinite) return;
+    if (trackIdx !== 0 && trackIdx !== extended.length - 1) return;
+
+    const newIdx = trackIdx === 0 ? messages.length : 1;
+    const timer = setTimeout(() => {
+      const el = trackRef.current;
+      if (!el) return;
+      el.style.transition = "none";
+      setTrackIdx(newIdx);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          if (el) el.style.transition = "";
+        })
+      );
+    }, TRANSITION_MS);
+
+    return () => clearTimeout(timer);
+  }, [trackIdx, infinite, extended.length, messages.length]);
 
   // Auto-hide when no messages
   if (messages.length === 0) return null;
@@ -94,7 +94,6 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
           ref={trackRef}
           className="ann-track"
           style={{ transform: `translateX(-${trackIdx * 100}%)` }}
-          onTransitionEnd={handleTransitionEnd}
         >
           {extended.map((msg, i) => (
             <div key={i} className="ann-message">

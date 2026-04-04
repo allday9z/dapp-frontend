@@ -6,14 +6,15 @@
   font-family: 'SFProThai';
   font-style: normal;
   font-weight: 1 1000;
-  src: url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProTH.woff2?v=1713897600") format('woff2-variations'),
-       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProTH.woff2?v=1713897600") format('woff2');
+  src: url("/fonts/SFProTH.woff2") format('woff2-variations'),
+       url("/fonts/SFProTH.woff2") format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'SF Pro Text';
-  src: url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff2?v=1721802674") format('woff2'),
-       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff?v=1721802674") format('woff');
+  src: url("/fonts/SFProText-Regular.woff2") format('woff2'),
+       url("/fonts/SFProText-Regular.woff") format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -21,8 +22,8 @@
 
 @font-face {
   font-family: 'SF Pro Text';
-  src: url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff2?v=1721802674') format('woff2'),
-       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff?v=1721802675') format('woff');
+  src: url("/fonts/SFProText-Medium.woff2") format('woff2'),
+       url("/fonts/SFProText-Medium.woff") format('woff');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
@@ -30,8 +31,8 @@
 
 @font-face {
   font-family: 'SF Pro Text';
-  src: url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2'),
-       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff?v=1720517556') format('woff');
+  src: url("/fonts/SFProText-Semibold.woff2") format('woff2'),
+       url("/fonts/SFProText-Semibold.woff") format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -45,23 +46,20 @@
   font-display: swap;
 }
 
-/* Alias: Figma export uses "SfProText-*" names — map to loaded SF Pro Text */
+/* Alias: Figma export uses "SfProText-*" names — map to self-hosted SF Pro Text */
 @font-face {
   font-family: 'SfProText-Regular';
-  src: local('SF Pro Text'),
-       url("https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Regular.woff2?v=1721802674") format('woff2');
+  src: local('SF Pro Text'), url("/fonts/SFProText-Regular.woff2") format('woff2');
   font-weight: 400;
 }
 @font-face {
   font-family: 'SfProText-Medium';
-  src: local('SF Pro Text'),
-       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Medium.woff2?v=1721802674') format('woff2');
+  src: local('SF Pro Text'), url("/fonts/SFProText-Medium.woff2") format('woff2');
   font-weight: 500;
 }
 @font-face {
   font-family: 'SfProText-Semibold';
-  src: local('SF Pro Text'),
-       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2');
+  src: local('SF Pro Text'), url("/fonts/SFProText-Semibold.woff2") format('woff2');
   font-weight: 600;
 }
 @font-face {
@@ -71,8 +69,7 @@
 }
 @font-face {
   font-family: 'SfProDisplay-Semibold';
-  src: local('SF Pro Text'),
-       url('https://cdn.shopify.com/s/files/1/0857/7921/8712/files/SFProText-Semibold.woff2?v=1720517556') format('woff2');
+  src: local('SF Pro Text'), url("/fonts/SFProText-Semibold.woff2") format('woff2');
   font-weight: 600;
 }
 

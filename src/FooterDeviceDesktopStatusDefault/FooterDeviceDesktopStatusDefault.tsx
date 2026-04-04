@@ -120,7 +120,7 @@ export const FooterDeviceDesktopStatusDefault = ({
           {/* Apple Premium Partner Column */}
           <div className="footer-column partner-column">
             <h2 className="footer-column-title">Apple Premium Partner</h2>
-            <div className="partner-logos-stack">qq
+            <div className="partner-logos-stack">
               <img src="apple-partner-footer/apple-partner-1.svg" alt="Apple Premium Partner" className="partner-logo-img premium-partner" onError={(e) => { e.currentTarget.src = 'group0.svg'; }} />
               <img src="apple-partner-footer/apple-partner-2.svg" alt="Authorized Service Provider" className="partner-logo-img service-provider" onError={(e) => { e.currentTarget.src = 'vector0.svg'; }} />
               <img src="apple-partner-footer/apple-partner-3.svg" alt="Authorized Education Specialist" className="partner-logo-img education-specialist" onError={(e) => { e.currentTarget.src = 'vector2.svg'; }} />

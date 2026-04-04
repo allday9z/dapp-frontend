@@ -1,0 +1,223 @@
+.trade-in-section {
+  width: 100%;
+  max-width: 86rem; /* Wide enough to allow arrows outside */
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--body-body-s-regular-font-family, sans-serif);
+  box-sizing: border-box;
+}
+
+.trade-in-section__title {
+  color: #1d1d1f;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 3rem;
+  font-family: var(--headline-headline-l-font-family, sans-serif);
+}
+
+.trade-in-carousel-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.trade-in-carousel {
+  --f-carousel-gap: 1.5rem;
+  --f-carousel-slide-width: calc((100% - (var(--f-carousel-gap) * 2)) / 3);
+  padding-bottom: 4rem; /* Space for dots */
+}
+
+/* Ensure viewport doesn't hide arrows if they overlap slightly */
+.trade-in-carousel .f-carousel__viewport {
+  overflow: visible !important;
+}
+
+.trade-in-slide {
+  width: var(--f-carousel-slide-width);
+  display: flex;
+  justify-content: center;
+}
+
+.trade-in-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 20rem; /* Keep cards uniformly sized */
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.trade-in-card__image-wrapper {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #ffffff;
+  border: 1px solid #d2d2d7;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.trade-in-card__image {
+  max-width: 80%;
+  max-height: 80%;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.trade-in-card:hover .trade-in-card__image {
+  transform: scale(1.08);
+}
+
+.trade-in-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+
+.trade-in-card__title {
+  color: #1d1d1f;
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  transition: text-decoration 0.2s;
+}
+
+.trade-in-card:hover .trade-in-card__title {
+  text-decoration: underline;
+}
+
+.trade-in-card__price-original {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.trade-in-card__price-original .strike {
+  color: #86868b;
+  text-decoration: line-through;
+}
+
+.trade-in-card__price-original .discount {
+  color: #bf4800;
+}
+
+.trade-in-card__price {
+  color: #1d1d1f;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.trade-in-card__monthly {
+  color: #1d1d1f;
+  font-size: 0.875rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+
+.trade-in-card__btn {
+  background: #0071e3;
+  color: #ffffff;
+  border: none;
+  border-radius: 2rem;
+  padding: 0.5rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+  transition: background 0.2s;
+  min-width: 8.5rem;
+}
+
+.trade-in-card__btn:hover {
+  background: #0077ed;
+}
+
+/* Fancyapps Arrows - Blue Circle Outside */
+.trade-in-arrow {
+  position: absolute;
+  top: calc(50% - 2rem); /* Center vertically, ignoring dots space */
+  transform: translateY(-50%);
+  width: 3rem;
+  height: 3rem;
+  background: #0071e3;
+  color: white;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: all 0.2s;
+}
+
+.trade-in-arrow--prev {
+  left: -4rem; /* Move outside the viewport */
+}
+
+.trade-in-arrow--next {
+  right: -4rem; /* Move outside the viewport */
+}
+
+.trade-in-arrow:hover:not([disabled]) {
+  background: #0077ed;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.trade-in-arrow[disabled] {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Dots */
+.trade-in-carousel .f-carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.trade-in-carousel .f-carousel__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  background: #d2d2d7;
+  border-radius: 50%;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.trade-in-carousel .f-carousel__dot.is-current {
+  background: #1d1d1f;
+}
+
+@media (max-width: 1024px) {
+  .trade-in-carousel {
+    --f-carousel-slide-width: calc((100% - var(--f-carousel-gap)) / 2);
+  }
+  .trade-in-arrow--prev { left: -1rem; }
+  .trade-in-arrow--next { right: -1rem; }
+}
+
+@media (max-width: 768px) {
+  .trade-in-carousel {
+    --f-carousel-slide-width: 100%;
+  }
+  .trade-in-arrow {
+    display: none;
+  }
+}

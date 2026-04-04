@@ -116,6 +116,11 @@
   width: 100% !important;
   height: unset !important;
 }
+/* Small tiles inside the column — only control width, not height */
+.homepage-device-desktop .bento-col-tile {
+  width: 100% !important;
+  flex-shrink: 0 !important;
+}
 
 /* ── Nested overrides ── */
 .homepage-device-desktop .attach-module-set-instance {

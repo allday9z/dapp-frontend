@@ -71,13 +71,13 @@ export const HomepageDeviceDesktop = ({
             <BentoBoxTileDeviceDesktopSmallLobAirPods
               device="desktop-small"
               text="Shop models"
-              className="bento-box-tile-instance"
+              className="bento-col-tile"
             />
             <BentoBoxTileDeviceDesktopSmallLobAppleWatchBand
               device="desktop-small"
               lob="apple-watch-band"
               text="Shop models"
-              className="bento-box-tile-instance2"
+              className="bento-col-tile"
             />
           </div>
         </div>

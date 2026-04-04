@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./AnnouncementBarSize1440PxRows1RowColorBlue.css";
 import { IconChevronLeft } from "../IconChevronLeft/IconChevronLeft";
 
@@ -27,12 +27,48 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
     ? text.split("|").map((s) => s.trim()).filter(Boolean)
     : MESSAGES;
 
-  const [idx, setIdx] = useState(0);
+  // Infinite clone pattern:
+  // extended = [clone-of-last, ...real-slides, clone-of-first]
+  // trackIdx starts at 1 (first real slide)
+  const infinite = messages.length > 1;
+  const extended = infinite
+    ? [messages[messages.length - 1], ...messages, messages[0]]
+    : messages;
 
-  // Auto-advance (skip if only 1 message)
+  const [trackIdx, setTrackIdx] = useState(infinite ? 1 : 0);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Silently jump to a new index without animation
+  const silentJump = (newIdx: number) => {
+    const el = trackRef.current;
+    if (!el) return;
+    el.style.transition = "none";
+    setTrackIdx(newIdx);
+    // Re-enable transition after the DOM has painted the new position
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      if (el) el.style.transition = "";
+    }));
+  };
+
+  // After a slide transition ends, check if we landed on a clone and jump
+  const handleTransitionEnd = () => {
+    if (!infinite) return;
+    if (trackIdx === 0) {
+      // Landed on clone-of-last → jump to real last
+      silentJump(messages.length);
+    } else if (trackIdx === extended.length - 1) {
+      // Landed on clone-of-first → jump to real first
+      silentJump(1);
+    }
+  };
+
+  // Auto-advance
   useEffect(() => {
     if (messages.length <= 1) return;
-    const t = setInterval(() => setIdx((i) => (i + 1) % messages.length), 4000);
+    const t = setInterval(
+      () => setTrackIdx((i) => i + 1),
+      4000
+    );
     return () => clearInterval(t);
   }, [messages.length]);
 
@@ -40,9 +76,8 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
   if (messages.length === 0) return null;
 
   const showNav = messages.length > 1;
-
-  const prev = () => setIdx((i) => (i - 1 + messages.length) % messages.length);
-  const next = () => setIdx((i) => (i + 1) % messages.length);
+  const prev = () => setTrackIdx((i) => i - 1);
+  const next = () => setTrackIdx((i) => i + 1);
 
   return (
     <div
@@ -56,10 +91,12 @@ export const AnnouncementBarSize1440PxRows1RowColorBlue = ({
 
       <div className="ann-track-wrap">
         <div
+          ref={trackRef}
           className="ann-track"
-          style={{ transform: `translateX(-${idx * 100}%)` }}
+          style={{ transform: `translateX(-${trackIdx * 100}%)` }}
+          onTransitionEnd={handleTransitionEnd}
         >
-          {messages.map((msg, i) => (
+          {extended.map((msg, i) => (
             <div key={i} className="ann-message">
               <span className="ann-text">{msg}</span>
             </div>

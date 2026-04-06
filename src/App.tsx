@@ -6,16 +6,17 @@ import { LOBPage } from './pages/LOBPage/LOBPage';
 
 /**
  * Minimal pathname-based router (no extra dependencies).
- * /                    → HomePage       (Figma-accurate, full layout)
- * /mac/macbook-air     → PLPPage        (MacBook Air — category listing)
- * /mac/macbook-pro     → LOBPage        (MacBook Pro — sub-model LOB)
+ * /                        → HomePage  (Figma-accurate, full layout)
+ * /pages/view-all-mac      → PLPPage   (MacBook Air — PLP category listing)
+ * /collections/macbook-air → LOBPage   (MacBook Air LOB — sub-model rows)
+ * /collections/macbook-pro → LOBPage   (MacBook Pro LOB — sub-model rows)
  *
  * Swap this for react-router <Routes> whenever ready.
  */
 function currentPage() {
   const path = window.location.pathname;
-  if (path === '/mac/macbook-air') return <PLPPage />;
-  if (path === '/mac/macbook-pro') return <LOBPage />;
+  if (path === '/pages/view-all-mac') return <PLPPage />;
+  if (path.startsWith('/collections/macbook')) return <LOBPage />;
   return <HomePage />;
 }
 

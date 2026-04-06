@@ -32,6 +32,8 @@
   flex-shrink: 0;
   position: relative;
   object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
 }
 
 .lob-stripe-tile__description {

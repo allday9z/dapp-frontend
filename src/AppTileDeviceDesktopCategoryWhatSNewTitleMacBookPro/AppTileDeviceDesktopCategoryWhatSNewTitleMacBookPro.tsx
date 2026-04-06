@@ -47,15 +47,15 @@ export const AppTileDeviceDesktopCategoryWhatSNewTitleMacBookPro = ({
       <AppBlockImageProperty1Varient1DeviceDesktop className="app-block-image-instance"></AppBlockImageProperty1Varient1DeviceDesktop>
       <div className="text-block">
         <div className="frame-1530">
-          <div className="new">NEW </div>
-          <div className="mac-book-pro">MacBook Pro </div>
+          <div className="new">ใหม่</div>
+          <div className="mac-book-pro">AirPods Max 2</div>
           <div className="supercharged-by-m-2-pro-and-m-2-max">
-            Supercharged by M2 Pro and M2 Max{" "}
+            ประสบการณ์เสียงในเวอร์ชั่นรีมาสเตอร์{" "}
           </div>
         </div>
         <div className="available-starting-1-24-from-1999-or-333-mo-for-6-mo-before-trade-in">
-          Available starting 1.24 from $1999 or $333/mo. for 6 mo.* before
-          trade-in{" "}
+          
+เริ่มต้น ฿18,900{" "}
         </div>
       </div>
     </div>

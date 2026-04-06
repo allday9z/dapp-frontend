@@ -48,15 +48,14 @@ export const AppTileDeviceDesktopTitleAppleTvHdCategoryWhatSNew = ({
         <AppBlockImageProperty1Variant5DeviceDesktop className="app-block-image-instance"></AppBlockImageProperty1Variant5DeviceDesktop>
         <div className="text-block">
           <div className="frame-1530">
-            <div className="new">NEW </div>
-            <div className="apple-tv-hd">Apple TV HD </div>
+            <div className="new">ใหม่ </div>
+            <div className="apple-tv-hd">MacBook Pro M5 </div>
             <div className="the-apple-experience-cinematic-in-every-sense">
-              The Apple experience. <br />
-              Cinematic in every sense.{" "}
+              เร็วและอัจฉริยะเหลือร้าย{" "}
             </div>
           </div>
           <div className="available-from-342-or-57-mo-for-6-mo-before-trade-in">
-            Available from $342 or $57/mo. for 6 mo.* before trade-in{" "}
+            เริ่มต้น ฿56,900{" "}
           </div>
         </div>
       </div>

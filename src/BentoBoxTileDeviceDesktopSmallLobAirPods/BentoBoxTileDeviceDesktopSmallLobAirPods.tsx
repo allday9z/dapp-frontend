@@ -38,16 +38,16 @@ export const BentoBoxTileDeviceDesktopSmallLobAirPods = ({
         <div className="contents">
           <div className="copy-block">
             <div className="new-badge">
-              <div className="new">NEW </div>
+              <div className="new">ใหม่ </div>
             </div>
             <div className="heading">
-              <div className="i-phone-14-pro">AirPods Pro </div>
+              <div className="i-phone-14-pro">AirPods Max 2</div>
             </div>
             <div className="subhead">
               <div className="_2nd-generation-magically-connect-to-your-apple-watch-from-249">
-                2nd generation. Magically connect to your Apple Watch.
+                ประสบการณ์เสียง ในเวอร์ชั่นรีมาสเตอร์
                 <br />
-                From $249{" "}
+                เริ่มต้น ฿18,990{" "}
               </div>
             </div>
           </div>

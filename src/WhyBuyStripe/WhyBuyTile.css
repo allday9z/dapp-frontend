@@ -1,0 +1,54 @@
+.why-buy-tile,
+.why-buy-tile * {
+  box-sizing: border-box;
+}
+
+.why-buy-tile {
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0rem 0.125rem 0.625rem 0rem rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 18.375rem;
+  height: 10.625rem;
+  padding: 1rem;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.why-buy-tile__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-self: stretch;
+}
+
+.why-buy-tile__badge {
+  color: var(--why-buy-accent);
+  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  font-weight: 600;
+}
+
+.why-buy-tile__copy {
+  color: var(--color-black, #000000);
+  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
+  font-size: 1.5rem;
+  line-height: 1.75rem;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  align-self: stretch;
+}
+
+.why-buy-tile__copy-segment--accent {
+  color: var(--why-buy-accent);
+}
+
+.why-buy-tile__copy-segment--muted {
+  color: #6e6e73;
+}

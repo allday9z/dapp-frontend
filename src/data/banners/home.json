@@ -1,0 +1,5 @@
+[
+  { "id": "banner-1", "src": "Herobanner-CTA-desktop.png", "href": "#", "alt": "iStudio Hero Banner" },
+  { "id": "banner-2", "src": "Preorder_MacBookProM5_iStudio_Banner_2000x700_Preorder_1.png", "href": "#", "alt": "Pre-order MacBook Pro M5" },
+  { "id": "banner-3", "src": "Preorder_MacNEO_iStudio-Banner-2000x700_Preorder.png", "href": "#", "alt": "Pre-order Mac NEO" }
+]

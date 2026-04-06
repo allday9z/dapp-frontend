@@ -1,44 +1,50 @@
 /* ── ProductStripe wrapper ── */
 .product-stripe {
+  --product-stripe-edge-padding: max(1rem, calc((100% - 76.25rem) / 2));
+  --product-stripe-arrow-width: 2.5rem;
+  --product-stripe-arrow-offset: 0.75rem;
+  --slick-gap: 2.5rem;
   position: relative;
   width: 100%;
 }
 
-/* Scrollable area — no visible scrollbar */
 .product-stripe__viewport {
-  overflow-x: auto;
-  overflow-y: hidden; /* ต้องเป็น hidden — ห้าม visible เวลา overflow-x: auto */
-  scrollbar-width: none;
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-  -webkit-overflow-scrolling: touch;
   width: 100%;
+  position: relative;
 }
-.product-stripe__viewport::-webkit-scrollbar { display: none; }
-.product-stripe__viewport:active { cursor: grabbing; }
 
-/* Inner flex row of tiles */
-.product-stripe__inner {
+/* Base slick overrides */
+.product-stripe .slick-slider {
+  margin-bottom: 0;
+}
+
+.product-stripe .slick-list {
+  padding-left: var(--product-stripe-edge-padding) !important;
+}
+
+.product-stripe .slick-slide {
+  height: auto;
+  float: left; /* let slick handle the layout */
+}
+
+/* Internal wrapper to handle the gap without breaking slick's width math */
+.product-stripe .product-stripe__item-wrapper {
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
-  align-items: flex-start;
-  /* left padding = content margin so tiles start at the same x as section heading */
-  padding-left: max(1rem, calc((100vw - 76.25rem) / 2));
-  /* right padding: minimal trailing space before next arrow */
-  padding-right: 1rem;
-  width: max-content;
+  justify-content: center;
+  padding-right: var(--slick-gap);
 }
 
-/* Arrow buttons — at viewport edges */
+/* ── Arrow Styles ── */
+
+/* 1. Default (White box with chevron) */
 .product-stripe__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 2.5rem;
+  width: var(--product-stripe-arrow-width);
   height: 7.5rem;
-  display: flex;
   align-items: center;
   justify-content: center;
   background: #ffffff;
@@ -46,6 +52,7 @@
   cursor: pointer;
   transition: background 0.2s;
   z-index: 2;
+  padding: 0;
 }
 .product-stripe__arrow--next {
   right: 0;
@@ -55,10 +62,125 @@
   left: 0;
   box-shadow: inset -0.025rem 0 0 0 rgba(66, 66, 69, 0.2);
 }
-.product-stripe__arrow:hover {
+.product-stripe__arrow:hover:not(.slick-disabled) {
   background: #f5f5f7;
+}
+.product-stripe__arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
 }
 .product-stripe__arrow:focus-visible {
   outline: 0.125rem solid rgba(0, 113, 227, 0.45);
   outline-offset: 0.125rem;
+}
+
+/* 2. Partner (White box with line chevron) */
+.partner-left-arrow,
+.partner-right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 36px !important;
+  width: 36px !important;
+  background: #fff;
+  cursor: pointer;
+  height: 100%;
+  max-height: 293px;
+  z-index: 20;
+  border: none;
+  appearance: none;
+}
+.partner-left-arrow {
+  left: 0;
+}
+.partner-right-arrow {
+  right: 0;
+}
+.partner-left-arrow:before {
+  content: url(https://cdn.shopify.com/s/files/1/0606/7771/8177/files/left-arrow-line.png?v=1651738432);
+}
+.partner-right-arrow:before {
+  content: url(https://cdn.shopify.com/s/files/1/0606/7771/8177/files/right-arrow-line.png?v=1651738448);
+}
+.partner-left-arrow.slick-disabled,
+.partner-right-arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 3. Blue Circle */
+.blue-circle-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background: #0071e3;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0;
+}
+.blue-circle-arrow--next {
+  right: max(1rem, calc(var(--product-stripe-edge-padding) - 18px));
+}
+.blue-circle-arrow--prev {
+  left: max(1rem, calc(var(--product-stripe-edge-padding) - 18px));
+}
+.blue-circle-arrow:hover:not(.slick-disabled) {
+  background: #0077ed;
+  transform: translateY(-50%) scale(1.1);
+}
+.blue-circle-arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Dots Styling ── */
+.custom-slick-dots {
+  display: flex !important;
+  justify-content: center;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+.custom-slick-dots li {
+  margin: 0;
+}
+.custom-slick-dots button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: #d2d2d7;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+}
+.custom-slick-dots .slick-active button {
+  background: #1d1d1f;
+  transform: scale(1.2);
+}
+
+@media (max-width: 768px) {
+  .product-stripe {
+    --product-stripe-edge-padding: 1rem;
+  }
+  .product-stripe__arrow,
+  .partner-left-arrow,
+  .partner-right-arrow,
+  .blue-circle-arrow {
+    display: none !important;
+  }
 }

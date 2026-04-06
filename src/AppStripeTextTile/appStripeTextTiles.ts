@@ -1,76 +1,73 @@
-export type AppStripeTextTileId =
-  | "new"
-  | "financing"
-  | "cyber-monday"
-  | "in-store"
-  | "sale"
-  | "trade-in";
-
-export interface AppStripeTextTileSegment {
-  text: string;
-  tone?: "default" | "muted" | "accent";
-}
-
 export interface AppStripeTextTileItem {
-  id: AppStripeTextTileId;
+  id: string;
+  href: string;
+  imageSrc: string;
   badge: string;
-  accentColor: string;
-  body: AppStripeTextTileSegment[];
+  badgeColor: string;
+  title: string;
+  subtitle: string;
+  description: string;
 }
 
 export const appStripeTextTiles: AppStripeTextTileItem[] = [
   {
-    id: "new",
-    badge: "NEW",
-    accentColor: "var(--badging-new, #bf4800)",
-    body: [
-      { text: "Partner Delivery and Pickup. " },
-      { text: "Pick up your online order at a <Partner> Store", tone: "accent" },
-    ],
+    id: "store-locator",
+    href: "/pages/store-locator",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/find_store.webp?v=1717487676&width=512",
+    badge: "สาขาของเรา",
+    badgeColor: "#707070",
+    title: "ค้นหาสาขา",
+    subtitle: "ช้อปสินค้าใหม่ล่าสุดจาก Apple",
+    description: "ช้อปสินค้าใหม่ของ Apple ได้ก่อนใคร ที่สาขาใกล้บ้านคุณ"
   },
   {
-    id: "financing",
-    badge: "FINANCING",
-    accentColor: "var(--badging-affordability, #0071bc)",
-    body: [
-      { text: "Get special financing. " },
-      { text: "Pay over time, interest-free with Apple Card", tone: "accent" },
-    ],
+    id: "trade-in-program",
+    href: "/pages/trade-in-program",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/Tradein-Jan2026_instore.png?v=1768460023&width=512",
+    badge: "เก่าแลกใหม่",
+    badgeColor: "#0071bc",
+    title: "นำเครื่องเก่ามาแลกใหม่",
+    subtitle: "รับเครดิตสูงสุด ฿27,100*",
+    description: "พร้อมส่วนลดเพิ่มสูงสุด ฿1,500.-*"
   },
   {
-    id: "cyber-monday",
-    badge: "CYBER MONDAY",
-    accentColor: "var(--badging-special-offer, #5856d6)",
-    body: [
-      { text: "Exclusive deals online only. Four days " },
-      { text: "August 1–4", tone: "accent" },
-    ],
+    id: "spaylater",
+    href: "/pages/shopeepay",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/LDP_Spay_instore.jpg?v=1775037118&width=512",
+    badge: "ผ่อนชำระ",
+    badgeColor: "#0071bc",
+    title: "ช้อปก่อน จ่ายทีหลัง",
+    subtitle: "ผ่อน iPhone 0% นาน 12 ด.*",
+    description: "เริ่มเพียง 1,425.-/ด.*"
   },
   {
-    id: "in-store",
-    badge: "IN-STORE",
-    accentColor: "var(--color-black, #000000)",
-    body: [
-      { text: "Learn, create, and be inspired in " },
-      { text: "hands-on sessions at your <Partner> Store", tone: "muted" },
-    ],
+    id: "pay-next-extra",
+    href: "/pages/pay-next-extra",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/instorebanner-Paynext.png?v=1775034198&width=512",
+    badge: "ผ่อนชำระ",
+    badgeColor: "#0071bc",
+    title: "ผ่อน iPhone ไม่ใช้บัตร",
+    subtitle: "ดอกเบี้ย 0% นาน 24 ด.*",
+    description: "รับเงินคืนรวมสูงสุด 3,000.-*"
   },
   {
-    id: "sale",
-    badge: "SALE",
-    accentColor: "var(--badging-sale, #008900)",
-    body: [
-      { text: "Find low everyday prices and buy online ", tone: "accent" },
-      { text: "for delivery or in-store pick-up" },
-    ],
+    id: "icenter",
+    href: "/pages/icenter-service-provider",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/DSC05993.webp?v=1717487756&width=512",
+    badge: "ศูนย์บริการ",
+    badgeColor: "#707070",
+    title: "iCenter",
+    subtitle: "บริการหลังการขาย",
+    description: "ซ่อมและบริการภายใต้มาตรฐาน Apple Authorised Service Provider"
   },
   {
-    id: "trade-in",
-    badge: "TRADE-IN",
-    accentColor: "var(--badging-affordability, #0071bc)",
-    body: [
-      { text: "Trade in your device for " },
-      { text: "credit toward a new one", tone: "accent" },
-    ],
-  },
+    id: "workshop",
+    href: "/pages/demo-workshop",
+    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/JOK00371-3.jpg?v=1718341326&width=512",
+    badge: "กิจกรรมที่สาขา",
+    badgeColor: "#BF4800",
+    title: "ร่วมอบรมกับเรา",
+    subtitle: "ฟรี ไม่มีค่าใช้จ่าย",
+    description: "เรามีผู้เชี่ยวชาญที่พร้อมสาธิตและให้คำแนะนำเกี่ยวกับสินค้า Apple ให้คุณได้ร่วมทดลองใช้งานจริงไปด้วยกัน"
+  }
 ];

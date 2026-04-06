@@ -38,16 +38,17 @@ export const BentoBoxTileDeviceDesktopSmallLobAppleWatchBand = ({
         <div className="contents">
           <div className="copy-block">
             <div className="new-badge"></div>
+            <div className="new">ใหม่</div>
             <div className="heading">
               <div className="apple-watch-ocean-band">
-                Apple Watch Ocean Band{" "}
+                iPhone 17e{" "}
               </div>
             </div>
             <div className="subhead">
               <div className="a-gift-fit-for-dad-from-49">
-                A gift fit for Dad.
+                เก่งล้นตัว คุ้มเหลือล้น
                 <br />
-                From $49{" "}
+                เริ่มต้น ฿22,900{" "}
               </div>
             </div>
           </div>

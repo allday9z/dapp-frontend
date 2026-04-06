@@ -1,0 +1,4 @@
+[
+  { "id": "macbook-air-15-m5", "slug": "macbook-air-15-m5", "name": "15-inch MacBook Air M5", "subtitle": "อัปเกรดด้วยชิป M5", "description": "ประสิทธิภาพที่ทรงพลัง บางเบาเกินจริง", "badge": "NEW", "price": { "base": 44900, "monthly": 4490, "monthlyTerm": 10, "currency": "THB" }, "imageSrc": "image-1170.png", "imageAlt": "15-inch MacBook Air M5", "tradeInEligible": true, "preOrder": false, "ctaLabel": "สั่งซื้อ", "ctaHref": "#", "detailHref": "#", "category": "mac" },
+  { "id": "macbook-air-13-m5", "slug": "macbook-air-13-m5", "name": "13-inch MacBook Air M5", "subtitle": "เร็วกว่าเดิม", "description": "น้ำหนักเบา พกพาสะดวก พร้อม M5", "badge": "NEW", "price": { "base": 35900, "monthly": 3590, "monthlyTerm": 10, "currency": "THB" }, "imageSrc": "image-1100.png", "imageAlt": "13-inch MacBook Air M5", "tradeInEligible": true, "preOrder": false, "ctaLabel": "สั่งซื้อ", "ctaHref": "#", "detailHref": "#", "category": "mac" }
+]

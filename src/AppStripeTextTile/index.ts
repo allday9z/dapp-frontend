@@ -3,4 +3,4 @@ export { AppStripeTextTileList } from "./AppStripeTextTileList";
 export { appStripeTextTiles } from "./appStripeTextTiles";
 export type { IAppStripeTextTileProps } from "./AppStripeTextTile";
 export type { IAppStripeTextTileListProps } from "./AppStripeTextTileList";
-export type { AppStripeTextTileId, AppStripeTextTileItem, AppStripeTextTileSegment } from "./appStripeTextTiles";
+export type { AppStripeTextTileItem } from "./appStripeTextTiles";

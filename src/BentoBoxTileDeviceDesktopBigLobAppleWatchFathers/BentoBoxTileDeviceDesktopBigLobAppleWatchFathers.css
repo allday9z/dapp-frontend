@@ -123,3 +123,25 @@
   position: relative;
   object-fit: cover;
 }
+
+
+
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .new-badge {
+  display: flex;
+  flex-direction: row;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  flex-shrink: 0;
+  position: relative;
+}
+.bento-box-tile-device-desktop-big-lob-apple-watch-fathers .new {
+  color: #bf4800;
+  text-align: center;
+  font-family: "SfProText-Semibold", sans-serif;
+  font-size: 0.7499998807907104rem;
+  font-weight: 600;
+  position: relative;
+  flex: 1;
+}

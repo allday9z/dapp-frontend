@@ -1,0 +1,200 @@
+/* ── PLPPage layout ─────────────────────────────────────────────────────── */
+.plp-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px 80px;
+}
+
+/* ── Breadcrumb ─────────────────────────────────────────────────────────── */
+.plp-page__breadcrumb {
+  padding: 16px 0;
+}
+
+.plp-page__breadcrumb ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.plp-page__breadcrumb li {
+  font-size: 13px;
+  color: var(--color-label-secondary, #6e6e73);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.plp-page__breadcrumb li + li::before {
+  content: '›';
+  color: var(--color-label-tertiary, #aeaeb2);
+}
+
+.plp-page__breadcrumb a {
+  color: var(--color-blue, #0071e3);
+  text-decoration: none;
+}
+
+.plp-page__breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.plp-page__breadcrumb [aria-current='page'] {
+  color: var(--color-label-primary, #1d1d1f);
+}
+
+/* ── Hero Header ─────────────────────────────────────────────────────────── */
+.plp-page__hero {
+  text-align: center;
+  padding: 40px 0 32px;
+  border-bottom: 1px solid var(--color-separator, #d2d2d7);
+}
+
+.plp-page__hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--color-label-primary, #1d1d1f);
+  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+}
+
+.plp-page__hero-subtitle {
+  font-size: 17px;
+  color: var(--color-label-secondary, #6e6e73);
+  margin: 0;
+  max-width: 480px;
+  margin-inline: auto;
+  line-height: 1.5;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────────────────── */
+.plp-page__toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0 12px;
+}
+
+.plp-page__count {
+  font-size: 14px;
+  color: var(--color-label-secondary, #6e6e73);
+  margin: 0;
+}
+
+.plp-page__sort-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-label-secondary, #6e6e73);
+}
+
+.plp-page__sort-select {
+  font-size: 14px;
+  color: var(--color-label-primary, #1d1d1f);
+  border: 1px solid var(--color-separator, #d2d2d7);
+  border-radius: 8px;
+  padding: 6px 10px;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.plp-page__sort-select:focus {
+  border-color: var(--color-blue, #0071e3);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.15);
+}
+
+/* ── Error ───────────────────────────────────────────────────────────────── */
+.plp-page__error {
+  text-align: center;
+  padding: 48px;
+  color: var(--color-badge-sale, #cc0000);
+  font-size: 15px;
+}
+
+/* ── Product grid ────────────────────────────────────────────────────────── */
+.plp-page__grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.plp-page__grid-item {
+  display: contents;
+}
+
+/* Skeleton loading */
+.plp-page__skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.plp-page__skeleton-card {
+  height: 420px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f5f5f7 25%, #ebebed 50%, #f5f5f7 75%);
+  background-size: 200% 100%;
+  animation: plp-shimmer 1.4s ease infinite;
+}
+
+@keyframes plp-shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Compare bar ─────────────────────────────────────────────────────────── */
+.plp-page__compare-bar {
+  text-align: center;
+  padding: 40px 0 0;
+}
+
+.plp-page__compare-link {
+  font-size: 15px;
+  color: var(--color-blue, #0071e3);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.plp-page__compare-link:hover {
+  text-decoration: underline;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .plp-page {
+    padding: 0 20px 60px;
+  }
+
+  .plp-page__hero-title {
+    font-size: 34px;
+  }
+
+  .plp-page__hero-subtitle {
+    font-size: 15px;
+  }
+
+  .plp-page__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .plp-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plp-page__toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

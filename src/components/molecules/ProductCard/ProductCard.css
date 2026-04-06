@@ -1,0 +1,100 @@
+.product-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  min-width: 15rem;
+  max-width: 18rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+  flex-shrink: 0;
+  height: auto;
+}
+.product-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-card__img-wrap {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-gray-5, #f5f5f7);
+  padding: 1rem;
+}
+.product-card__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.product-card__body {
+  padding: 0.75rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  flex: 1;
+}
+.product-card__badge {
+  margin-bottom: 0.15rem;
+}
+.product-card__name {
+  font-family: var(--headline-headline-s-font-family, 'SFProThai', sans-serif);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-black, #1d1d1f);
+  line-height: 1.25;
+}
+.product-card__pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.product-card__price {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--color-black, #1d1d1f);
+}
+.product-card__monthly {
+  font-size: 0.6875rem;
+  color: var(--color-gray-1, #6e6e73);
+}
+.product-card__trade-in {
+  font-size: 0.6875rem;
+  color: var(--color-blue, #0071e3);
+}
+
+.product-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: 0.5rem;
+  flex-wrap: wrap;
+}
+.product-card__detail-link {
+  font-size: 0.8125rem;
+  color: var(--color-blue, #0071e3);
+  font-weight: 500;
+  text-decoration: none;
+}
+.product-card__detail-link:hover {
+  text-decoration: underline;
+}
+.product-card__cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-blue, #0071e3);
+  color: #fff;
+  border-radius: 980px;
+  padding: 0.5rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.product-card__cta-btn:hover {
+  opacity: 0.85;
+}

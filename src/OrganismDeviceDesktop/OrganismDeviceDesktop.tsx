@@ -22,7 +22,7 @@ export interface IOrganismDeviceDesktopProps {
 
 export const OrganismDeviceDesktop = ({
   device = "desktop",
-  heading = "See what's new.",
+  heading = "ผลิตภัณฑ์ล่าสุดของ Apple",
   component,
   component2,
   component3,

@@ -1,8 +1,8 @@
 import "./HomepageDeviceDesktop.css";
 import { BannerCarouselProperty1OrganismProperty2HomepageBannerSection } from "../BannerCarouselProperty1OrganismProperty2HomepageBannerSection/BannerCarouselProperty1OrganismProperty2HomepageBannerSection";
-import { LobStripeTileList } from "../LobStripeTile";
+import { lobStripeTiles, LobStripeTile } from "../LobStripeTile";
 import { ProductStripe } from "../ProductStripe/ProductStripe";
-import { AppStripeTextTileList } from "../AppStripeTextTile";
+import { appStripeTextTiles, AppStripeTextTile } from "../AppStripeTextTile";
 import { OrganismDeviceDesktop } from "../OrganismDeviceDesktop/OrganismDeviceDesktop";
 import { BentoBoxTileDeviceDesktopBigLobAppleWatchFathers } from "../BentoBoxTileDeviceDesktopBigLobAppleWatchFathers/BentoBoxTileDeviceDesktopBigLobAppleWatchFathers";
 import { BentoBoxTileDeviceDesktopSmallLobAirPods } from "../BentoBoxTileDeviceDesktopSmallLobAirPods/BentoBoxTileDeviceDesktopSmallLobAirPods";
@@ -37,7 +37,9 @@ export const HomepageDeviceDesktop = ({
           </h2>
         </div>
         <ProductStripe className="hp-product-stripe" ariaLabel="ผลิตภัณฑ์ของ Apple ทั้งหมด">
-          <LobStripeTileList className="lob-stripe-tile-instance" />
+          {lobStripeTiles.map((item) => (
+            <LobStripeTile key={item.id} item={item} className="lob-stripe-tile-instance" />
+          ))}
         </ProductStripe>
         <div className="hp-divider" />
       </section>
@@ -47,18 +49,6 @@ export const HomepageDeviceDesktop = ({
         text2="Available starting 1.24 from $738 or $123/mo. for 6 mo.* before trade-in"
         className="organism-instance"
       />
-
-      <section className="hp-partners" aria-labelledby="partner-services-heading">
-        <div className="hp-heading-row">
-          <h2 id="partner-services-heading" className="hp-heading">
-            บริการและสิทธิพิเศษเพิ่มเติม
-          </h2>
-        </div>
-        <ProductStripe className="hp-partner-stripe" ariaLabel="บริการและสิทธิพิเศษเพิ่มเติม">
-          <AppStripeTextTileList className="app-text-tile-instance" />
-        </ProductStripe>
-        <div className="hp-divider" />
-      </section>
 
       <div className="hp-bento">
         <div className="hp-bento__grid">

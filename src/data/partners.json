@@ -1,0 +1,56 @@
+[
+  {
+    "id": "new",
+    "badge": "NEW",
+    "accentColor": "#bf4800",
+    "title": "รับสินค้าที่ร้าน",
+    "body": "สั่งซื้อออนไลน์แล้วรับที่ iStudio สาขาใกล้คุณได้ทันที",
+    "ctaLabel": "ดูรายละเอียด",
+    "ctaHref": "/delivery"
+  },
+  {
+    "id": "financing",
+    "badge": "FINANCING",
+    "accentColor": "#0071bc",
+    "title": "ผ่อน 0% นาน 10 เดือน",
+    "body": "ผ่อนสบายกับบัตรเครดิตชั้นนำ ไม่มีดอกเบี้ย",
+    "ctaLabel": "ดูบัตรที่ร่วมรายการ",
+    "ctaHref": "/financing"
+  },
+  {
+    "id": "ujoy",
+    "badge": "U•JOY",
+    "accentColor": "#5856d6",
+    "title": "สะสมแต้ม U•Joy",
+    "body": "สมัครสมาชิก U•Joy รับสิทธิพิเศษและส่วนลดเพิ่มเติม",
+    "ctaLabel": "สมัครเลย",
+    "ctaHref": "/ujoy"
+  },
+  {
+    "id": "in-store",
+    "badge": "IN-STORE",
+    "accentColor": "#000000",
+    "title": "Today at iStudio",
+    "body": "เรียนรู้ สร้างสรรค์ และแรงบันดาลใจในเวิร์กชอปฟรีที่สาขาใกล้คุณ",
+    "ctaLabel": "ดูตารางกิจกรรม",
+    "ctaHref": "/today-at-apple"
+  },
+  {
+    "id": "sale",
+    "badge": "SALE",
+    "accentColor": "#008900",
+    "title": "ราคาพิเศษประจำสัปดาห์",
+    "body": "ส่วนลดพิเศษสำหรับสินค้า Apple คัดสรร สั่งออนไลน์หรือซื้อที่ร้าน",
+    "ctaLabel": "ดูสินค้าลดราคา",
+    "ctaHref": "/sale"
+  },
+  {
+    "id": "trade-in",
+    "badge": "TRADE-IN",
+    "accentColor": "#0071e3",
+    "title": "แลกเครื่องเก่า รับส่วนลด",
+    "body": "นำ iPhone, iPad หรือ Mac เก่ามาแลกรับส่วนลดสำหรับซื้อเครื่องใหม่",
+    "ctaLabel": "ประเมินราคา",
+    "ctaHref": "/trade-in"
+  }
+]

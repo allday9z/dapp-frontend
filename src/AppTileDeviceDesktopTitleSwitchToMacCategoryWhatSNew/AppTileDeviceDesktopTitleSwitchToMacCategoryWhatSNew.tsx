@@ -46,12 +46,12 @@ export const AppTileDeviceDesktopTitleSwitchToMacCategoryWhatSNew = ({
         <AppBlockImageProperty1Variant4DeviceDesktop className="app-block-image-instance"></AppBlockImageProperty1Variant4DeviceDesktop>
         <div className="text-block">
           <div className="frame-1530">
-            <div className="new">NEW </div>
-            <div className="switch-to-mac">Switch to Mac </div>
-            <div className="mac-makes-it-simple">Mac makes it simple. </div>
+            <div className="new">ใหม่</div>
+            <div className="switch-to-mac">iPad Air M4</div>
+            <div className="mac-makes-it-simple">ฟิ้วววว</div>
           </div>
           <div className="learn-more">
-            Learn more
+            เริ่มต้น ฿21,900
             <br />
             <br />
             <br />{" "}

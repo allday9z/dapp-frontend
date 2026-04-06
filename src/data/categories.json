@@ -1,0 +1,11 @@
+[
+  { "id": "mac", "name": "Mac", "price": "เริ่มต้น ฿34,900", "imageSrc": "mac0.png", "imageAlt": "Mac", "href": "/mac" },
+  { "id": "ipad", "name": "iPad", "price": "เริ่มต้น ฿12,900", "imageSrc": "i-pad0.png", "imageAlt": "iPad", "href": "/ipad" },
+  { "id": "iphone", "name": "iPhone", "price": "เริ่มต้น ฿14,500", "imageSrc": "i-phone0.png", "imageAlt": "iPhone", "href": "/iphone" },
+  { "id": "watch", "name": "Apple Watch", "price": "เริ่มต้น ฿7,900", "imageSrc": "apple-watch0.png", "imageAlt": "Apple Watch", "href": "/watch" },
+  { "id": "music", "name": "Music", "price": "เริ่มต้น ฿4,990", "imageSrc": "mac0.png", "imageAlt": "Music", "href": "/music" },
+  { "id": "tv-home", "name": "TV และบ้าน", "price": "เริ่มต้น ฿2,390", "imageSrc": "asdf-10.png", "imageAlt": "Apple TV และบ้าน", "href": "/tv-home" },
+  { "id": "accessories", "name": "อุปกรณ์เสริม", "price": "เริ่มต้น ฿790", "imageSrc": "accessories0.png", "imageAlt": "อุปกรณ์เสริม", "href": "/accessories" },
+  { "id": "entertainment", "name": "Entertainment", "price": "เริ่มต้น ฿990", "imageSrc": "accessories0.png", "imageAlt": "Entertainment", "href": "/entertainment" },
+  { "id": "airtag", "name": "AirTag", "price": "เริ่มต้น ฿1,190", "imageSrc": "air-tag0.png", "imageAlt": "AirTag", "href": "/airtag" }
+]

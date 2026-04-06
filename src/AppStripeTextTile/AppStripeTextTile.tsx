@@ -1,44 +1,37 @@
+import React from "react";
 import "./AppStripeTextTile.css";
-import type { CSSProperties } from "react";
-import type { AppStripeTextTileItem, AppStripeTextTileSegment } from "./appStripeTextTiles";
+import type { AppStripeTextTileItem } from "./appStripeTextTiles";
 
 export interface IAppStripeTextTileProps {
   item: AppStripeTextTileItem;
   className?: string;
 }
 
-const segmentClassName = (segment: AppStripeTextTileSegment): string => {
-  if (segment.tone === "accent") return "app-stripe-text-tile__copy-segment--accent";
-  if (segment.tone === "muted") return "app-stripe-text-tile__copy-segment--muted";
-  return "";
-};
-
 export const AppStripeTextTile = ({
   item,
   className = "",
 }: IAppStripeTextTileProps): JSX.Element => {
-  const accentStyle = {
-    "--app-stripe-text-tile-accent": item.accentColor,
-  } as CSSProperties;
-
   return (
-    <div
-      className={`app-stripe-text-tile app-stripe-text-tile--${item.id} ${className}`.trim()}
-      style={accentStyle}
-    >
-      <div className="app-stripe-text-tile__content">
-        <div className="app-stripe-text-tile__badge">{item.badge}</div>
-        <div className="app-stripe-text-tile__copy">
-          {item.body.map((segment, index) => (
-            <span
-              key={`${item.id}-${index}`}
-              className={`app-stripe-text-tile__copy-segment ${segmentClassName(segment)}`.trim()}
-            >
-              {segment.text}
-            </span>
-          ))}
+    <div className={`partner_cards ${className}`.trim()}>
+      <a 
+        className="imageAndTextContainer" 
+        href={item.href} 
+        draggable={false}
+      >
+        <div className="partner_images_container">
+          <div className="ratio" style={{ "--ratio-percent": "66.6015625%" } as any}>
+            <img className="partner_images" src={item.imageSrc} alt={item.title} loading="lazy" draggable={false} />
+          </div>
         </div>
-      </div>
+        <div className="PartnerDiv">
+          <div className="PartnerLabel" style={{ color: item.badgeColor }}>
+            {item.badge}
+          </div>
+          <div className="PartnerHeading">{item.title}</div>
+          <div className="PartnerSubHeading">{item.subtitle}</div>
+          <div className="PartnerSubText">{item.description}</div>
+        </div>
+      </a>
     </div>
   );
 };

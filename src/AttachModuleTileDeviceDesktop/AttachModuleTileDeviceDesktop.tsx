@@ -37,14 +37,14 @@ export const AttachModuleTileDeviceDesktop = ({
         <div className="frame-358">
           <div className="frame-1258">
             <div className="frame-1839">
-              <div className="trade-in">TRADE-IN </div>
+              <div className="trade-in">แบ่งชำระ 0% สบาย ๆ</div>
               <div className="mac-book-air">
-                MacBook Air
+                iPhone Air
                 <br />{" "}
               </div>
             </div>
-            <div className="_1-299-00-usd">$1,299.00 USD </div>
-            <div className="_126-mo-for-6-mo">$126/mo. for 6 mo. </div>
+            <div className="_1-299-00-usd">฿29,900 </div>
+            <div className="_126-mo-for-6-mo">฿2,990/ด. นาน 10 เดือน</div>
           </div>
           <CtaButtonPrimaryStateDefault
             label="Buy now"

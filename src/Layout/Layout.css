@@ -1,4 +1,4 @@
-/* ── Layout shell ── */
+/* ── Layout shell ────────────────────────────────────────────────────────── */
 .layout {
   display: flex;
   flex-direction: column;
@@ -6,30 +6,17 @@
   width: 100%;
 }
 
-.layout__header {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
+/*
+ * .layout__header intentionally removed.
+ *
+ * AnnouncementBar and GlobalNav are direct children of .layout (flex column).
+ * This gives GlobalNav an unconstrained sticky range — it sticks for the
+ * entire page scroll, not just within a short header container.
+ *
+ * GlobalNav owns its own `position: sticky; top: 0` in GlobalNav.css.
+ */
 
-.layout__announcement {
-  background: var(--color-tokens-accent-2, #52aaa6) !important;
-  width: 100% !important;
-  flex-shrink: 0 !important;
-}
-
-.layout__nav {
-  width: 100% !important;
-  flex-shrink: 0 !important;
-}
-
-/* Sticky nav stays in flow — no padding-top needed */
 .layout__main {
   flex: 1;
   width: 100%;
-}
-
-.layout__footer {
-  width: 100% !important;
-  flex-shrink: 0 !important;
 }

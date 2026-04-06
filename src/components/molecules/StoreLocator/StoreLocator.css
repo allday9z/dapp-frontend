@@ -1,0 +1,18 @@
+.store-locator {
+  display: flex;
+  align-items: center;
+}
+
+.store-locator__btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--color-black, #1d1d1f);
+}
+
+.store-locator__text {
+  font-family: 'SfProText-Regular', sans-serif;
+  font-size: 0.875rem;
+}

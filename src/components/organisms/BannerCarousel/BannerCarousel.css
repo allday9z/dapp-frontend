@@ -1,0 +1,92 @@
+.banner-carousel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.banner-carousel__stage .f-progressbar,
+.banner-carousel__stage .f-button {
+  display: none !important;
+}
+
+.banner-carousel__stage {
+  width: 100%;
+  height: 25.625rem;
+}
+
+.banner-carousel__stage .f-carousel__viewport,
+.banner-carousel__stage .f-carousel__track {
+  height: 100%;
+}
+
+.banner-carousel__stage .f-carousel__slide {
+  height: 25.625rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.banner-carousel__stage .f-carousel__slide a.banner-carousel__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.banner-carousel__stage .f-carousel__slide img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center center;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+.banner-carousel__dots-wrap {
+  width: 100%;
+  background: #ffffff;
+  padding: 1.375rem 0 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.banner-carousel__dots {
+  background: #ffffff;
+  border-radius: 2rem;
+  padding: 1rem 2rem;
+  display: inline-flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.15);
+}
+
+.banner-carousel__dot {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: none;
+  background: rgba(29, 29, 31, 0.25);
+  padding: 0;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  flex-shrink: 0;
+}
+
+.banner-carousel__dot.is-active {
+  background: #1d1d1f;
+}
+
+.banner-carousel__dot:focus-visible {
+  outline: 0.125rem solid rgba(0, 113, 227, 0.45);
+  outline-offset: 0.125rem;
+}
+
+.banner-carousel__divider {
+  width: 100%;
+  height: 0.0625rem;
+  background: var(--color-gray-4, #f2f2f2);
+  flex-shrink: 0;
+}

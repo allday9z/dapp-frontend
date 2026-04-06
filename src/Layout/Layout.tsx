@@ -1,50 +1,40 @@
-/**
- * Layout — shared shell for all pages
- *
- * Usage:
- *   <Layout>
- *     <YourPageContent />
- *   </Layout>
- *
- * Renders:
- *   AnnouncementBar → GlobalNav → {children} → Footer
- */
-import { type ReactNode } from "react";
-import "./Layout.css";
-import { AnnouncementBarSize1440PxRows1RowColorBlue } from "../AnnouncementBarSize1440PxRows1RowColorBlue/AnnouncementBarSize1440PxRows1RowColorBlue";
-import { GlobalNavDeviceDesktop } from "../GlobalNavDeviceDesktop/GlobalNavDeviceDesktop";
-import { FooterDeviceDesktopStatusDefault } from "../FooterDeviceDesktopStatusDefault/FooterDeviceDesktopStatusDefault";
+import type { ReactNode } from 'react';
+import './Layout.css';
+import { AnnouncementBar } from '../components/molecules/AnnouncementBar/AnnouncementBar';
+import { GlobalNav } from '../components/organisms/GlobalNav/GlobalNav';
+import { GlobalFooter } from '../components/organisms/GlobalFooter/GlobalFooter';
 
 interface LayoutProps {
   children: ReactNode;
-  /** Announcement bar message (optional — hides bar if not provided) */
-  announcement?: string;
+  announcementItems?: string[];
 }
 
-export const Layout = ({ children, announcement }: LayoutProps) => {
-  return (
-    <div className="layout">
-      {/* ── Header ── */}
-      <header className="layout__header">
-        {announcement && (
-          <AnnouncementBarSize1440PxRows1RowColorBlue
-            size="1440-px"
-            rows="1-row"
-            color="blue"
-            text={announcement}
-            className="layout__announcement"
-          />
-        )}
-        <GlobalNavDeviceDesktop className="layout__nav" />
-      </header>
+/**
+ * Layout
+ *
+ * DOM order:
+ *   1. AnnouncementBar   — normal flow, scrolls away with the page
+ *   2. GlobalNav         — position:sticky top:0, sticks independently
+ *   3. main              — page content
+ *   4. GlobalFooter
+ *
+ * Key: AnnouncementBar is a SIBLING of GlobalNav, NOT wrapped inside the
+ * same container. This lets the nav's sticky contain the full viewport
+ * scroll range without being cut off by a short parent height.
+ */
+export const Layout = ({
+  children,
+  announcementItems = ['สมัคร U•Joy', 'ผ่อนไม่ใช้บัตร', 'โปรโมชันประจำเดือน'],
+}: LayoutProps) => (
+  <div className="layout">
+    {/* Scrolls away — NOT inside sticky wrapper */}
+    <AnnouncementBar items={announcementItems} />
 
-      {/* ── Page content ── */}
-      <main className="layout__main">
-        {children}
-      </main>
+    {/* Sticks on its own — no parent container limiting its sticky range */}
+    <GlobalNav />
 
-      {/* ── Footer ── */}
-      <FooterDeviceDesktopStatusDefault className="layout__footer" />
-    </div>
-  );
-};
+    <main className="layout__main">{children}</main>
+
+    <GlobalFooter />
+  </div>
+);

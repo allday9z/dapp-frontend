@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from "react";
-import { Carousel, Arrows } from "@fancyapps/ui";
-import { Dots } from "@fancyapps/ui/dist/carousel/carousel.dots.js";
-import "@fancyapps/ui/dist/carousel/carousel.css";
+import React from "react";
+import { ProductStripe } from "../../ProductStripe/ProductStripe";
 import "./TradeInCarousel.css";
 
 const mockupData = [
@@ -78,70 +76,53 @@ const mockupData = [
 ];
 
 export const TradeInCarousel = () => {
-  const carouselRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = carouselRef.current;
-    if (!container) return;
-
-    const carousel = Carousel(
-      container,
-      {
-        adaptiveHeight: false,
-        center: false,
-        dragFree: false, // 1 step dragging
-        fill: false,
-        infinite: false,
-        initialPage: 0,
-        slidesPerPage: 3,
-        transition: "slide",
-        Dots: true,
-        Arrows: {
-          prevClass: "trade-in-arrow trade-in-arrow--prev",
-          nextClass: "trade-in-arrow trade-in-arrow--next",
-          prevTpl:
-            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18L9 12L15 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-          nextTpl:
-            '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 18L15 12L9 6" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
-        },
-      },
-      { Arrows, Dots }
-    ).init();
-
-    return () => {
-      carousel.destroy();
-    };
-  }, []);
-
   return (
     <section className="trade-in-section">
       <h2 className="trade-in-section__title">TRADE IN : เก่าแลกใหม่</h2>
       
       <div className="trade-in-carousel-wrapper">
-        <div ref={carouselRef} className="f-carousel trade-in-carousel" role="region" aria-label="Trade In Products">
-          <div className="f-carousel__viewport">
-            <div className="f-carousel__track">
-              {mockupData.map((item) => (
-                <div key={item.id} className="f-carousel__slide trade-in-slide">
-                  <div className="trade-in-card">
-                    <div className="trade-in-card__image-wrapper">
-                      <img src={item.image} alt={item.title} className="trade-in-card__image" />
-                    </div>
-                    <div className="trade-in-card__content">
-                      <h3 className="trade-in-card__title">{item.title}</h3>
-                      <div className="trade-in-card__price-original">
-                        <span className="strike">{item.originalPrice}</span> <span className="discount">{item.discount}</span>
-                      </div>
-                      <div className="trade-in-card__price">{item.price}</div>
-                      <div className="trade-in-card__monthly">{item.monthly}</div>
-                      <button className="trade-in-card__btn">{item.buttonText}</button>
-                    </div>
-                  </div>
+        <ProductStripe 
+          arrowType="blue-circle" 
+          showDots={true} 
+          slidesToShow={3} 
+          slidesToScroll={1} 
+          variableWidth={false}
+          infinite={false}
+          gap={24}
+          responsive={[
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 2,
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+              }
+            }
+          ]}
+        >
+          {mockupData.map((item) => (
+            <div key={item.id} className="trade-in-slide">
+              <a href="#" className="trade-in-card" draggable={false}>
+                <div className="trade-in-card__image-wrapper">
+                  <img src={item.image} alt={item.title} className="trade-in-card__image" draggable={false} />
                 </div>
-              ))}
+                <div className="trade-in-card__content">
+                  <h3 className="trade-in-card__title">{item.title}</h3>
+                  <div className="trade-in-card__price-original">
+                    <span className="strike">{item.originalPrice}</span> <span className="discount">{item.discount}</span>
+                  </div>
+                  <div className="trade-in-card__price">{item.price}</div>
+                  <div className="trade-in-card__monthly">{item.monthly}</div>
+                  <button className="trade-in-card__btn">{item.buttonText}</button>
+                </div>
+              </a>
             </div>
-          </div>
-        </div>
+          ))}
+        </ProductStripe>
       </div>
     </section>
   );

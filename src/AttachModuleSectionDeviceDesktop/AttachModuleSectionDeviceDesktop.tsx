@@ -39,7 +39,7 @@ export const AttachModuleSectionDeviceDesktop = ({
     >
       <div className="frame-1255">
         <div className="shop-back-to-school-products">
-          Shop back-to-school products.{" "}
+          ช้อปสินค้า Apple ราคาพิเศษที่ UFicon{" "}
         </div>
         {component}
       </div>

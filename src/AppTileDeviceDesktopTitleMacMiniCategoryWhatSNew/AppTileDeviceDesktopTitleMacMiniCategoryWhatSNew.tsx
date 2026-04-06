@@ -48,15 +48,14 @@ export const AppTileDeviceDesktopTitleMacMiniCategoryWhatSNew = ({
         <AppBlockImageProperty1Variant2DeviceDesktop className="app-block-image-instance"></AppBlockImageProperty1Variant2DeviceDesktop>
         <div className="text-block">
           <div className="frame-1531">
-            <div className="new">NEW </div>
-            <div className="mac-mini">Mac mini </div>
+            <div className="new">ใหม่ </div>
+            <div className="mac-mini">MacBook Neo </div>
             <div className="supercharged-by-m-2-and-m-2-pro">
-              Supercharged by M2 and M2 Pro{" "}
+              สุดปัง ในราคาสุดว้าว{" "}
             </div>
           </div>
           <div className="available-starting-1-24-from-738-or-123-mo-for-6-mo-before-trade-in">
-            Available starting 1.24 from $738 or $123/mo. for 6 mo.* before
-            trade-in{" "}
+            เริ่มต้น ฿19,900{" "}
           </div>
         </div>
       </div>

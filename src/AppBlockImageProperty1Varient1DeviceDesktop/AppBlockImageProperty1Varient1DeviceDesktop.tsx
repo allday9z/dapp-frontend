@@ -14,7 +14,7 @@ export const AppBlockImageProperty1Varient1DeviceDesktop = ({
         "app-block-image-property-1-varient-1-device-desktop " + className
       }
     >
-      <img className="image-116" src="image-1160.png"  alt="" />
+      <img className="image-116" src="public/product/airpods/AirPods_Max_2_Blue_PDP_Image_Position_1__TH-TH.png"  alt="" />
     </div>
   );
 };

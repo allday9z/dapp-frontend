@@ -49,14 +49,13 @@ export const AppTileDeviceDesktopTitleHomePodCategoryWhatSNew = ({
         <div className="text-block">
           <div className="frame-1530">
             <div className="new">NEW </div>
-            <div className="home-pod">HomePod </div>
+            <div className="home-pod">MacBook Air M5</div>
             <div className="immersive-audio-advanced-intelligence">
-              Immersive audio. Advanced intelligence.{" "}
+              พลังเร็วติดปีก{" "}
             </div>
           </div>
           <div className="available-starting-1-24-from-282-or-47-mo-for-6-mo-before-trade-in">
-            Available starting 1.24 from $282 or $47/mo. for 6 mo.* before
-            trade-in{" "}
+            เริ่มต้น ฿36,900{" "}
           </div>
         </div>
       </div>

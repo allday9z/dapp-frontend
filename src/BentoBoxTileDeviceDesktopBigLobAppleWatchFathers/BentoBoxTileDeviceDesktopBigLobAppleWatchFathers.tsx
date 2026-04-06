@@ -35,16 +35,16 @@ export const BentoBoxTileDeviceDesktopBigLobAppleWatchFathers = ({
         <div className="contents">
           <div className="copy-block">
             <div className="new-badge">
-              <div className="father-s-day">FATHER’S DAY </div>
+              <div className="father-s-day">ใหม่ </div>
             </div>
             <div className="heading">
-              <div className="apple-watch">Apple Watch </div>
+              <div className="apple-watch">13-inch MacBook Neo</div>
             </div>
             <div className="subhead">
               <div className="there-s-an-apple-watch-for-every-dad-from-299">
-                There’s an Apple Watch for every Dad.
+                สุดปัง ในราคาสุดว้าว
                 <br />
-                From $299{" "}
+                เริ่มต้น ฿19,900{" "}
               </div>
             </div>
           </div>

@@ -1,0 +1,148 @@
+{
+  "primary": [
+    {
+      "label": "Mac",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล Mac ทั้งหมด", "href": "#" },
+        { "label": "MacBook Neo", "href": "#" },
+        { "label": "MacBook Air", "href": "#" },
+        { "label": "MacBook Pro", "href": "#" },
+        { "label": "iMac", "href": "#" },
+        { "label": "Mac mini", "href": "#" },
+        { "label": "Mac Studio", "href": "#" },
+        { "label": "Studio Display", "href": "#" },
+        { "label": "อุปกรณ์เสริม Mac", "href": "#" },
+        { "label": "เปรียบเทียบ Mac", "href": "#" },
+        { "label": "AppleCare+ สำหรับ Mac", "href": "#" }
+      ]
+    },
+    {
+      "label": "iPad",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล iPad ทั้งหมด", "href": "#" },
+        { "label": "iPad Pro", "href": "#" },
+        { "label": "iPad Air", "href": "#" },
+        { "label": "iPad", "href": "#" },
+        { "label": "iPad mini", "href": "#" },
+        { "label": "อุปกรณ์เสริม iPad", "href": "#" },
+        { "label": "เปรียบเทียบ iPad รุ่นต่าง ๆ", "href": "#" },
+        { "label": "AppleCare+ สำหรับ iPad", "href": "#" }
+      ]
+    },
+    {
+      "label": "iPhone",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล iPhone ทั้งหมด", "href": "#" },
+        { "label": "iPhone 17 Pro", "href": "#" },
+        { "label": "iPhone 17", "href": "#" },
+        { "label": "iPhone 17e", "href": "#" },
+        { "label": "iPhone Air", "href": "#" },
+        { "label": "iPhone 16 Pro", "href": "#" },
+        { "label": "iPhone 16", "href": "#" },
+        { "label": "iPhone 16e", "href": "#" },
+        { "label": "iPhone 15 Pro", "href": "#" },
+        { "label": "iPhone 15", "href": "#" },
+        { "label": "iPhone 14", "href": "#" },
+        { "label": "iPhone 13", "href": "#" },
+        { "label": "อุปกรณ์เสริม iPhone", "href": "#" },
+        { "label": "เปรียบเทียบ iPhone", "href": "#" },
+        { "label": "AppleCare+ สำหรับ iPhone", "href": "#" }
+      ]
+    },
+    {
+      "label": "Watch",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล Watch ทั้งหมด", "href": "#" },
+        { "label": "Apple Watch Ultra", "href": "#" },
+        { "label": "Apple Watch Series 11", "href": "#" },
+        { "label": "Apple Watch Series 10", "href": "#" },
+        { "label": "Apple Watch Series 9", "href": "#" },
+        { "label": "Apple Watch SE", "href": "#" },
+        { "label": "อุปกรณ์เสริม Apple Watch", "href": "#" },
+        { "label": "เปรียบเทียบ Watch", "href": "#" },
+        { "label": "AppleCare+ สำหรับ Watch", "href": "#" }
+      ]
+    },
+    {
+      "label": "Music",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล Music ทั้งหมด", "href": "#" },
+        { "label": "AirPods Pro", "href": "#" },
+        { "label": "AirPods", "href": "#" },
+        { "label": "AirPods Max", "href": "#" },
+        { "label": "HomePod", "href": "#" },
+        { "label": "Beats", "href": "#" },
+        { "label": "อุปกรณ์เสริม Music", "href": "#" },
+        { "label": "เปรียบเทียบ AirPods", "href": "#" },
+        { "label": "AppleCare+ สำหรับ Headphones", "href": "#" },
+        { "label": "AppleCare+ สำหรับ HomePod", "href": "#" }
+      ]
+    },
+    {
+      "label": "TV และบ้าน",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล TV และบ้าน ทั้งหมด", "href": "#" },
+        { "label": "Apple TV 4K", "href": "#" },
+        { "label": "HomePod", "href": "#" },
+        { "label": "อุปกรณ์เสริม TV และบ้าน", "href": "#" },
+        { "label": "AppleCare+ สำหรับ Apple TV", "href": "#" }
+      ]
+    },
+    {
+      "label": "อุปกรณ์เสริม",
+      "href": "#",
+      "items": [
+        { "label": "ดูข้อมูล อุปกรณ์เสริม ทั้งหมด", "href": "#" },
+        { "label": "อุปกรณ์เสริม Mac", "href": "#" },
+        { "label": "อุปกรณ์เสริม iPad", "href": "#" },
+        { "label": "อุปกรณ์เสริม iPhone", "href": "#" },
+        { "label": "อุปกรณ์เสริม Apple Watch", "href": "#" },
+        { "label": "อุปกรณ์เสริม Music", "href": "#" },
+        { "label": "อุปกรณ์เสริม TV และบ้าน", "href": "#" },
+        { "label": "AirTag และอุปกรณ์เสริม", "href": "#" },
+        { "label": "อุปกรณ์เสริม อื่น ๆ", "href": "#" }
+      ]
+    },
+    {
+      "label": "บริการช่วยเหลือ",
+      "href": "#",
+      "items": [
+        { "label": "การชำระเงิน", "href": "#" },
+        { "label": "AppleCare+", "href": "#" },
+        { "label": "เก่าแลกใหม่", "href": "#" },
+        { "label": "การจัดส่ง", "href": "#" }
+      ]
+    }
+  ],
+  "secondary": [
+    {
+      "label": "ข้อเสนอ",
+      "href": "#",
+      "items": [
+        { "label": "โปรโมชันสำหรับสินค้า Apple", "href": "#" },
+        { "label": "อุปกรณ์เสริมราคาพิเศษ", "href": "#" },
+        { "label": "โปรโมชันบัตรเครดิตสำหรับ iPhone 17", "href": "#" },
+        { "label": "โปรโมชันบัตรเครดิตออนไลน์", "href": "#" },
+        { "label": "โปรโมชันบัตรเครดิตหน้าสาขา", "href": "#" }
+      ]
+    },
+    {
+      "label": "สำหรับการศึกษา",
+      "href": "#",
+      "items": [
+        { "label": "นักศึกษา", "href": "#" },
+        { "label": "นักเรียน", "href": "#" }
+      ]
+    },
+    {
+      "label": "สาขาของเรา",
+      "href": "#"
+    }
+  ]
+}

@@ -20,7 +20,7 @@ export const ChevronRoundButtonChevronRoundButtonLeft = ({
         " " +
         variantsClassName
       }
-      src="chevron-round-button-chevron-round-button-left.svg"
+      src="/chevron-round-button-chevron-round-button-left.svg"
       alt=""
       aria-hidden="true"
     />

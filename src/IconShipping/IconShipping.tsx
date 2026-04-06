@@ -9,6 +9,6 @@ export const IconShipping = ({
   ...props
 }: IIconShippingProps): JSX.Element => {
   return (
-    <img className={"icon-shipping " + className} src="icon-shipping.svg"  alt="" />
+    <img className={"icon-shipping " + className} src="/icon-shipping.svg"  alt="" />
   );
 };

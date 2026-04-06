@@ -22,33 +22,33 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   },
   {
     id: "trade-in-program",
-    href: "/pages/trade-in-program",
+    href: "https://trade-in.uficon.com/",
     imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/Tradein-Jan2026_instore.png?v=1768460023&width=512",
     badge: "เก่าแลกใหม่",
     badgeColor: "#0071bc",
-    title: "นำเครื่องเก่ามาแลกใหม่",
-    subtitle: "รับเครดิตสูงสุด ฿27,100*",
-    description: "พร้อมส่วนลดเพิ่มสูงสุด ฿1,500.-*"
+    title: "อัปเกรดเครื่องใหม่",
+    subtitle: "เปลี่ยนเครื่องเดิม ให้เป็นเครื่องใหม่",
+    description: "แลกเก่า คุ้มกว่า ได้เครื่องใหม่ง่ายขึ้น พร้อมส่วนลดสูงสุด ฿30,000"
   },
   {
     id: "spaylater",
     href: "/pages/shopeepay",
     imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/LDP_Spay_instore.jpg?v=1775037118&width=512",
-    badge: "ผ่อนชำระ",
-    badgeColor: "#0071bc",
-    title: "ช้อปก่อน จ่ายทีหลัง",
-    subtitle: "ผ่อน iPhone 0% นาน 12 ด.*",
-    description: "เริ่มเพียง 1,425.-/ด.*"
+    badge: "ข้อเสนอพิเศษ",
+    badgeColor: "#5856D6",
+    title: "ราคาเพื่อการศึกษา",
+    subtitle: "สิทธิพิเศษสำหรับนักเรียนและบุคลากรทางการศึกษา",
+    description: "ราคาพิเศษสำหรับสายการศึกษา พร้อมข้อเสนอและสิทธิประโยชน์ที่คุ้มค่ากว่า"
   },
   {
     id: "pay-next-extra",
     href: "/pages/pay-next-extra",
     imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/instorebanner-Paynext.png?v=1775034198&width=512",
-    badge: "ผ่อนชำระ",
-    badgeColor: "#0071bc",
-    title: "ผ่อน iPhone ไม่ใช้บัตร",
-    subtitle: "ดอกเบี้ย 0% นาน 24 ด.*",
-    description: "รับเงินคืนรวมสูงสุด 3,000.-*"
+    badge: "กิจกรรมที่สาขา",
+    badgeColor: "#707070",
+    title: "ร่วมอบรมกับเรา",
+    subtitle: "ฟรี ไม่มีค่าใช้จ่าย",
+    description: "เรามีผู้เชี่ยวชาญที่พร้อมสาธิตและให้คำแนะนำเกี่ยวกับสินค้า Apple ให้คุณได้ร่วมทดลองใช้งานจริงไปด้วยกัน"
   },
   {
     id: "icenter",
@@ -56,7 +56,7 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
     imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/DSC05993.webp?v=1717487756&width=512",
     badge: "ศูนย์บริการ",
     badgeColor: "#707070",
-    title: "iCenter",
+    title: "iMedic",
     subtitle: "บริการหลังการขาย",
     description: "ซ่อมและบริการภายใต้มาตรฐาน Apple Authorised Service Provider"
   },

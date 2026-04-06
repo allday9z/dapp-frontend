@@ -18,12 +18,12 @@ export const HomepageBannerDeviceDesktop = ({
         "homepage-banner-device-desktop " + className + " " + variantsClassName
       }
     >
-      <img className="image-119" src="image-1190.png"  alt="" />
+      <img className="image-119" src="/image-1190.png"  alt="" />
       <div className="frame-1757">
         <div className="available-3-18-from-799-or-133-16-mo-for-6-mo-before-trade-in">
           Available 3.18 from $799 or $133.16/mo. for 6 mo.* before trade-in{" "}
         </div>
-        <img className="image-121" src="image-1210.png"  alt="" />
+        <img className="image-121" src="/image-1210.png"  alt="" />
       </div>
     </div>
   );

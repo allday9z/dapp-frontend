@@ -1,180 +1,203 @@
-/* ── FamilyStripe — pixel-accurate from LobPage.html ─────────────────────
-   Source values:
-     outer height   : 6.75rem
-     tile padding   : 0.75rem top/bottom, 3.75rem left/right (but slick handles left)
-     image          : 5.25rem × 5.25rem
-     text width     : 10.5rem
-     tile gap       : 1.5rem (between image and text: 0.5rem)
-     badge          : 0.5rem, #bf4800
-     name           : 0.75rem / 0.875rem, #000
-     price          : 0.5rem, #333
-     bottom border  : inset 0 -0.03125rem 0 0 rgba(217,217,217,1)
-─────────────────────────────────────────────────────────────────────── */
 .family-stripe,
 .family-stripe * {
   box-sizing: border-box;
 }
 
-/* ── Outer wrapper — FULL WIDTH, no padding (arrows are positioned inside) */
 .family-stripe {
+  --family-stripe-edge-padding: max(1.75rem, calc((100% - 90rem) / 2 + 6.875rem));
+  --family-stripe-arrow-width: 1.75rem;
+  --family-stripe-gap: 0.875rem;
   background: #ffffff;
   width: 100%;
   height: 6.75rem;
+  max-height: 6.75rem;
   position: relative;
-  box-shadow: inset 0 -0.03125rem 0 0 rgba(217, 217, 217, 1);
+  overflow: hidden;
+  box-shadow: inset 0 -0.03125rem 0 0 #d2d2d2;
 }
 
-/* ── Slick root takes full height ──────────────────────────────────────── */
+.family-stripe__viewport {
+  width: calc(100% - var(--family-stripe-edge-padding));
+  margin-left: var(--family-stripe-edge-padding);
+  height: 100%;
+  overflow: hidden;
+}
+
 .family-stripe .slick-slider,
 .family-stripe .slick-list,
 .family-stripe .slick-track {
   height: 100%;
 }
 
+.family-stripe .slick-list {
+  overflow: hidden;
+}
+
 .family-stripe .slick-track {
-  display: flex !important;
+  display: flex;
   align-items: center;
+}
+
+.family-stripe .slick-slide {
+  height: 100%;
 }
 
 .family-stripe .slick-slide > div {
   height: 100%;
-  display: flex;
-  align-items: center;
 }
 
-/* ── Tile link ─────────────────────────────────────────────────────────── */
+.family-stripe__slide {
+  width: auto;
+  height: 100%;
+  padding-right: var(--family-stripe-gap);
+}
+
 .family-stripe__tile {
   display: flex;
-  flex-direction: row;
-  gap: 0.5rem;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+  height: 100%;
+  min-width: 18.5rem;
+  padding: 0.625rem 1rem;
   text-decoration: none;
-  /* match Figma: 0.75rem vertical padding inside tile */
-  padding: 0.75rem 0.75rem 0.75rem 3.75rem;
-  height: 6.75rem;
-  transition: opacity 0.15s ease;
+  border-radius: 0.75rem;
+  background: #f5f5f7;
+  transition: background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .family-stripe__tile:hover {
-  opacity: 0.72;
+  background: #ececf0;
 }
 
-/* ── Product image ─────────────────────────────────────────────────────── */
+.family-stripe__image-wrap {
+  width: 4.75rem;
+  height: 4.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 4.75rem;
+}
+
 .family-stripe__tile-img {
-  width: 5.25rem;
-  height: 5.25rem;
+  width: 4.75rem;
+  height: 4.75rem;
   object-fit: contain;
-  flex-shrink: 0;
 }
 
-/* ── Text block ────────────────────────────────────────────────────────── */
 .family-stripe__tile-text {
   display: flex;
   flex-direction: column;
-  gap: 0;
-  align-items: flex-start;
-  justify-content: flex-end;
-  width: 10.5rem;
-  padding-bottom: 0.25rem;
+  justify-content: center;
   min-width: 0;
+  width: 11rem;
+}
+
+.family-stripe__tile-badge-wrap {
+  min-height: 0.6875rem;
+  margin-bottom: 0.0625rem;
 }
 
 .family-stripe__tile-badge {
-  color: #bf4800;
-  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
+  display: inline-block;
+  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
   font-size: 0.5rem;
-  line-height: 0.5rem;
+  line-height: 0.625rem;
   font-weight: 600;
-  display: block;
-  margin-bottom: 0.125rem;
+}
+
+.family-stripe__tile-badge--new {
+  color: #bf4800;
+}
+
+.family-stripe__tile-badge--sale {
+  color: #008900;
+}
+
+.family-stripe__tile-badge--default {
+  color: #6e6e73;
 }
 
 .family-stripe__tile-name {
-  color: #000000;
-  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
-  font-size: 0.75rem;
-  line-height: 0.875rem;
+  color: #000;
+  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 0.78125rem;
+  line-height: 0.9375rem;
   font-weight: 600;
-  display: block;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .family-stripe__tile-price {
-  color: #333333;
-  font-family: var(--body-body-m-font-family, "SfPro-Regular", sans-serif);
-  font-size: 0.5rem;
-  line-height: 0.5rem;
-  font-weight: 400;
-  display: block;
   margin-top: 0.125rem;
+  color: #6e6e73;
+  font-family: var(--body-body-s-regular-font-family, "SfProText-Regular", sans-serif);
+  font-size: 0.75rem;
+  line-height: 0.875rem;
+  font-weight: 400;
 }
 
-/* ── See all CTA slide ─────────────────────────────────────────────────── */
 .family-stripe__see-all {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 0.25rem;
-  color: var(--color-blue, #0071e3);
+  gap: 0.3125rem;
+  height: 100%;
+  min-width: 12rem;
+  padding: 0 0.75rem;
+  color: #0071e3;
   text-decoration: none;
-  height: 6.75rem;
-  padding: 0 1rem;
-  white-space: nowrap;
-  transition: opacity 0.15s ease;
-}
-
-.family-stripe__see-all:hover {
-  opacity: 0.72;
 }
 
 .family-stripe__see-all-label {
-  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
+  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 600;
 }
 
-.family-stripe__see-all-icon {
-  color: var(--color-blue, #0071e3);
-  flex-shrink: 0;
-}
-
-/* ── Custom arrows — flush to left/right edges, full stripe height ─────── */
 .family-stripe__arrow {
   position: absolute;
   top: 0;
-  height: 6.75rem;
-  width: 2.1875rem;
+  width: var(--family-stripe-arrow-width);
+  height: 100%;
   z-index: 10;
-  background: #ffffff;
-  border: none;
-  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #fff;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  color: #1d1d1f;
 }
 
 .family-stripe__arrow--prev {
   left: 0;
-  box-shadow: inset -0.025rem 0 0 0 rgba(66, 66, 69, 0.3);
+  box-shadow: inset -0.03125rem 0 0 rgba(66, 66, 69, 0.3);
 }
 
 .family-stripe__arrow--next {
   right: 0;
-  box-shadow: inset 0.025rem 0 0 0 rgba(66, 66, 69, 0.3);
+  box-shadow: inset 0.03125rem 0 0 rgba(66, 66, 69, 0.3);
 }
 
-/* Hide when slick has no more slides */
-.family-stripe .slick-disabled.family-stripe__arrow,
 .family-stripe__arrow:disabled {
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0.42;
+  cursor: default;
 }
 
-/* Override slick default arrow positioning */
-.family-stripe .slick-prev,
-.family-stripe .slick-next {
-  display: none !important;
+@media (max-width: 1200px) {
+  .family-stripe {
+    --family-stripe-edge-padding: max(1.25rem, calc((100% - 90rem) / 2 + 3rem));
+  }
+}
+
+@media (max-width: 768px) {
+  .family-stripe {
+    --family-stripe-edge-padding: 1.25rem;
+  }
+
+  .family-stripe__tile {
+    min-width: 14rem;
+  }
 }

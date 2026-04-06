@@ -4,14 +4,15 @@
   /* Effects */
 
   /* ── Font Family Variables ── */
-  --body-body-s-regular-font-family:    'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --body-body-s-medium-font-family:     'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --body-body-s-semibold-font-family:   'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --headline-headline-l-font-family:    'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --headline-headline-s-font-family:    'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --display-display-s-font-family:      'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --title-title-regular-font-family:    'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --title-title-semibold-font-family:   'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
-  --label-label-l-semibold-font-family: 'SFProThai', 'SF Pro Text', -apple-system, sans-serif;
+  --body-body-s-regular-font-family:    'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --body-body-s-medium-font-family:     'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --body-body-s-semibold-font-family:   'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --body-body-m-font-family:            'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --headline-headline-l-font-family:    'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --headline-headline-s-font-family:    'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --display-display-s-font-family:      'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --title-title-regular-font-family:    'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --title-title-semibold-font-family:   'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  --label-label-l-semibold-font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
 }
 /* Figma Color Variables of your File */

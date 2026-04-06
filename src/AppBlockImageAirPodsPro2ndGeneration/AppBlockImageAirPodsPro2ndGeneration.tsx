@@ -10,7 +10,7 @@ export const AppBlockImageAirPodsPro2ndGeneration = ({
 }: IAppBlockImageAirPodsPro2ndGenerationProps): JSX.Element => {
   return (
     <div className={"app-block-image-air-pods-pro-2nd-generation " + className}>
-      <img className="image-62" src="image-620.png"  alt="" />
+      <img className="image-62" src="/image-620.png"  alt="" />
     </div>
   );
 };

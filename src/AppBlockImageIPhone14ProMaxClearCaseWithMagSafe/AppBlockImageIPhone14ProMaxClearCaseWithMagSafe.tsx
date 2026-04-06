@@ -15,7 +15,7 @@ export const AppBlockImageIPhone14ProMaxClearCaseWithMagSafe = ({
         className
       }
     >
-      <img className="image-64" src="image-640.png"  alt="" />
+      <img className="image-64" src="/image-640.png"  alt="" />
     </div>
   );
 };

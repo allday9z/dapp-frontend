@@ -32,7 +32,7 @@ export const BentoBoxTileDeviceDesktopSmallLobAirPods = ({
       }
     >
       <div className="image-area">
-        <img className="image-103" src="image-1030.png"  alt="" />
+        <img className="image-103" src="/image-1030.png"  alt="" />
       </div>
       <div className="frame-487">
         <div className="contents">

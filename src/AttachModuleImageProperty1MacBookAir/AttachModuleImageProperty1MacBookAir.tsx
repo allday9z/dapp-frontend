@@ -10,7 +10,7 @@ export const AttachModuleImageProperty1MacBookAir = ({
 }: IAttachModuleImageProperty1MacBookAirProps): JSX.Element => {
   return (
     <div className={"attach-module-image-property-1-mac-book-air " + className}>
-      <img className="image-59" src="image-590.png"  alt="" />
+      <img className="image-59" src="/image-590.png"  alt="" />
     </div>
   );
 };

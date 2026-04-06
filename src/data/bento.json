@@ -2,7 +2,7 @@
   "tiles": [
     {
       "id": "apple-watch-promo",
-      "imageSrc": "image-1200.png",
+      "imageSrc": "/image-1200.png",
       "imageAlt": "Apple Watch Series 9",
       "badge": "NEW",
       "headline": "Apple Watch",
@@ -14,7 +14,7 @@
     },
     {
       "id": "airpods-promo",
-      "imageSrc": "image-1100.png",
+      "imageSrc": "/image-1100.png",
       "imageAlt": "AirPods Pro 2nd Generation",
       "badge": "NEW",
       "headline": "AirPods Pro",
@@ -26,7 +26,7 @@
     },
     {
       "id": "apple-watch-band-promo",
-      "imageSrc": "accessories0.png",
+      "imageSrc": "/accessories0.png",
       "imageAlt": "Apple Watch Bands",
       "badge": "SALE",
       "headline": "Apple Watch Bands",

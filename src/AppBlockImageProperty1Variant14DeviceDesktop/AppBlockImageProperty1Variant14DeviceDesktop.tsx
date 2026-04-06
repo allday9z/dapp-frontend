@@ -16,7 +16,7 @@ export const AppBlockImageProperty1Variant14DeviceDesktop = ({
     >
       <img
         className="screen-shot-2022-11-01-at-9-27-2"
-        src="screen-shot-2022-11-01-at-9-27-20.png"
+        src="/screen-shot-2022-11-01-at-9-27-20.png"
         alt="ภาพสินค้า Apple จากแกลเลอรี"
       />
     </div>

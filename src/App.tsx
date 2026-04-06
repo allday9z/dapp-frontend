@@ -16,7 +16,9 @@ import { LOBPage } from './pages/LOBPage/LOBPage';
 function currentPage() {
   const path = window.location.pathname;
   if (path === '/pages/view-all-mac') return <PLPPage />;
-  if (path.startsWith('/collections/macbook')) return <LOBPage />;
+  if (path === '/collections/macbook') return <LOBPage collection="macbook" />;
+  if (path === '/collections/macbook-air') return <LOBPage collection="macbook-air" />;
+  if (path === '/collections/macbook-pro') return <LOBPage collection="macbook-pro" />;
   return <HomePage />;
 }
 

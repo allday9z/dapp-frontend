@@ -19,10 +19,9 @@ export const AppZigzagProperty1StoreNearYouDeviceDesktop = ({
       <div className="text-box">
         <div className="copy">
           <div className="frame-1775">
-            <div className="stores-near-you">Stores near you </div>
+            <div className="stores-near-you">สาขาใกล้คุณ</div>
             <div className="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-donec-facilisis-lorem-ipsum-dolor-sit-amet">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              facilisis. Lorem ipsum dolor sit amet.{" "}
+              ค้นหาสาขาที่ใกล้คุณที่สุด{" "}
             </div>
           </div>
           <CtaButtonSecondaryStateDefault
@@ -30,7 +29,7 @@ export const AppZigzagProperty1StoreNearYouDeviceDesktop = ({
               <MapPinScenarioDefault className="scenario-default-instance" />
             }
             button="secondary"
-            text="Find a store"
+            text="ค้นหาสาขา"
             className="cta-instance"
           ></CtaButtonSecondaryStateDefault>
         </div>
@@ -38,7 +37,7 @@ export const AppZigzagProperty1StoreNearYouDeviceDesktop = ({
       <div className="image-area">
         <img
           className="tienda-apple-nevada-granada-2"
-          src="tienda-apple-nevada-granada-20.png"
+          src="/tienda-apple-nevada-granada-20.png"
           alt="ภาพหน้าร้าน Apple Store"
         />
       </div>

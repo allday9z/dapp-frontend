@@ -58,6 +58,12 @@
   font-weight: 500;
 }
 @font-face {
+  font-family: 'SfProText-Light';
+  src: local('SF Pro Text Light'), local('SFProText-Light'), local('SF Pro Text'),
+       url("/fonts/SFProText-Regular.woff2") format('woff2');
+  font-weight: 300;
+}
+@font-face {
   font-family: 'SfProText-Semibold';
   src: local('SF Pro Text'), url("/fonts/SFProText-Semibold.woff2") format('woff2');
   font-weight: 600;
@@ -66,6 +72,20 @@
   font-family: 'SfProText-Bold';
   src: local('SF Pro Text Bold'), local('SFProText-Bold'), local('SF Pro Text');
   font-weight: 700;
+}
+@font-face {
+  font-family: 'SfPro-Regular';
+  src: local('SF Pro Text'), url("/fonts/SFProText-Regular.woff2") format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'SfPro-Semibold';
+  src: local('SF Pro Text'), url("/fonts/SFProText-Semibold.woff2") format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: 'SfProDisplay-Semibold';
@@ -80,7 +100,7 @@ html {
 }
 
 body {
-  font-family: 'SFProThai', 'SF Pro Text', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   overflow-x: hidden; /* propagates to viewport because html has default overflow: visible */
   width: 100%;
 }

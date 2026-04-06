@@ -1,7 +1,7 @@
 [
   {
     "id": "genius-class",
-    "imageSrc": "image-1170.png",
+    "imageSrc": "/image-1170.png",
     "imageAlt": "iStudio Today at Apple Class",
     "badge": "IN-STORE",
     "title": "เรียนรู้กับเรา",
@@ -11,7 +11,7 @@
   },
   {
     "id": "appointment",
-    "imageSrc": "image-1100.png",
+    "imageSrc": "/image-1100.png",
     "imageAlt": "iStudio Appointment",
     "badge": "IN-STORE",
     "title": "นัดหมายผู้เชี่ยวชาญ",
@@ -21,7 +21,7 @@
   },
   {
     "id": "delivery-pickup",
-    "imageSrc": "image-1180.png",
+    "imageSrc": "/image-1180.png",
     "imageAlt": "iStudio Delivery and Pickup",
     "badge": "IN-STORE",
     "title": "จัดส่งและรับของ",
@@ -31,7 +31,7 @@
   },
   {
     "id": "find-store",
-    "imageSrc": "image-1180.png",
+    "imageSrc": "/image-1180.png",
     "imageAlt": "Find iStudio Store",
     "badge": "IN-STORE",
     "title": "ค้นหาสาขา",
@@ -41,7 +41,7 @@
   },
   {
     "id": "repair",
-    "imageSrc": "screen-shot-2022-11-01-at-9-27-10.png",
+    "imageSrc": "/screen-shot-2022-11-01-at-9-27-10.png",
     "imageAlt": "iStudio Apple Repair",
     "badge": "IN-STORE",
     "title": "ซ่อมและบริการ",

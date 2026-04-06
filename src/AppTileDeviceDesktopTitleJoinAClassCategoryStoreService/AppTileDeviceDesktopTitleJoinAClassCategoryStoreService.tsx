@@ -47,7 +47,7 @@ export const AppTileDeviceDesktopTitleJoinAClassCategoryStoreService = ({
         <div className="text-block">
           <div className="frame-1530">
             <div className="in-store">IN-STORE </div>
-            <div className="join-a-class">Join a class </div>
+            <div className="join-a-class">Group Demo</div>
             <div className="free-sessions">Free sessions </div>
           </div>
           <div className="free-sessions-that-inspire-hands-on-creativity-in-photography-art-music-and-more">

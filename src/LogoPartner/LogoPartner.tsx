@@ -12,7 +12,7 @@ export const LogoPartner = ({
     <div className={"logo-partner " + className}>
       <img
         className="microsoft-teams-image-25-1"
-        src="microsoft-teams-image-25-10.png"
+        src="/brand_logo/logo-istudio-uficon.png"
         alt="โลโก้พาร์ทเนอร์"
       />
     </div>

@@ -19,17 +19,16 @@ export const AppZigzagProperty1JoinAClassDeviceDesktop = ({
       <div className="image-area">
         <img
           className="screen-shot-2022-02-22-at-2-10-2"
-          src="screen-shot-2022-02-22-at-2-10-20.png"
+          src="/screen-shot-2022-02-22-at-2-10-20.png"
           alt="ภาพกิจกรรมเข้าร่วมคลาสในร้าน"
         />
       </div>
       <div className="text-area">
         <div className="frame-439">
           <div className="frame-1777">
-            <div className="join-a-class">Join a class </div>
+            <div className="join-a-class">Group Demo</div>
             <div className="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-donec-facilisis-lorem-ipsum-dolor-sit-amet">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-              facilisis. Lorem ipsum dolor sit amet.{" "}
+              ปิดประสบการณ์ใช้งาน Apple แบบกลุ่ม พร้อมเทคนิคและคำแนะนำที่ช่วยให้คุณใช้งานได้อย่างเต็มประสิทธิภาพ{" "}
             </div>
           </div>
           <CtaButtonSecondaryStateDefault
@@ -37,7 +36,7 @@ export const AppZigzagProperty1JoinAClassDeviceDesktop = ({
               <MapPinScenarioDefault className="scenario-default-instance" />
             }
             button="secondary"
-            text="RSVP"
+            text="ดูรายละเอียดเพิ่มเติม"
             className="cta-instance"
           ></CtaButtonSecondaryStateDefault>
         </div>

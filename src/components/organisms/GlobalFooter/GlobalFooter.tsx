@@ -119,27 +119,27 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             <h2 className="global-footer__col-title">Apple Premium Partner</h2>
             <div className="global-footer__partner-logos">
               <img
-                src="apple-partner-footer/apple-partner-1.svg"
+                src="/apple-partner-footer/apple-partner-1.svg"
                 alt="Apple Premium Partner"
                 className="global-footer__partner-logo global-footer__partner-logo--premium"
                 onError={(e) => {
-                  e.currentTarget.src = 'group0.svg';
+                  e.currentTarget.src = '/group0.svg';
                 }}
               />
               <img
-                src="apple-partner-footer/apple-partner-2.svg"
+                src="/apple-partner-footer/apple-partner-2.svg"
                 alt="Authorized Service Provider"
                 className="global-footer__partner-logo global-footer__partner-logo--service"
                 onError={(e) => {
-                  e.currentTarget.src = 'vector0.svg';
+                  e.currentTarget.src = '/vector0.svg';
                 }}
               />
               <img
-                src="apple-partner-footer/apple-partner-3.svg"
+                src="/apple-partner-footer/apple-partner-3.svg"
                 alt="Authorized Education Specialist"
                 className="global-footer__partner-logo global-footer__partner-logo--education"
                 onError={(e) => {
-                  e.currentTarget.src = 'vector2.svg';
+                  e.currentTarget.src = '/vector2.svg';
                 }}
               />
             </div>

@@ -15,7 +15,7 @@ export const AttachModuleImageProperty1ApplePencil2ndGeneration = ({
         className
       }
     >
-      <img className="image-63" src="image-630.png"  alt="" />
+      <img className="image-63" src="/image-630.png"  alt="" />
     </div>
   );
 };

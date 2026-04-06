@@ -18,7 +18,7 @@ export const IconChevronDirectionRight = ({
         "icon-chevron-direction-right " + className + " " + variantsClassName
       }
     >
-      <img className="icon-chevron-left" src="icon-chevron-left0.svg"  alt="" />
+      <img className="icon-chevron-left" src="/icon-chevron-left0.svg"  alt="" />
     </div>
   );
 };

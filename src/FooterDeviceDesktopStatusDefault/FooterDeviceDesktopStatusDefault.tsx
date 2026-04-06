@@ -121,9 +121,9 @@ export const FooterDeviceDesktopStatusDefault = ({
           <div className="footer-column partner-column">
             <h2 className="footer-column-title">Apple Premium Partner</h2>
             <div className="partner-logos-stack">
-              <img src="apple-partner-footer/apple-partner-1.svg" alt="Apple Premium Partner" className="partner-logo-img premium-partner" onError={(e) => { e.currentTarget.src = 'group0.svg'; }} />
-              <img src="apple-partner-footer/apple-partner-2.svg" alt="Authorized Service Provider" className="partner-logo-img service-provider" onError={(e) => { e.currentTarget.src = 'vector0.svg'; }} />
-              <img src="apple-partner-footer/apple-partner-3.svg" alt="Authorized Education Specialist" className="partner-logo-img education-specialist" onError={(e) => { e.currentTarget.src = 'vector2.svg'; }} />
+              <img src="/apple-partner-footer/apple-partner-1.svg" alt="Apple Premium Partner" className="partner-logo-img premium-partner" onError={(e) => { e.currentTarget.src = '/group0.svg'; }} />
+              <img src="/apple-partner-footer/apple-partner-2.svg" alt="Authorized Service Provider" className="partner-logo-img service-provider" onError={(e) => { e.currentTarget.src = '/vector0.svg'; }} />
+              <img src="/apple-partner-footer/apple-partner-3.svg" alt="Authorized Education Specialist" className="partner-logo-img education-specialist" onError={(e) => { e.currentTarget.src = '/vector2.svg'; }} />
             </div>
           </div>
         </div>
@@ -149,7 +149,7 @@ export const FooterDeviceDesktopStatusDefault = ({
               <a href="#" aria-label="Facebook"><IconFacebook className="footer-social-icon" /></a>
               <a href="#" aria-label="Instagram"><IconInstagram className="footer-social-icon" /></a>
               <a href="#" aria-label="Line">
-                <img src="group-14120.svg" alt="Line" className="footer-social-icon-img" />
+                <img src="/group-14120.svg" alt="Line" className="footer-social-icon-img" />
               </a>
               <a href="#" aria-label="TikTok"><IconTiktok className="footer-social-icon" /></a>
               <a href="#" aria-label="YouTube"><IconYoutube className="footer-social-icon" /></a>
@@ -157,8 +157,8 @@ export const FooterDeviceDesktopStatusDefault = ({
             </div>
             
             <div className="payment-icons-row">
-              <img src="frame-360.svg" alt="Visa" className="payment-icon" />
-              <img src="image-60.png" alt="Payment Methods" className="payment-icon-group" />
+              <img src="/frame-360.svg" alt="Visa" className="payment-icon" />
+              <img src="/image-60.png" alt="Payment Methods" className="payment-icon-group" />
             </div>
 
             <div className="footer-copyright-text">

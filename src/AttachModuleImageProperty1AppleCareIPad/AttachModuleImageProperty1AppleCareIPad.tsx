@@ -12,7 +12,7 @@ export const AttachModuleImageProperty1AppleCareIPad = ({
     <div
       className={"attach-module-image-property-1-apple-care-i-pad " + className}
     >
-      <img className="image-59" src="image-590.png"  alt="" />
+      <img className="image-59" src="/image-590.png"  alt="" />
     </div>
   );
 };

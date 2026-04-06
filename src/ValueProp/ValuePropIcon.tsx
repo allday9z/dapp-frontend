@@ -17,5 +17,5 @@ export const IconTrust = () => (
 );
 
 export const IconShipping = () => (
-  <img src="icon-shipping.svg" alt="" width="44" height="44" />
+  <img src="/icon-shipping.svg" alt="" width="44" height="44" />
 );

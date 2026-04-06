@@ -47,13 +47,13 @@ export const AppTileDeviceDesktopTitleIPadAccessoriesCategoryAccessories = ({
         <div className="text-block">
           <div className="frame-1531">
             <div className="new">NEW </div>
-            <div className="i-pad-accessories">iPad Accessories </div>
+            <div className="i-pad-accessories">อุปกรณ์เสริท iPad </div>
             <div className="shop-i-pad-accessories-here">
-              Shop iPad accessories here{" "}
+              เติมเต็มการใช้งาน iPad ให้หลากหลาย ทั้งทำงานและความบันเทิง{" "}
             </div>
           </div>
           <div className="available-from-42-or-7-mo-for-6-mo-before-trade-in">
-            Available from $42 or $7/mo. for 6 mo.* before trade-in{" "}
+            เริ่มต้น ฿390{" "}
           </div>
         </div>
       </div>

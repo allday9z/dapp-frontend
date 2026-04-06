@@ -1,7 +1,7 @@
 import "./PLPPage.css";
 import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
-import { macbookAirFamilyItems } from "../../FamilyStripe/familyStripeData";
+import { macCollectionFamilyItems } from "../../FamilyStripe/familyStripeData";
 import macbookAirData from "../../data/products/macbook-air.json";
 import type { PLPProduct } from "../../PLPProductRow/PLPProductRow";
 
@@ -12,7 +12,7 @@ export const PLPPage = () => (
   <div className="plp-page">
     {/* FamilyStripe: FULL WIDTH — outside inner padding */}
     <FamilyStripe
-      items={macbookAirFamilyItems}
+      items={macCollectionFamilyItems}
       seeAllLabel="ดูข้อมูล Mac ทั้งหมด"
       seeAllHref="/pages/view-all-mac"
     />

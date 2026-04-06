@@ -47,13 +47,13 @@ export const AppTileDeviceDesktopTitleMacAccessoriesCategoryAccessories = ({
         <div className="text-block">
           <div className="frame-1530">
             <div className="in-store">IN-STORE </div>
-            <div className="mac-accessories">Mac Accessories </div>
+            <div className="mac-accessories">อุปกรณ์เสริม Mac </div>
             <div className="shop-mac-accessories-here">
-              Shop Mac accessories here{" "}
+              อุปกรณ์เสริมที่ช่วยเพิ่มประสิทธิภาพการทำงานบน Mac ให้สะดวกและครบยิ่งขึ้น{" "}
             </div>
           </div>
           <div className="available-from-342-or-57-mo-for-6-mo-before-trade-in">
-            Available from $342 or $57/mo. for 6 mo.* before trade-in{" "}
+            เริ่มต้น ฿790{" "}
           </div>
         </div>
       </div>

@@ -8,5 +8,5 @@ export const IconStore = ({
   className,
   ...props
 }: IIconStoreProps): JSX.Element => {
-  return <img className={"icon-store " + className} src="icon-store.svg"  alt="" />;
+  return <img className={"icon-store " + className} src="/icon-store.svg"  alt="" />;
 };

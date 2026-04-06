@@ -9,8 +9,10 @@
 }
 
 .product-stripe__viewport {
-  width: 100%;
+  width: calc(100% - var(--product-stripe-edge-padding));
   position: relative;
+  overflow: hidden;
+  margin-left: var(--product-stripe-edge-padding);
 }
 
 /* Base slick overrides */
@@ -19,7 +21,7 @@
 }
 
 .product-stripe .slick-list {
-  padding-left: var(--product-stripe-edge-padding) !important;
+  overflow: hidden;
 }
 
 .product-stripe .slick-slide {
@@ -80,8 +82,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  min-width: 36px !important;
-  width: 36px !important;
+  min-width: 36px;
+  width: 36px;
   background: #fff;
   cursor: pointer;
   height: 100%;
@@ -130,7 +132,7 @@
   right: max(1rem, calc(var(--product-stripe-edge-padding) - 18px));
 }
 .blue-circle-arrow--prev {
-  left: max(1rem, calc(var(--product-stripe-edge-padding) - 18px));
+  left: 0;
 }
 .blue-circle-arrow:hover:not(.slick-disabled) {
   background: #0077ed;
@@ -143,7 +145,7 @@
 
 /* ── Dots Styling ── */
 .custom-slick-dots {
-  display: flex !important;
+  display: flex;
   justify-content: center;
   gap: 0.75rem;
   list-style: none;
@@ -181,6 +183,6 @@
   .partner-left-arrow,
   .partner-right-arrow,
   .blue-circle-arrow {
-    display: none !important;
+    display: none;
   }
 }

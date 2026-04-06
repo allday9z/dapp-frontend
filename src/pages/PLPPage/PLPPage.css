@@ -1,26 +1,21 @@
-/* ── PLPPage — Figma-accurate layout ────────────────────────────────────
-   Inner content: 76.25rem (1220px)
-   Outer padding: 6.875rem (110px) each side → fits in 1440px viewport
-   Responsive: padding collapses at smaller widths
-─────────────────────────────────────────────────────────────────────── */
+/* ── PLPPage ─────────────────────────────────────────────────────────────
+   FamilyStripe is FULL WIDTH (no padding constraint at page level).
+   Inner content uses 1220px inner / 1440px outer (Figma-accurate).
+──────────────────────────────────────────────────────────────────────── */
 .plp-page {
   background: #ffffff;
-  padding: 0 6.875rem;
-  min-height: 100vh;
+  width: 100%;
 }
 
+/* ── Inner content: 1220px centered (6.875rem = 110px padding each side) */
 .plp-page__inner {
-  width: 76.25rem;
-  max-width: 100%;
+  max-width: 90rem; /* 1440px — caps the padded container */
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+  padding: 0 6.875rem;
 }
 
-/* ── Category heading row ───────────────────────────────────────────────── */
+/* ── Category heading row ── */
 .plp-page__heading-row {
-  background: #ffffff;
   padding: 2rem 0 2rem 1rem;
   display: flex;
   flex-direction: row;
@@ -38,25 +33,15 @@
   margin: 0;
 }
 
-/* ── Responsive ─────────────────────────────────────────────────────────── */
-@media (max-width: 1440px) {
-  .plp-page {
-    padding: 0 6.875rem;
-  }
-}
-
+/* ── Responsive ── */
 @media (max-width: 1100px) {
-  .plp-page {
-    padding: 0 3rem;
-  }
-
   .plp-page__inner {
-    width: 100%;
+    padding: 0 3rem;
   }
 }
 
 @media (max-width: 768px) {
-  .plp-page {
+  .plp-page__inner {
     padding: 0 1.25rem;
   }
 }

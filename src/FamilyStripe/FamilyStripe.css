@@ -1,46 +1,44 @@
-/* ── FamilyStripe — sub-product quick-nav w/ react-slick ──────────────── */
+/* ── FamilyStripe — pixel-accurate from LobPage.html ─────────────────────
+   Source values:
+     outer height   : 6.75rem
+     tile padding   : 0.75rem top/bottom, 3.75rem left/right (but slick handles left)
+     image          : 5.25rem × 5.25rem
+     text width     : 10.5rem
+     tile gap       : 1.5rem (between image and text: 0.5rem)
+     badge          : 0.5rem, #bf4800
+     name           : 0.75rem / 0.875rem, #000
+     price          : 0.5rem, #333
+     bottom border  : inset 0 -0.03125rem 0 0 rgba(217,217,217,1)
+─────────────────────────────────────────────────────────────────────── */
 .family-stripe,
 .family-stripe * {
   box-sizing: border-box;
 }
 
+/* ── Outer wrapper — FULL WIDTH, no padding (arrows are positioned inside) */
 .family-stripe {
   background: #ffffff;
   width: 100%;
-  border-bottom: 0.03125rem solid rgba(125, 125, 125, 0.5);
-  padding: 0.5rem 0 0;
+  height: 6.75rem;
   position: relative;
+  box-shadow: inset 0 -0.03125rem 0 0 rgba(217, 217, 217, 1);
 }
 
-.family-stripe__slider-wrap {
-  position: relative;
-  /* give slick arrows space outside the track */
-  padding: 0 2rem;
-}
-
-/* ── Slick overrides ───────────────────────────────────────────────────── */
+/* ── Slick root takes full height ──────────────────────────────────────── */
+.family-stripe .slick-slider,
+.family-stripe .slick-list,
 .family-stripe .slick-track {
-  display: flex;
-  align-items: flex-end;
+  height: 100%;
 }
 
-.family-stripe .slick-slide {
-  height: auto;
+.family-stripe .slick-track {
+  display: flex !important;
+  align-items: center;
 }
 
 .family-stripe .slick-slide > div {
   height: 100%;
-}
-
-/* ── Individual slide wrapper ──────────────────────────────────────────── */
-.family-stripe__slide {
-  padding: 0 0.5rem;
-  height: 6.5rem;
-  display: flex !important;
-  align-items: flex-end;
-}
-
-.family-stripe__slide--see-all {
+  display: flex;
   align-items: center;
 }
 
@@ -51,11 +49,10 @@
   gap: 0.5rem;
   align-items: flex-end;
   justify-content: flex-start;
-  background: #ffffff;
-  border-radius: 0.5rem;
-  padding: 0 0.5rem 1.25rem 0;
   text-decoration: none;
-  width: 100%;
+  /* match Figma: 0.75rem vertical padding inside tile */
+  padding: 0.75rem 0.75rem 0.75rem 3.75rem;
+  height: 6.75rem;
   transition: opacity 0.15s ease;
 }
 
@@ -63,52 +60,56 @@
   opacity: 0.72;
 }
 
+/* ── Product image ─────────────────────────────────────────────────────── */
 .family-stripe__tile-img {
   width: 5.25rem;
   height: 5.25rem;
-  object-fit: cover;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
+/* ── Text block ────────────────────────────────────────────────────────── */
 .family-stripe__tile-text {
   display: flex;
   flex-direction: column;
   gap: 0;
   align-items: flex-start;
   justify-content: flex-end;
-  padding-bottom: 0.375rem;
+  width: 10.5rem;
+  padding-bottom: 0.25rem;
   min-width: 0;
 }
 
 .family-stripe__tile-badge {
   color: #bf4800;
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
-  font-size: 0.4375rem;
-  line-height: 150%;
-  letter-spacing: 0.02em;
+  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
+  font-size: 0.5rem;
+  line-height: 0.5rem;
   font-weight: 600;
+  display: block;
+  margin-bottom: 0.125rem;
 }
 
 .family-stripe__tile-name {
-  color: rgba(18, 18, 18, 0.75);
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
-  font-size: 0.6875rem;
-  line-height: 1.1;
-  letter-spacing: 0.01em;
+  color: #000000;
+  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
+  font-size: 0.75rem;
+  line-height: 0.875rem;
   font-weight: 600;
+  display: block;
 }
 
 .family-stripe__tile-price {
-  color: rgba(18, 18, 18, 0.75);
-  font-family: var(--body-body-m-font-family, "SfProText-Regular", sans-serif);
-  font-size: 0.5625rem;
-  line-height: 125%;
-  letter-spacing: 0.02em;
+  color: #333333;
+  font-family: var(--body-body-m-font-family, "SfPro-Regular", sans-serif);
+  font-size: 0.5rem;
+  line-height: 0.5rem;
   font-weight: 400;
+  display: block;
   margin-top: 0.125rem;
 }
 
-/* ── See all CTA ───────────────────────────────────────────────────────── */
+/* ── See all CTA slide ─────────────────────────────────────────────────── */
 .family-stripe__see-all {
   display: flex;
   flex-direction: row;
@@ -116,7 +117,8 @@
   gap: 0.25rem;
   color: var(--color-blue, #0071e3);
   text-decoration: none;
-  padding: 0 0.25rem;
+  height: 6.75rem;
+  padding: 0 1rem;
   white-space: nowrap;
   transition: opacity 0.15s ease;
 }
@@ -126,52 +128,53 @@
 }
 
 .family-stripe__see-all-label {
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
-  font-size: 0.6875rem;
-  line-height: 116%;
-  letter-spacing: 0.01em;
+  font-family: var(--label-label-l-semibold-font-family, "SfPro-Semibold", sans-serif);
+  font-size: 0.875rem;
+  line-height: 1rem;
   font-weight: 600;
 }
 
-.family-stripe__see-all svg {
+.family-stripe__see-all-icon {
   color: var(--color-blue, #0071e3);
   flex-shrink: 0;
 }
 
-/* ── Custom arrows ─────────────────────────────────────────────────────── */
+/* ── Custom arrows — flush to left/right edges, full stripe height ─────── */
 .family-stripe__arrow {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+  top: 0;
+  height: 6.75rem;
+  width: 2.1875rem;
+  z-index: 10;
   background: #ffffff;
   border: none;
   padding: 0;
-  width: 1.75rem;
-  height: 3.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: #1d1d1f;
-  transition: opacity 0.15s ease;
-}
-
-.family-stripe__arrow:hover {
-  opacity: 0.6;
 }
 
 .family-stripe__arrow--prev {
   left: 0;
+  box-shadow: inset -0.025rem 0 0 0 rgba(66, 66, 69, 0.3);
 }
 
 .family-stripe__arrow--next {
   right: 0;
+  box-shadow: inset 0.025rem 0 0 0 rgba(66, 66, 69, 0.3);
 }
 
-/* hide arrows when slick marks them disabled */
-.family-stripe__arrow[disabled],
-.family-stripe .slick-disabled .family-stripe__arrow {
-  opacity: 0.25;
+/* Hide when slick has no more slides */
+.family-stripe .slick-disabled.family-stripe__arrow,
+.family-stripe__arrow:disabled {
+  opacity: 0;
   pointer-events: none;
+}
+
+/* Override slick default arrow positioning */
+.family-stripe .slick-prev,
+.family-stripe .slick-next {
+  display: none !important;
 }

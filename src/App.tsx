@@ -7,7 +7,8 @@ import { LOBPage } from './pages/LOBPage/LOBPage';
 /**
  * Minimal pathname-based router (no extra dependencies).
  * /                        → HomePage  (Figma-accurate, full layout)
- * /pages/view-all-mac      → PLPPage   (MacBook Air — PLP category listing)
+ * /pages/view-all-mac      → LOBPage   (MacBook family view — hero + lineup)
+ * /pages/view-all-mac-air  → PLPPage   (MacBook Air — PLP category listing)
  * /collections/macbook-air → LOBPage   (MacBook Air LOB — sub-model rows)
  * /collections/macbook-pro → LOBPage   (MacBook Pro LOB — sub-model rows)
  *
@@ -15,8 +16,8 @@ import { LOBPage } from './pages/LOBPage/LOBPage';
  */
 function currentPage() {
   const path = window.location.pathname;
-  if (path === '/pages/view-all-mac') return <PLPPage />;
-  if (path === '/collections/macbook') return <LOBPage collection="macbook" />;
+  if (path === '/pages/view-all-mac') return <LOBPage collection="macbook" />;
+  if (path === '/pages/view-all-mac-air') return <PLPPage />;
   if (path === '/collections/macbook-air') return <LOBPage collection="macbook-air" />;
   if (path === '/collections/macbook-pro') return <LOBPage collection="macbook-pro" />;
   return <HomePage />;

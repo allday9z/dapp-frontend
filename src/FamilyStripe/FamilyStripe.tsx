@@ -100,7 +100,7 @@ export const FamilyStripe = ({
   }, [items, seeAllHref, seeAllLabel]);
 
   const slideCount = slides.length;
-  const slidesToScroll = 2;
+  const slidesToScroll = 1;
   const canGoPrev = currentSlide > 0;
   const canGoNext = currentSlide < slideCount - 1;
 
@@ -112,13 +112,14 @@ export const FamilyStripe = ({
     speed: 1200,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
     arrows: false,
-    swipeToSlide: false,
-    touchThreshold: 18,
+    swipeToSlide: true,
+    touchThreshold: 6,
     draggable: true,
     swipe: true,
     touchMove: true,
     waitForAnimate: true,
     accessibility: true,
+    centerPadding: "0px",
     afterChange: (index) => setCurrentSlide(index),
     responsive: [
       {

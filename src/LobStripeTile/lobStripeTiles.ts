@@ -68,13 +68,6 @@ export const lobStripeTiles: LobStripeTileItem[] = [
     imageAlt: "อุปกรณ์เสริม",
   },
   {
-    id: "entertainment",
-    name: "Entertainment",
-    price: "เริ่มต้น ฿990",
-    imageSrc: "accessories0.png",
-    imageAlt: "Entertainment",
-  },
-  {
     id: "airtag",
     name: "AirTag",
     price: "เริ่มต้น ฿1,190",

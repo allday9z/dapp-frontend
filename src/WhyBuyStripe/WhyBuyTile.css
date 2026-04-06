@@ -33,6 +33,8 @@
   font-size: 0.75rem;
   line-height: 0.875rem;
   font-weight: 600;
+  min-height: 0.875rem;
+  display: block;
 }
 
 .why-buy-tile__copy {
@@ -43,6 +45,11 @@
   letter-spacing: 0.02em;
   font-weight: 600;
   align-self: stretch;
+  min-height: 3.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .why-buy-tile__copy-segment--accent {

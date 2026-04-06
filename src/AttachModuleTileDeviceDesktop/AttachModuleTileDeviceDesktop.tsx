@@ -1,12 +1,17 @@
 import "./AttachModuleTileDeviceDesktop.css";
-import { AttachModuleImageProperty1MacBookAir } from "../AttachModuleImageProperty1MacBookAir/AttachModuleImageProperty1MacBookAir";
 import { CtaButtonPrimaryStateDefault } from "../CtaButtonPrimaryStateDefault/CtaButtonPrimaryStateDefault";
 
 export interface IAttachModuleTileDeviceDesktopProps {
   device?: "desktop" | "mobile";
+  /** Badge label (e.g. "NEW", "ใหม่") — empty string hides text but preserves height */
   text?: string;
+  /** Badge color — defaults to #0071bc */
+  badgeColor?: string;
+  /** Product name — renders on 2 lines if needed */
   text2?: string;
+  /** Price */
   text3?: string;
+  /** CTA label */
   text4?: string;
   component?: JSX.Element;
   className?: string;
@@ -14,8 +19,12 @@ export interface IAttachModuleTileDeviceDesktopProps {
 
 export const AttachModuleTileDeviceDesktop = ({
   device = "desktop",
-  text = "undefined",
-  text2 = "undefined",
+  text = "",
+  badgeColor = "#0071bc",
+  text2 = "",
+  text3 = "",
+  text4 = "ซื้อเลย",
+  component,
   className,
   ...props
 }: IAttachModuleTileDeviceDesktopProps): JSX.Element => {
@@ -25,29 +34,25 @@ export const AttachModuleTileDeviceDesktop = ({
     <div
       className={
         "attach-module-tile-device-desktop " +
-        className +
+        (className ?? "") +
         " " +
         variantsClassName
       }
     >
       <div className="conversion-trade-in">
         <div className="frame-354">
-          <AttachModuleImageProperty1MacBookAir className="attach-module-image-instance"></AttachModuleImageProperty1MacBookAir>
+          {component}
         </div>
         <div className="frame-358">
           <div className="frame-1258">
             <div className="frame-1839">
-              <div className="trade-in">แบ่งชำระ 0% สบาย ๆ</div>
-              <div className="mac-book-air">
-                iPhone Air
-                <br />{" "}
-              </div>
+              <div className="trade-in" style={{ color: badgeColor }}>{text}</div>
+              <div className="mac-book-air">{text2}</div>
             </div>
-            <div className="_1-299-00-usd">฿29,900 </div>
-            <div className="_126-mo-for-6-mo">฿2,990/ด. นาน 10 เดือน</div>
+            <div className="_1-299-00-usd">{text3}</div>
           </div>
           <CtaButtonPrimaryStateDefault
-            label="Buy now"
+            label={text4}
             className="cta-instance"
           ></CtaButtonPrimaryStateDefault>
         </div>

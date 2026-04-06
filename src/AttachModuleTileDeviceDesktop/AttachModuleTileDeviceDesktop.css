@@ -71,7 +71,6 @@
   position: relative;
 }
 .attach-module-tile-device-desktop .trade-in {
-  color: #0071bc;
   text-align: center;
   font-family: var(
     --label-label-l-semibold-font-family,
@@ -81,6 +80,7 @@
   font-size: var(--label-label-l-semibold-font-size, 0.75rem);
   line-height: var(--label-label-l-semibold-line-height, 0.875rem);
   font-weight: var(--label-label-l-semibold-font-weight, 600);
+  min-height: 0.875rem;
   position: relative;
   align-self: stretch;
 }
@@ -95,6 +95,11 @@
   font-size: var(--title-title-semibold-font-size, 1rem);
   line-height: var(--title-title-semibold-line-height, 1.25rem);
   font-weight: var(--title-title-semibold-font-weight, 600);
+  min-height: 2.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   position: relative;
   align-self: stretch;
 }
@@ -112,20 +117,7 @@
   position: relative;
   align-self: stretch;
 }
-.attach-module-tile-device-desktop ._126-mo-for-6-mo {
-  color: var(--text-color-default-text, #121212);
-  text-align: center;
-  font-family: var(
-    --title-title-regular-font-family,
-    "SfProText-Regular",
-    sans-serif
-  );
-  font-size: var(--title-title-regular-font-size, 1rem);
-  line-height: var(--title-title-regular-line-height, 1.25rem);
-  font-weight: var(--title-title-regular-font-weight, 400);
-  position: relative;
-  align-self: stretch;
-}
+
 .attach-module-tile-device-desktop .cta-instance {
   background: var(--color-blue, #0071e3) !important;
   flex-shrink: 0 !important;

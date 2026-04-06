@@ -1,0 +1,382 @@
+/* ── AttachModuleSlider ──────────────────────────────────────── */
+.attach-slider,
+.attach-slider * {
+  box-sizing: border-box;
+}
+
+.attach-slider {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ─── Title area (centered, 1220px inner) ─────────────────────── */
+.attach-slider__head {
+  max-width: 1220px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 40px 16px 24px;
+  text-align: center;
+}
+
+.attach-slider__title {
+  color: #000000;
+  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
+  font-size: 32px;
+  line-height: 38px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  /* 2-line height reserved */
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+/* ─── Carousel wrapper ────────────────────────────────────────── */
+.attach-slider__carousel-wrap {
+  position: relative;
+  width: 100%;
+  /* space below slides for the dots */
+  padding-bottom: 36px;
+}
+
+/* ─── Slider track (1220px centered) ─────────────────────────── */
+.attach-slider__track {
+  max-width: 1220px;
+  margin: 0 auto;
+  /* cancel the 12px inner slide padding at the edges */
+  padding: 0 12px;
+}
+
+/* Each slide: 24px gap total (12px each side) */
+.attach-slider__item-outer {
+  padding: 0 12px;
+}
+
+/* Center the tile inside the slick slide div */
+.attach-slider .slick-slide > div {
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Tile card ───────────────────────────────────────────────── */
+.attach-slider__tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+/* ─── Image frame: 292 × 292, bordered, rounded ──────────────── */
+.attach-slider__image-frame {
+  width: 292px;
+  height: 292px;
+  background: #ffffff;
+  border: 0.5px solid #7d7d7d;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.attach-slider__image-frame img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* ─── Info block ──────────────────────────────────────────────── */
+.attach-slider__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Badge — fixed 14px height; never collapses when empty */
+.attach-slider__badge {
+  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 600;
+  min-height: 14px;
+  display: block;
+  color: transparent; /* hidden when empty — overridden by inline style */
+}
+
+/* Product name — fixed 2-line height: 2 × 20px = 40px */
+.attach-slider__name {
+  color: #000000;
+  font-family: var(--title-title-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  min-height: 40px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+/* ─── Price block ─────────────────────────────────────────────── */
+.attach-slider__prices {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+/* Normal price (no discount) */
+.attach-slider__price {
+  color: #121212;
+  font-family: var(--title-title-regular-font-family, "SfProText-Regular", sans-serif);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+/* Discount layout — row: strikethrough original + red amount */
+.attach-slider__price-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.attach-slider__price-original {
+  color: #6e6e73;
+  font-family: var(--title-title-regular-font-family, "SfProText-Regular", sans-serif);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.attach-slider__discount {
+  color: #ff3b30;
+  font-family: var(--title-title-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 600;
+}
+
+/* New (discounted) price — bold black */
+.attach-slider__price-new {
+  color: #000000;
+  font-family: var(--title-title-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+}
+
+/* Installment */
+.attach-slider__installment {
+  color: #6e6e73;
+  font-family: var(--body-body-s-regular-font-family, "SfProText-Regular", sans-serif);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+}
+
+/* ─── CTA button: 163 × 52px, pill, blue ─────────────────────── */
+.attach-slider__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
+  width: 163px;
+  height: 52px;
+  padding: 16px 32px;
+  background: #0071e3;
+  color: #ffffff;
+  border: none;
+  border-radius: 32px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--body-body-s-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+
+.attach-slider__cta:hover {
+  background: #0077ed;
+}
+
+.attach-slider__cta:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.35);
+  outline-offset: 2px;
+}
+
+/* ─── Arrow buttons ───────────────────────────────────────────── */
+/* Always visible — disabled = faded, not clickable */
+.attach-slider__arrow {
+  position: absolute;
+  /* vertically centered on the 292px image frame */
+  top: calc(292px / 2);
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #0071e3;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: background 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.attach-slider__arrow:hover:not(.is-disabled) {
+  background: #0077ed;
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Disabled: faded and not clickable — but STILL VISIBLE */
+.attach-slider__arrow.is-disabled {
+  opacity: 0.3;
+  cursor: default;
+  pointer-events: none;
+}
+
+.attach-slider__arrow:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.35);
+  outline-offset: 2px;
+}
+
+/* Position: outside the 1220px content area */
+.attach-slider__arrow--prev {
+  left: max(16px, calc(50% - 610px - 54px));
+}
+
+.attach-slider__arrow--next {
+  right: max(16px, calc(50% - 610px - 54px));
+}
+
+/* ─── Slick dots ──────────────────────────────────────────────── */
+.attach-slider .attach-slider__dots {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.attach-slider .attach-slider__dots li {
+  margin: 0;
+}
+
+.attach-slider .attach-slider__dots button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  cursor: pointer;
+  background: #c4c4c4;
+  border: none;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+  outline: none;
+}
+
+.attach-slider .attach-slider__dots .slick-active button {
+  background: #7d7d7d;
+  transform: scale(1.25);
+}
+
+/* ─── Static dots (empty state) ──────────────────────────────── */
+.attach-slider__static-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0 16px;
+}
+
+.attach-slider__static-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #c4c4c4;
+}
+
+.attach-slider__static-dot.is-active {
+  background: #7d7d7d;
+  transform: scale(1.25);
+}
+
+/* ─── Empty state placeholder cards ──────────────────────────── */
+.attach-slider__empty {
+  max-width: 1220px;
+  margin: 0 auto;
+  padding: 0 12px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.attach-slider__empty-card {
+  flex: 1;
+  height: 292px;
+  background: #f5f5f7;
+  border: 0.5px solid #d2d2d7;
+  border-radius: 8px;
+}
+
+/* ─── Divider ─────────────────────────────────────────────────── */
+.attach-slider__divider {
+  border-top: 1px solid #f2f2f2;
+  width: 100%;
+  height: 0;
+  margin-top: -1px;
+}
+
+/* ─── Slick base overrides ────────────────────────────────────── */
+.attach-slider .slick-slider { margin-bottom: 0; }
+.attach-slider .slick-list { overflow: hidden; }
+.attach-slider .slick-slide { float: left; }
+
+/* ─── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .attach-slider__arrow {
+    display: none;
+  }
+  .attach-slider__image-frame {
+    width: 240px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 600px) {
+  .attach-slider__image-frame {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+  }
+}

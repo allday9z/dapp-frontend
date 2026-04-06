@@ -1,0 +1,173 @@
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./AttachModuleSlider.css";
+import React, { useRef, useState } from "react";
+import Slider from "react-slick";
+import type { Settings } from "react-slick";
+import type { AttachModuleSliderProps, AttachModuleSliderItem } from "./attachModuleSliderTypes";
+
+/* ── Tile ────────────────────────────────────────────────────── */
+const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
+  const hasDiscount = Boolean(item.new_price);
+
+  const badge = item.badge ?? (hasDiscount ? "ราคาพิเศษ" : "");
+  const badgeColor = item.badgeColor ?? (hasDiscount ? "#008900" : "#ff6900");
+
+  return (
+    <div className="attach-slider__tile">
+      {/* Image frame */}
+      <div className="attach-slider__image-frame">
+        {item.image ?? null}
+      </div>
+
+      {/* Info block */}
+      <div className="attach-slider__info">
+        {/* Badge — fixed 14px height even when empty */}
+        <div
+          className="attach-slider__badge"
+          style={badge ? { color: badgeColor } : undefined}
+        >
+          {badge}
+        </div>
+
+        {/* Name — fixed 2-line height */}
+        <div className="attach-slider__name">{item.name}</div>
+
+        {/* Price block */}
+        <div className="attach-slider__prices">
+          {hasDiscount ? (
+            <>
+              {/* Row: strikethrough original + red discount amount */}
+              <div className="attach-slider__price-row">
+                <span className="attach-slider__price-original">{item.price}</span>
+                {item.discount && (
+                  <span className="attach-slider__discount">{item.discount}</span>
+                )}
+              </div>
+              {/* New (discounted) price — bold */}
+              <div className="attach-slider__price-new">{item.new_price}</div>
+            </>
+          ) : (
+            <div className="attach-slider__price">{item.price}</div>
+          )}
+          {item.installment && (
+            <div className="attach-slider__installment">{item.installment}</div>
+          )}
+        </div>
+
+        {/* CTA */}
+        {item.ctaHref ? (
+          <a href={item.ctaHref} className="attach-slider__cta">
+            {item.ctaLabel ?? "ซื้อเลย"}
+          </a>
+        ) : (
+          <button type="button" className="attach-slider__cta">
+            {item.ctaLabel ?? "ซื้อเลย"}
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+/* ── AttachModuleSlider ──────────────────────────────────────── */
+export const AttachModuleSlider = ({
+  title,
+  items,
+  className = "",
+}: AttachModuleSliderProps): JSX.Element => {
+  const sliderRef = useRef<Slider | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slideCount = items.length;
+  const slidesPerView = Math.min(3, slideCount);
+  const canGoPrev = currentSlide > 0;
+  const canGoNext = currentSlide < slideCount - slidesPerView;
+
+  const settings: Settings = {
+    dots: true,
+    infinite: false,
+    autoplay: false,
+    speed: 500,
+    cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    dotsClass: "slick-dots attach-slider__dots",
+    afterChange: (index) => setCurrentSlide(index),
+    responsive: [
+      { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+    ],
+  };
+
+  return (
+    <section className={`attach-slider ${className}`}>
+      {/* ── Title ── */}
+      <div className="attach-slider__head">
+        <h2 className="attach-slider__title">{title}</h2>
+      </div>
+
+      {/* ── Carousel ── */}
+      <div className="attach-slider__carousel-wrap">
+        {/* Prev — always visible; disabled = faded + not clickable */}
+        <button
+          className={`attach-slider__arrow attach-slider__arrow--prev${!canGoPrev ? " is-disabled" : ""}`}
+          onClick={() => canGoPrev && sliderRef.current?.slickPrev()}
+          disabled={!canGoPrev}
+          aria-label="ก่อนหน้า"
+          type="button"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 18L9 12L15 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+
+        {/* Slider track */}
+        <div className="attach-slider__track">
+          {slideCount > 0 ? (
+            <Slider ref={sliderRef} {...settings}>
+              {items.map((item) => (
+                <div key={item.id} className="attach-slider__item-outer">
+                  <Tile item={item} />
+                </div>
+              ))}
+            </Slider>
+          ) : (
+            /* Empty state — still show 3 placeholder cards */
+            <div className="attach-slider__empty">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="attach-slider__empty-card" />
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Next — always visible */}
+        <button
+          className={`attach-slider__arrow attach-slider__arrow--next${!canGoNext ? " is-disabled" : ""}`}
+          onClick={() => canGoNext && sliderRef.current?.slickNext()}
+          disabled={!canGoNext}
+          aria-label="ถัดไป"
+          type="button"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 18L15 12L9 6" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
+
+      {/* Always-visible dot row (for empty state or single-page) */}
+      {slideCount === 0 && (
+        <div className="attach-slider__static-dots">
+          {[0, 1, 2].map((i) => (
+            <span key={i} className={`attach-slider__static-dot${i === 0 ? " is-active" : ""}`} />
+          ))}
+        </div>
+      )}
+
+      {/* ── Divider ── */}
+      <div className="attach-slider__divider" />
+    </section>
+  );
+};

@@ -11,8 +11,10 @@
 .product-stripe__viewport {
   width: calc(100% - var(--product-stripe-edge-padding));
   position: relative;
-  overflow: hidden;
+  overflow-x: clip; /* clip slides horizontally, allow shadow to bleed vertically */
+  overflow-y: visible;
   margin-left: var(--product-stripe-edge-padding);
+  padding: 0.5rem 0 0.5rem 0.5rem; /* breathing room so shadow is not clipped */
 }
 
 /* Base slick overrides */
@@ -21,7 +23,7 @@
 }
 
 .product-stripe .slick-list {
-  overflow: hidden;
+  overflow: visible; /* allow shadow to show */
 }
 
 .product-stripe .slick-slide {

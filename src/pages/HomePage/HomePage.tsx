@@ -5,7 +5,7 @@
  * Each section is independently editable in src/sections/.
  * CSS scoping lives in HomepageDeviceDesktop.css (unchanged, 100% original).
  */
-import '../../HomepageDeviceDesktop/HomepageDeviceDesktop.css';
+import '../../HomepageWrapper/HomepageWrapper.css';
 
 import { HeroBannerSection }    from '../../sections/HeroBannerSection/HeroBannerSection';
 import { LOBStripeSection }     from '../../sections/LOBStripeSection/LOBStripeSection';

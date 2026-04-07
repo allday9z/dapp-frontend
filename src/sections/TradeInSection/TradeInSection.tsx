@@ -1,12 +1,12 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AppBlockImageProperty1MacBookPro } from "../../AppBlockImageProperty1MacBookPro/AppBlockImageProperty1MacBookPro";
+import { AppBlockImageMacBookPro } from "../../AppBlockImageMacBookPro/AppBlockImageMacBookPro";
 import { AppBlockImageIMac } from "../../AppBlockImageIMac/AppBlockImageIMac";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "macbook-pro-tradein",
-    image: <AppBlockImageProperty1MacBookPro />,
+    image: <AppBlockImageMacBookPro />,
     badge: "เก่าแลกใหม่",
     badgeColor: "#0071bc",
     name: "MacBook Pro",

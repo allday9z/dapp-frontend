@@ -1,13 +1,13 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AttachModuleImageProperty1AppleCareIPhone } from "../../AttachModuleImageProperty1AppleCareIPhone/AttachModuleImageProperty1AppleCareIPhone";
-import { AttachModuleImageProperty1AppleCareIPad } from "../../AttachModuleImageProperty1AppleCareIPad/AttachModuleImageProperty1AppleCareIPad";
-import { AttachModuleImageProperty1AppleCareMacbook } from "../../AttachModuleImageProperty1AppleCareMacbook/AttachModuleImageProperty1AppleCareMacbook";
+import { AttachImageAppleCareIPhone } from "../../AttachImageAppleCareIPhone/AttachImageAppleCareIPhone";
+import { AttachImageAppleCareIPad } from "../../AttachImageAppleCareIPad/AttachImageAppleCareIPad";
+import { AttachImageAppleCareMacbook } from "../../AttachImageAppleCareMacbook/AttachImageAppleCareMacbook";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const appleCareItems: AttachModuleSliderItem[] = [
   {
     id: "applecare-iphone",
-    image: <AttachModuleImageProperty1AppleCareIPhone />,
+    image: <AttachImageAppleCareIPhone />,
     badge: "ใหม่",
     badgeColor: "#ff6900",
     name: "iPhone 14 Pro",
@@ -18,7 +18,7 @@ const appleCareItems: AttachModuleSliderItem[] = [
   },
   {
     id: "applecare-ipad",
-    image: <AttachModuleImageProperty1AppleCareIPad />,
+    image: <AttachImageAppleCareIPad />,
     badge: "ใหม่",
     badgeColor: "#ff6900",
     name: "iPad Pro",
@@ -29,7 +29,7 @@ const appleCareItems: AttachModuleSliderItem[] = [
   },
   {
     id: "applecare-macbook",
-    image: <AttachModuleImageProperty1AppleCareMacbook />,
+    image: <AttachImageAppleCareMacbook />,
     badge: "ใหม่",
     badgeColor: "#ff6900",
     name: "MacBook Air",

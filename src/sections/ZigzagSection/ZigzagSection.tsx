@@ -1,8 +1,8 @@
-import { OrganismAppZigzagSectionDeviceDesktop } from '../../OrganismAppZigzagSectionDeviceDesktop/OrganismAppZigzagSectionDeviceDesktop';
+import { AppZigzagGrid } from '../../AppZigzagGrid/AppZigzagGrid';
 
 export const ZigzagSection = () => (
   <section aria-labelledby="zigzag-heading">
     <h2 id="zigzag-heading" className="sr-only">iStudio Store Near You</h2>
-    <OrganismAppZigzagSectionDeviceDesktop className="frame-1825-instance" />
+    <AppZigzagGrid className="frame-1825-instance" />
   </section>
 );

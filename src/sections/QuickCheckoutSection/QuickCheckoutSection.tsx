@@ -1,13 +1,13 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AttachModuleImageProperty1SmartFolioForIPadAir5thGeneration } from "../../AttachModuleImageProperty1SmartFolioForIPadAir5thGeneration/AttachModuleImageProperty1SmartFolioForIPadAir5thGeneration";
-import { AttachModuleImageProperty1ApplePencil2ndGeneration } from "../../AttachModuleImageProperty1ApplePencil2ndGeneration/AttachModuleImageProperty1ApplePencil2ndGeneration";
+import { AttachImageSmartFolioIPadAir } from "../../AttachImageSmartFolioIPadAir/AttachImageSmartFolioIPadAir";
+import { AttachImageApplePencil2 } from "../../AttachImageApplePencil2/AttachImageApplePencil2";
 import { AppBlockImageMagicKeyboardFolioForIPad109Inch } from "../../AppBlockImageMagicKeyboardFolioForIPad109Inch/AppBlockImageMagicKeyboardFolioForIPad109Inch";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "smart-folio",
-    image: <AttachModuleImageProperty1SmartFolioForIPadAir5thGeneration />,
+    image: <AttachImageSmartFolioIPadAir />,
     badge: "ใหม่",
     badgeColor: "#ff6900",
     name: "Smart Folio สำหรับ iPad Air รุ่นที่ 5",
@@ -17,7 +17,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "apple-pencil-2",
-    image: <AttachModuleImageProperty1ApplePencil2ndGeneration />,
+    image: <AttachImageApplePencil2 />,
     badge: "ข้อเสนอพิเศษ",
     badgeColor: "#5856d6",
     name: "Apple Pencil รุ่นที่ 2",

@@ -1,12 +1,12 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AppBlockImageProperty1MacBookPro } from "../../AppBlockImageProperty1MacBookPro/AppBlockImageProperty1MacBookPro";
+import { AppBlockImageMacBookPro } from "../../AppBlockImageMacBookPro/AppBlockImageMacBookPro";
 import { AppBlockImageAppleWatchUltraOrangeAlpineLoop } from "../../AppBlockImageAppleWatchUltraOrangeAlpineLoop/AppBlockImageAppleWatchUltraOrangeAlpineLoop";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "macbook-pro-bts",
-    image: <AppBlockImageProperty1MacBookPro />,
+    image: <AppBlockImageMacBookPro />,
     badge: "สิทธิพิเศษ",
     badgeColor: "#5856d6",
     name: "MacBook Pro",

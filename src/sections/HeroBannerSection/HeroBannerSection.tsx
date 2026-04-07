@@ -1,7 +1,7 @@
-import { BannerCarouselProperty1OrganismProperty2HomepageBannerSection } from '../../BannerCarouselProperty1OrganismProperty2HomepageBannerSection/BannerCarouselProperty1OrganismProperty2HomepageBannerSection';
+import { HeroBannerCarousel } from '../../HeroBannerCarousel/HeroBannerCarousel';
 
 export const HeroBannerSection = () => (
   <section aria-label="Hero Banner">
-    <BannerCarouselProperty1OrganismProperty2HomepageBannerSection className="banner-carousel-instance" />
+    <HeroBannerCarousel className="banner-carousel-instance" />
   </section>
 );

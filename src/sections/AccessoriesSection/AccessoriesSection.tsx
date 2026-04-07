@@ -1,10 +1,10 @@
-import { OrganismDeviceDesktop } from '../../OrganismDeviceDesktop/OrganismDeviceDesktop';
+import { AppTileGrid } from '../../AppTileGrid/AppTileGrid';
 import { AppTile } from '../../AppTile/AppTile';
 
 export const AccessoriesSection = () => (
   <section aria-labelledby="accessories-heading">
     <h2 id="accessories-heading" className="sr-only">Featured Apple Accessories</h2>
-    <OrganismDeviceDesktop
+    <AppTileGrid
       heading="อุปกรณ์เสริม Apple"
       component={<AppTile image="image-1170.png" badge="ใหม่" title="อุปกรณ์เสริม Mac" cta="เพิ่มประสิทธิภาพการทำงานบน Mac ให้สะดวกและครบยิ่งขึ้น" description="เริ่มต้น ฿790" />}
       component2={<AppTile image="image-1110.png" badge="ใหม่" title="อุปกรณ์เสริม iPad " cta="เติมเต็มการใช้งาน iPad ให้หลากหลาย ทั้งทำงานและความบันเทิง" description="เริ่มต้น ฿390" />}

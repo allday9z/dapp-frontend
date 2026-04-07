@@ -4,8 +4,8 @@ import { LogoPartner } from '../../../LogoPartner/LogoPartner';
 import { LogoWipApp } from '../../../LogoWipApp/LogoWipApp';
 import { SearchInput } from '../../molecules/SearchInput/SearchInput';
 import { StoreLocator } from '../../molecules/StoreLocator/StoreLocator';
-import { AccountProfileProperty1Default } from '../../../AccountProfileProperty1Default/AccountProfileProperty1Default';
-import { BagCartProperty1Bag } from '../../../BagCartProperty1Bag/BagCartProperty1Bag';
+import { AccountProfile } from '../../../AccountProfile/AccountProfile';
+import { BagCart } from '../../../BagCart/BagCart';
 import navMenu from '../../../data/navigation.json';
 
 interface GlobalNavProps {
@@ -143,8 +143,8 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
         <StoreLocator text="เลือกสาขา" className="global-nav__store-locator" />
         <div className="global-nav__language">ภาษาไทย ▾</div>
         <div className="global-nav__utilities">
-          <AccountProfileProperty1Default className="global-nav__account" />
-          <BagCartProperty1Bag className="global-nav__bag" />
+          <AccountProfile className="global-nav__account" />
+          <BagCart className="global-nav__bag" />
         </div>
       </div>
 

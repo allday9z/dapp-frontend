@@ -139,7 +139,7 @@
 .bento-box-tile-device-desktop-big-lob-apple-watch-fathers .new {
   color: #bf4800;
   text-align: center;
-  font-family: "SfProText-Semibold", sans-serif;
+  font-family: var(--body-body-s-semibold-font-family, sans-serif);
   font-size: 0.7499998807907104rem;
   font-weight: 600;
   position: relative;

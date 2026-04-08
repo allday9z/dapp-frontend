@@ -29,4 +29,3 @@ export const PLPPage = () => (
     </div>
   </div>
 );
-// นี่คือโค้ดสำหรับหน้า PLP (Product Listing Page) ของเว็บไซต์ iStudio ที่แสดงรายการสินค้า MacBook Air โดยมีการใช้คอมโพเนนต์ FamilyStripe เพื่อแสดงข้อมูลเกี่ยวกับคอลเลกชันของ Mac และ PLPProductRow เพื่อแสดงรายละเอียดของแต่ละผลิตภัณฑ์ในรูปแบบของแถวสินค้า.

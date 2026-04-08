@@ -81,7 +81,7 @@
 
 .global-nav__language {
   color: var(--color-black, #1d1d1f);
-  font-family: 'SfProText-Regular', sans-serif;
+  font-family: var(--body-body-s-medium-font-family, sans-serif);
   font-size: 0.875rem;
   cursor: pointer;
   white-space: nowrap;

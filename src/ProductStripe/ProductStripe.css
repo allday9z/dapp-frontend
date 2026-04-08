@@ -177,17 +177,6 @@
   transform: scale(1.2);
 }
 
-/* ── Accessibility: prevent focus on hidden slides ── */
-.product-stripe .slick-slide[aria-hidden="true"] {
-  visibility: hidden;
-  pointer-events: none;
-}
-.product-stripe .slick-slide[aria-hidden="false"],
-.product-stripe .slick-slide.slick-active {
-  visibility: visible;
-  pointer-events: auto;
-}
-
 @media (max-width: 768px) {
   .product-stripe {
     --product-stripe-edge-padding: 1rem;

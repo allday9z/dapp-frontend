@@ -13,6 +13,6 @@
 }
 
 .store-locator__text {
-  font-family: 'SfProText-Regular', sans-serif;
+  font-family: var(--body-body-s-medium-font-family, sans-serif);
   font-size: 0.875rem;
 }

@@ -6,12 +6,8 @@
 .partner_cards {
   width: 288px;
   padding: 16px;
-  background: #ffffff;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.08);
   border-radius: 16px;
-  display: flex !important;
-  flex-direction: column;
-  margin: 10px 0;
 }
 
 .imageAndTextContainer {

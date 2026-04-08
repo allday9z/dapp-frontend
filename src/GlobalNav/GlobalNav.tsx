@@ -149,6 +149,7 @@ export const GlobalNav = ({
     const onClickOutside = (e: MouseEvent) => {
       if (!navRef.current?.contains(e.target as Node)) {
         setActiveMenu(null);
+        setLangOpen(false);
       }
     };
     document.addEventListener("click", onClickOutside);

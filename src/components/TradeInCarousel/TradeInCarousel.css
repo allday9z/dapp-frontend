@@ -58,16 +58,35 @@
   position: relative;
 }
 
-.trade-in-card__image {
-  max-width: 80%;
-  max-height: 80%;
-  object-fit: contain;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  -webkit-user-drag: none;
-  pointer-events: none; /* Let slick handle mouse events */
+.trade-in-card__badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.trade-in-card:hover .trade-in-card__image {
+.trade-in-card__image-scale {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.trade-in-card__image-scale > * {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.trade-in-card:hover .trade-in-card__image-scale {
   transform: scale(1.08);
 }
 

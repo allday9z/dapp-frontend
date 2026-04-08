@@ -14,7 +14,7 @@ export const AppTileGrid = ({
   className = "",
 }: IAppTileGridProps): JSX.Element => (
   <div className={`organism-device-desktop ${className}`}>
-    <div className="frame-1538">
+    <div className="hp-heading-row">
       <div className="see-what-s-new">{heading}</div>
     </div>
     <ProductStripe className="frame-1539">
@@ -22,6 +22,6 @@ export const AppTileGrid = ({
         <AppTile key={item.title} {...item} className="app-tile-instance" />
       ))}
     </ProductStripe>
-    <div className="line-21" />
+    <div className="hp-divider"></div>
   </div>
 );

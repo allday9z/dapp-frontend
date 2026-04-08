@@ -3,7 +3,7 @@
   --product-stripe-edge-padding: max(1rem, calc((100% - 76.25rem) / 2));
   --product-stripe-arrow-width: 2.5rem;
   --product-stripe-arrow-offset: 0.75rem;
-  --slick-gap: 2.5rem;
+  --slick-gap: 1.5rem !important;
   position: relative;
   width: 100%;
 }
@@ -14,7 +14,7 @@
   overflow-x: clip; /* clip slides horizontally, allow shadow to bleed vertically */
   overflow-y: visible;
   margin-left: var(--product-stripe-edge-padding);
-  padding: 0.5rem 0 0.5rem 0.5rem; /* breathing room so shadow is not clipped */
+  padding: 0.5rem 0 0.5rem 0rem; /* breathing room so shadow is not clipped */
 }
 
 /* Base slick overrides */
@@ -37,7 +37,7 @@
   height: 100%;
   display: flex;
   justify-content: center;
-  padding-right: var(--slick-gap);
+  margin-right: 24px;
 }
 
 /* ── Arrow Styles ── */
@@ -176,7 +176,6 @@
   background: #1d1d1f;
   transform: scale(1.2);
 }
-
 @media (max-width: 768px) {
   .product-stripe {
     --product-stripe-edge-padding: 1rem;

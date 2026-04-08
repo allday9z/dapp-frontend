@@ -26,18 +26,18 @@ export const lobStripeTiles: LobStripeTileItem[] = [
     imageAlt: "Mac",
   },
   {
-    id: "i-pad",
-    name: "iPad",
-    price: "เริ่มต้น ฿12,900",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/lob-stripe-Ipad-050724-2%20(1).avif?inline=true",
-    imageAlt: "iPad",
-  },
-  {
     id: "i-phone",
     name: "iPhone",
     price: "เริ่มต้น ฿14,500",
     imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/store-card-13-iphone-nav-202509.avif?inline=true",
     imageAlt: "iPhone",
+  },
+  {
+    id: "i-pad",
+    name: "iPad",
+    price: "เริ่มต้น ฿12,900",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/lob-stripe-Ipad-050724-2%20(1).avif?inline=true",
+    imageAlt: "iPad",
   },
   {
     id: "watch",

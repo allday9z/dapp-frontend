@@ -71,6 +71,48 @@ function NavMenuItem({
   );
 }
 
+const LANGS = [
+  { label: "ภาษาไทย", code: "th" },
+  { label: "English",  code: "en" },
+];
+
+function LanguageSelector({ isOpen, onToggle, onSelect, current }: {
+  isOpen: boolean;
+  onToggle: () => void;
+  onSelect: (label: string) => void;
+  current: string;
+}) {
+  return (
+    <div className={`nav-lang${isOpen ? " is-open" : ""}`}>
+      <button
+        type="button"
+        className="nav-lang__btn"
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+        onClick={onToggle}
+      >
+        {current}
+        <span className="nav-lang__chevron" aria-hidden="true" />
+      </button>
+      <ul className="nav-lang__dropdown" role="listbox" aria-hidden={!isOpen}>
+        {LANGS.map((lang) => (
+          <li key={lang.code}>
+            <button
+              type="button"
+              role="option"
+              aria-selected={current === lang.label}
+              className={`nav-lang__option${current === lang.label ? " is-selected" : ""}`}
+              onClick={() => onSelect(lang.label)}
+            >
+              {lang.label}
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 export const GlobalNav = ({
   device = "desktop",
   className,
@@ -79,6 +121,8 @@ export const GlobalNav = ({
   const lastY = useRef(0);
   const [isHidden, setIsHidden] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [langOpen, setLangOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState("ภาษาไทย");
 
   // ── Scroll: sticky nav, hide on scroll-down past 100px ──
   useEffect(() => {
@@ -112,7 +156,13 @@ export const GlobalNav = ({
   }, []);
 
   const toggleMenu = (label: string) => {
+    setLangOpen(false);
     setActiveMenu((prev) => (prev === label ? null : label));
+  };
+
+  const toggleLang = () => {
+    setActiveMenu(null);
+    setLangOpen((prev) => !prev);
   };
 
   return (
@@ -134,7 +184,12 @@ export const GlobalNav = ({
           visibleComponent={false}
           className="store-locator-dropdown-instance"
         />
-        <div className="nav-language-selector">ภาษาไทย ▾</div>
+        <LanguageSelector
+          isOpen={langOpen}
+          onToggle={toggleLang}
+          onSelect={(label) => { setCurrentLang(label); setLangOpen(false); }}
+          current={currentLang}
+        />
         <div className="frame-750">
           <AccountProfile className="account-profile-instance" />
           <BagCart className="bag-cart-instance" />

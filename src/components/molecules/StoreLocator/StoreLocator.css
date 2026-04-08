@@ -13,6 +13,7 @@
 }
 
 .store-locator__text {
-  font-family: var(--body-body-s-medium-font-family, sans-serif);
+  font-family: var(--body-body-s-regular-font-family, sans-serif);
+  font-weight: 500;
   font-size: 0.875rem;
 }

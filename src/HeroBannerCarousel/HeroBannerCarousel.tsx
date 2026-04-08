@@ -13,9 +13,9 @@ interface Slide {
 }
 
 const SLIDES: Slide[] = [
-  { src: "Herobanner-CTA-desktop.png", href: "#", alt: "iStudio Hero Banner" },
-  { src: "Preorder_MacBookProM5_iStudio_Banner_2000x700_Preorder_1.png", href: "#", alt: "Pre-order MacBook Pro M5" },
-  { src: "Preorder_MacNEO_iStudio-Banner-2000x700_Preorder.png", href: "#", alt: "Pre-order Mac NEO" },
+  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPad_Air_M4_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "iStudio Hero Banner" },
+  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20MacBook_Neo_13-inch_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "Pre-order MacBook Pro M5" },
+  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPhone_17e_Mar26_Web_Banner_Avail_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "Pre-order Mac NEO" },
 ];
 
 export interface IHeroBannerCarouselProps {

@@ -107,7 +107,7 @@ export const AttachModuleSlider = ({
 
   const settings: Settings = {
     dots: true,
-    infinite: false,
+    infinite: true,
     autoplay: false,
     speed: 500,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
@@ -189,7 +189,7 @@ export const AttachModuleSlider = ({
       )}
 
       {/* ── Divider ── */}
-      <div className="attach-slider__divider" />
+      <div className="hp-divider" />
     </section>
   );
 };

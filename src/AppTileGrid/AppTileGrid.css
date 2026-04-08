@@ -37,7 +37,7 @@
 }
 /* ProductStripe tile gap for "See what's new" */
 .organism-device-desktop .frame-1539 .product-stripe__inner {
-  gap: 1.5rem;
+  gap: 1.5rem !important;
 }
 .organism-device-desktop .app-tile-instance {
   flex-shrink: 0 !important;

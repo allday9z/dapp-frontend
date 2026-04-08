@@ -76,8 +76,7 @@
 }
 
 .lob-stripe-tile--mac .lob-stripe-tile__image {
-  width: 6.1875rem;
-  height: 2.25rem;
+  max-width: 100px;
 }
 
 .lob-stripe-tile--i-pad .lob-stripe-tile__image-frame,

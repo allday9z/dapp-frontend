@@ -14,3 +14,4 @@ export const AppBlockImageMacBookPro = ({
     </div>
   );
 };
+

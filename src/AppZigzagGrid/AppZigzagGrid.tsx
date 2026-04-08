@@ -29,7 +29,7 @@ export const AppZigzagGrid = ({
         <ZigzagStoreNearYou className="app-zigzag-instance2"></ZigzagStoreNearYou>
         <ZigzagJoinAClass className="app-zigzag-instance2"></ZigzagJoinAClass>
       </div>
-      <div className="line-23"></div>
+      <div className="hp-divider"></div>
     </div>
   );
 };

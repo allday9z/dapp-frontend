@@ -11,7 +11,7 @@ const whatsNewItems: IAppTileProps[] = [
     description: "เริ่มต้น ฿18,900",
   },
   {
-    image: "/image-1170.png",
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19296604_m_jpeg_1-homepage_highlight_1_banner_retina_medium.jpg?inline=true",
     imageAlt: "MacBook Neo",
     badge: "ใหม่",
     title: "MacBook Neo",
@@ -19,7 +19,7 @@ const whatsNewItems: IAppTileProps[] = [
     description: "เริ่มต้น ฿19,900",
   },
   {
-    image: "/image-1170.png",
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-12357237_555acff4-bf78-4326-aaf4-46862a02bebc_-homepage_small_banner_retina_medium%20(1).jpg?inline=true",
     imageAlt: "MacBook Air M5",
     badge: "ใหม่",
     title: "MacBook Air M5",
@@ -27,7 +27,7 @@ const whatsNewItems: IAppTileProps[] = [
     description: "เริ่มต้น ฿36,900",
   },
   {
-    image: "/screenshot-2023-02-07-at-2-34-10.png",
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19240159_m_jpeg_1_90df57f2-3345-4264-bd88-3828561be1a2-homepage_small_banner_retina_medium.jpg?inline=true",
     imageAlt: "iPad Air M4",
     badge: "ใหม่",
     title: "iPad Air M4",
@@ -35,7 +35,7 @@ const whatsNewItems: IAppTileProps[] = [
     description: "เริ่มต้น ฿21,900",
   },
   {
-    image: "/image-1170.png",
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19249573_m_jpeg_1_43a6bb68-190f-42fc-8865-d6e77417c399-homepage_small_banner_retina_medium.jpg?inline=true",
     imageAlt: "MacBook Pro M5",
     badge: "ใหม่",
     title: "MacBook Pro M5",

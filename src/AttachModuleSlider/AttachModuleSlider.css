@@ -16,7 +16,7 @@
   max-width: 1220px;
   width: 100%;
   margin: 0 auto;
-  padding: 40px 16px 24px;
+  padding: 32px 16px 24px;
   text-align: center;
 }
 
@@ -28,7 +28,6 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   /* 2-line height reserved */
-  min-height: 76px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -51,7 +50,7 @@
 
 /* Each slide: 24px gap total (12px each side) */
 .attach-slider__item-outer {
-  padding: 0 12px;
+  padding: 0px 12px;
 }
 
 /* Center the tile inside the slick slide div */
@@ -289,14 +288,12 @@
   align-items: center;
   gap: 12px;
   list-style: none;
-  margin: 16px 0 8px;
+  margin: 32px 0 0px;
   padding: 0;
 }
 
 .attach-slider .attach-slider__dots li {
   margin: 0;
-  width: auto;
-  height: auto;
 }
 
 /* Hide slick-theme's ::before dot (the • char) — we style the button itself */
@@ -308,9 +305,9 @@
   font-size: 0;
   line-height: 0;
   display: block;
-  width: 8px;
-  height: 8px;
-  padding: 0;
+  width: 12px;
+  height: 12px;
+  padding: 5px;
   cursor: pointer;
   background: #c4c4c4;
   border: none;
@@ -320,8 +317,8 @@
 }
 
 .attach-slider .attach-slider__dots .slick-active button {
-  background: #7d7d7d;
-  transform: scale(1.25);
+  background: #000;
+  opacity: .75;
 }
 
 /* ─── Static dots (empty state) ──────────────────────────────── */

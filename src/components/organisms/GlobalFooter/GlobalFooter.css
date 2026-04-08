@@ -74,18 +74,18 @@
 }
 
 .global-footer__partner-logo {
-  max-width: 5rem;
+  max-width: 8rem;
   height: auto;
   object-fit: contain;
-}
-
-.global-footer__partner-logo--premium {
-  width: 8rem;
 }
 
 .global-footer__partner-logo--service,
 .global-footer__partner-logo--education {
   width: 10.5rem;
+}
+
+.global-footer__partner-logo--premium {
+  width: 6rem;
 }
 
 .global-footer__bottom {

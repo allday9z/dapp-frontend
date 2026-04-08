@@ -12,7 +12,7 @@
   position: relative;
 }
 .organism-value-prop-section-device-desktop .value-props-row {
-  padding: 3rem 0;
+  padding-top: 32px;
   display: flex;
   flex-direction: row;
   align-items: flex-start;

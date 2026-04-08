@@ -20,7 +20,7 @@ export const ValuePropGrid = ({
           <ValueProp key={item.id} item={item} />
         ))}
       </div>
-      <div className="line-24" />
+      <div className="hp-divider" />
     </div>
   );
 };

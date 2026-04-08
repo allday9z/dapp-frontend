@@ -20,8 +20,13 @@ export const SearchInputStatusDefault = ({
       }
     >
       <div className="search-input">
-        <IconSearch className="icon-search-instance"></IconSearch>
-        <div className="search">ค้นหา</div>
+        <IconSearch className="icon-search-instance" />
+        <input
+          type="search"
+          className="search"
+          placeholder="ค้นหา"
+          aria-label="ค้นหาสินค้า"
+        />
       </div>
     </div>
   );

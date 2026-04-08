@@ -15,7 +15,7 @@ export const ZigzagNeedHelp = ({
       className={"app-zigzag-property-1-need-help-device-desktop " + className}
     >
       <div className="image-area">
-        <img className="download-2-2" src="/download-2-20.png"  alt="" />
+        <img className="download-2-2" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/service.jpg?inline=true"  alt="" />
       </div>
       <div className="text">
         <div className="frame-438">

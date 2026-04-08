@@ -9,7 +9,8 @@
 
 /* ── Inner content: 1220px centered (6.875rem = 110px padding each side) */
 .plp-page__inner {
-  max-width: 90rem; /* 1440px — caps the padded container */
+  max-width: 90rem;
+  /* 1440px — caps the padded container */
   margin: 0 auto;
   padding: 0 6.875rem;
 }
@@ -26,7 +27,7 @@
 
 .plp-page__heading {
   color: #000000;
-  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
+  font-family: 'SfPro-Semibold', 'SF Pro Text', sans-serif;
   font-size: 2rem;
   line-height: 2.375rem;
   font-weight: 600;

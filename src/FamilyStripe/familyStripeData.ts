@@ -103,7 +103,7 @@ export const macCollectionFamilyItems: FamilyStripeItem[] = [
 ];
 
 // ─── MacBook Air family stripe ───────────────────────────────────────────────
-// Data source: JSON (src/data/products/macbook-air.json)
+// Data source: JSON (src/data/products/macbook.json)
 // Will be replaced by API call — keep this as fallback/static seed
 export const macbookAirFamilyItems: FamilyStripeItem[] = [
   {

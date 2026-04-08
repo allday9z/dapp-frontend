@@ -29,7 +29,7 @@
 
 .lob-page__hero-badge {
   color: var(--badging-new, #bf4800);
-  font-family: 'SfPro-Semibold', 'SF Pro Text', sans-serif;
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.75rem;
   line-height: 0.875rem;
   font-weight: 600;
@@ -38,7 +38,7 @@
 .lob-page__hero-title {
   color: #000000;
   text-align: center;
-  font-family: 'SfPro-Semibold', 'SF Pro Text', sans-serif;
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 2.25rem;
   line-height: 2.625rem;
   font-weight: 600;
@@ -48,7 +48,7 @@
 .lob-page__hero-description {
   color: var(--color-gray-2, #595959);
   text-align: center;
-  font-family: 'SfPro-Regular', 'SF Pro Text', sans-serif;
+  font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   line-height: 1.25rem;
   font-weight: 400;
@@ -66,7 +66,7 @@
 
 .lob-page__hero-detail {
   color: var(--color-blue, #0071e3);
-  font-family: 'SfPro-Semibold', 'SF Pro Text', sans-serif;
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 600;
@@ -85,7 +85,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: 'SfPro-Semibold', 'SF Pro Text', sans-serif;
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 600;
@@ -99,7 +99,7 @@
 }
 
 .lob-page__hero-image {
-  width: 29.0625rem;
+  /* width: 29.0625rem; */
   height: 29.0625rem;
   object-fit: cover;
   max-width: 100%;

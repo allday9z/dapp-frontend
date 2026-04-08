@@ -8,13 +8,14 @@ import type { AttachModuleSliderProps, AttachModuleSliderItem } from "./attachMo
 
 /* ── Tile ────────────────────────────────────────────────────── */
 const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
+  const isInfoMode = Boolean(item.subtitle);
   const hasDiscount = Boolean(item.new_price);
 
   const badge = item.badge ?? (hasDiscount ? "ราคาพิเศษ" : "");
   const badgeColor = item.badgeColor ?? (hasDiscount ? "#008900" : "#ff6900");
 
   return (
-    <div className="attach-slider__tile">
+    <div className={`attach-slider__tile${isInfoMode ? " attach-slider__tile--info" : ""}`}>
       {/* Image frame */}
       <div className="attach-slider__image-frame">
         {item.image ?? null}
@@ -22,48 +23,66 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
 
       {/* Info block */}
       <div className="attach-slider__info">
-        {/* Badge — fixed 14px height even when empty */}
-        <div
-          className="attach-slider__badge"
-          style={badge ? { color: badgeColor } : undefined}
-        >
-          {badge}
-        </div>
+        {isInfoMode ? (
+          /* ── Info card layout (AppleCare style) ── */
+          <>
+            <div className="attach-slider__name attach-slider__name--info">{item.name}</div>
+            {item.subtitle && (
+              <div className="attach-slider__subtitle">{item.subtitle}</div>
+            )}
+            {item.description && (
+              <div className="attach-slider__description">{item.description}</div>
+            )}
+          </>
+        ) : (
+          /* ── Product card layout (default) ── */
+          <>
+            {/* Badge — fixed 14px height even when empty */}
+            <div
+              className="attach-slider__badge"
+              style={badge ? { color: badgeColor } : undefined}
+            >
+              {badge}
+            </div>
 
-        {/* Name — fixed 2-line height */}
-        <div className="attach-slider__name">{item.name}</div>
+            {/* Name — fixed 2-line height */}
+            <div className="attach-slider__name">{item.name}</div>
 
-        {/* Price block */}
-        <div className="attach-slider__prices">
-          {hasDiscount ? (
-            <>
-              {/* Row: strikethrough original + red discount amount */}
-              <div className="attach-slider__price-row">
-                <span className="attach-slider__price-original">{item.price}</span>
-                {item.discount && (
-                  <span className="attach-slider__discount">{item.discount}</span>
+            {/* Price block */}
+            {item.price && (
+              <div className="attach-slider__prices">
+                {hasDiscount ? (
+                  <>
+                    <div className="attach-slider__price-row">
+                      <span className="attach-slider__price-original">{item.price}</span>
+                      {item.discount && (
+                        <span className="attach-slider__discount">{item.discount}</span>
+                      )}
+                    </div>
+                    <div className="attach-slider__price-new">{item.new_price}</div>
+                  </>
+                ) : (
+                  <div className="attach-slider__price">{item.price}</div>
+                )}
+                {item.installment && (
+                  <div className="attach-slider__installment">{item.installment}</div>
                 )}
               </div>
-              {/* New (discounted) price — bold */}
-              <div className="attach-slider__price-new">{item.new_price}</div>
-            </>
-          ) : (
-            <div className="attach-slider__price">{item.price}</div>
-          )}
-          {item.installment && (
-            <div className="attach-slider__installment">{item.installment}</div>
-          )}
-        </div>
+            )}
 
-        {/* CTA */}
-        {item.ctaHref ? (
-          <a href={item.ctaHref} className="attach-slider__cta">
-            {item.ctaLabel ?? "ซื้อเลย"}
-          </a>
-        ) : (
-          <button type="button" className="attach-slider__cta">
-            {item.ctaLabel ?? "ซื้อเลย"}
-          </button>
+            {/* CTA */}
+            {(item.ctaHref || item.ctaLabel) && (
+              item.ctaHref ? (
+                <a href={item.ctaHref} className="attach-slider__cta">
+                  {item.ctaLabel ?? "ซื้อเลย"}
+                </a>
+              ) : (
+                <button type="button" className="attach-slider__cta">
+                  {item.ctaLabel ?? "ซื้อเลย"}
+                </button>
+              )
+            )}
+          </>
         )}
       </div>
     </div>
@@ -73,6 +92,8 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
 /* ── AttachModuleSlider ──────────────────────────────────────── */
 export const AttachModuleSlider = ({
   title,
+  titleAlign = "center",
+  slidesToShow: slidesToShowProp = 3,
   items,
   className = "",
 }: AttachModuleSliderProps): JSX.Element => {
@@ -80,7 +101,7 @@ export const AttachModuleSlider = ({
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slideCount = items.length;
-  const slidesPerView = Math.min(3, slideCount);
+  const slidesPerView = Math.min(slidesToShowProp, slideCount);
   const canGoPrev = currentSlide > 0;
   const canGoNext = currentSlide < slideCount - slidesPerView;
 
@@ -90,12 +111,13 @@ export const AttachModuleSlider = ({
     autoplay: false,
     speed: 500,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-    slidesToShow: 3,
+    slidesToShow: slidesToShowProp,
     slidesToScroll: 1,
     arrows: false,
     dotsClass: "slick-dots attach-slider__dots",
     afterChange: (index) => setCurrentSlide(index),
     responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: Math.min(slidesToShowProp, 3), slidesToScroll: 1 } },
       { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
       { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
     ],
@@ -104,8 +126,8 @@ export const AttachModuleSlider = ({
   return (
     <section className={`attach-slider ${className}`}>
       {/* ── Title ── */}
-      <div className="attach-slider__head">
-        <h2 className="attach-slider__title">{title}</h2>
+      <div className="attach-slider__head" style={titleAlign === "left" ? { textAlign: "left" } : undefined}>
+        <h2 className="attach-slider__title" style={titleAlign === "left" ? { justifyContent: "flex-start", minHeight: "unset" } : undefined}>{title}</h2>
       </div>
 
       {/* ── Carousel ── */}

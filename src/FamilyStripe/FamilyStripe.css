@@ -62,6 +62,7 @@
   text-decoration: none;
   border-radius: 0.75rem;
   transition: background-color 0.2s ease, opacity 0.2s ease;
+  cursor: pointer;
 }
 
 .family-stripe__tile:hover {
@@ -187,6 +188,21 @@
 .family-stripe__arrow:disabled {
   opacity: 0.42;
   cursor: default;
+}
+
+/* Ensure the left arrow looks like “<” by rotating the right-chevron path */
+.family-stripe__arrow-icon--left {
+  transform: rotate(180deg);
+}
+
+/* Smoother drag — disable link hit-testing while dragging to avoid accidental clicks */
+.family-stripe.is-dragging .family-stripe__tile,
+.family-stripe.is-dragging .family-stripe__see-all {
+  pointer-events: none;
+}
+
+.family-stripe.is-dragging {
+  cursor: grabbing;
 }
 
 @media (max-width: 1200px) {

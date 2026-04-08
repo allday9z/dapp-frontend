@@ -2,11 +2,11 @@ import "./PLPPage.css";
 import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
 import { macCollectionFamilyItems } from "../../FamilyStripe/familyStripeData";
-import macbookAirData from "../../data/products/macbook-air.json";
+import macbookData from "../../data/products/macbook.json";
 import type { PLPProduct } from "../../PLPProductRow/PLPProductRow";
 
 // TODO: replace with API fetch — /api/products?collection=macbook-air
-const products = macbookAirData as PLPProduct[];
+const products = (macbookData as PLPProduct[]).filter(p => p.name.toLowerCase().includes("air"));
 
 export const PLPPage = () => (
   <div className="plp-page">

@@ -13,7 +13,7 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   {
     id: "store-locator",
     href: "/pages/store-locator",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/find_store.webp?v=1717487676&width=512",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Store-KBI.jpg?inline=true",
     badge: "สาขาของเรา",
     badgeColor: "#707070",
     title: "ค้นหาสาขา",
@@ -23,7 +23,7 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   {
     id: "trade-in-program",
     href: "https://trade-in.uficon.com/",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/Tradein-Jan2026_instore.png?v=1768460023&width=512",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Trade%20In.jpg?inline=true",
     badge: "เก่าแลกใหม่",
     badgeColor: "#0071bc",
     title: "อัปเกรดเครื่องใหม่",
@@ -33,7 +33,7 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   {
     id: "spaylater",
     href: "/pages/shopeepay",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/LDP_Spay_instore.jpg?v=1775037118&width=512",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/20260407_1909_Image%20Generation_remix_01knkxhpqeexva3mh8071wtntz.png?inline=true",
     badge: "ข้อเสนอพิเศษ",
     badgeColor: "#5856D6",
     title: "ราคาเพื่อการศึกษา",
@@ -42,18 +42,18 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   },
   {
     id: "pay-next-extra",
-    href: "/pages/pay-next-extra",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/instorebanner-Paynext.png?v=1775034198&width=512",
-    badge: "กิจกรรมที่สาขา",
-    badgeColor: "#707070",
-    title: "ร่วมอบรมกับเรา",
-    subtitle: "ฟรี ไม่มีค่าใช้จ่าย",
-    description: "เรามีผู้เชี่ยวชาญที่พร้อมสาธิตและให้คำแนะนำเกี่ยวกับสินค้า Apple ให้คุณได้ร่วมทดลองใช้งานจริงไปด้วยกัน"
+    href: "https://www.uficon.com/installment-payment/",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/UEazy.jpg?inline=true",
+    badge: "ผ่อนไม่ใช้บัตร",
+    badgeColor: "#0071bc",
+    title: "U•Eazy",
+    subtitle: "ผ่อนสบาย ได้ของชัวร์",
+    description: "ผ่อนสินค้าได้ง่ายขึ้น ในแบบที่คุณเลือกได้ ผ่านช่องทางที่ร่วมรายการ"
   },
   {
     id: "icenter",
     href: "/pages/icenter-service-provider",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/DSC05993.webp?v=1717487756&width=512",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iMedic-FI.webp?inline=true",
     badge: "ศูนย์บริการ",
     badgeColor: "#707070",
     title: "iMedic",
@@ -63,9 +63,9 @@ export const appStripeTextTiles: AppStripeTextTileItem[] = [
   {
     id: "workshop",
     href: "/pages/demo-workshop",
-    imageSrc: "https://www.istudiobyspvi.com/cdn/shop/files/JOK00371-3.jpg?v=1718341326&width=512",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/workshop.jpg?inline=true",
     badge: "กิจกรรมที่สาขา",
-    badgeColor: "#BF4800",
+    badgeColor: "#707070",
     title: "ร่วมอบรมกับเรา",
     subtitle: "ฟรี ไม่มีค่าใช้จ่าย",
     description: "เรามีผู้เชี่ยวชาญที่พร้อมสาธิตและให้คำแนะนำเกี่ยวกับสินค้า Apple ให้คุณได้ร่วมทดลองใช้งานจริงไปด้วยกัน"

@@ -2,6 +2,7 @@ import "./AppTile.css";
 
 const BADGE_COLORS: Record<string, string> = {
   NEW: "var(--badging-new, #bf4800)",
+  ใหม่: "var(--badging-new, #bf4800)",
   SALE: "var(--badging-sale, #cc0000)",
   "CYBER MONDAY": "var(--badging-cyber-monday, #6e2b8a)",
 };

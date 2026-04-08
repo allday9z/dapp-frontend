@@ -1,16 +1,55 @@
 import { AppTileGrid } from '../../AppTileGrid/AppTileGrid';
-import { AppTile } from '../../AppTile/AppTile';
+import type { IAppTileProps } from '../../AppTile/AppTile';
+
+const accessoriesItems: IAppTileProps[] = [
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Magic_Keyboard_with_Touch_ID_US-homepage_small_banner_retina_medium.jpg?inline=true",
+    imageAlt: "อุปกรณ์เสริม Mac",
+    badge: "ใหม่",
+    title: "อุปกรณ์เสริม Mac",
+    cta: "เพิ่มประสิทธิภาพการทำงานบน Mac ให้สะดวกและครบยิ่งขึ้น",
+    description: "เริ่มต้น ฿790",
+  },
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/magic_keyboard_e0530b6e-311d-4ade-a51c-9d0a5b31f1df.webp?inline=true",
+    imageAlt: "อุปกรณ์เสริม iPad",
+    badge: "ใหม่",
+    title: "อุปกรณ์เสริม iPad",
+    cta: "เติมเต็มการใช้งาน iPad ให้หลากหลาย ทั้งทำงานและความบันเทิง",
+    description: "เริ่มต้น ฿390",
+  },
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple_TV_Remote_PDP_Image_Position-1_LAEN_R1_v1.webp?inline=true",
+    imageAlt: "อุปกรณ์เสริม Apple TV",
+    badge: "ใหม่",
+    title: "อุปกรณ์เสริม Apple TV",
+    cta: "เติมเต็มความบันเทิงบน Apple TV ให้สมบูรณ์ยิ่งขึ้น",
+    description: "เริ่มต้น ฿2,390",
+  },
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/WN_Watch_Accessories.webp?inline=true",
+    imageAlt: "อุปกรณ์เสริม Apple Watch",
+    badge: "ใหม่",
+    title: "อุปกรณ์เสริม Apple Watch",
+    cta: "เสริมการใช้งาน Apple Watch ให้ลงตัวในทุกไลฟ์สไตล์",
+    description: "เริ่มต้น ฿1,290",
+  },
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-17899365_m_jpeg_1_e428aa39-7da4-499d-b4c0-ff9a51722db3.webp?inline=true",
+    imageAlt: "อุปกรณ์เสริม iPhone",
+    badge: "ใหม่",
+    title: "อุปกรณ์เสริม iPhone",
+    cta: "เพิ่มความสะดวกและปกป้อง iPhone ของคุณ ด้วยอุปกรณ์เสริมคุณภาพ",
+    description: "เริ่มต้น ฿790",
+  },
+];
 
 export const AccessoriesSection = () => (
   <section aria-labelledby="accessories-heading">
     <h2 id="accessories-heading" className="sr-only">Featured Apple Accessories</h2>
     <AppTileGrid
       heading="อุปกรณ์เสริม Apple"
-      component={<AppTile image="image-1170.png" badge="ใหม่" title="อุปกรณ์เสริม Mac" cta="เพิ่มประสิทธิภาพการทำงานบน Mac ให้สะดวกและครบยิ่งขึ้น" description="เริ่มต้น ฿790" />}
-      component2={<AppTile image="image-1110.png" badge="ใหม่" title="อุปกรณ์เสริม iPad " cta="เติมเต็มการใช้งาน iPad ให้หลากหลาย ทั้งทำงานและความบันเทิง" description="เริ่มต้น ฿390" />}
-      component3={<AppTile image="screen-shot-2022-11-01-at-9-27-20.png" badge="๒" title="อุปกรณ์เสริม Apple TV" cta="เติมเต็มความบันเทิงบน Apple TV ให้สมบูรณ์ยิ่งขึ้น" description="เริ่มต้น ฿2,390" />}
-      component4={<AppTile image="image-1170.png" badge="ใหม่" title="อุปกรณ์เสริม Apple Watch" cta="เสริมการใช้งาน Apple Watch ให้ลงตัวในทุกไลฟ์สไตล์" description="เริ่มต้น ฿1,290" />}
-      component5={<AppTile image="image-1170.png" badge="ใหม่" title="อุปกรณ์เสริม iPhone" cta="พิ่มความสะดวกและปกป้อง iPhone ของคุณ ด้วยอุปกรณ์เสริมคุณภาพ" description="เริ่มต้น ฿790" />}
+      items={accessoriesItems}
       className="organism-instance"
     />
   </section>

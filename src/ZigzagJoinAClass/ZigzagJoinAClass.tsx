@@ -19,7 +19,7 @@ export const ZigzagJoinAClass = ({
       <div className="image-area">
         <img
           className="screen-shot-2022-02-22-at-2-10-2"
-          src="/screen-shot-2022-02-22-at-2-10-20.png"
+          src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/group%20demo.jpg?inline=true"
           alt="ภาพกิจกรรมเข้าร่วมคลาสในร้าน"
         />
       </div>
@@ -28,7 +28,7 @@ export const ZigzagJoinAClass = ({
           <div className="frame-1777">
             <div className="join-a-class">Group Demo</div>
             <div className="lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-donec-facilisis-lorem-ipsum-dolor-sit-amet">
-              ปิดประสบการณ์ใช้งาน Apple แบบกลุ่ม พร้อมเทคนิคและคำแนะนำที่ช่วยให้คุณใช้งานได้อย่างเต็มประสิทธิภาพ{" "}
+              เปิดประสบการณ์ใช้งาน Apple แบบกลุ่ม พร้อมเทคนิคและคำแนะนำที่ช่วยให้คุณใช้งานได้อย่างเต็มประสิทธิภาพ{" "}
             </div>
           </div>
           <CtaButtonSecondaryStateDefault

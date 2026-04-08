@@ -32,7 +32,7 @@ export const BentoBoxTileSmallWatchBand = ({
       }
     >
       <div className="image-area">
-        <img className="image-120" src="/image-1200.png"  alt="" />
+        <img className="image-120" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-iphone17e-homepage_highlight_3_banner_retina_medium.jpg?inline=true"  alt="" />
       </div>
       <div className="frame-487">
         <div className="contents">

@@ -104,7 +104,7 @@ export const HeroBannerCarousel = ({
       </div>
 
       {/* Divider below dots strip */}
-      <div className="banner-carousel-divider" />
+      {/* <div className="banner-carousel-divider" /> */}
     </div>
   );
 };

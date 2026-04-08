@@ -1,49 +1,66 @@
-import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AttachImageAppleCareIPhone } from "../../AttachImageAppleCareIPhone/AttachImageAppleCareIPhone";
-import { AttachImageAppleCareIPad } from "../../AttachImageAppleCareIPad/AttachImageAppleCareIPad";
-import { AttachImageAppleCareMacbook } from "../../AttachImageAppleCareMacbook/AttachImageAppleCareMacbook";
-import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
+import { ProductStripe } from '../../ProductStripe/ProductStripe';
+import { AppStripeTextTile } from '../../AppStripeTextTile';
+import type { AppStripeTextTileItem } from '../../AppStripeTextTile/appStripeTextTiles';
 
-const appleCareItems: AttachModuleSliderItem[] = [
+const appleCareItems: AppStripeTextTileItem[] = [
   {
-    id: "applecare-iphone",
-    image: <AttachImageAppleCareIPhone />,
-    badge: "ใหม่",
-    badgeColor: "#ff6900",
-    name: "iPhone 14 Pro",
-    price: "฿36,900",
-    installment: "฿3,075/ด. นาน 12 เดือน",
-    ctaLabel: "เลือกรุ่น",
-    ctaHref: "/collections/iphone",
+    id: "applecare-mac",
+    href: "/collections/applecare-mac",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/AppleCare_Mac_PDP_Image_Position-1_Update23__en-US.webp?inline=true",
+    badgeColor: "#6e6e73",
+    title: "Mac",
+    subtitle: "AppleCare+ สำหรับ 3 ปี",
+    description: "เพิ่ม AppleCare+ ในขั้นตอนการซื้อ Mac ในตะกร้าสินค้า",
   },
   {
     id: "applecare-ipad",
-    image: <AttachImageAppleCareIPad />,
-    badge: "ใหม่",
-    badgeColor: "#ff6900",
-    name: "iPad Pro",
-    price: "฿19,900",
-    installment: "฿1,659/ด. นาน 12 เดือน",
-    ctaLabel: "เลือกรุ่น",
-    ctaHref: "/collections/ipad",
+    href: "/collections/applecare-ipad",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/AppleCare_iPad_Pro_13-inch_M4_Chip-homepage_small_banner_retina_medium.jpg?inline=true",
+    badgeColor: "#6e6e73",
+    title: "iPad",
+    subtitle: "AppleCare+ สำหรับ 2 ปี",
+    description: "เพิ่ม AppleCare+ ในขั้นตอนการซื้อ iPad ในตะกร้าสินค้า",
   },
   {
-    id: "applecare-macbook",
-    image: <AttachImageAppleCareMacbook />,
-    badge: "ใหม่",
-    badgeColor: "#ff6900",
-    name: "MacBook Air",
-    price: "฿39,900",
-    installment: "฿3,325/ด. นาน 12 เดือน",
-    ctaLabel: "เลือกรุ่น",
-    ctaHref: "/collections/macbook-air",
+    id: "applecare-iphone",
+    href: "/collections/applecare-iphone",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone16Plus_iPhone16_AppleCarePlus_Combo.webp?inline=true",
+    badgeColor: "#6e6e73",
+    title: "iPhone",
+    subtitle: "AppleCare+ สำหรับ 2 ปี",
+    description: "เพิ่ม AppleCare+ ในขั้นตอนการซื้อ iPhone ในตะกร้าสินค้า",
+  },
+  {
+    id: "applecare-watch",
+    href: "/collections/applecare-watch",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple_Watch_Series_10_AppleCarePlus.webp?inline=true",
+    badgeColor: "#6e6e73",
+    title: "Apple Watch",
+    subtitle: "AppleCare+ สำหรับ 2 ปี",
+    description: "เพิ่ม AppleCare+ ในขั้นตอนการซื้อ​ Apple Watch ในตะกร้าสินค้า",
+  },
+  {
+    id: "applecare-headphone",
+    href: "/collections/applecare-watch",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/AirPods_4_Beats_Studio_Buds_Plus_AppleCarePlus_Combo.webp?inline=true",
+    title: "Apple Watch",
+    subtitle: "AppleCare+ สำหรับ 2 ปี",
+    description: "เพิ่ม AppleCare+ ในขั้นตอนการซื้อหูฟัง ในตะกร้าสินค้า",
   },
 ];
 
 export const AppleCareSection = () => (
-  <AttachModuleSlider
-    title="ความอุ่นใจกับ AppleCare+"
-    items={appleCareItems}
-    className="applecare-section"
-  />
+  <section className="hp-partners" aria-labelledby="applecare-heading">
+    <div className="hp-heading-row">
+      <h2 id="applecare-heading" className="hp-heading">
+        เพิ่มความอุ่นใจด้วย AppleCare+
+      </h2>
+    </div>
+    <ProductStripe className="hp-partner-stripe" ariaLabel="เพิ่มความอุ่นใจด้วย AppleCare+" arrowType="partner" gap={16}>
+      {appleCareItems.map(item => (
+        <AppStripeTextTile key={item.id} item={item} className="app-text-tile-instance" />
+      ))}
+    </ProductStripe>
+    <div className="hp-divider" />
+  </section>
 );

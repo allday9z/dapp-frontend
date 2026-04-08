@@ -35,7 +35,7 @@ export const BentoBoxTileBig = ({
         <div className="contents">
           <div className="copy-block">
             <div className="new-badge">
-              <div className="father-s-day">ใหม่ </div>
+              <div className="new">ใหม่ </div>
             </div>
             <div className="heading">
               <div className="apple-watch">13-inch MacBook Neo</div>
@@ -51,7 +51,7 @@ export const BentoBoxTileBig = ({
           <CtaButtonPrimaryStateDefault className="cta-instance"></CtaButtonPrimaryStateDefault>
         </div>
       </div>
-      <img className="image-120" src="/image-1200.png"  alt="" />
+      <img className="image-120" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19296604_m_jpeg_1-homepage_highlight_1_banner_retina_medium.jpg?inline=true"  alt="" />
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import type { Product } from '../types';
-import macbookAirData from '../data/products/macbook-air.json';
+import macbookData from '../data/products/macbook.json';
 import whatsNewData from '../data/products/whats-new.json';
 
 const DATA_MAP: Record<string, unknown[]> = {
-  'macbook-air': macbookAirData,
+  'macbook-air': (macbookData as any[]).filter(p => p.name.toLowerCase().includes('air')),
+  'macbook-pro': (macbookData as any[]).filter(p => p.name.toLowerCase().includes('pro') && !p.name.toLowerCase().includes('air')),
   'whats-new': whatsNewData,
 };
 

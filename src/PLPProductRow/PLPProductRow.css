@@ -41,7 +41,7 @@
 
 /* Badge: 0.75rem / 0.875rem, semibold */
 .plp-product-row__badge {
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.75rem;
   line-height: 0.875rem;
   font-weight: 600;
@@ -52,7 +52,7 @@
 /* Name: 2rem / 2.375rem, color #121212 */
 .plp-product-row__name {
   color: var(--color-tokens-accent-1, #121212);
-  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 2rem;
   line-height: 2.375rem;
   font-weight: 600;
@@ -68,7 +68,7 @@
 /* Description: 1rem / 1.5rem, color #000000 (list rows source) */
 .plp-product-row__description {
   color: #000000;
-  font-family: var(--body-body-m-font-family, "SfProText-Regular", sans-serif);
+  font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
   line-height: 1.5rem;
   letter-spacing: 0.02em;
@@ -99,7 +99,7 @@
   align-items: center;
   gap: 0.25rem;
   color: var(--color-blue, #0071e3);
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 600;
@@ -124,7 +124,7 @@
   background: transparent;
   color: var(--color-blue, #0071e3);
   border: 0.075rem solid var(--color-blue, #0071e3);
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 600;

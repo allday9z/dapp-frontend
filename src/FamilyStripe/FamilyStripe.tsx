@@ -17,28 +17,34 @@ interface ArrowProps {
   disabled?: boolean;
 }
 
-const Arrow = ({ direction, onClick, disabled }: ArrowProps) => (
-  <button
-    className={`family-stripe__arrow family-stripe__arrow--${direction}${disabled ? " slick-disabled" : ""}`}
-    onClick={onClick}
-    aria-label={direction === "left" ? "สไลด์ก่อนหน้า" : "สไลด์ถัดไป"}
-    disabled={disabled}
-    type="button"
-  >
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d={
-          direction === "left"
-            ? "M12.1616 15.3233L13 14.4849L8.67671 10.1616L13 5.83836L12.1616 5L7 10.1616L12.1616 15.3233Z"
-            : "M7.83836 15.3233L7 14.4849L11.3233 10.1616L7 5.83836L7.83836 5L13 10.1616L7.83836 15.3233Z"
-        }
-        fill="#595959"
-      />
-    </svg>
-  </button>
-);
+const Arrow = ({ direction, onClick, disabled }: ArrowProps) => {
+  const sideClass = direction === "left" ? "prev" : "next";
+  return (
+    <button
+      className={`family-stripe__arrow family-stripe__arrow--${sideClass}${disabled ? " slick-disabled" : ""}`}
+      onClick={onClick}
+      aria-label={direction === "left" ? "สไลด์ก่อนหน้า" : "สไลด์ถัดไป"}
+      disabled={disabled}
+      type="button"
+    >
+      <svg
+        width="20"
+        height="20"
+        viewBox="0 0 20 20"
+        fill="none"
+        aria-hidden="true"
+        className={`family-stripe__arrow-icon family-stripe__arrow-icon--${direction}`}
+      >
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M7.83836 15.3233L7 14.4849L11.3233 10.1616L7 5.83836L7.83836 5L13 10.1616L7.83836 15.3233Z"
+          fill="#595959"
+        />
+      </svg>
+    </button>
+  );
+};
 
 export const FamilyStripe = ({
   items,
@@ -47,16 +53,30 @@ export const FamilyStripe = ({
 }: IFamilyStripeProps) => {
   const sliderRef = useRef<Slider | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   const slides = useMemo(() => {
     const productSlides = items.map((item) => (
       <div key={item.id} className="family-stripe__slide">
-        <a href={item.href ?? "#"} className="family-stripe__tile">
+        <a
+          href={item.href ?? "#"}
+          className="family-stripe__tile"
+          draggable={false}
+          onClick={(e) => {
+            if (isDragging) {
+              e.preventDefault();
+              e.stopPropagation();
+            }
+          }}
+          onDragStart={(e) => e.preventDefault()}
+        >
           <div className="family-stripe__image-wrap">
             <img
               src={item.imageSrc}
               alt={item.imageAlt}
               className="family-stripe__tile-img"
+              draggable={false}
+              onDragStart={(e) => e.preventDefault()}
               loading="lazy"
             />
           </div>
@@ -105,22 +125,28 @@ export const FamilyStripe = ({
   const canGoNext = currentSlide < slideCount - 1;
 
   const settings: Settings = {
-    slidesToShow: 4.5,
+    slidesToShow: 2,
     slidesToScroll,
     infinite: false,
     variableWidth: true,
     speed: 1200,
-    cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
+    cssEase: "ease-in-out",
     arrows: false,
     swipeToSlide: true,
-    touchThreshold: 6,
+    touchThreshold: 100,
     draggable: true,
     swipe: true,
     touchMove: true,
-    waitForAnimate: true,
+    waitForAnimate:true,
     accessibility: true,
     centerPadding: "0px",
-    afterChange: (index) => setCurrentSlide(index),
+    onSwipe: () => setIsDragging(true),
+    beforeChange: () => setIsDragging(true),
+    afterChange: (index) => {
+      setCurrentSlide(index);
+      // allow a tick for click events from the swipe to settle
+      setTimeout(() => setIsDragging(false), 50);
+    },
     responsive: [
       {
         breakpoint: 1200,
@@ -157,9 +183,9 @@ export const FamilyStripe = ({
   };
 
   return (
-    <div className="family-stripe">
-      <Arrow direction="left" onClick={handlePrev} disabled={!canGoPrev} />
-      <Arrow direction="right" onClick={handleNext} disabled={!canGoNext} />
+    <div className={`family-stripe${isDragging ? " is-dragging" : ""}`}>
+      {canGoPrev && <Arrow direction="left" onClick={handlePrev} disabled={!canGoPrev} />}
+      {canGoNext && <Arrow direction="right" onClick={handleNext} disabled={!canGoNext} />}
 
       <div className="family-stripe__viewport">
         <Slider ref={sliderRef} {...settings}>

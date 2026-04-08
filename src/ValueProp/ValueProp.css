@@ -42,26 +42,33 @@
     "SfProDisplay-Semibold",
     sans-serif
   );
-  font-size: 1.25rem;
-  line-height: 1.625rem;
+  font-style: normal;
   font-weight: 600;
-  letter-spacing: 0.01em;
-  margin: 0;
-  width: 100%;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: center;
+  letter-spacing: .48px;
+  color: #000;
+  max-height: 60px;
+  overflow: hidden;
+  height: 3.75rem;
 }
 
 .value-prop__body {
-  color: var(--color-black, #000000);
   font-family: var(
     --body-body-s-regular-font-family,
     "SfProText-Regular",
     sans-serif
   );
-  font-size: 0.875rem;
-  line-height: 1.3125rem;
-  font-weight: 400;
+  height: 3.1875rem;
+  margin-top: -.5rem !important;
+  letter-spacing: .6px;
+  color: #121212;
+  -webkit-line-clamp: 3;
   margin: 0;
-  width: 100%;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .value-prop__cta {
@@ -74,11 +81,12 @@
     "SfProText-Regular",
     sans-serif
   );
-  font-size: 0.875rem;
-  line-height: 1.3125rem;
-  font-weight: 400;
-  text-decoration: none;
-  flex-shrink: 0;
+  font-size: .875rem;
+  display: flex;
+  align-items: center;
+  letter-spacing: -.02em;
+  margin-top: 20px;
+  font-weight: 600;
 }
 
 .value-prop__cta:hover {

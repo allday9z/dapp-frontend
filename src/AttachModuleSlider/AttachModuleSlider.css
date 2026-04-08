@@ -144,6 +144,7 @@
   align-items: center;
   gap: 2px;
   margin-top: 8px;
+  /* height: 40px; */
 }
 
 /* Normal price (no discount) */
@@ -197,6 +198,7 @@
   font-size: 14px;
   line-height: 18px;
   font-weight: 400;
+  min-height: 18px;
 }
 
 /* ─── CTA button: 163 × 52px, pill, blue ─────────────────────── */

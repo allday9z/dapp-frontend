@@ -64,9 +64,7 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
                 ) : (
                   <div className="attach-slider__price">{item.price}</div>
                 )}
-                {item.installment && (
-                  <div className="attach-slider__installment">{item.installment}</div>
-                )}
+                <div className="attach-slider__installment">{item.installment ?? "\u00A0"}</div>
               </div>
             )}
 

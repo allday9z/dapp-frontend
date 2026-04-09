@@ -18,7 +18,7 @@ export interface ICtaButtonPrimaryStateDefaultProps {
 export const CtaButtonPrimaryStateDefault = ({
   button = "primary",
   state = "default",
-  label = "ซื้อเลย",
+  label = "สั่งซื้อ",
   onClick,
   className,
   ...props

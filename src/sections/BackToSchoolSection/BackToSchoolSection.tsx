@@ -10,7 +10,7 @@ const items: AttachModuleSliderItem[] = [
     name: "MacBook Neo",
     price: "เริ่มต้น ฿19,900",
     installment: "฿1,990/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/macbook-pro",
   },
   {
@@ -21,7 +21,7 @@ const items: AttachModuleSliderItem[] = [
     name: "iPad Air M4",
     price: "เริ่มต้น ฿21,900",
     installment: "฿2,190/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/apple-watch",
   },
   {
@@ -32,7 +32,7 @@ const items: AttachModuleSliderItem[] = [
     name: "Apple Pencil Pro",
     price: "เพียง ฿4,390",
     installment: "",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/ipad",
   },
 ];

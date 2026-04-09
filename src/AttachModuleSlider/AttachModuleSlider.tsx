@@ -101,11 +101,11 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
             {(item.ctaHref || item.ctaLabel) && (
               item.ctaHref ? (
                 <a href={item.ctaHref} className="attach-slider__cta" draggable={false} {...dragLink}>
-                  {item.ctaLabel ?? "ซื้อเลย"}
+                  {item.ctaLabel ?? "สั่งซื้อ"}
                 </a>
               ) : (
                 <button type="button" className="attach-slider__cta">
-                  {item.ctaLabel ?? "ซื้อเลย"}
+                  {item.ctaLabel ?? "สั่งซื้อ"}
                 </button>
               )
             )}

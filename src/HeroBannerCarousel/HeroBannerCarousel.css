@@ -74,6 +74,13 @@
   box-shadow: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.15);
 }
 
+@media (max-width:767px) {
+  .banner-carousel-dots {
+    height: 25px;
+    width: auto;
+  }
+}
+
 /* Individual dot */
 .banner-carousel-dot {
   width: 0.75rem;
@@ -85,6 +92,13 @@
   cursor: pointer;
   transition: background 0.3s ease;
   flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .banner-carousel-dot {
+  height: 8px;
+  width: 8px;
+  }
 }
 
 .banner-carousel-dot.active {

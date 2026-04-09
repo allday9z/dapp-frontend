@@ -35,6 +35,12 @@
   font-weight: var(--display-display-s-font-weight, 600);
   position: relative;
 }
+
+@media (max-width: 767px) {
+  .organism-device-desktop .see-what-s-new {
+    font-size: 24px;
+  }
+}
 /* ProductStripe tile gap for "See what's new" */
 .organism-device-desktop .frame-1539 .product-stripe__inner {
   gap: 1.5rem !important;

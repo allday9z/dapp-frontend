@@ -12,7 +12,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿29,900",
     discount: "-฿10,000",
     installment: "฿2,990/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/macbook-pro",
   },
   {
@@ -25,7 +25,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿26,900",
     discount: "-฿3,000",
     installment: "฿2,690/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/imac",
   },
   {
@@ -38,7 +38,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿15,200",
     discount: "-฿14,700",
     installment: "฿1,520/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/iphone",
   },
   {
@@ -51,7 +51,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿30,900",
     discount: "-฿4,000",
     installment: "฿3,090/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/ipad-pro",
   },
   {
@@ -64,7 +64,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿36,500",
     discount: "-฿11,400",
     installment: "฿3,650/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/ipad-air",
   },
   {
@@ -77,7 +77,7 @@ const items: AttachModuleSliderItem[] = [
     new_price: "฿48,900",
     discount: "-฿11,000",
     installment: "฿4,890/ด. นาน 10 เดือน",
-    ctaLabel: "เลือกรุ่น",
+    ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/apple-watch",
   },
 ];

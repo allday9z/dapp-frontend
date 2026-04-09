@@ -30,7 +30,7 @@ const accessoriesItems: IAppTileProps[] = [
     image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/WN_Watch_Accessories.webp?inline=true",
     imageAlt: "อุปกรณ์เสริม Apple Watch",
     badge: "ใหม่",
-    title: "อุปกรณ์เสริม Apple Watch",
+    title: "อุปกรณ์เสริม Watch",
     cta: "เสริมการใช้งาน Apple Watch ให้ลงตัวในทุกไลฟ์สไตล์",
     description: "เริ่มต้น ฿1,290",
   },

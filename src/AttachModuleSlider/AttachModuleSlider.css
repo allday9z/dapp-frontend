@@ -117,7 +117,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
+  /* gap: 4px; */
   width: 100%;
   text-align: center;
 }
@@ -131,6 +131,7 @@
   min-height: 14px;
   display: block;
   color: transparent; /* hidden when empty — overridden by inline style */
+  padding-bottom: 5px;
 }
 
 /* Product name — fixed 2-line height: 2 × 20px = 40px */
@@ -217,7 +218,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 12px;
-  width: 163px;
+  max-width: 288px;
   height: 52px;
   padding: 16px 32px;
   background: #0071e3;
@@ -227,7 +228,7 @@
   cursor: pointer;
   text-decoration: none;
   font-family: var(--body-body-s-semibold-font-family, "SfProText-Semibold", sans-serif);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 20px;
   font-weight: 600;
   transition: background 0.2s;

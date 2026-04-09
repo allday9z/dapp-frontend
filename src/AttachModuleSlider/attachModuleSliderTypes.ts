@@ -34,7 +34,7 @@ export interface AttachModuleSliderItem {
   discount?: string;
   /** Installment / secondary price line */
   installment?: string;
-  /** CTA button label — default "ซื้อเลย" */
+  /** CTA button label — default "สั่งซื้อ" */
   ctaLabel?: string;
   /** CTA button href */
   ctaHref?: string;

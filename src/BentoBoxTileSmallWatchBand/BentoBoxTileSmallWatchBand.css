@@ -134,7 +134,7 @@
     sans-serif
   );
   font-size: var(--body-body-s-regular-font-size, 0.875rem);
-  line-height: var(--body-body-s-regular-line-height, 1rem);
+  line-height: 1.25rem;
   font-weight: var(--body-body-s-regular-font-weight, 400);
   position: relative;
   flex: 1;

@@ -42,6 +42,14 @@ const whatsNewItems: IAppTileProps[] = [
     cta: "เร็วและอัจฉริยะเหลือร้าย",
     description: "เริ่มต้น ฿56,900",
   },
+  {
+    image: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19249573_m_jpeg_1_43a6bb68-190f-42fc-8865-d6e77417c399-homepage_small_banner_retina_medium.jpg?inline=true",
+    imageAlt: "MacBook Pro M5",
+    badge: "ใหม่",
+    title: "MacBook Pro M5",
+    cta: "เร็วและอัจฉริยะเหลือร้าย",
+    description: "เริ่มต้น ฿56,900",
+  },
 ];
 
 export const WhatsNewSection = () => (

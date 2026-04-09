@@ -12,6 +12,7 @@
   touch-action: pan-y;
   -webkit-overflow-scrolling: touch;
   width: 100%;
+  gap: 40px;
 }
 .product-stripe__viewport::-webkit-scrollbar {
   display: none;

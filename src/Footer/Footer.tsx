@@ -91,7 +91,7 @@ export const Footer = ({
 
           {/* About Column */}
           <div className="footer-column">
-            <h2 className="footer-column-title">About</h2>
+            <h2 className="footer-column-title">UFicon</h2>
             <nav aria-label="About links">
               <ul className="footer-link-list">
                 {footerSections.about.map((item) => (

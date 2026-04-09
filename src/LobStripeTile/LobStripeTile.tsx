@@ -13,7 +13,7 @@ export const LobStripeTile = ({
   const variantClassName = `lob-stripe-tile--${item.id}`;
 
   return (
-    <div className={`lob-stripe-tile ${variantClassName} ${className}`.trim()}>
+    <div className={`lob-stripe-tile ${variantClassName} ${className}`.trim()} style={{ marginRight: '16px' }}>
       <div className="lob-stripe-tile__image-frame">
         <img
           className="lob-stripe-tile__image"

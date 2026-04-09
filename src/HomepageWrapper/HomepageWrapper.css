@@ -47,6 +47,7 @@
 @media (max-width: 767px) {
  .homepage-device-desktop .hp-heading-row {
   padding-top: 1rem;
+  padding-bottom: .5rem;
  }
 }
 

@@ -272,6 +272,7 @@
 }
 
 .nav-submenu__link {
+  font-size: 14px !important;
   display: block;
   padding: 0.5rem 0.875rem;
   color: var(--color-black, #1d1d1f);

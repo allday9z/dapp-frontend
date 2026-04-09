@@ -21,6 +21,13 @@
   width: 100%;
   height: 25.625rem; /* 410px */
 }
+
+@media (max-width: 767px) {
+  .banner-carousel-stage {
+  height: 340px;
+}
+}
+
 .banner-carousel-stage .f-carousel__viewport,
 .banner-carousel-stage .f-carousel__track {
   height: 100%;

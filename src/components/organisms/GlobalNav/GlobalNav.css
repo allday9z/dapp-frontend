@@ -32,8 +32,7 @@
   gap: 2.25rem;
   align-items: center;
   justify-content: center;
-  padding-top: 1.75rem;
-  padding-bottom: 1.3rem;
+  padding: 1.75rem 0 1.3rem;
 }
 
 /* Hidden state — slides up out of viewport */

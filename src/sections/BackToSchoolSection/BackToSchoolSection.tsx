@@ -4,7 +4,7 @@ import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 const items: AttachModuleSliderItem[] = [
   {
     id: "macbook-pro-bts",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_Air_Sky_Blue_PDP_Image_Position_1_Sky_Blue_Color__TH-TH-square_medium.jpg?inline=true",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/MB_NEO%20(1).webp?inline=true",
     badge: "ใหม่",
     badgeColor: "#bf4800",
     name: "MacBook Neo",
@@ -15,7 +15,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "apple-watch-ultra-bts",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_Macbook_Pro_M3_Space_Gray_PDP_Image_Position-1.jpg?inline=true",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPad_Air_11-in_M4_WiFi_Blue_PDP_Image_Position_1__TH-TH-square_medium.jpg",
     badge: "ใหม่",
     badgeColor: "#bf4800",
     name: "iPad Air M4",
@@ -26,7 +26,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-bts",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple%20Pencil%20Pro(1).webp?inline=true",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple%20Pencil%20Pro%20(1).jpg",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "Apple Pencil Pro",

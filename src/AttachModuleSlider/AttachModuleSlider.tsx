@@ -107,7 +107,7 @@ export const AttachModuleSlider = ({
     dots: true,
     infinite: true,
     autoplay: false,
-    speed: 500,
+    speed: 1200,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
     slidesToShow: slidesToShowProp,
     slidesToScroll: 1,

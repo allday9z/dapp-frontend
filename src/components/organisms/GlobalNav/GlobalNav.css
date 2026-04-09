@@ -216,12 +216,12 @@
 .nav-menu-item__label {
   font-family: var(--body-body-s-medium-font-family, 'SfProText-Medium', sans-serif);
   text-decoration: none;
-    color: #000;
-    font-size: 14px !important;
-    line-height: 1.2 !important;
-    text-align: left;
-    vertical-align: top;
-    font-weight: 500;
+  color: #000;
+  font-size: 14px !important;
+  line-height: 1.2 !important;
+  text-align: left;
+  vertical-align: top;
+  font-weight: 500;
 }
 
 .nav-menu-item__label:hover {

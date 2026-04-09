@@ -197,13 +197,13 @@
   background: #1d1d1f;
   transform: scale(1.2);
 }
+
 @media (max-width: 768px) {
   .product-stripe {
     --product-stripe-edge-padding: 1rem;
   }
-  .product-stripe__arrow,
   .partner-left-arrow,
-  .partner-right-arrow,
+  .product-stripe__arrow--prev,
   .blue-circle-arrow {
     display: none;
   }

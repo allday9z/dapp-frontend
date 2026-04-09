@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./ProductStripe.css";
-import React, { useRef, useState, type ReactNode } from "react";
+import React, { useRef, useState, useEffect, type ReactNode } from "react";
 import Slider, { Settings } from "react-slick";
 
 interface ArrowProps {
@@ -85,42 +85,56 @@ export const ProductStripe = ({
   arrowType = "default",
   showDots = false,
   slidesToShow,
-  slidesToScroll = 4,
   gap = 40,
-  infinite = false,
   responsive,
   variableWidth = true,
 }: ProductStripeProps) => {
+  const stripeRef = useRef<HTMLDivElement>(null);
   const sliderRef = useRef<Slider | null>(null);
   const slides = React.Children.toArray(children);
   const slideCount = slides.length;
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isSpecialSection, setIsSpecialSection] = useState(false);
 
-  const maxSlideIndex = Math.max(0, slideCount - 4);
+  useEffect(() => {
+    if (stripeRef.current) {
+      const section = stripeRef.current.closest('section.hp-products[aria-labelledby="all-apple-products-heading"]');
+      setIsSpecialSection(!!section);
+    }
+
+    const handleResize = () => {
+      setIsMobile(window.matchMedia("(max-width: 768px)").matches);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const activeSlidesToShow = isSpecialSection ? 4 : Math.max(3, slidesToShow || 3);
+  const activeSlidesToScroll = isSpecialSection ? 4 : 3;
+  const maxSlideIndex = Math.max(0, slideCount - activeSlidesToShow);
   const canGoPrev = currentSlide > 0;
+  const canGoNext = currentSlide < maxSlideIndex;
 
   const fallbackResponsive: Settings["responsive"] = [
     {
-      breakpoint: 1024,
-      settings: {
-        slidesToScroll: Math.min(slidesToScroll, 2),
-      },
-    },
-    {
       breakpoint: 768,
       settings: {
+        slidesToShow: 1,
         slidesToScroll: 1,
+        infinite: true,
       },
     },
   ];
 
   const settings: Settings = {
     dots: showDots,
-    infinite: infinite,
-    speed: 2000,
+    infinite: isMobile,
+    speed: isSpecialSection && !isMobile ? 2000 : 800,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-    slidesToShow: slidesToShow || 1,
-    slidesToScroll: slidesToScroll,
+    slidesToShow: isMobile ? 1 : activeSlidesToShow,
+    slidesToScroll: isMobile ? 1 : activeSlidesToScroll,
     variableWidth: variableWidth,
     arrows: false,
     dotsClass: "slick-dots custom-slick-dots",
@@ -133,21 +147,45 @@ export const ProductStripe = ({
     waitForAnimate: true,
     adaptiveHeight: false,
     accessibility: true,
-    afterChange: (index) => setCurrentSlide(index),
+    afterChange: (index) => {
+      if (!isMobile && index > maxSlideIndex) {
+        sliderRef.current?.slickGoTo(maxSlideIndex);
+      } else {
+        setCurrentSlide(index);
+      }
+    },
     responsive: responsive ?? fallbackResponsive,
   };
 
   const handlePrev = () => {
-    if (!canGoPrev) return;
-    sliderRef.current?.slickGoTo(Math.max(0, currentSlide - slidesToScroll));
+    if (isMobile) {
+      sliderRef.current?.slickPrev();
+    } else {
+      if (!canGoPrev) return;
+      if (isSpecialSection) {
+        sliderRef.current?.slickGoTo(0);
+      } else {
+        sliderRef.current?.slickGoTo(Math.max(0, currentSlide - activeSlidesToScroll));
+      }
+    }
   };
 
   const handleNext = () => {
-    sliderRef.current?.slickGoTo(Math.min(maxSlideIndex, currentSlide + slidesToScroll));
+    if (isMobile) {
+      sliderRef.current?.slickNext();
+    } else {
+      if (!canGoNext) return;
+      if (isSpecialSection) {
+        sliderRef.current?.slickGoTo(maxSlideIndex);
+      } else {
+        sliderRef.current?.slickGoTo(Math.min(maxSlideIndex, currentSlide + activeSlidesToScroll));
+      }
+    }
   };
 
   return (
     <div
+      ref={stripeRef}
       className={`product-stripe ${className} arrow-type-${arrowType}`}
       role="region"
       aria-label={ariaLabel}
@@ -157,7 +195,7 @@ export const ProductStripe = ({
         arrowType={arrowType}
         direction="left"
         onClick={handlePrev}
-        disabled={!canGoPrev}
+        disabled={isMobile ? false : !canGoPrev}
       />
       <CustomArrow
         arrowType={arrowType}

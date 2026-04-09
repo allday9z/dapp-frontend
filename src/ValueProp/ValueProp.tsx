@@ -28,7 +28,7 @@ export const ValueProp = ({ item, className = "" }: IValuePropProps) => {
       <a className="value-prop__cta" href={item.ctaHref}>
         {item.ctaLabel}
         <span className="value-prop__cta-chevron" aria-hidden="true"><svg width="4.5" height="9" viewBox="0 0 6 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M0.75 1.5L5.25 6L0.75 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
+                  <path d="M0.75 1.5L5.25 6L0.75 10.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"></path>
                 </svg></span>
       </a>
     </div>

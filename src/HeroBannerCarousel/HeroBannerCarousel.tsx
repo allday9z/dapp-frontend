@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { getColorSync } from "colorthief";
 import type { CarouselInstance } from "@fancyapps/ui/dist/carousel/carousel.js";
 import { Carousel } from "@fancyapps/ui/dist/carousel/carousel.js";
 import { Autoplay } from "@fancyapps/ui/dist/carousel/carousel.autoplay.js";
@@ -66,16 +65,44 @@ export const HeroBannerCarousel = ({
     };
   }, []);
 
+  // Sample average color from 4 corners of the image (edge background color)
+  // Requires crossOrigin="anonymous" + CORS headers on the image server to work.
+  const extractEdgeColor = (img: HTMLImageElement): string | null => {
+    try {
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+      const s = 30; // corner sample size in px
+      const canvas = document.createElement("canvas");
+      canvas.width = s * 2;
+      canvas.height = s * 2;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) return null;
+
+      // Draw all 4 corners into one small canvas
+      ctx.drawImage(img, 0,      0,      s, s, 0, 0, s, s); // top-left
+      ctx.drawImage(img, iw - s, 0,      s, s, s, 0, s, s); // top-right
+      ctx.drawImage(img, 0,      ih - s, s, s, 0, s, s, s); // bottom-left
+      ctx.drawImage(img, iw - s, ih - s, s, s, s, s, s, s); // bottom-right
+
+      const data = ctx.getImageData(0, 0, s * 2, s * 2).data;
+      let r = 0, g = 0, b = 0;
+      const total = (s * 2) * (s * 2);
+      for (let i = 0; i < data.length; i += 4) {
+        r += data[i];
+        g += data[i + 1];
+        b += data[i + 2];
+      }
+      return `rgb(${Math.round(r / total)}, ${Math.round(g / total)}, ${Math.round(b / total)})`;
+    } catch {
+      // canvas tainted (CORS not yet configured) — skip
+      return null;
+    }
+  };
+
   const extractColor = (img: HTMLImageElement) => {
     if (!img.complete || img.naturalWidth === 0) return;
-    try {
-      const color = getColorSync(img) as unknown as [number, number, number] | null;
-      if (!color) return;
-      const [r, g, b] = color;
-      setBgColor(`rgb(${r}, ${g}, ${b})`);
-    } catch {
-      // CORS or decode error — skip
-    }
+    const color = extractEdgeColor(img);
+    if (color) setBgColor(color);
   };
 
   useEffect(() => {
@@ -112,6 +139,7 @@ export const HeroBannerCarousel = ({
                   ref={(el) => { imgRefs.current[i] = el; }}
                   src={slide.src}
                   alt={slide.alt ?? `slide ${i + 1}`}
+                  // crossOrigin="anonymous"  ← เปิดเมื่อ filebrowser มี CORS headers แล้ว
                   draggable={false}
                   onLoad={(e) => extractColor(e.currentTarget)}
                 />
@@ -121,6 +149,7 @@ export const HeroBannerCarousel = ({
                 ref={(el) => { imgRefs.current[i] = el; }}
                 src={slide.src}
                 alt={slide.alt ?? `slide ${i + 1}`}
+                // crossOrigin="anonymous"  ← เปิดเมื่อ filebrowser มี CORS headers แล้ว
                 draggable={false}
                 onLoad={(e) => extractColor(e.currentTarget)}
               />

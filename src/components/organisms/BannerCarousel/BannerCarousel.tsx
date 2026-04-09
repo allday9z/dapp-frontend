@@ -1,3 +1,4 @@
+
 import { useEffect, useRef, useState } from 'react';
 import type { CarouselInstance } from '@fancyapps/ui/dist/carousel/carousel.js';
 import { Carousel } from '@fancyapps/ui/dist/carousel/carousel.js';

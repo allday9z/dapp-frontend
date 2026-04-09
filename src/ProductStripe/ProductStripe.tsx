@@ -51,7 +51,7 @@ const CustomArrow = ({ onClick, arrowType, direction, disabled }: ArrowProps) =>
       disabled={disabled}
       type="button"
     >
-      <svg width="8" height="14" viewBox="0 0 8 14" fill="none">
+      <svg width="5" height="14" viewBox="0 0 8 14" fill="none" style={{opacity: '50%'}}>
         <path
           d={direction === "left" ? "M7 1L1 7L7 13" : "M1 1L7 7L1 13"}
           stroke="#1d1d1f"

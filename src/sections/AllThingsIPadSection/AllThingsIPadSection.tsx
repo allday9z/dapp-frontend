@@ -4,12 +4,12 @@ import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 const items: AttachModuleSliderItem[] = [
   {
     id: "ipad-air",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_MacBook_Air_15_in_M3_Midnight_PDP_Image_Position_1.jpg?inline=true",
-    badge: "ใหม่",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPad_A16_WiFi_Blue_PDP_Image_Position_1__TH-TH.jpg",
+    badge: "แบ่งชำระ 0% สบาย ๆ",
     badgeColor: "#0071bc",
-    name: "iPad Air",
-    price: "เริ่มต้น ฿20,900",
-    installment: "฿1,742/ด. นาน 12 เดือน",
+    name: "iPad A16",
+    price: "เริ่มต้น ฿12,900",
+    installment: "฿1,290/ด. นาน 10 เดือน",
     ctaLabel: "เลือกรุ่น",
     ctaHref: "/collections/ipad-air",
   },

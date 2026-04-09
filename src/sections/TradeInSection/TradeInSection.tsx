@@ -1,17 +1,10 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AppBlockImageMacBookPro } from "../../AppBlockImageMacBookPro/AppBlockImageMacBookPro";
-import { AppBlockImageIMac } from "../../AppBlockImageIMac/AppBlockImageIMac";
-import { AppBlockImageIPadPro } from "../../AppBlockImageIPadPro/AppBlockImageIPadPro";
-import { AppBlockImageIPadAir } from "../../AppBlockImageIPadAir/AppBlockImageIPadAir";
-import { AppBlockImageAppleWatchUltraOrangeAlpineLoop } from "../../AppBlockImageAppleWatchUltraOrangeAlpineLoop/AppBlockImageAppleWatchUltraOrangeAlpineLoop";
-import { AppBlockImageAirPodsPro2ndGeneration } from "../../AppBlockImageAirPodsPro2ndGeneration/AppBlockImageAirPodsPro2ndGeneration";
-import { AppBlockImageIPhone14ProMaxClearCaseWithMagSafe } from "../../AppBlockImageIPhone14ProMaxClearCaseWithMagSafe/AppBlockImageIPhone14ProMaxClearCaseWithMagSafe";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "macbook-pro-tradein",
-    image: <AppBlockImageMacBookPro />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_Air_Sky_Blue_PDP_Image_Position_1_Sky_Blue_Color__TH-TH-square_medium.jpg?inline=true",
     badge: "เก่าแลกใหม่",
     badgeColor: "#0071bc",
     name: "iPhone Air",
@@ -24,7 +17,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "imac-tradein",
-    image: <AppBlockImageIMac />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_16_Ultramarine_PDP_Image_Position_1a_Ultramarine_Color__TH-TH.jpg?inline=true",
     badge: "เก่าแลกใหม่",
     badgeColor: "#0071bc",
     name: "iPhone 16",
@@ -37,7 +30,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "iphone-tradein",
-    image: <AppBlockImageIPhone14ProMaxClearCaseWithMagSafe />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_13_PDP_Position-1A_Color_Midnight__TH.jpg?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "iPhone 13",
@@ -50,7 +43,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-pro-tradein",
-    image: <AppBlockImageIPadPro />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/MacBook_Air_13-inch_M4_Non-AI_Mar25_Sky_Blue_PDP_Image_Position_1__TH-TH.jpg?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "MacBook Air (รุ่น 13 นิ้ว) ชิป M4",
@@ -63,7 +56,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-air-tradein",
-    image: <AppBlockImageIPadAir />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_MacBook_Air_15_in_M3_Midnight_PDP_Image_Position_1.jpg?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "MacBook Air (รุ่น 15 นิ้ว) ชิป M3",
@@ -76,7 +69,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "apple-watch-tradein",
-    image: <AppBlockImageAppleWatchUltraOrangeAlpineLoop />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_Macbook_Pro_M3_Space_Gray_PDP_Image_Position-1.jpg?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "MacBook Pro (รุ่น 14 นิ้ว) ชิป M3",
@@ -87,7 +80,6 @@ const items: AttachModuleSliderItem[] = [
     ctaLabel: "เลือกรุ่น",
     ctaHref: "/collections/apple-watch",
   },
-  
 ];
 
 export const TradeInSection = () => (

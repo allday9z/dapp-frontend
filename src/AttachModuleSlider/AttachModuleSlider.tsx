@@ -36,10 +36,14 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
           aria-hidden="true"
           {...dragLink}
         >
-          <div className="attach-slider__image-frame">{item.image ?? null}</div>
+          <div className="attach-slider__image-frame">
+            {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} />}
+          </div>
         </a>
       ) : (
-        <div className="attach-slider__image-frame">{item.image ?? null}</div>
+        <div className="attach-slider__image-frame">
+          {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} />}
+        </div>
       )}
 
       {/* Info block */}

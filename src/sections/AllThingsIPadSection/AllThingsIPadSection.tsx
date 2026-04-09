@@ -1,13 +1,10 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AppBlockImageIPadAir } from "../../AppBlockImageIPadAir/AppBlockImageIPadAir";
-import { AppBlockImageIPadPro } from "../../AppBlockImageIPadPro/AppBlockImageIPadPro";
-import { AppBlockImageMagicKeyboardFolioForIPad109Inch } from "../../AppBlockImageMagicKeyboardFolioForIPad109Inch/AppBlockImageMagicKeyboardFolioForIPad109Inch";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "ipad-air",
-    image: <AppBlockImageIPadAir />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_MacBook_Air_15_in_M3_Midnight_PDP_Image_Position_1.jpg?inline=true",
     badge: "ใหม่",
     badgeColor: "#0071bc",
     name: "iPad Air",
@@ -18,7 +15,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-pro",
-    image: <AppBlockImageIPadPro />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/MacBook_Air_13-inch_M4_Non-AI_Mar25_Sky_Blue_PDP_Image_Position_1__TH-TH.jpg?inline=true",
     badge: "ใหม่",
     badgeColor: "#0071bc",
     name: "iPad Pro",
@@ -29,7 +26,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "magic-keyboard-folio",
-    image: <AppBlockImageMagicKeyboardFolioForIPad109Inch />,
+    imageSrc: "/image-720.png",
     badge: "ใหม่",
     badgeColor: "#0071bc",
     name: "Magic Keyboard Folio สำหรับ iPad 10.9 นิ้ว",

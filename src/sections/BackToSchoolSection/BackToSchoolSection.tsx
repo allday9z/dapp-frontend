@@ -1,12 +1,10 @@
 import { AttachModuleSlider } from "../../AttachModuleSlider";
-import { AppBlockImageMacBookPro } from "../../AppBlockImageMacBookPro/AppBlockImageMacBookPro";
-import { AppBlockImageAppleWatchUltraOrangeAlpineLoop } from "../../AppBlockImageAppleWatchUltraOrangeAlpineLoop/AppBlockImageAppleWatchUltraOrangeAlpineLoop";
 import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {
     id: "macbook-pro-bts",
-    image: <AppBlockImageMacBookPro />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_Air_Sky_Blue_PDP_Image_Position_1_Sky_Blue_Color__TH-TH-square_medium.jpg?inline=true",
     badge: "ใหม่",
     badgeColor: "#bf4800",
     name: "MacBook Neo",
@@ -17,7 +15,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "apple-watch-ultra-bts",
-    image: <AppBlockImageAppleWatchUltraOrangeAlpineLoop />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/TH_Macbook_Pro_M3_Space_Gray_PDP_Image_Position-1.jpg?inline=true",
     badge: "ใหม่",
     badgeColor: "#bf4800",
     name: "iPad Air M4",
@@ -28,7 +26,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-bts",
-    image: <AppBlockImageAppleWatchUltraOrangeAlpineLoop />,
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple%20Pencil%20Pro.webp?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "Apple Pencil Pro",

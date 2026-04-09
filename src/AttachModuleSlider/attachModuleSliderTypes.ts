@@ -1,9 +1,7 @@
-import type { ReactNode } from "react";
-
 export interface AttachModuleSliderItem {
   id: string;
-  /** React node for the product image */
-  image?: ReactNode;
+  /** Product image URL — renders directly as <img src> */
+  imageSrc?: string;
   /** Badge label — if omitted and new_price is set, auto-shows "ราคาพิเศษ" */
   badge?: string;
   /** Badge color — default #ff6900 orange; auto-set to #008900 when new_price exists */

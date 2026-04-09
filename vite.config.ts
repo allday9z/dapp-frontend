@@ -6,13 +6,6 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173,
-    allowedHosts: ['dev.m2developer.com'],
-    proxy: {
-      '/img-proxy': {
-        target: 'https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com',
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/img-proxy/, ''),
-      },
-    },
+    allowedHosts: ['dev.m2developer.com', 'coolify.pve01.prod.uficon.com', 'filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com', 'localhost', '127.0.0.1'],
   },
 })

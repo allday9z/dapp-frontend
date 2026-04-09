@@ -151,17 +151,19 @@
 
 /* LOB hero buy button: filled, 7.6875rem × 3.125rem */
 .plp-product-row--lob .plp-product-row__buy-btn {
-  background: var(--color-blue, #0071e3);
-  border: 1.4px solid #0071E3;
-  color: #ffffff;
+  background: none;
+  border: 1.4px solid #0071E3 !important;
+  color: var(--color-blue, #0071e3);
   border: none;
-  width: 7.6875rem;
+  width: 5rem;
   height: 3.125rem;
 }
 
 .plp-product-row--lob .plp-product-row__buy-btn:hover {
-  background: #0077ed;
-  color: #ffffff;
+  background: none;
+  border: 1.4px solid #0071E3 !important;
+  color: #0071E3;
+  text-decoration: underline;
 }
 
 /* ── Right: product image ───────────────────────────────────────────────── */
@@ -184,7 +186,7 @@
 
 /* LOB hero image wrapper: padding 2.25rem 2.5rem */
 .plp-product-row--lob .plp-product-row__image-wrap {
-  padding: 2.25rem 2.5rem;
+  /* padding: 2.25rem 2.5rem; */
 }
 
 /* LOB hero image: 29.0625rem × 29.0625rem */

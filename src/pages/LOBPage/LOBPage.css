@@ -36,17 +36,19 @@
 }
 
 .lob-page__hero-title {
-  color: #000000;
-  text-align: center;
   font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 2.25rem;
-  line-height: 2.625rem;
+  font-style: normal;
   font-weight: 600;
-  margin: 0;
+  font-size: 48px;
+  line-height: 48px;
+  text-align: center;
+  letter-spacing: -2px;
+  color: #000;
+  margin-top: 0;
 }
 
 .lob-page__hero-description {
-  color: var(--color-gray-2, #595959);
+  color: #000;
   text-align: center;
   font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 1rem;
@@ -61,7 +63,7 @@
   justify-content: center;
   gap: 1.75rem;
   width: 100%;
-  padding-top: 0.75rem;
+  padding-top: 1rem;
 }
 
 .lob-page__hero-detail {
@@ -98,11 +100,12 @@
   width: 100%;
 }
 
-.lob-page__hero-image {
-  /* width: 29.0625rem; */
-  height: 29.0625rem;
-  object-fit: cover;
-  max-width: 100%;
+@media screen and (min-width: 768px){
+  .lob-page__hero-image {
+    height: 395px;
+    object-fit: cover;
+    max-width: 100%;
+  }
 }
 
 .lob-page__inner {
@@ -221,4 +224,10 @@
     height: auto;
   }
   .lob-page__inner { padding: 0 1.25rem; }
+}
+
+@media (max-width: 767px) {
+  .which-mac-is-right-for-you {
+    height: 15.938rem !important;
+  }
 }

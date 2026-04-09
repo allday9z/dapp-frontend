@@ -12,7 +12,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 2rem 0;
+  /* padding: 2rem 0; */
   box-shadow: inset 0 -0.03125rem 0 0 rgba(0, 0, 0, 0.25);
 }
 
@@ -51,17 +51,24 @@
 
 /* Name: 2rem / 2.375rem, color #121212 */
 .plp-product-row__name {
-  color: var(--color-tokens-accent-1, #121212);
   font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 2rem;
-  line-height: 2.375rem;
+  position: static;
+  font-style: normal;
   font-weight: 600;
-  margin: 0;
+  font-size: 32px;
+  line-height: 42px;
+  display: flex;
+  align-items: flex-start;
+  text-align: left;
+  letter-spacing: -1px;
+  color: #000000;
+  height: auto;
+  margin-top: 0;
 }
 
 /* LOB variant hero: larger name 2.25rem / 2.625rem */
 .plp-product-row--lob .plp-product-row__name {
-  font-size: 2.25rem;
+  font-size: 32px;
   line-height: 2.625rem;
 }
 
@@ -69,8 +76,8 @@
 .plp-product-row__description {
   color: #000000;
   font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1rem;
-  line-height: 1.5rem;
+  font-size: 0.875rem;
+  /* line-height: 1.5rem; */
   letter-spacing: 0.02em;
   font-weight: 400;
   margin: 0;
@@ -79,8 +86,8 @@
 
 /* LOB hero: subtitle is gray #595959 */
 .plp-product-row--lob .plp-product-row__description {
-  color: var(--color-gray-2, #595959);
-  width: 30rem;
+  max-width: 100%;
+  width: 350px;
 }
 
 /* ── Actions row ────────────────────────────────────────────────────────── */
@@ -145,6 +152,7 @@
 /* LOB hero buy button: filled, 7.6875rem × 3.125rem */
 .plp-product-row--lob .plp-product-row__buy-btn {
   background: var(--color-blue, #0071e3);
+  border: 1.4px solid #0071E3;
   color: #ffffff;
   border: none;
   width: 7.6875rem;
@@ -181,8 +189,8 @@
 
 /* LOB hero image: 29.0625rem × 29.0625rem */
 .plp-product-row--lob .plp-product-row__image {
-  width: 29.0625rem;
-  height: 29.0625rem;
+  width: 16.875rem;
+  height: 16.875rem;
 }
 
 /* ── Responsive ─────────────────────────────────────────────────────────── */

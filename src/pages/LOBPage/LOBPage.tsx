@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 import "./LOBPage.css";
 import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
@@ -17,7 +18,7 @@ const macbookHero: PLPProduct = {
   badgeColor: "#bf4800",
   name: "MacBook Neo",
   description: "สุดปัง ในราคาสุดว้าว\nเริ่มต้น ฿19,900",
-  imageSrc: "http://localhost:5173/product/macbook/banner-macbook-neo.png",
+  imageSrc: "/product/macbook/banner-macbook-neo.png",
   imageAlt: "MacBook Neo",
   detailHref: "#",
   buyHref: "#",

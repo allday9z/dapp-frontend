@@ -285,5 +285,6 @@
 }
 
 .nav-submenu__link:hover {
-  background: var(--color-fill-tertiary, #f5f5f7);
+  /* background: var(--color-fill-tertiary, #f5f5f7); */
+  text-decoration: underline;
 }

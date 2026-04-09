@@ -73,6 +73,7 @@
   font-weight: var(--body-body-s-regular-font-weight, 400);
   white-space: nowrap;
   position: relative;
+  letter-spacing: .02em;
 }
 
 .lob-stripe-tile--mac .lob-stripe-tile__image {

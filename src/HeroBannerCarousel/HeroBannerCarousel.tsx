@@ -13,10 +13,13 @@ interface Slide {
   bgColor?: string;
 }
 
+// ใช้ /img-proxy/ ใน dev (Vite proxy → filebrowser) — ไม่มีปัญหา CORS
+// ใน production ให้ตั้ง CORS headers บน filebrowser แล้วเปลี่ยนกลับเป็น absolute URL
+const FB = "/img-proxy/api/public/dl/FH-wjIaJ/DAPP";
 const SLIDES: Slide[] = [
-  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPad_Air_M4_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "iStudio Hero Banner", bgColor: "#f0f4f8" },
-  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20MacBook_Neo_13-inch_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "Pre-order MacBook Pro M5", bgColor: "#f5f5f7" },
-  { src: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPhone_17e_Mar26_Web_Banner_Avail_1400x700__TH-TH.jpg?inline=true", href: "#", alt: "Pre-order Mac NEO", bgColor: "#fef0f2" },
+  { src: `${FB}/%5BAvail%5D%20iPad_Air_M4_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`, href: "#", alt: "iStudio Hero Banner" },
+  { src: `${FB}/%5BAvail%5D%20MacBook_Neo_13-inch_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`, href: "#", alt: "Pre-order MacBook Pro M5" },
+  { src: `${FB}/%5BAvail%5D%20iPhone_17e_Mar26_Web_Banner_Avail_1400x700__TH-TH.jpg?inline=true`, href: "#", alt: "Pre-order Mac NEO" },
 ];
 
 export interface IHeroBannerCarouselProps {
@@ -32,7 +35,9 @@ export const HeroBannerCarousel = ({
   const instanceRef = useRef<CarouselInstance | null>(null);
   const imgRefs = useRef<(HTMLImageElement | null)[]>([]);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [bgColor, setBgColor] = useState<string>(slides[0]?.bgColor ?? "transparent");
+  const [bgColor, setBgColor] = useState<string>(
+    slides[0]?.bgColor && slides[0].bgColor !== "" ? slides[0].bgColor : "#f5f5f7"
+  );
 
   useEffect(() => {
     const container = containerRef.current;
@@ -65,55 +70,60 @@ export const HeroBannerCarousel = ({
     };
   }, []);
 
-  // Sample average color from 4 corners of the image (edge background color)
-  // Requires crossOrigin="anonymous" + CORS headers on the image server to work.
-  const extractEdgeColor = (img: HTMLImageElement): string | null => {
+  const onImageLoad = (img: HTMLImageElement) => {
+    if (!img.complete || img.naturalWidth === 0) return;
+    try {
+      const leftColor = extractEdgeColor(img, "left");
+      const rightColor = extractEdgeColor(img, "right");
+      if (leftColor && rightColor) {
+        setBgColor(`linear-gradient(to right, ${leftColor}, ${rightColor})`);
+      }
+    } catch (e) {
+      console.warn("Failed to extract colors:", e);
+    }
+  };
+
+  const extractEdgeColor = (img: HTMLImageElement, edge: "left" | "right"): string | null => {
     try {
       const iw = img.naturalWidth;
       const ih = img.naturalHeight;
-      const s = 30; // corner sample size in px
       const canvas = document.createElement("canvas");
-      canvas.width = s * 2;
-      canvas.height = s * 2;
+      canvas.width = 100;
+      canvas.height = 100;
       const ctx = canvas.getContext("2d");
       if (!ctx) return null;
 
-      // Draw all 4 corners into one small canvas
-      ctx.drawImage(img, 0,      0,      s, s, 0, 0, s, s); // top-left
-      ctx.drawImage(img, iw - s, 0,      s, s, s, 0, s, s); // top-right
-      ctx.drawImage(img, 0,      ih - s, s, s, 0, s, s, s); // bottom-left
-      ctx.drawImage(img, iw - s, ih - s, s, s, s, s, s, s); // bottom-right
+      if (edge === "left") {
+        // Sample left edge (1px strip from left side)
+        ctx.drawImage(img, 0, 0, 1, ih, 0, 0, 100, 100);
+      } else {
+        // Sample right edge (1px strip from right side)
+        ctx.drawImage(img, iw - 1, 0, 1, ih, 0, 0, 100, 100);
+      }
 
-      const data = ctx.getImageData(0, 0, s * 2, s * 2).data;
-      let r = 0, g = 0, b = 0;
-      const total = (s * 2) * (s * 2);
+      const data = ctx.getImageData(0, 0, 100, 100).data;
+      let r = 0, g = 0, b = 0, count = 0;
       for (let i = 0; i < data.length; i += 4) {
         r += data[i];
         g += data[i + 1];
         b += data[i + 2];
+        count++;
       }
-      return `rgb(${Math.round(r / total)}, ${Math.round(g / total)}, ${Math.round(b / total)})`;
+      return `rgb(${Math.round(r / count)}, ${Math.round(g / count)}, ${Math.round(b / count)})`;
     } catch {
-      // canvas tainted (CORS not yet configured) — skip
       return null;
     }
   };
 
-  const extractColor = (img: HTMLImageElement) => {
-    if (!img.complete || img.naturalWidth === 0) return;
-    const color = extractEdgeColor(img);
-    if (color) setBgColor(color);
-  };
-
   useEffect(() => {
     const slide = slides[activeIdx];
-    if (slide?.bgColor) {
+    // Use bgColor from slide, or default fallback
+    if (slide?.bgColor && slide.bgColor !== "") {
       setBgColor(slide.bgColor);
-      return;
+    } else {
+      setBgColor("#f5f5f7"); // Default light gray
     }
-    const img = imgRefs.current[activeIdx];
-    if (img) extractColor(img);
-  }, [activeIdx]);
+  }, [activeIdx, slides]);
 
   const goTo = (i: number) => {
     instanceRef.current?.goTo(i);
@@ -139,9 +149,9 @@ export const HeroBannerCarousel = ({
                   ref={(el) => { imgRefs.current[i] = el; }}
                   src={slide.src}
                   alt={slide.alt ?? `slide ${i + 1}`}
-                  // crossOrigin="anonymous"  ← เปิดเมื่อ filebrowser มี CORS headers แล้ว
+                  crossOrigin="anonymous"
                   draggable={false}
-                  onLoad={(e) => extractColor(e.currentTarget)}
+                  onLoad={(e) => onImageLoad(e.currentTarget)}
                 />
               </a>
             ) : (
@@ -149,9 +159,9 @@ export const HeroBannerCarousel = ({
                 ref={(el) => { imgRefs.current[i] = el; }}
                 src={slide.src}
                 alt={slide.alt ?? `slide ${i + 1}`}
-                // crossOrigin="anonymous"  ← เปิดเมื่อ filebrowser มี CORS headers แล้ว
+                crossOrigin="anonymous"
                 draggable={false}
-                onLoad={(e) => extractColor(e.currentTarget)}
+                onLoad={(e) => onImageLoad(e.currentTarget)}
               />
             )}
           </div>

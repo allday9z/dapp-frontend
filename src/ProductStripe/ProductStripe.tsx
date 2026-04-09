@@ -44,7 +44,6 @@ const CustomArrow = ({ onClick, arrowType, direction, disabled }: ArrowProps) =>
     );
   }
 
-  // Default Product Stripe Arrow
   return (
     <button
       className={`product-stripe__arrow product-stripe__arrow--${direction === "left" ? "prev" : "next"}${disabled ? " slick-disabled" : ""}`}
@@ -86,8 +85,8 @@ export const ProductStripe = ({
   arrowType = "default",
   showDots = false,
   slidesToShow,
-  slidesToScroll = 3,
-  gap = 40, // 2.5rem default
+  slidesToScroll = 4,
+  gap = 40,
   infinite = false,
   responsive,
   variableWidth = true,
@@ -97,9 +96,8 @@ export const ProductStripe = ({
   const slideCount = slides.length;
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const maxSlideIndex = Math.max(0, slideCount - 1);
+  const maxSlideIndex = Math.max(0, slideCount - 4);
   const canGoPrev = currentSlide > 0;
-  const canGoNext = currentSlide < maxSlideIndex;
 
   const fallbackResponsive: Settings["responsive"] = [
     {
@@ -119,7 +117,7 @@ export const ProductStripe = ({
   const settings: Settings = {
     dots: showDots,
     infinite: infinite,
-    speed: 800,
+    speed: 2000,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
     slidesToShow: slidesToShow || 1,
     slidesToScroll: slidesToScroll,
@@ -145,7 +143,6 @@ export const ProductStripe = ({
   };
 
   const handleNext = () => {
-    if (!canGoNext) return;
     sliderRef.current?.slickGoTo(Math.min(maxSlideIndex, currentSlide + slidesToScroll));
   };
 
@@ -166,7 +163,7 @@ export const ProductStripe = ({
         arrowType={arrowType}
         direction="right"
         onClick={handleNext}
-        disabled={!canGoNext}
+        disabled={false}
       />
       <div className="product-stripe__viewport" style={{ overflow: "hidden" }}>
         <Slider ref={sliderRef} {...settings}>

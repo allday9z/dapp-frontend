@@ -8,6 +8,7 @@ export interface WhyBuyItem {
   badge: string;
   accentColor: string;
   body: WhyBuySegment[];
+  href?: string;
 }
 
 // Source: /Users/uficon_dev/Downloads/autohtml-project-html/HomepageDesktop.html
@@ -16,6 +17,7 @@ export const whyBuyItems: WhyBuyItem[] = [
     id: "delivery",
     badge: "ส่งด่วนส่งไว",
     accentColor: "#595959",
+    href: "/pages/delivery",
     body: [
       { text: "เลือกส่งฟรีหรือส่งด่วน\n" },
       { text: "ช้อป Apple สบายใจทุกออเดอร์", tone: "muted" },
@@ -25,6 +27,7 @@ export const whyBuyItems: WhyBuyItem[] = [
     id: "financing",
     badge: "ผ่อนสบาย",
     accentColor: "var(--badging-affordability, #0071bc)",
+    href: "/pages/financing",
     body: [
       { text: "เลือกผ่อนกับบัตรที่ร่วมรายการ " },
       { text: "0% สูงสุด 10 เดือน", tone: "accent" },
@@ -34,6 +37,7 @@ export const whyBuyItems: WhyBuyItem[] = [
     id: "deals",
     badge: "ดีล Apple วันนี้",
     accentColor: "var(--badging-special-offer, #5856d6)",
+    href: "/collections/deals",
     body: [
       { text: "SUMMER DEALS ดีล Apple ลดคุ้มสูงสุด 75% " },
       { text: "วันนี้ - 31 มี.ค. 69", tone: "accent" },
@@ -43,6 +47,7 @@ export const whyBuyItems: WhyBuyItem[] = [
     id: "upgrade",
     badge: "อัปเกรดเครื่องใหม่",
     accentColor: "#0071bc",
+    href: "/pages/trade-in",
     body: [
       { text: "เอาเครื่องเก่ามาแลก ลดเพิ่มได้ทันที " },
       { text: "รับเครดิตแลกซื้อสูงสุด 26,300.-*", tone: "accent" },
@@ -52,6 +57,7 @@ export const whyBuyItems: WhyBuyItem[] = [
     id: "everyday-price",
     badge: "ราคาดีลพิเศษทุกวัน",
     accentColor: "var(--badging-sale, #008900)",
+    href: "/collections/all",
     body: [
       { text: "ช้อปออนไลน์กับ UFicon คุ้มกว่า " },
       { text: "โปรแรง ครบทุกสินค้า Apple", tone: "accent" },

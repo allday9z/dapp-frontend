@@ -6,20 +6,41 @@ import Slider from "react-slick";
 import type { Settings } from "react-slick";
 import type { AttachModuleSliderProps, AttachModuleSliderItem } from "./attachModuleSliderTypes";
 
+/* ── useDragLink — แยก drag vs click สำหรับ link ใน slider ── */
+function useDragLink() {
+  const dragging = useRef(false);
+  const onMouseDown = () => { dragging.current = false; };
+  const onMouseMove = () => { dragging.current = true; };
+  const onClick = (e: React.MouseEvent) => { if (dragging.current) e.preventDefault(); };
+  return { onMouseDown, onMouseMove, onClick };
+}
+
 /* ── Tile ────────────────────────────────────────────────────── */
 const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
   const isInfoMode = Boolean(item.subtitle);
   const hasDiscount = Boolean(item.new_price);
+  const dragLink = useDragLink();
 
   const badge = item.badge ?? (hasDiscount ? "ราคาพิเศษ" : "");
   const badgeColor = item.badgeColor ?? (hasDiscount ? "#008900" : "#ff6900");
 
   return (
     <div className={`attach-slider__tile${isInfoMode ? " attach-slider__tile--info" : ""}`}>
-      {/* Image frame */}
-      <div className="attach-slider__image-frame">
-        {item.image ?? null}
-      </div>
+      {/* Image frame — wrapped in link, drag-safe */}
+      {item.ctaHref ? (
+        <a
+          href={item.ctaHref}
+          className="attach-slider__image-link"
+          draggable={false}
+          tabIndex={-1}
+          aria-hidden="true"
+          {...dragLink}
+        >
+          <div className="attach-slider__image-frame">{item.image ?? null}</div>
+        </a>
+      ) : (
+        <div className="attach-slider__image-frame">{item.image ?? null}</div>
+      )}
 
       {/* Info block */}
       <div className="attach-slider__info">
@@ -45,8 +66,12 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
               {badge}
             </div>
 
-            {/* Name — fixed 2-line height */}
-            <div className="attach-slider__name">{item.name}</div>
+            {/* Name — fixed 2-line height, underline on hover, drag-safe */}
+            {item.ctaHref ? (
+              <a href={item.ctaHref} className="attach-slider__name attach-slider__name-link" draggable={false} {...dragLink}>{item.name}</a>
+            ) : (
+              <div className="attach-slider__name">{item.name}</div>
+            )}
 
             {/* Price block */}
             {item.price && (
@@ -71,7 +96,7 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
             {/* CTA */}
             {(item.ctaHref || item.ctaLabel) && (
               item.ctaHref ? (
-                <a href={item.ctaHref} className="attach-slider__cta">
+                <a href={item.ctaHref} className="attach-slider__cta" draggable={false} {...dragLink}>
                   {item.ctaLabel ?? "ซื้อเลย"}
                 </a>
               ) : (

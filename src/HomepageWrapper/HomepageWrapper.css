@@ -148,3 +148,8 @@
   white-space: normal !important;
   word-break: break-word !important;
 }
+
+.accessories-grid .app-tile-instance .app-tile__card {
+  min-height: 436.84px !important;
+  box-sizing: border-box;
+}

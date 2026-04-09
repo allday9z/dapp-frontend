@@ -45,12 +45,12 @@ const accessoriesItems: IAppTileProps[] = [
 ];
 
 export const AccessoriesSection = () => (
-  <section aria-labelledby="accessories-heading">
+  <section aria-labelledby="accessories-heading" className="accessories-section">
     <h2 id="accessories-heading" className="sr-only">Featured Apple Accessories</h2>
     <AppTileGrid
       heading="อุปกรณ์เสริม Apple"
       items={accessoriesItems}
-      className="organism-instance"
+      className="organism-instance accessories-grid"
     />
   </section>
 );

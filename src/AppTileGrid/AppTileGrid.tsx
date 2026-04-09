@@ -19,9 +19,9 @@ export const AppTileGrid = ({
     </div>
     <ProductStripe className="frame-1539">
       {items.map((item) => (
-        <AppTile key={item.title} {...item} className="app-tile-instance" style={{height: '6'}} />
+        <AppTile key={item.title} {...item} className="app-tile-instance"/>
       ))}
-    </ProductStripe>
+    </ProductStripe>  
     <div className="hp-divider"></div>
   </div>
 );

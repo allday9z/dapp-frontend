@@ -38,6 +38,9 @@
 /* ProductStripe tile gap for "See what's new" */
 .organism-device-desktop .frame-1539 .product-stripe__inner {
   gap: 1.5rem !important;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 .organism-device-desktop .app-tile-instance {
   flex-shrink: 0 !important;

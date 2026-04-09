@@ -13,11 +13,12 @@
   flex-direction: row;
   gap: 0rem;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* #นอนได้แล้ว <3 */
   width: 13.375rem;
   height: 3rem;
   position: relative;
 }
+
 .cta-button-primary-state-default .add-to-cart {
   color: var(--color-white, #ffffff);
   text-align: center;

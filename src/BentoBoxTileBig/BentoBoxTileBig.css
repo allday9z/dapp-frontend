@@ -13,6 +13,15 @@
   height: 37.625rem;
   position: relative;
 }
+
+@media (max-width:767px) {
+  .bento-box-tile-device-desktop-big-lob-apple-watch-fathers {
+  padding: 0rem;
+  height: auto;
+  padding: 16px;
+}
+}
+
 .bento-box-tile-device-desktop-big-lob-apple-watch-fathers .text-info {
   display: flex;
   flex-direction: column;
@@ -124,7 +133,12 @@
   object-fit: cover;
 }
 
-
+@media (max-width:767px) {
+  .bento-box-tile-device-desktop-big-lob-apple-watch-fathers .image-120 {
+  width: 108px;
+  height: 108px;
+}
+}
 
 .bento-box-tile-device-desktop-big-lob-apple-watch-fathers .new-badge {
   display: flex;

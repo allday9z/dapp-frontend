@@ -82,7 +82,7 @@ export const macCollectionFamilyItems: FamilyStripeItem[] = [
   },
   {
     id: "studio-display",
-    imageSrc: "/image-1110.png",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Studio_Display_Tilt_adjustable__stand_84x84_0cc3c481-c825-455c-a0cd-f79865746e5d.webp?inline=true",
     imageAlt: "Studio Display",
     name: "Studio Display",
     priceLabel: "เริ่มต้น ฿52,900 THB",

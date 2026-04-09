@@ -1,5 +1,5 @@
-/// <reference types="vite/client" />
 import "./LOBPage.css";
+import { HeadBanner } from "./HeadBanner";
 import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
 import {
@@ -65,7 +65,9 @@ export const LOBPage = ({ collection = "macbook-pro" }: LOBPageProps) => {
         seeAllLabel="ดูข้อมูล Mac ทั้งหมด"
         seeAllHref="/pages/view-all-mac"
       />
-
+      
+      <HeadBanner />
+      
       {config.showHero && (
         <section className="lob-page__hero" aria-labelledby="lob-hero-heading">
           <div className="lob-page__hero-copy">

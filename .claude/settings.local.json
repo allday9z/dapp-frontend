@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash($SHELL --version)",
-      "Bash(claude --version)",
-      "Bash(oracle)"
-    ]
-  }
-}

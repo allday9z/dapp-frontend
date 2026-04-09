@@ -132,9 +132,8 @@ export const AttachModuleSlider = ({
       <div className="attach-slider__carousel-wrap">
         {/* Prev — always visible; disabled = faded + not clickable */}
         <button
-          className={`attach-slider__arrow attach-slider__arrow--prev${!canGoPrev ? " is-disabled" : ""}`}
-          onClick={() => canGoPrev && sliderRef.current?.slickPrev()}
-          disabled={!canGoPrev}
+          className={`attach-slider__arrow attach-slider__arrow--prev`}
+          onClick={() => sliderRef.current?.slickPrev()}
           aria-label="ก่อนหน้า"
           type="button"
         >
@@ -165,9 +164,8 @@ export const AttachModuleSlider = ({
 
         {/* Next — always visible */}
         <button
-          className={`attach-slider__arrow attach-slider__arrow--next${!canGoNext ? " is-disabled" : ""}`}
-          onClick={() => canGoNext && sliderRef.current?.slickNext()}
-          disabled={!canGoNext}
+          className={`attach-slider__arrow attach-slider__arrow--next`}
+          onClick={() => sliderRef.current?.slickNext()}
           aria-label="ถัดไป"
           type="button"
         >

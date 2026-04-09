@@ -15,7 +15,7 @@ export const AppBlockImageIPhone14ProMaxClearCaseWithMagSafe = ({
         className
       }
     >
-      <img className="image-64" src="/image-640.png"  alt="" />
+      <img className="image-64" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iPhone_13_PDP_Position-1A_Color_Midnight__TH.jpg?inline=true"  alt="" />
     </div>
   );
 };

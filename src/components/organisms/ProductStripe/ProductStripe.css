@@ -36,7 +36,7 @@
   top: 50%;
   transform: translateY(-50%);
   width: 2.5rem;
-  height: 7.5rem;
+  height: calc(100% - .125rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -54,9 +54,9 @@
   left: 0;
   box-shadow: inset -0.025rem 0 0 0 rgba(66, 66, 69, 0.2);
 }
-.product-stripe__arrow:hover {
+/* .product-stripe__arrow:hover {
   background: #f5f5f7;
-}
+} */
 .product-stripe__arrow:focus-visible {
   outline: 0.125rem solid rgba(0, 113, 227, 0.45);
   outline-offset: 0.125rem;

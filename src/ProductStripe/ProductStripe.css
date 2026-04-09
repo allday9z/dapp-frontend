@@ -24,6 +24,7 @@
 
 .product-stripe .slick-list {
   overflow: visible; /* allow shadow to show */
+  margin-left: 5px;
 }
 
 .product-stripe .slick-slide {

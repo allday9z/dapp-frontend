@@ -26,7 +26,7 @@ const items: AttachModuleSliderItem[] = [
   },
   {
     id: "ipad-bts",
-    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple%20Pencil%20Pro.webp?inline=true",
+    imageSrc: "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Apple%20Pencil%20Pro(1).webp?inline=true",
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "Apple Pencil Pro",

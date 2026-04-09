@@ -277,7 +277,7 @@
   color: var(--color-black, #1d1d1f);
   font-family: var(--body-body-s-regular-font-family, 'SfProText-Regular', sans-serif);
   font-size: 0.8125rem;
-  font-weight: 400;
+  font-weight: 500;
   text-decoration: none;
   white-space: nowrap;
   border-radius: 0.5rem;

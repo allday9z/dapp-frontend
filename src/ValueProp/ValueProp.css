@@ -57,7 +57,6 @@
   color: #000;
   max-height: 60px;
   overflow: hidden;
-  height: 3.75rem;
 }
 
 @media (max-width:768px) {
@@ -67,30 +66,22 @@
 }
 
 .value-prop__body {
-  font-family: var(
-    --body-body-s-regular-font-family,
-    "SfProText-Regular",
-    sans-serif
-  );
-  height: 3.1875rem;
+  font-family: var(--body-body-s-regular-font-family, "SfProText-Regular", sans-serif);
   margin-top: -.5rem;
   letter-spacing: .6px;
   color: #121212;
+  display: -webkit-box;
   -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
   margin: 0;
   font-size: .875rem;
   font-weight: 400;
   line-height: normal;
 }
 
-@media (max-width:768px) {
-  .value-prop__body {
-    margin-top: auto;
-  }
-}
-
 .value-prop__cta {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.125rem;
   color: var(--color-blue, #0071E3);
@@ -100,11 +91,19 @@
     sans-serif
   );
   font-size: .875rem;
-  display: flex;
-  align-items: center;
   letter-spacing: -.02em;
   margin-top: 20px;
   font-weight: 600;
+}
+
+@media (min-width: 768px) {
+  .value-prop__body {
+    height: 4rem; 
+  }
+
+  .value-prop__cta {
+    margin-top: auto;
+  }
 }
 
 .value-prop__cta:hover {

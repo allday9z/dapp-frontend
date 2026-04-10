@@ -13,11 +13,11 @@ interface Slide {
   bgColor: string;
 }
 
-const FB = "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP";
+
 const SLIDES: Slide[] = [
-  { src: `${FB}/%5BAvail%5D%20iPad_Air_M4_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`,      href: "#", alt: "iPad Air M4",   bgColor: "#e8f0f8" },
-  { src: `${FB}/%5BAvail%5D%20MacBook_Neo_13-inch_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`, href: "#", alt: "MacBook Neo",   bgColor: "#f5f5f7" },
-  { src: `${FB}/%5BAvail%5D%20iPhone_17e_Mar26_Web_Banner_Avail_1400x700__TH-TH.jpg?inline=true`,  href: "#", alt: "iPhone 17e",    bgColor: "#fdf0f2" },
+  { src: `https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPad_Air_M4_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`,      href: "#", alt: "iPad Air M4",   bgColor: "#C2E4F0" },
+  { src: `https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20MacBook_Neo_13-inch_Mar26_Web_Banner_1400x700__TH-TH.jpg?inline=true`, href: "#", alt: "MacBook Neo",   bgColor: "#f5f5f7" },
+  { src: `https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/%5BAvail%5D%20iPhone_17e_Mar26_Web_Banner_Avail_1400x700__TH-TH.jpg?inline=true`,  href: "#", alt: "iPhone 17e",    bgColor: "#F5F5F7" },
 ];
 
 export interface IHeroBannerCarouselProps {

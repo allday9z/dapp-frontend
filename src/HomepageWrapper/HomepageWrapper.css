@@ -126,6 +126,13 @@
   gap: 1rem;
   flex: 1 1 37.625rem;
 }
+
+@media (max-width: 768px) {
+  .homepage-device-desktop .hp-bento__col {
+  max-width: 100%;
+  }
+}
+
 .homepage-device-desktop .bento-box-tile-instance2 {
   flex-shrink: 0 !important;
   width: 100% !important;

@@ -30,6 +30,30 @@
   position: relative;
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .bento-box-tile-device-desktop-small-lob-apple-watch-band {
+    flex-direction: column;
+    height: auto;
+    padding: 16px;
+  }
+  
+  .bento-box-tile-device-desktop-small-lob-apple-watch-band .frame-487 {
+    order: 1;
+    width: 100%;
+  }
+
+  .bento-box-tile-device-desktop-small-lob-apple-watch-band .image-area {
+    order: 2;
+    height: auto; 
+  }
+
+  .bento-box-tile-device-desktop-small-lob-apple-watch-band .image-120 {
+    width: 108px;
+    height: 108px;
+  }
+}
+
 .bento-box-tile-device-desktop-small-lob-apple-watch-band .frame-487 {
   display: flex;
   flex-direction: column;
@@ -70,16 +94,6 @@
   flex-shrink: 0;
   position: relative;
 }
-.bento-box-tile-device-desktop-small-lob-apple-watch-band .new-badge {
-  display: flex;
-  flex-direction: row;
-  gap: 0rem;
-  align-items: center;
-  justify-content: center;
-  align-self: stretch;
-  flex-shrink: 0;
-  position: relative;
-}
 .bento-box-tile-device-desktop-small-lob-apple-watch-band .new {
   color: #bf4800;
   text-align: center;
@@ -99,8 +113,7 @@
   flex-shrink: 0;
   position: relative;
 }
-.bento-box-tile-device-desktop-small-lob-apple-watch-band
-  .apple-watch-ocean-band {
+.bento-box-tile-device-desktop-small-lob-apple-watch-band .apple-watch-ocean-band {
   color: var(--color-tokens-accent-1, #121212);
   text-align: center;
   font-family: "SfProText-Semibold", sans-serif;
@@ -124,15 +137,10 @@
   flex-shrink: 0;
   position: relative;
 }
-.bento-box-tile-device-desktop-small-lob-apple-watch-band
-  .a-gift-fit-for-dad-from-49 {
+.bento-box-tile-device-desktop-small-lob-apple-watch-band .a-gift-fit-for-dad-from-49 {
   color: var(--text-color-default-text, #121212);
   text-align: center;
-  font-family: var(
-    --body-body-s-regular-font-family,
-    "SfProText-Regular",
-    sans-serif
-  );
+  font-family: var(--body-body-s-regular-font-family, "SfProText-Regular", sans-serif);
   font-size: var(--body-body-s-regular-font-size, 0.875rem);
   line-height: 1.3rem;
   font-weight: var(--body-body-s-regular-font-weight, 400);

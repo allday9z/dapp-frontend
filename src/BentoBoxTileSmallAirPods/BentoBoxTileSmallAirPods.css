@@ -55,7 +55,7 @@
   .bento-box-tile-device-desktop-small-lob-air-pods .image-103 {
     width: 108px;
     height: 108px;
-    margin: 16px 0 8px;
+    margin-top: 10px
   }
 }
 
@@ -169,6 +169,6 @@
 
 .bento-box-tile-device-desktop-small-lob-air-pods .cta-instance {
   flex-shrink: 0 !important;
-  width: 10.1875rem !important;
-  height: 3.25rem !important;
+  width: 7.6875rem !important;
+  height: 3.125rem !important;
 }

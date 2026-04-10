@@ -260,3 +260,105 @@
     height: 15.938rem !important;
   }
 }
+
+/* ── Mac Family Grid (view-all-mac) ──────────────────────────────────────── */
+.lob-page__family-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  padding: 2rem 0 3rem;
+}
+
+.lob-page__family-card {
+  display: flex;
+  flex-direction: column;
+  border: 0.5px solid #d2d2d7;
+  border-radius: 1rem;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s;
+  background: #fff;
+}
+.lob-page__family-card:hover {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.10);
+}
+
+.lob-page__family-img-wrap {
+  background: #f5f5f7;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.lob-page__family-img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+.lob-page__family-card:hover .lob-page__family-img {
+  transform: scale(1.04);
+}
+
+.lob-page__family-body {
+  padding: 1rem 1.25rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.lob-page__family-badge {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.lob-page__family-name {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.lob-page__family-desc {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #6e6e73;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.lob-page__family-price {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #1d1d1f;
+  margin: 0.125rem 0 0;
+}
+
+.lob-page__family-cta {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0071e3;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .lob-page__family-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .lob-page__family-name { font-size: 1.25rem; }
+}
+
+@media (max-width: 480px) {
+  .lob-page__family-grid {
+    grid-template-columns: 1fr;
+  }
+}

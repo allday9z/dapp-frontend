@@ -117,14 +117,16 @@ function Accordion({
   label,
   children,
   defaultOpen = false,
+  service = false,
 }: {
   label: string;
   children: React.ReactNode;
   defaultOpen?: boolean;
+  service?: boolean;
 }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="pdp__accordion">
+    <div className={`pdp__accordion${service ? " pdp__service" : ""}`}>
       <button
         className="pdp__accordion-toggle"
         onClick={() => setOpen((v) => !v)}
@@ -387,19 +389,19 @@ export const PDPPage = () => {
 
           {/* Service accordions — inside panel */}
           <div className="pdp__service-accordions">
-            <Accordion label="บริการทางเทคนิค">
+            <Accordion label="บริการทางเทคนิค" service>
               <p>
                 iStudio มีทีม Apple Certified Technician ให้บริการ One-to-One
                 Setup, Data Migration และ Genius Bar ทุกสาขา
               </p>
             </Accordion>
-            <Accordion label="ผ่อนชำระ">
+            <Accordion label="ผ่อนชำระ" service>
               <p>
                 ผ่อน 0% นานสูงสุด 10 เดือนผ่านบัตรเครดิตที่ร่วมรายการ
                 หรือผ่อนไม่ใช้บัตรผ่านโครงการ U•Joy
               </p>
             </Accordion>
-            <Accordion label="Shipping options">
+            <Accordion label="Shipping options" service>
               <p>
                 จัดส่งฟรีทั่วประเทศภายใน 1–3 วันทำการ
                 รับที่ร้านได้ทันทีหากสินค้ามีในสต็อก

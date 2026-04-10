@@ -7,21 +7,19 @@ import { PDPPage } from './pages/PDPPage/PDPPage';
 
 /**
  * Minimal pathname-based router (no extra dependencies).
- * /                          → HomePage  (Figma-accurate, full layout)
- * /pages/view-all-mac        → LOBPage   (MacBook family view — hero + lineup)
- * /pages/view-all-mac-air    → PLPPage   (MacBook Air — PLP category listing)
- * /collections/macbook-air   → LOBPage   (MacBook Air LOB — sub-model rows)
- * /collections/macbook-pro   → LOBPage   (MacBook Pro LOB — sub-model rows)
- * /products/macbook-pro-14   → PDPPage   (MacBook Pro 14" — product detail)
+ * /                          → HomePage   (หน้าแรก)
+ * /pages/view-all-mac        → LOBPage    (Mac family overview — hero + lineup)
+ * /collections/macbook-air   → PLPPage    (MacBook Air — รายการสินค้า PLP)
+ * /collections/macbook-pro   → PLPPage    (MacBook Pro — รายการสินค้า PLP)
+ * /products/:handle          → PDPPage    (หน้าสินค้า PDP)
  *
  * Swap this for react-router <Routes> whenever ready.
  */
 function currentPage() {
   const path = window.location.pathname;
   if (path === '/pages/view-all-mac') return <LOBPage collection="macbook" />;
-  if (path === '/pages/view-all-mac-air') return <PLPPage />;
-  if (path === '/collections/macbook-air') return <LOBPage collection="macbook-air" />;
-  if (path === '/collections/macbook-pro') return <LOBPage collection="macbook-pro" />;
+  if (path === '/collections/macbook-air') return <PLPPage collection="macbook-air" />;
+  if (path === '/collections/macbook-pro') return <PLPPage collection="macbook-pro" />;
   if (path === '/products/macbook-pro-14') return <PDPPage />;
   return <HomePage />;
 }

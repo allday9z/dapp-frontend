@@ -1,0 +1,60 @@
+[
+  {
+    "id": "macbook-air",
+    "name": "MacBook Air",
+    "priceLabel": "เริ่มต้น ฿36,900",
+    "description": "บางเบา ทรงพลัง ด้วยชิป M4",
+    "badge": "ใหม่",
+    "badgeColor": "#bf4800",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/MacBook_Air_15_in_M3_Midnight_PDP_Image_Position_1__GBEN_c3530994-a62e-42f7-982a-cd2198dc05f8.webp?inline=true",
+    "imageAlt": "MacBook Air",
+    "href": "/collections/macbook-air"
+  },
+  {
+    "id": "macbook-pro",
+    "name": "MacBook Pro",
+    "priceLabel": "เริ่มต้น ฿51,900",
+    "description": "พลัง Pro ระดับถัดไปด้วยชิป M5",
+    "badge": "ใหม่",
+    "badgeColor": "#bf4800",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/MacBook_Pro_16_in_M3_Pro_Max_Silver_PDP_Image_Position_1__GBEN_5edfe8f6-6f88-43b7-8493-fb1471109ead.webp?inline=true",
+    "imageAlt": "MacBook Pro",
+    "href": "/collections/macbook-pro"
+  },
+  {
+    "id": "mac-mini",
+    "name": "Mac mini",
+    "priceLabel": "เริ่มต้น ฿22,900",
+    "description": "พื้นที่เล็ก พลังงานมหาศาล",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_Mini_PDP_Image_Position_1__en-US.webp?inline=true",
+    "imageAlt": "Mac mini",
+    "href": "/collections/mac-mini"
+  },
+  {
+    "id": "imac",
+    "name": "iMac",
+    "priceLabel": "เริ่มต้น ฿46,900",
+    "description": "All-in-one ที่ดีที่สุดเท่าที่เคยมีมา",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iMac_24_in_Blue_PDP_Image_Position_1__GBEN.webp?inline=true",
+    "imageAlt": "iMac",
+    "href": "/collections/imac"
+  },
+  {
+    "id": "mac-studio",
+    "name": "Mac Studio",
+    "priceLabel": "เริ่มต้น ฿74,900",
+    "description": "สร้างสรรค์งานระดับโปร ไม่มีข้อจำกัด",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_Studio_PDP_Image_Position_1__en-US.webp?inline=true",
+    "imageAlt": "Mac Studio",
+    "href": "/collections/mac-studio"
+  },
+  {
+    "id": "mac-pro",
+    "name": "Mac Pro",
+    "priceLabel": "เริ่มต้น ฿299,900",
+    "description": "พลังงานสูงสุดสำหรับผู้เชี่ยวชาญ",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_Pro_PDP_Image_Position_1__en-US.webp?inline=true",
+    "imageAlt": "Mac Pro",
+    "href": "/collections/mac-pro"
+  }
+]

@@ -46,3 +46,10 @@
     padding: 0 1.25rem;
   }
 }
+
+.plp-page__empty {
+  padding: 3rem 0;
+  text-align: center;
+  color: #6e6e73;
+  font-size: 0.9375rem;
+}

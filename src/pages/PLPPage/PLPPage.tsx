@@ -1,36 +1,21 @@
 import "./PLPPage.css";
 import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
-import macbookData from "../../data/products/macbook.json";
 import type { PLPProduct } from "../../PLPProductRow/PLPProductRow";
+import collectionsData from "../../data/collections.json";
+import macbookData from "../../data/products/macbook.json";
 
-type PLPCollection =
-  | "macbook-air"
-  | "macbook-pro"
-  | "macbook-neo"
-  | "mac-studio"
-  | "imac"
-  | "mac-mini"
-  | "studio-display"
-  | "mac-accessories";
-
-const collectionLabels: Record<PLPCollection, string> = {
-  "macbook-air": "MacBook Air",
-  "macbook-pro": "MacBook Pro",
-  "macbook-neo": "MacBook Neo",
-  "mac-studio": "Mac Studio",
-  "imac": "iMac",
-  "mac-mini": "Mac mini",
-  "studio-display": "Studio Display",
-  "mac-accessories": "Mac Accessories",
+// เพิ่ม dataFile ใหม่ตรงนี้เมื่อมี category เพิ่ม
+const DATA_FILES: Record<string, PLPProduct[]> = {
+  "macbook.json": macbookData as PLPProduct[],
 };
 
 interface PLPPageProps {
-  collection?: PLPCollection;
+  collection?: string;
 }
 
 export const PLPPage = ({ collection = "macbook-air" }: PLPPageProps) => {
-  const heading = collectionLabels[collection] ?? "Mac";
-  const products = (macbookData as PLPProduct[]).filter(
+  const config = collectionsData.collections.find((c) => c.slug === collection);
+  const products = (DATA_FILES[config?.dataFile ?? "macbook.json"] ?? []).filter(
     (p) => (p as PLPProduct & { collection?: string }).collection === collection
   );
 
@@ -38,13 +23,10 @@ export const PLPPage = ({ collection = "macbook-air" }: PLPPageProps) => {
     <div className="plp-page">
       <div className="plp-page__inner">
         <div className="plp-page__heading-row">
-          <h1 className="plp-page__heading">{heading}</h1>
+          <h1 className="plp-page__heading">{config?.name ?? collection}</h1>
         </div>
-
         {products.length > 0 ? (
-          products.map((product) => (
-            <PLPProductRow key={product.id} product={product} variant="plp" />
-          ))
+          products.map((p) => <PLPProductRow key={p.id} product={p} variant="plp" />)
         ) : (
           <p className="plp-page__empty">ยังไม่มีสินค้าในหมวดหมู่นี้</p>
         )}

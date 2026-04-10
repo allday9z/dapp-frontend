@@ -17,7 +17,7 @@ import { PDPPage } from './pages/PDPPage/PDPPage';
  */
 function currentPage() {
   const path = window.location.pathname;
-  if (path === '/pages/view-all-mac') return <LOBPage collection="macbook" />;
+  if (path === '/pages/view-all-mac') return <LOBPage />;
   if (path === '/collections/macbook-air') return <PLPPage collection="macbook-air" />;
   if (path === '/collections/macbook-pro') return <PLPPage collection="macbook-pro" />;
   if (path === '/products/macbook-pro-14') return <PDPPage />;

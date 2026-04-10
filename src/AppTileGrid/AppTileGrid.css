@@ -36,7 +36,7 @@
   position: relative;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .organism-device-desktop .see-what-s-new {
     font-size: 24px;
   }

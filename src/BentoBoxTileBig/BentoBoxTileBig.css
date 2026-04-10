@@ -14,7 +14,7 @@
   position: relative;
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
   .bento-box-tile-device-desktop-big-lob-apple-watch-fathers {
   padding: 0rem;
   height: auto;
@@ -133,7 +133,7 @@
   object-fit: cover;
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
   .bento-box-tile-device-desktop-big-lob-apple-watch-fathers .image-120 {
   width: 108px;
   height: 108px;

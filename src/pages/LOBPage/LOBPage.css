@@ -226,7 +226,7 @@
   .lob-page__inner { padding: 0 1.25rem; }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .which-mac-is-right-for-you {
     height: 15.938rem !important;
   }

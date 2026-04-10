@@ -22,7 +22,7 @@
   height: 25.625rem; /* 410px */
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .banner-carousel-stage {
   height: 340px;
 }
@@ -81,7 +81,7 @@
   box-shadow: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width:767px) {
+@media (max-width:768px) {
   .banner-carousel-dots {
     height: 25px;
     width: auto;
@@ -101,7 +101,7 @@
   flex-shrink: 0;
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .banner-carousel-dot {
   height: 8px;
   width: 8px;

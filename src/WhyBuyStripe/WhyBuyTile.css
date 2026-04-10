@@ -50,9 +50,16 @@
   font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
   font-size: 1.5rem;
   line-height: 1.75rem;
-  letter-spacing: 0.02em;
   font-weight: 600;
   align-self: stretch;
+}
+
+@media (max-width: 768px) {
+  .why-buy-tile__copy {
+          font-size: 20px;
+        line-height: 28px;
+        height: 112px;
+}
 }
 
 .why-buy-tile__copy-segment--accent {

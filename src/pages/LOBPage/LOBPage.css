@@ -149,6 +149,33 @@
   object-fit: cover;
 }
 
+.lob-page__category-name {
+  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}
+
+.lob-page__category-description {
+  font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  color: #555555;
+  margin: 0;
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .lob-page__categories-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+  }
+}
+
 .lob-page__banner-content {
   position: absolute;
   inset: 0;

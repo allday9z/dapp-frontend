@@ -67,8 +67,10 @@ export const LOBPage = ({ collection = "macbook-pro" }: LOBPageProps) => {
       />
       
       <HeadBanner />
+
       
       {config.showHero && (
+
         <section className="lob-page__hero" aria-labelledby="lob-hero-heading">
           <div className="lob-page__hero-copy">
             <span className="lob-page__hero-badge">{macbookHero.badge}</span>

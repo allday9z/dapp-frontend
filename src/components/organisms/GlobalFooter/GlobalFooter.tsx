@@ -17,7 +17,7 @@ const footerSections = {
     { label: 'iPhone', href: '/collections/iphone' },
     { label: 'Watch', href: '/collections/apple-watch' },
     { label: 'Music', href: '/collections/music' },
-    { label: 'TV และ บ้าน', href: '/collections/tv-home' },
+    { label: 'TV และบ้าน', href: '/collections/tv-home' },
     { label: 'อุปกรณ์เสริม', href: '/collections/accessories' },
   ],
   services: [
@@ -255,10 +255,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </a>
             <a href="#" aria-label="YouTube">
               <IconYoutube className="global-footer__social-icon" />
-            </a>
-            <a href="#" aria-label="Twitter">
-              <IconTwitter className="global-footer__social-icon" />
-            </a>
+            </a>q
           </div>
         </div>
       </div>

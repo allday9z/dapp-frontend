@@ -1,0 +1,89 @@
+{
+  "id": "macbook-pro-14-m5",
+  "name": "MacBook Pro",
+  "size": "14",
+  "badge": "ใหม่",
+  "tagline": "Just the way you want it.",
+  "sku": "MDE04TH/A",
+  "media": [
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_1__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว Space Black ด้านหน้า" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_2__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว มุมมองด้านข้าง" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_3__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว หน้าจอ" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_4__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว แป้นพิมพ์" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_5__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว พอร์ต" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_6__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว ด้านล่าง" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_7__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว ปิด" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_8__TH-TH.jpg?v=1760933723", "alt": "MacBook Pro 14 นิ้ว Touch ID" },
+    { "type": "image", "src": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_9__TH-TH.jpg?v=1760933724", "alt": "MacBook Pro 14 นิ้ว กล้อง" },
+    {
+      "type": "video",
+      "src": "https://cdn.shopify.com/videos/c/vp/02a56bb034e44f029cc984a1d574a551/02a56bb034e44f029cc984a1d574a551.HD-720p-3.0Mbps-60331798.mp4",
+      "poster": "https://cdn.shopify.com/s/files/1/0857/7921/8712/files/preview_images/02a56bb034e44f029cc984a1d574a551.thumbnail.0000000000.jpg?v=1760933622",
+      "alt": "MacBook Pro 14 นิ้ว วิดีโอ"
+    }
+  ],
+  "price": 51900,
+  "currency": "THB",
+  "monthlyPrice": 4325,
+  "monthlyTerm": 12,
+  "available": true,
+  "defaultColor": "space-black",
+  "colors": [
+    { "id": "space-black", "name": "Space Black", "hex": "#1d1d1f" },
+    { "id": "silver",      "name": "Silver",      "hex": "#e3e3e5" }
+  ],
+  "processors": [
+    { "id": "m5-10",    "label": "Apple M5",     "sublabel": "10-core CPU and 10-core GPU", "priceAdd": 0 },
+    { "id": "m5pro-14", "label": "Apple M5 Pro", "sublabel": "14-core CPU and 20-core GPU", "priceAdd": 13000 },
+    { "id": "m5max",    "label": "Apple M5 Max", "sublabel": "14-core CPU and 30-core GPU", "priceAdd": 48000 }
+  ],
+  "memory": [
+    { "id": "16gb", "label": "16GB", "priceAdd": 0 },
+    { "id": "24gb", "label": "24GB", "priceAdd": 8000 }
+  ],
+  "storage": [
+    { "id": "512gb", "label": "512GB", "priceAdd": 0 },
+    { "id": "1tb",   "label": "1TB",   "priceAdd": 8000 }
+  ],
+  "appleCarePrice": 9900,
+  "bundleItems": [
+    {
+      "id": "magic-mouse-2",
+      "name": "Magic Mouse 2",
+      "price": 1790,
+      "imageSrc": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MK2E3?wid=400&hei=400&fmt=jpeg&qlt=90"
+    },
+    {
+      "id": "magic-keyboard-usbc",
+      "name": "Magic Keyboard (USB-C)",
+      "price": 3590,
+      "imageSrc": "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MK2C3TH?wid=400&hei=400&fmt=jpeg&qlt=90"
+    }
+  ],
+  "specs": [
+    { "label": "จอภาพ",       "value": "14.2 นิ้ว Liquid Retina XDR, 3024×1964 พิกเซล, ProMotion 120Hz" },
+    { "label": "ชิป",         "value": "Apple M5 — 10-core CPU, 10-core GPU" },
+    { "label": "หน่วยความจำ", "value": "16GB Unified Memory" },
+    { "label": "ความจุ",      "value": "512GB SSD" },
+    { "label": "แบตเตอรี่",   "value": "สูงสุด 24 ชั่วโมง" },
+    { "label": "กล้อง",       "value": "12MP Center Stage Camera พร้อม Desk View" },
+    { "label": "เชื่อมต่อ",   "value": "3× Thunderbolt 5, HDMI 2.1, SD card, MagSafe 3, 3.5 mm" },
+    { "label": "Wi-Fi / BT",  "value": "Wi-Fi 6E (802.11ax), Bluetooth 5.3" },
+    { "label": "OS",          "value": "macOS Sequoia" }
+  ],
+  "description": "MacBook Pro รุ่น 14 นิ้ว พร้อมชิป M5 มาพร้อมความเร็วเจเนอเรชั่นถัดไปและ AI อันทรงพลังบนอุปกรณ์สำหรับทั้งงานส่วนตัว งานระดับมืออาชีพ และงานสร้างสรรค์ที่คุณทำทุกๆ วัน ทั้งยังมีแบตเตอรี่ที่ใช้งานได้นานสูงสุด 24 ชั่วโมง และจอภาพ Liquid Retina XDR",
+  "features": [
+    "จอ Liquid Retina XDR 14.2 นิ้ว ProMotion 120Hz ความสว่างสูงสุด 1,600 นิต",
+    "ชิป Apple M5 พร้อม Apple Intelligence",
+    "แบตเตอรี่ใช้งานสูงสุด 24 ชั่วโมง",
+    "3× Thunderbolt 5, HDMI 2.1 และ SD card slot",
+    "กล้อง 12MP Center Stage พร้อม Desk View",
+    "ลำโพง 6 ตัว พร้อม Spatial Audio และ Dolby Atmos"
+  ],
+  "inBox": [
+    "MacBook Pro",
+    "อะแดปเตอร์ USB-C Power Adapter 70W",
+    "สาย USB-C Charge Cable (2 เมตร)"
+  ],
+  "warranty": "Apple 1 Year Limited Warranty พร้อมบริการ iStudio by Synnex"
+}

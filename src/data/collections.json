@@ -1,0 +1,32 @@
+{
+  "collections": [
+    {
+      "id": "macbook-air",
+      "name": "MacBook Air",
+      "slug": "macbook-air",
+      "dataFile": "macbook.json",
+      "filter": "air"
+    },
+    {
+      "id": "macbook-pro",
+      "name": "MacBook Pro",
+      "slug": "macbook-pro",
+      "dataFile": "macbook.json",
+      "filter": "pro"
+    },
+    {
+      "id": "iphone",
+      "name": "iPhone",
+      "slug": "iphone",
+      "dataFile": "iphone.json",
+      "filter": "iphone"
+    },
+    {
+      "id": "ipad",
+      "name": "iPad",
+      "slug": "ipad",
+      "dataFile": "ipad.json",
+      "filter": "ipad"
+    }
+  ]
+}

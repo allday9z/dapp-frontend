@@ -1,233 +1,978 @@
-/* ── LOBPage ─────────────────────────────────────────────────────────────
-   Same width contract as PLPPage.
-   FamilyStripe is full-width (outside .lob-page__inner).
-──────────────────────────────────────────────────────────────────────── */
-.lob-page {
-  background: #ffffff;
-  width: 100%;
-}
+/* ── PDPPage — Mobile first ───────────────────────────────────────────────
+   New sections added: breadcrumbs, memory, tooltip, service accordions,
+   description/features, service banner, disclaimer.
 
-.lob-page__hero {
-  background: #ffffff;
-  width: min(76.25rem, 100%);
-  margin: 0 auto;
-  padding: 3rem 0 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  box-shadow: inset 0 -0.03125rem 0 0 rgba(0, 0, 0, 0.25);
-}
+   Breakpoints:
+     base         → mobile  (<768px)
+     ≥768px       → tablet
+     ≥1100px      → desktop (2-column layout)
+──────────────────────────────────────────────────────────────────────────── */
 
-.lob-page__hero-copy {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
-  width: 100%;
-}
-
-.lob-page__hero-badge {
-  color: var(--badging-new, #bf4800);
-  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.75rem;
-  line-height: 0.875rem;
-  font-weight: 600;
-}
-
-.lob-page__hero-title {
-  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 48px;
-  line-height: 48px;
-  text-align: center;
-  letter-spacing: -2px;
-  color: #000;
-  margin-top: 0;
-}
-
-.lob-page__hero-description {
-  color: #000;
-  text-align: center;
-  font-family: 'SfPro-Regular', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 1rem;
-  line-height: 1.25rem;
-  font-weight: 400;
-  margin: 0;
-}
-
-.lob-page__hero-actions {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.75rem;
-  width: 100%;
-  padding-top: 1rem;
-}
-
-.lob-page__hero-detail {
-  color: var(--color-blue, #0071e3);
-  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.lob-page__hero-buy {
-  background: var(--color-blue, #0071e3);
-  color: #ffffff;
-  border-radius: 2rem;
-  padding: 1rem 2rem;
-  min-width: 7.6875rem;
-  height: 3.125rem;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'SfPro-Semibold', 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
-  font-weight: 600;
-}
-
-.lob-page__hero-image-wrap {
-  padding: 2.25rem 2.5rem;
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-@media screen and (min-width: 768px){
-  .lob-page__hero-image {
-    height: 395px;
-    object-fit: cover;
-    max-width: 100%;
-  }
-}
-
-.lob-page__inner {
+/* ── Breadcrumbs ───────────────────────────────────────────────────────── */
+.pdp-page__breadcrumbs-wrap {
+  padding: 0.625rem 1rem 0;
   max-width: 90rem;
   margin: 0 auto;
-  padding: 0 6.875rem;
-}
-
-.lob-page__heading-row {
-  padding: 2rem 0 2rem 1rem;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  box-shadow: inset 0 -0.03125rem 0 0 rgba(125, 125, 125, 1);
-}
-
-.lob-page__heading {
-  color: #000000;
-  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
-  font-size: 2rem;
-  line-height: 2.375rem;
-  font-weight: 600;
-  margin: 0;
-}
-
-@media (max-width: 1100px) {
-  .lob-page__inner { padding: 0 3rem; }
-}
-
-.lob-page__banner {
   width: 100%;
-  position: relative;
+}
+
+.pdp-page__breadcrumbs-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.125rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pdp-page__breadcrumbs-item {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.pdp-page__breadcrumbs-link {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #6e6e73;
+  text-decoration: none;
+}
+.pdp-page__breadcrumbs-link:hover {
+  color: #0071e3;
+  text-decoration: underline;
+}
+
+.pdp-page__breadcrumbs-sep {
+  font-size: 0.75rem;
+  color: #86868b;
+  padding: 0 0.125rem;
+}
+
+.pdp-page__breadcrumbs-current {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #1d1d1f;
+}
+
+/* ── Page wrapper ──────────────────────────────────────────────────────── */
+.pdp-page {
+  background: #fff;
+  width: 100%;
+}
+
+/* ── Two-column layout shell ───────────────────────────────────────────── */
+.pdp-page__layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Product gallery ───────────────────────────────────────────────────── */
+.pdp-page__gallery {
+  width: 100%;
+  padding: 1.5rem 1rem 0.75rem;
+}
+
+.pdp-page__gallery-main {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f7;
+  border-radius: 0.75rem;
   overflow: hidden;
 }
 
-.lob-page__banner-image {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
+/* Legacy — kept for backwards-compat, use .pdp-page__gallery-slide now */
+.pdp-page__gallery-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
-.lob-page__banner-content {
+.pdp-page__gallery-thumbs {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+.pdp-page__gallery-thumbs::-webkit-scrollbar { display: none; }
+
+/* Gallery slide (image or video inside main viewer) */
+.pdp-page__gallery-slide {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: none;
+  border-radius: inherit;
+}
+.pdp-page__gallery-slide--active {
+  display: block;
+}
+
+.pdp-page__gallery-thumb {
+  flex-shrink: 0;
+  width: 3.25rem;
+  height: 3.25rem;
+  border: 1.5px solid #d2d2d7;
+  border-radius: 0.5rem;
+  background: #f5f5f7;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: border-color 0.15s;
+}
+.pdp-page__gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.pdp-page__gallery-thumb--active {
+  border-color: #0071e3;
+}
+
+/* Video thumbnail overlay */
+.pdp-page__gallery-thumb--video {
+  position: relative;
+}
+.pdp-page__gallery-play {
   position: absolute;
   inset: 0;
   display: flex;
-  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  align-items: flex-start;
-  padding: 4rem 6rem;
-  gap: 1rem;
-  color: white;
-  text-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.35);
+  font-size: 0.875rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: inherit;
+  pointer-events: none;
 }
 
-.lob-page__banner-eyebrow {
-  color: #ffffff;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+/* ── Config panel ──────────────────────────────────────────────────────── */
+.pdp-page__panel {
+  padding: 0.75rem 1rem 1.5rem;
+}
+
+/* ── Product identity ──────────────────────────────────────────────────── */
+.pdp-page__identity {
+  padding: 0.25rem 0 0.5rem;
+}
+
+.pdp-page__badge {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 0.875rem;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.pdp-page__name {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+  letter-spacing: -0.5px;
+  color: #1d1d1f;
+  margin: 0 0 0.5rem;
+}
+
+.pdp-page__price-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.pdp-page__price {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1d1d1f;
+}
+
+.pdp-page__monthly {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
   font-size: 0.8125rem;
-  font-weight: 700;
-  margin: 0;
+  color: #6e6e73;
 }
 
-.lob-page__banner-title {
-  color: #ffffff;
-  font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
-  font-size: clamp(2.5rem, 4vw, 4.5rem);
+/* ── Divider ───────────────────────────────────────────────────────────── */
+.pdp-page__divider {
+  border: none;
+  border-top: 0.5px solid #d2d2d7;
+  margin: 0.875rem 0;
+}
+
+/* ── Customize heading ─────────────────────────────────────────────────── */
+.pdp-page__customize-heading {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0 0 1rem;
+}
+
+/* ── Config section (color / processor / storage) ─────────────────────── */
+.pdp-page__config-section {
+  margin-bottom: 0.75rem;
+}
+
+.pdp-page__config-section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.625rem;
+}
+
+.pdp-page__config-label {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.pdp-page__config-value {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #6e6e73;
+}
+
+/* Color swatches */
+.pdp-page__color-row {
+  display: flex;
+  gap: 0.625rem;
+}
+
+.pdp-page__color-swatch {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  transition: box-shadow 0.15s;
+  padding: 0;
+}
+.pdp-page__color-swatch--active {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 0 3px #fff,
+    0 0 0 5px #0071e3;
+}
+
+/* Config option cards */
+.pdp-page__config-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.pdp-page__config-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  border: 1.5px solid #d2d2d7;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  background: #fff;
+  text-align: left;
+  transition: border-color 0.15s, background 0.15s;
+  width: 100%;
+}
+.pdp-page__config-card:hover {
+  border-color: #86868b;
+}
+.pdp-page__config-card--active {
+  border-color: #0071e3;
+  background: #f0f7ff;
+}
+
+.pdp-page__config-card-label {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.pdp-page__config-card-sub {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #6e6e73;
+  margin-top: 0.125rem;
+}
+
+.pdp-page__config-card-price {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #1d1d1f;
+  margin-top: 0.25rem;
+}
+
+/* ── CTA block ─────────────────────────────────────────────────────────── */
+.pdp-page__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  margin: 1rem 0;
+}
+
+.pdp-page__cta-price {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.pdp-page__btn-notify {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.9375rem 1rem;
+  border-radius: 2rem;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #0071e3;
+  background: #fff;
+  color: #0071e3;
   line-height: 1;
-  font-weight: 700;
-  margin: 0;
-  max-width: 40rem;
+  transition: background 0.15s, color 0.15s;
+}
+.pdp-page__btn-notify:hover {
+  background: #0071e3;
+  color: #fff;
 }
 
-.lob-page__banner-cta {
+.pdp-page__btn-cart,
+.pdp-page__btn-buy {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.9375rem 1rem;
+  border-radius: 2rem;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  text-decoration: none;
+  line-height: 1;
+  transition: opacity 0.15s;
+}
+.pdp-page__btn-cart:hover,
+.pdp-page__btn-buy:hover {
+  opacity: 0.85;
+}
+
+.pdp-page__btn-cart {
+  background: #0071e3;
+  color: #fff;
+}
+
+.pdp-page__btn-buy {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+/* ── Delivery info ─────────────────────────────────────────────────────── */
+.pdp-page__delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  padding: 0.875rem 0 0;
+}
+
+.pdp-page__delivery-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.pdp-page__delivery-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+  color: #1d1d1f;
+  margin-top: 0.125rem;
+}
+
+.pdp-page__delivery-label {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.pdp-page__delivery-sub {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #6e6e73;
+  margin-top: 0.125rem;
+}
+
+/* ── Frequently Bought Together ────────────────────────────────────────── */
+.pdp-page__bundle {
+  padding: 1.5rem 1rem 2rem;
+  border-top: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__bundle-title {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+.pdp-page__bundle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.pdp-page__bundle-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.875rem 0.75rem;
+  border: 1.5px solid #d2d2d7;
+  border-radius: 0.875rem;
+  background: #fff;
+  gap: 0.5rem;
+  transition: border-color 0.15s;
+}
+.pdp-page__bundle-card--selected {
+  border-color: #0071e3;
+}
+
+.pdp-page__bundle-img {
+  width: 100%;
+  aspect-ratio: 1;
+  background: #f5f5f7;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.pdp-page__bundle-img img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.pdp-page__bundle-name {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #1d1d1f;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.pdp-page__bundle-price {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #6e6e73;
+}
+
+.pdp-page__bundle-check {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #0071e3;
+  padding: 0;
+}
+
+.pdp-page__bundle-checkbox {
+  width: 1.125rem;
+  height: 1.125rem;
+  border: 1.5px solid #d2d2d7;
+  border-radius: 0.25rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem 2rem;
-  background: rgba(255, 255, 255, 0.95);
-  color: #0b3d91;
-  border-radius: 999px;
-  text-decoration: none;
-  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.pdp-page__bundle-checkbox--checked {
+  background: #0071e3;
+  border-color: #0071e3;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.pdp-page__bundle-add {
+  display: block;
+  width: 100%;
+  padding: 0.9375rem;
+  border-radius: 2rem;
+  background: #0071e3;
+  color: #fff;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
   font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s;
+}
+.pdp-page__bundle-add:hover {
+  opacity: 0.85;
 }
 
-@media (max-width: 1100px) {
-  .lob-page__inner { padding: 0 3rem; }
-  .lob-page__banner-content { padding: 3rem 2rem; }
+/* ── Config tooltip ────────────────────────────────────────────────────── */
+.pdp-page__config-tooltip {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0071e3;
+  text-decoration: none;
+}
+.pdp-page__config-tooltip:hover {
+  text-decoration: underline;
 }
 
-@media (max-width: 768px) {
-  .lob-page__banner-content {
-    padding: 2rem 1.25rem;
-    align-items: flex-start;
+/* ── Gallery dots (mobile only) ────────────────────────────────────────── */
+.pdp-page__gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.375rem;
+  margin-top: 0.75rem;
+}
+
+.pdp-page__gallery-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: #d2d2d7;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s;
+}
+.pdp-page__gallery-dot--active {
+  background: #1d1d1f;
+}
+
+/* ── Service accordions ────────────────────────────────────────────────── */
+.pdp-page__service-accordions {
+  border-top: 0.5px solid #d2d2d7;
+  margin-top: 0.5rem;
+}
+
+.pdp-page__service-accordion {
+  border-bottom: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__service-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0.875rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #1d1d1f;
+  text-align: left;
+}
+
+.pdp-page__service-content {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #6e6e73;
+  line-height: 1.5;
+  padding: 0 0 0.875rem;
+}
+
+/* ── Service banner (Arcade) ───────────────────────────────────────────── */
+.pdp-page__service-banner {
+  background: #f5f5f7;
+  border-top: 0.5px solid #d2d2d7;
+  border-bottom: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__service-banner-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+.pdp-page__service-banner-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.pdp-page__service-banner-logo-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.pdp-page__service-banner-logo-text {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1d1d1f;
+}
+
+.pdp-page__service-banner-headline {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  color: #1d1d1f;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.pdp-page__service-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.pdp-page__service-banner-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2rem;
+  background: #0071e3;
+  color: #fff;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+.pdp-page__service-banner-btn:hover { opacity: 0.85; }
+
+.pdp-page__service-banner-link {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0071e3;
+  text-decoration: none;
+}
+.pdp-page__service-banner-link:hover { text-decoration: underline; }
+
+/* ── Content body (description / features) ────────────────────────────── */
+.pdp-page__content-body {
+  padding: 0 1rem 1.25rem;
+}
+
+.pdp-page__content-text {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #1d1d1f;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.pdp-page__features-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.pdp-page__features-list li {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #1d1d1f;
+  line-height: 1.6;
+  padding: 0.25rem 0;
+}
+
+/* ── Disclaimer ────────────────────────────────────────────────────────── */
+.pdp-page__disclaimer {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #86868b;
+  padding: 1rem 1rem 1.5rem;
+  margin: 0;
+  border-top: 0.5px solid #d2d2d7;
+}
+
+/* ── Specs accordion ───────────────────────────────────────────────────── */
+.pdp-page__specs {
+  border-top: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__specs-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1.125rem 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.pdp-page__specs-chevron {
+  font-size: 1.25rem;
+  color: #6e6e73;
+  transition: transform 0.2s;
+  line-height: 1;
+}
+.pdp-page__specs-chevron--open {
+  transform: rotate(90deg);
+}
+
+.pdp-page__specs-list {
+  padding: 0 1rem 1.25rem;
+  margin: 0;
+}
+
+.pdp-page__specs-row {
+  display: flex;
+  gap: 1rem;
+  padding: 0.625rem 0;
+  border-bottom: 0.5px solid #f5f5f7;
+}
+
+.pdp-page__specs-term {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  min-width: 7rem;
+  flex-shrink: 0;
+}
+
+.pdp-page__specs-def {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #1d1d1f;
+  margin: 0;
+}
+
+/* ── In-box ────────────────────────────────────────────────────────────── */
+.pdp-page__inbox {
+  padding: 1.25rem 1rem;
+  border-top: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__inbox-title,
+.pdp-page__warranty-title {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1d1d1f;
+  margin: 0 0 0.75rem;
+}
+
+.pdp-page__inbox-list {
+  padding-left: 1.25rem;
+  margin: 0;
+}
+.pdp-page__inbox-list li {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #1d1d1f;
+  padding: 0.25rem 0;
+}
+
+/* ── Warranty ──────────────────────────────────────────────────────────── */
+.pdp-page__warranty {
+  padding: 1.25rem 1rem 2rem;
+  border-top: 0.5px solid #d2d2d7;
+}
+
+.pdp-page__warranty-text {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.875rem;
+  color: #6e6e73;
+  margin: 0;
+}
+
+/* ── Tablet (≥768px) ───────────────────────────────────────────────────── */
+@media (min-width: 768px) {
+  .pdp-page__breadcrumbs-wrap {
+    padding: 0.75rem 2rem 0;
   }
-  .lob-page__banner-title {
-    font-size: 2.25rem;
+
+  .pdp-page__gallery {
+    padding: 2rem 2rem 1rem;
   }
-  .lob-page__hero {
-    width: 100%;
-    padding-top: 1.5rem;
+
+  /* Hide mobile dots on tablet+ */
+  .pdp-page__gallery-dots {
+    display: none;
   }
-  .lob-page__hero-title {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
+
+  .pdp-page__panel {
+    padding: 0.75rem 2rem 2rem;
   }
-  .lob-page__hero-actions {
-    gap: 1rem;
+
+  .pdp-page__service-banner-inner {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.5rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .pdp-page__name {
+    font-size: 2rem;
+    line-height: 2.375rem;
+    letter-spacing: -0.5px;
+  }
+
+  /* Config cards go side-by-side on tablet */
+  .pdp-page__config-cards {
+    flex-direction: row;
     flex-wrap: wrap;
   }
-  .lob-page__hero-image {
-    width: min(29.0625rem, 100%);
-    height: auto;
+  .pdp-page__config-card {
+    flex: 1 0 calc(50% - 0.25rem);
   }
-  .lob-page__inner { padding: 0 1.25rem; }
+
+  /* Bundle 4 columns */
+  .pdp-page__bundle-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .pdp-page__bundle {
+    padding: 2rem 2rem 2.5rem;
+  }
+
+  .pdp-page__specs-toggle,
+  .pdp-page__specs-list {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .pdp-page__inbox {
+    padding: 1.5rem 2rem;
+  }
+
+  .pdp-page__warranty {
+    padding: 1.5rem 2rem 2.5rem;
+  }
 }
 
-@media (max-width: 768px) {
-  .which-mac-is-right-for-you {
-    height: 15.938rem !important;
+/* ── Desktop (≥1100px) — 2-column layout ──────────────────────────────── */
+@media (min-width: 1100px) {
+  .pdp-page__breadcrumbs-wrap {
+    padding: 1rem 6.875rem 0;
+  }
+
+  .pdp-page__layout {
+    flex-direction: row;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 2.5rem 6.875rem;
+    gap: 3.5rem;
+    align-items: flex-start;
+  }
+
+  .pdp-page__gallery {
+    flex: 0 0 53%;
+    padding: 0;
+    position: sticky;
+    top: 5.5rem; /* below sticky GlobalNav */
+  }
+
+  .pdp-page__gallery-main {
+    border-radius: 1rem;
+    aspect-ratio: 4 / 3;
+  }
+
+  .pdp-page__panel {
+    flex: 0 0 47%;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .pdp-page__name {
+    font-size: 2.25rem;
+    line-height: 2.625rem;
+  }
+
+  /* Config cards stay stacked on desktop for clarity */
+  .pdp-page__config-cards {
+    flex-direction: column;
+  }
+  .pdp-page__config-card {
+    flex: unset;
+    width: 100%;
+  }
+
+  /* Bundle + below-fold sections: constrained width */
+  .pdp-page__bundle,
+  .pdp-page__specs,
+  .pdp-page__inbox,
+  .pdp-page__warranty {
+    max-width: 90rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .pdp-page__bundle {
+    padding: 2.5rem 6.875rem 3rem;
+  }
+
+  .pdp-page__bundle-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+  }
+
+  .pdp-page__specs-toggle {
+    padding: 1.25rem 6.875rem;
+  }
+  .pdp-page__specs-list {
+    padding: 0 6.875rem 1.5rem;
+  }
+
+  .pdp-page__content-body {
+    padding: 0 6.875rem 1.5rem;
+  }
+
+  .pdp-page__service-banner-inner {
+    flex-direction: row;
+    text-align: left;
+    padding: 1.5rem 6.875rem;
+    gap: 2rem;
+  }
+
+  .pdp-page__inbox {
+    padding: 1.5rem 6.875rem;
+  }
+
+  .pdp-page__warranty {
+    padding: 1.5rem 6.875rem 2.5rem;
+  }
+
+  .pdp-page__disclaimer {
+    padding: 1rem 6.875rem 2rem;
   }
 }

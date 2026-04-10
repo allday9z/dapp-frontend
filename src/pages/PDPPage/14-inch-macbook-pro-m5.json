@@ -1,0 +1,252 @@
+{
+  "id": 9920199360792,
+  "title": "14-inch MacBook Pro: Apple M5 chip with 10-core CPU and 10-core GPU, 512GB SSD - Space Black",
+  "handle": "14-inch-macbook-pro-m5-mde04th-a",
+  "description": "MacBook Pro รุ่น 14 นิ้ว พร้อมชิป M5 มาพร้อมความเร็วเจเนอเรชั่นถัดไปและ AI อันทรงพลังบนอุปกรณ์สำหรับทั้งงานส่วนตัว งานระดับมืออาชีพ และงานสร้างสรรค์ที่คุณทำทุกๆ วัน ทั้งยังมีแบตเตอรี่ที่ใช้งานได้นานสูงสุด 24 ชั่วโมง และจอภาพ Liquid Retina XDR อีกด้วย\u003csup\u003e1\u003c\/sup\u003e",
+  "published_at": "2025-10-20T11:10:45+07:00",
+  "created_at": "2025-10-20T11:10:45+07:00",
+  "vendor": "Apple",
+  "type": "Mac",
+  "tags": [],
+  "price": 5190000,
+  "price_min": 5190000,
+  "price_max": 5190000,
+  "available": false,
+  "price_varies": false,
+  "compare_at_price": null,
+  "compare_at_price_min": 0,
+  "compare_at_price_max": 0,
+  "compare_at_price_varies": false,
+  "variants": [
+    {
+      "id": 50790814646552,
+      "title": "Default Title",
+      "option1": "Default Title",
+      "option2": null,
+      "option3": null,
+      "sku": "MDE04TH\/A",
+      "requires_shipping": true,
+      "taxable": true,
+      "featured_image": null,
+      "available": false,
+      "name": "14-inch MacBook Pro: Apple M5 chip with 10-core CPU and 10-core GPU, 512GB SSD - Space Black",
+      "public_title": null,
+      "options": ["Default Title"],
+      "price": 5190000,
+      "weight": 0,
+      "compare_at_price": null,
+      "inventory_management": "shopify",
+      "barcode": "195950489132",
+      "quantity_rule": { "min": 1, "max": null, "increment": 1 },
+      "quantity_price_breaks": [],
+      "requires_selling_plan": false,
+      "selling_plan_allocations": []
+    }
+  ],
+  "images": [
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_1__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_2__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_3__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_4__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_5__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_6__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_7__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_8__TH-TH.jpg?v=1760933723",
+    "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_9__TH-TH.jpg?v=1760933724"
+  ],
+  "featured_image": "\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_1__TH-TH.jpg?v=1760933723",
+  "options": [{ "name": "Title", "position": 1, "values": ["Default Title"] }],
+  "url": "\/products\/14-inch-macbook-pro-m5-mde04th-a",
+  "media": [
+    {
+      "alt": null,
+      "id": 42289135157528,
+      "position": 1,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_1__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_1__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135190296,
+      "position": 2,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_2__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_2__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135223064,
+      "position": 3,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_3__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_3__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135255832,
+      "position": 4,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_4__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_4__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135288600,
+      "position": 5,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_5__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_5__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135321368,
+      "position": 6,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_6__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_6__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135354136,
+      "position": 7,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_7__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_7__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135386904,
+      "position": 8,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_8__TH-TH.jpg?v=1760933723"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_8__TH-TH.jpg?v=1760933723",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289135419672,
+      "position": 9,
+      "preview_image": {
+        "aspect_ratio": 1.0,
+        "height": 800,
+        "width": 800,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_9__TH-TH.jpg?v=1760933724"
+      },
+      "aspect_ratio": 1.0,
+      "height": 800,
+      "media_type": "image",
+      "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/MacBook_Pro_14-inch_M5_Non-AI_Space_Black_PDP_Image_Position_9__TH-TH.jpg?v=1760933724",
+      "width": 800
+    },
+    {
+      "alt": null,
+      "id": 42289129226520,
+      "position": 10,
+      "preview_image": {
+        "aspect_ratio": 1.778,
+        "height": 1080,
+        "width": 1920,
+        "src": "https:\/\/cdn.shopify.com\/s\/files\/1\/0857\/7921\/8712\/files\/preview_images\/02a56bb034e44f029cc984a1d574a551.thumbnail.0000000000.jpg?v=1760933622"
+      },
+      "aspect_ratio": 1.775,
+      "duration": 47000,
+      "media_type": "video",
+      "sources": [
+        {
+          "format": "mp4",
+          "height": 480,
+          "mime_type": "video\/mp4",
+          "url": "https:\/\/cdn.shopify.com\/videos\/c\/vp\/02a56bb034e44f029cc984a1d574a551\/02a56bb034e44f029cc984a1d574a551.SD-480p-1.2Mbps-60331798.mp4",
+          "width": 852
+        },
+        {
+          "format": "mp4",
+          "height": 1080,
+          "mime_type": "video\/mp4",
+          "url": "https:\/\/cdn.shopify.com\/videos\/c\/vp\/02a56bb034e44f029cc984a1d574a551\/02a56bb034e44f029cc984a1d574a551.HD-1080p-4.8Mbps-60331798.mp4",
+          "width": 1920
+        },
+        {
+          "format": "mp4",
+          "height": 720,
+          "mime_type": "video\/mp4",
+          "url": "https:\/\/cdn.shopify.com\/videos\/c\/vp\/02a56bb034e44f029cc984a1d574a551\/02a56bb034e44f029cc984a1d574a551.HD-720p-3.0Mbps-60331798.mp4",
+          "width": 1280
+        },
+        {
+          "format": "m3u8",
+          "height": 1080,
+          "mime_type": "application\/x-mpegURL",
+          "url": "https:\/\/cdn.shopify.com\/videos\/c\/vp\/02a56bb034e44f029cc984a1d574a551\/02a56bb034e44f029cc984a1d574a551.m3u8",
+          "width": 1920
+        }
+      ]
+    }
+  ],
+  "requires_selling_plan": false,
+  "selling_plan_groups": []
+}

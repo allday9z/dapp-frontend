@@ -3,14 +3,16 @@ import { Layout } from './Layout/Layout';
 import { HomePage } from './pages/HomePage/HomePage';
 import { PLPPage } from './pages/PLPPage/PLPPage';
 import { LOBPage } from './pages/LOBPage/LOBPage';
+import { PDPPage } from './pages/PDPPage/PDPPage';
 
 /**
  * Minimal pathname-based router (no extra dependencies).
- * /                        → HomePage  (Figma-accurate, full layout)
- * /pages/view-all-mac      → LOBPage   (MacBook family view — hero + lineup)
- * /pages/view-all-mac-air  → PLPPage   (MacBook Air — PLP category listing)
- * /collections/macbook-air → LOBPage   (MacBook Air LOB — sub-model rows)
- * /collections/macbook-pro → LOBPage   (MacBook Pro LOB — sub-model rows)
+ * /                          → HomePage  (Figma-accurate, full layout)
+ * /pages/view-all-mac        → LOBPage   (MacBook family view — hero + lineup)
+ * /pages/view-all-mac-air    → PLPPage   (MacBook Air — PLP category listing)
+ * /collections/macbook-air   → LOBPage   (MacBook Air LOB — sub-model rows)
+ * /collections/macbook-pro   → LOBPage   (MacBook Pro LOB — sub-model rows)
+ * /products/macbook-pro-14   → PDPPage   (MacBook Pro 14" — product detail)
  *
  * Swap this for react-router <Routes> whenever ready.
  */
@@ -20,6 +22,7 @@ function currentPage() {
   if (path === '/pages/view-all-mac-air') return <PLPPage />;
   if (path === '/collections/macbook-air') return <LOBPage collection="macbook-air" />;
   if (path === '/collections/macbook-pro') return <LOBPage collection="macbook-pro" />;
+  if (path === '/products/macbook-pro-14') return <PDPPage />;
   return <HomePage />;
 }
 

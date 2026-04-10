@@ -35,8 +35,6 @@
   padding: 1.75rem 0 1.3rem;
 }
 
-/* ปิดไว้ก่อนเดี๋ยวกลับมาลบ */
-
 @media (max-width: 768px) {
   .global-nav {
     display: none;

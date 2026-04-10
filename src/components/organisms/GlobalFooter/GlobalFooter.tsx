@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './GlobalFooter.css';
 import { IconFacebook } from '../../../IconFacebook/IconFacebook';
 import { IconInstagram } from '../../../IconInstagram/IconInstagram';
@@ -44,103 +45,178 @@ const footerSections = {
   ],
 };
 
+const ChevronIcon = () => (
+  <svg
+    className="global-footer__toggle-icon"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <polyline points="6 9 12 15 18 9" />
+  </svg>
+);
+
 export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
+  const [openSections, setOpenSections] = useState<Record<string, boolean>>({});
+
+  const toggleSection = (section: string) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [section]: !prev[section],
+    }));
+  };
+
   return (
     <footer className={`global-footer ${className}`.trim()}>
       <div className="global-footer__content">
         <div className="global-footer__sitemap">
           {/* Shop Column */}
           <div className="global-footer__sitemap-col">
-            <h2 className="global-footer__col-title">Shop</h2>
-            <nav aria-label="Shop links">
-              <ul className="global-footer__col-links">
-                {footerSections.shop.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className="global-footer__link">
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2
+              className={`global-footer__col-title ${openSections['shop'] ? 'is-open' : ''}`}
+              onClick={() => toggleSection('shop')}
+            >
+              Shop
+              <ChevronIcon />
+            </h2>
+            <div className={`global-footer__col-content ${openSections['shop'] ? 'is-open' : ''}`}>
+              <div className="global-footer__col-content-inner">
+                <nav aria-label="Shop links">
+                  <ul className="global-footer__col-links">
+                    {footerSections.shop.map((item) => (
+                      <li key={item.label}>
+                        <a href={item.href} className="global-footer__link">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
 
           {/* Services Column */}
           <div className="global-footer__sitemap-col">
-            <h2 className="global-footer__col-title">Services</h2>
-            <nav aria-label="Services links">
-              <ul className="global-footer__col-links">
-                {footerSections.services.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className="global-footer__link">
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2
+              className={`global-footer__col-title ${openSections['services'] ? 'is-open' : ''}`}
+              onClick={() => toggleSection('services')}
+            >
+              Services
+              <ChevronIcon />
+            </h2>
+            <div className={`global-footer__col-content ${openSections['services'] ? 'is-open' : ''}`}>
+              <div className="global-footer__col-content-inner">
+                <nav aria-label="Services links">
+                  <ul className="global-footer__col-links">
+                    {footerSections.services.map((item) => (
+                      <li key={item.label}>
+                        <a href={item.href} className="global-footer__link">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
 
           {/* About Column */}
           <div className="global-footer__sitemap-col">
-            <h2 className="global-footer__col-title">About</h2>
-            <nav aria-label="About links">
-              <ul className="global-footer__col-links">
-                {footerSections.about.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className="global-footer__link">
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2
+              className={`global-footer__col-title ${openSections['about'] ? 'is-open' : ''}`}
+              onClick={() => toggleSection('about')}
+            >
+              About
+              <ChevronIcon />
+            </h2>
+            <div className={`global-footer__col-content ${openSections['about'] ? 'is-open' : ''}`}>
+              <div className="global-footer__col-content-inner">
+                <nav aria-label="About links">
+                  <ul className="global-footer__col-links">
+                    {footerSections.about.map((item) => (
+                      <li key={item.label}>
+                        <a href={item.href} className="global-footer__link">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
 
           {/* Policies Column */}
           <div className="global-footer__sitemap-col">
-            <h2 className="global-footer__col-title">Policies</h2>
-            <nav aria-label="Policies links">
-              <ul className="global-footer__col-links">
-                {footerSections.policies.map((item) => (
-                  <li key={item.label}>
-                    <a href={item.href} className="global-footer__link">
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </nav>
+            <h2
+              className={`global-footer__col-title ${openSections['policies'] ? 'is-open' : ''}`}
+              onClick={() => toggleSection('policies')}
+            >
+              Policies
+              <ChevronIcon />
+            </h2>
+            <div className={`global-footer__col-content ${openSections['policies'] ? 'is-open' : ''}`}>
+              <div className="global-footer__col-content-inner">
+                <nav aria-label="Policies links">
+                  <ul className="global-footer__col-links">
+                    {footerSections.policies.map((item) => (
+                      <li key={item.label}>
+                        <a href={item.href} className="global-footer__link">
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
           </div>
 
           {/* Partner Column */}
           <div className="global-footer__sitemap-col global-footer__partner-col">
-            <h2 className="global-footer__col-title">Apple Premium Partner</h2>
-            <div className="global-footer__partner-logos">
-              <img
-                src="/apple-partner-footer/apple-partner-1.svg"
-                alt="Apple Premium Partner"
-                className="global-footer__partner-logo global-footer__partner-logo--premium"
-                onError={(e) => {
-                  e.currentTarget.src = '/group0.svg';
-                }}
-              />
-              <img
-                src="/apple-partner-footer/apple-partner-2.svg"
-                alt="Authorized Service Provider"
-                className="global-footer__partner-logo global-footer__partner-logo--service"
-                onError={(e) => {
-                  e.currentTarget.src = '/vector0.svg';
-                }}
-              />
-              <img
-                src="/apple-partner-footer/apple-partner-3.svg"
-                alt="Authorized Education Specialist"
-                className="global-footer__partner-logo global-footer__partner-logo--education"
-                onError={(e) => {
-                  e.currentTarget.src = '/vector2.svg';
-                }}
-              />
+            <h2
+              className={`global-footer__col-title ${openSections['partner'] ? 'is-open' : ''}`}
+              onClick={() => toggleSection('partner')}
+            >
+              Apple Premium Partner
+              <ChevronIcon />
+            </h2>
+            <div className={`global-footer__col-content ${openSections['partner'] ? 'is-open' : ''}`}>
+              <div className="global-footer__col-content-inner">
+                <div className="global-footer__partner-logos">
+                  <img
+                    src="/apple-partner-footer/apple-partner-1.svg"
+                    alt="Apple Premium Partner"
+                    className="global-footer__partner-logo global-footer__partner-logo--premium"
+                    onError={(e) => {
+                      e.currentTarget.src = '/group0.svg';
+                    }}
+                  />
+                  <img
+                    src="/apple-partner-footer/apple-partner-2.svg"
+                    alt="Authorized Service Provider"
+                    className="global-footer__partner-logo global-footer__partner-logo--service"
+                    onError={(e) => {
+                      e.currentTarget.src = '/vector0.svg';
+                    }}
+                  />
+                  <img
+                    src="/apple-partner-footer/apple-partner-3.svg"
+                    alt="Authorized Education Specialist"
+                    className="global-footer__partner-logo global-footer__partner-logo--education"
+                    onError={(e) => {
+                      e.currentTarget.src = '/vector2.svg';
+                    }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </div>

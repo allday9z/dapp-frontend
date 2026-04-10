@@ -40,6 +40,12 @@
   margin: 0;
 }
 
+/* Icon ซ่อนไว้บน Desktop */
+.global-footer__toggle-icon {
+  display: none;
+  transition: transform 0.3s ease;
+}
+
 .global-footer__col-links {
   list-style: none;
   margin: 0;
@@ -157,4 +163,98 @@
   width: 1.5rem;
   height: 1.5rem;
   display: block;
+}
+
+
+/* =========================================
+   Mobile View (Collapse / Accordion Logic)
+   ========================================= */
+@media (max-width: 768px) {
+  .global-footer {
+    padding: 3rem 0 2rem 0;
+  }
+
+  .global-footer__content {
+    padding: 0 1.5rem;
+  }
+
+  .global-footer__sitemap {
+    grid-template-columns: 1fr;
+    gap: 0;
+    margin-bottom: 3rem;
+  }
+
+  .global-footer__sitemap-col {
+    border-bottom: 1px solid #eaeaea;
+    padding: 1rem 0;
+    gap: 0; /* Reset gap, use padding in the inner content instead */
+  }
+
+  .global-footer__partner-col {
+    gap: 0;
+  }
+
+  /* ทำให้ Header กดได้และแสดง Icon */
+  .global-footer__col-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    width: 100%;
+    margin: 0;
+    padding: 0.25rem 0;
+  }
+
+  .global-footer__toggle-icon {
+    display: block;
+  }
+
+  .global-footer__col-title.is-open .global-footer__toggle-icon {
+    transform: rotate(180deg);
+  }
+
+  /* CSS Grid Animation สำหรับซ่อน/แสดง Content */
+  .global-footer__col-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease-in-out;
+  }
+
+  .global-footer__col-content.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .global-footer__col-content-inner {
+    overflow: hidden;
+    padding-top: 0;
+    opacity: 0;
+    transition: padding-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  /* ระยะห่างเมื่อเปิด Collapse แล้ว */
+  .global-footer__col-content.is-open .global-footer__col-content-inner {
+    padding-top: 1rem;
+    opacity: 1;
+  }
+
+  .global-footer__partner-logos {
+    padding-top: 0;
+  }
+
+  /* ปรับโซนด้านล่างให้ซ้อนกัน */
+  .global-footer__bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2.5rem;
+  }
+
+  .global-footer__subscribe {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .global-footer__social {
+    width: 100%;
+    justify-content: center;
+  }
 }

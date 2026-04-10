@@ -117,6 +117,12 @@
   margin: 0;
 }
 
+@media (max-width: 768px) {
+  .global-footer__subscribe-title {
+    text-align: center;
+  }
+}
+
 .global-footer__subscribe-input-wrapper {
   display: flex;
   align-items: center;
@@ -166,7 +172,7 @@
 
 @media (max-width: 768px) {
   .global-footer {
-    padding: 3rem 0 2rem 0;
+    padding: 1rem 0 2rem 0;
   }
 
   .global-footer__content {
@@ -176,7 +182,7 @@
   .global-footer__sitemap {
     grid-template-columns: 1fr;
     gap: 0;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .global-footer__sitemap-col {

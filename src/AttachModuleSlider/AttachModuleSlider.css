@@ -196,7 +196,7 @@
 /* New (discounted) price — bold black */
 .attach-slider__price-new {
   color: #000000;
-  font-family: var(--title-title-semibold-font-family, "SfProText-Semibold", sans-serif);
+  /* font-family: var(--title-title-semibold-font-family, "SfProText-Semibold", sans-serif); */
   font-size: 16px;
   line-height: 20px;
   font-weight: 700;

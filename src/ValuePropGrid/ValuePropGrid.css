@@ -19,6 +19,14 @@
   justify-content: space-between;
   width: 75rem;
 }
+@media (max-width: 768px) {
+  .organism-value-prop-section-device-desktop .value-props-row {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 32px;
+  }
+}
 .organism-value-prop-section-device-desktop .line-24 {
   margin-top: -0.0625rem;
   border-style: solid;

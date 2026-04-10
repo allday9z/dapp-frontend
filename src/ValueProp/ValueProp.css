@@ -12,6 +12,12 @@
   text-align: center;
 }
 
+@media (max-width: 768px) {
+  .value-prop {
+  width: 70%;
+}
+}
+
 .value-prop__icon {
   display: flex;
   align-items: center;
@@ -54,6 +60,12 @@
   height: 3.75rem;
 }
 
+@media (max-width:768px) {
+  .value-prop__title {
+    height: auto;
+  }
+}
+
 .value-prop__body {
   font-family: var(
     --body-body-s-regular-font-family,
@@ -61,7 +73,7 @@
     sans-serif
   );
   height: 3.1875rem;
-  margin-top: -.5rem !important;
+  margin-top: -.5rem;
   letter-spacing: .6px;
   color: #121212;
   -webkit-line-clamp: 3;
@@ -69,6 +81,12 @@
   font-size: .875rem;
   font-weight: 400;
   line-height: normal;
+}
+
+@media (max-width:768px) {
+  .value-prop__body {
+    margin-top: auto;
+  }
 }
 
 .value-prop__cta {

@@ -12,6 +12,12 @@
   display: flex;
 }
 
+@media (max-width: 768px) {
+  .app-tile {
+  width: 15.5rem;
+}
+}
+
 .app-tile__card {
   width: 100%;
   flex: 1;

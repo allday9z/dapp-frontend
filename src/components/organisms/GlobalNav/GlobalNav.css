@@ -35,6 +35,14 @@
   padding: 1.75rem 0 1.3rem;
 }
 
+/* ปิดไว้ก่อนเดี๋ยวกลับมาลบ */
+
+@media (max-width: 768px) {
+  .global-nav {
+    display: none;
+  }
+}
+
 /* Hidden state — slides up out of viewport */
 .global-nav--hidden {
   transform: translateY(-100%);

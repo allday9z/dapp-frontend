@@ -20,6 +20,12 @@
   flex-shrink: 0;
 }
 
+@media (max-width: 768px) {
+  .why-buy-tile {
+    width: 15.5rem;
+  }
+}
+
 .why-buy-tile__content {
   display: flex;
   flex-direction: column;

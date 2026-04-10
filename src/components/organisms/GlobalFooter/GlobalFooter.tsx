@@ -75,7 +75,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
     <footer className={`global-footer ${className}`.trim()}>
       <div className="global-footer__content">
         <div className="global-footer__sitemap">
-          {/* Shop Column */}
           <div className="global-footer__sitemap-col">
             <h2
               className={`global-footer__col-title ${openSections['shop'] ? 'is-open' : ''}`}
@@ -101,7 +100,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </div>
           </div>
 
-          {/* Services Column */}
           <div className="global-footer__sitemap-col">
             <h2
               className={`global-footer__col-title ${openSections['services'] ? 'is-open' : ''}`}
@@ -127,7 +125,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </div>
           </div>
 
-          {/* About Column */}
           <div className="global-footer__sitemap-col">
             <h2
               className={`global-footer__col-title ${openSections['about'] ? 'is-open' : ''}`}
@@ -153,7 +150,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </div>
           </div>
 
-          {/* Policies Column */}
           <div className="global-footer__sitemap-col">
             <h2
               className={`global-footer__col-title ${openSections['policies'] ? 'is-open' : ''}`}
@@ -179,7 +175,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </div>
           </div>
 
-          {/* Partner Column */}
           <div className="global-footer__sitemap-col global-footer__partner-col">
             <h2
               className={`global-footer__col-title ${openSections['partner'] ? 'is-open' : ''}`}
@@ -221,7 +216,6 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
           </div>
         </div>
 
-        {/* Bottom Row */}
         <div className="global-footer__bottom">
           <div className="global-footer__subscribe">
             <h3 className="global-footer__subscribe-title">รับจดหมายข่าวสารจากเรา</h3>

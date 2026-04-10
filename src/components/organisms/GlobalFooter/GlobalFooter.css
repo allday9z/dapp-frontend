@@ -40,7 +40,6 @@
   margin: 0;
 }
 
-/* Icon ซ่อนไว้บน Desktop */
 .global-footer__toggle-icon {
   display: none;
   transition: transform 0.3s ease;
@@ -165,10 +164,6 @@
   display: block;
 }
 
-
-/* =========================================
-   Mobile View (Collapse / Accordion Logic)
-   ========================================= */
 @media (max-width: 768px) {
   .global-footer {
     padding: 3rem 0 2rem 0;
@@ -187,14 +182,14 @@
   .global-footer__sitemap-col {
     border-bottom: 1px solid #eaeaea;
     padding: 1rem 0;
-    gap: 0; /* Reset gap, use padding in the inner content instead */
+    gap: 0;
   }
 
   .global-footer__partner-col {
     gap: 0;
+    border-bottom: none;
   }
 
-  /* ทำให้ Header กดได้และแสดง Icon */
   .global-footer__col-title {
     display: flex;
     justify-content: space-between;
@@ -213,7 +208,6 @@
     transform: rotate(180deg);
   }
 
-  /* CSS Grid Animation สำหรับซ่อน/แสดง Content */
   .global-footer__col-content {
     display: grid;
     grid-template-rows: 0fr;
@@ -231,7 +225,6 @@
     transition: padding-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
 
-  /* ระยะห่างเมื่อเปิด Collapse แล้ว */
   .global-footer__col-content.is-open .global-footer__col-content-inner {
     padding-top: 1rem;
     opacity: 1;
@@ -241,7 +234,23 @@
     padding-top: 0;
   }
 
-  /* ปรับโซนด้านล่างให้ซ้อนกัน */
+  .global-footer__partner-col .global-footer__col-title {
+    cursor: default;
+  }
+
+  .global-footer__partner-col .global-footer__toggle-icon {
+    display: none;
+  }
+
+  .global-footer__partner-col .global-footer__col-content {
+    grid-template-rows: 1fr;
+  }
+
+  .global-footer__partner-col .global-footer__col-content-inner {
+    opacity: 1;
+    padding-top: 1rem;
+  }
+
   .global-footer__bottom {
     flex-direction: column;
     align-items: flex-start;

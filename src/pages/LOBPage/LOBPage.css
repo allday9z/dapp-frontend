@@ -115,7 +115,6 @@
 }
 
 .lob-page__heading-row {
-  padding: 2rem 0 2rem 1rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -124,12 +123,15 @@
 }
 
 .lob-page__heading {
-  color: #000000;
   font-family: var(--headline-headline-l-font-family, "SfProDisplay-Semibold", sans-serif);
-  font-size: 2rem;
-  line-height: 2.375rem;
+  margin: 49px 0;
+  font-family: var(--font-body-family);
+  font-style: normal;
   font-weight: 600;
-  margin: 0;
+  font-size: 48px;
+  line-height: 32px;
+  letter-spacing: -.02em;
+  color: #000;
 }
 
 @media (max-width: 1100px) {

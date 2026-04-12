@@ -12,10 +12,58 @@ interface GlobalNavProps {
   className?: string;
 }
 
+type BreakpointName = 'mobile' | 'tablet' | 'desktop';
+
+type Breakpoints = {
+  mobile: boolean;
+  tablet: boolean;
+  desktop: boolean;
+}
+
 type NavItem = {
   label: string;
   href: string;
   items?: { label: string; href: string }[];
+};
+
+type NavStack = {
+  view: 'root' | 'submenu';
+  label?: string;
+  items?: { label: string; href: string }[];
+};
+
+/**
+ * Hook to detect current breakpoint
+ * Mobile: < 750px
+ * Tablet: 750px - 1023px
+ * Desktop: >= 1024px
+ */
+const useBreakpoint = (): Breakpoints => {
+  const [breakpoints, setBreakpoints] = useState<Breakpoints>({
+    mobile: true,
+    tablet: false,
+    desktop: false,
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setBreakpoints({
+        mobile: width < 750,
+        tablet: width >= 750 && width < 1024,
+        desktop: width >= 1024,
+      });
+    };
+
+    // Initial check
+    handleResize();
+
+    // Listen for resize
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return breakpoints;
 };
 
 function NavMenuItem({
@@ -81,6 +129,67 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
   const [currentLang, setCurrentLang] = useState('ภาษาไทย');
+  const [navStack, setNavStack] = useState<NavStack[]>([]);
+  const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  const [isClosingDrawer, setIsClosingDrawer] = useState(false);
+
+  // ── Breakpoint detection ──────────────────────────────────────────────────
+  const breakpoints = useBreakpoint();
+  const isMobile = breakpoints.mobile;
+  const isTablet = breakpoints.tablet;
+  const isDesktop = breakpoints.desktop;
+
+  const mobileDrawerOpen = navStack.length > 0;
+  const currentView = navStack[navStack.length - 1];
+
+  const openSubmenu = (label: string, items?: { label: string; href: string }[]) => {
+    setNavStack([...navStack, { view: 'submenu', label, items }]);
+  };
+
+  const goBack = () => {
+    setIsAnimatingOut(true);
+    setTimeout(() => {
+      setNavStack(navStack.slice(0, -1));
+      setIsAnimatingOut(false);
+    }, 350);
+  };
+
+  const closeDrawer = () => {
+    if (isClosingDrawer) return;
+    setIsClosingDrawer(true);
+    setTimeout(() => {
+      setNavStack([]);
+      setIsClosingDrawer(false);
+    }, 350);
+  };
+
+  const closeDrawerImmediate = () => {
+    setNavStack([]);
+    setIsClosingDrawer(false);
+  };
+
+  // ── Close mobile drawer when resizing to desktop ───────────────────────────
+  useEffect(() => {
+    if (!isMobile && mobileDrawerOpen) {
+      closeDrawerImmediate();
+    }
+  }, [isMobile, mobileDrawerOpen]);
+
+  // ── Lock/unlock body scroll when mobile drawer opens/closes ────────────────
+  useEffect(() => {
+    if (isMobile && mobileDrawerOpen) {
+      document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    }
+
+    return () => {
+      document.body.style.overflow = 'auto';
+      document.documentElement.style.overflow = 'auto';
+    };
+  }, [isMobile, mobileDrawerOpen]);
 
   // ── Smart sticky: hide on scroll-down, show on scroll-up ──────────────────
   useEffect(() => {
@@ -138,10 +247,177 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
   return (
     <div
       ref={navRef}
-      className={`global-nav${isHidden ? ' global-nav--hidden' : ''} ${className}`.trim()}
+      className={`global-nav${isHidden ? ' global-nav--hidden' : ''} ${isMobile ? 'global-nav--mobile' : ''} ${isTablet ? 'global-nav--tablet' : ''} ${isDesktop ? 'global-nav--desktop' : ''} ${className}`.trim()}
       role="navigation"
       aria-label="เมนูหลัก"
     >
+      {/* ── MOBILE BACKDROP ────────────────────────────────────────────────────── */}
+      {isMobile && mobileDrawerOpen && (
+        <div 
+          className="global-nav__mobile-backdrop"
+          onClick={closeDrawer}
+          aria-hidden="true"
+        />
+      )}
+
+      {/* ── MOBILE DRAWER ──────────────────────────────────────────────────────── */}
+      {isMobile && (
+        <div className="global-nav__mobile-header">
+          <button
+            type="button"
+            className="global-nav__hamburger"
+            aria-label={mobileDrawerOpen ? 'ปิดเมนู' : 'เปิดเมนู'}
+            aria-expanded={mobileDrawerOpen}
+            onClick={() => (mobileDrawerOpen ? closeDrawer() : setNavStack([{ view: 'root' }]))}
+          >
+            {mobileDrawerOpen ? (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : (
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </button>
+          <div className="global-nav__mobile-logos">
+            <LogoWipApp className="global-nav__logo-wip" />
+          </div>
+          <div className="global-nav__mobile-right-icons">
+            <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">
+              <svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true">
+                <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
+              </svg>
+            </a>
+            <BagCart className="global-nav__bag" />
+          </div>
+        </div>
+      )}
+
+      {/* ── MOBILE MENU DRAWER ────────────────────────────────────────────────── */}
+      {isMobile && (mobileDrawerOpen || isClosingDrawer) && (
+        <div className={`global-nav__mobile-drawer${isClosingDrawer ? ' closing' : ''}`}>
+          {/* ---- ROOT VIEW — always visible, submenu overlays on top ---- */}
+          <div className="global-nav__mobile-drawer-view global-nav__mobile-drawer-view--root">
+              <div className="global-nav__mobile-search-container">
+                <SearchInput className="global-nav__search" />
+              </div>
+              <nav className="global-nav__mobile-menu">
+                <ul>
+                  {navMenu.primary.map((item) => (
+                    <li key={item.label}>
+                      <button
+                        className="global-nav__mobile-menu-item"
+                        onClick={() => openSubmenu(item.label, item.items)}
+                      >
+                        {item.label}
+                        <svg className="global-nav__icon-right" width="6" height="11" viewBox="0 0 6 11" fill="none" aria-hidden="true">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M0.838357 10.3233L0 9.48493L4.32329 5.16164L0 0.838358L0.838357 0L6 5.16164L0.838357 10.3233Z" fill="currentColor"/>
+                        </svg>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              {/* ── Secondary menu (สาขา / การศึกษา / ข้อเสนอ) ── */}
+              <ul className="global-nav__mobile-menu-secondary">
+                {navMenu.secondary.map((item) => (
+                  <li key={item.label}>
+                    {item.items && item.items.length > 0 ? (
+                      <button
+                        className="global-nav__mobile-menu-item"
+                        onClick={() => openSubmenu(item.label, item.items)}
+                      >
+                        {item.label}
+                        <svg className="global-nav__icon-right" width="6" height="11" viewBox="0 0 6 11" fill="none" aria-hidden="true">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M0.838357 10.3233L0 9.48493L4.32329 5.16164L0 0.838358L0.838357 0L6 5.16164L0.838357 10.3233Z" fill="currentColor"/>
+                        </svg>
+                      </button>
+                    ) : (
+                      <a href={item.href} className="global-nav__mobile-menu-item global-nav__mobile-menu-link">
+                        {item.label}
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            {/* ── Utility links: language + login ── */}
+            <div className="global-nav__mobile-utility">
+              <div className="global-nav__mobile-lang">
+                <div className={`disclosure${langOpen ? ' is-open' : ''}`}>
+                  <button
+                    type="button"
+                    className="global-nav__mobile-lang-btn"
+                    aria-expanded={langOpen}
+                    onClick={() => setLangOpen(prev => !prev)}
+                  >
+                    <span>{currentLang}</span>
+                    <svg aria-hidden="true" focusable="false" className="icon-caret" viewBox="0 0 10 6" width="10" height="6">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
+                    </svg>
+                  </button>
+                  {langOpen && (
+                    <ul className="global-nav__mobile-lang-list">
+                      {LANGS.map((lang) => (
+                        <li key={lang.code}>
+                          <a
+                            href="#"
+                            className={`global-nav__mobile-lang-link${currentLang === lang.label ? ' is-active' : ''}`}
+                            onClick={(e) => { e.preventDefault(); setCurrentLang(lang.label); setLangOpen(false); }}
+                          >
+                            {lang.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+              </div>
+              <a href="/account/login" className="global-nav__mobile-account-link">
+                <svg aria-hidden="true" focusable="false" width="18" height="19" viewBox="0 0 18 19" fill="none">
+                  <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
+                </svg>
+                เข้าสู่ระบบ
+              </a>
+            </div>
+          </div>
+
+          {/* ---- SUBMENU VIEW (OVERLAY) ---- */}
+          {navStack.length > 1 && currentView?.view === 'submenu' && (
+            <div 
+              className={`global-nav__mobile-drawer-view global-nav__mobile-drawer-view--submenu ${isAnimatingOut ? 'exiting' : ''}`}
+            >
+              <div className="global-nav__mobile-submenu-header">
+                <button
+                  type="button"
+                  className="global-nav__mobile-back"
+                  onClick={goBack}
+                  aria-label="ย้อนกลับ"
+                >
+                  <svg className="global-nav__icon-right global-nav__icon-right--back" width="6" height="11" viewBox="0 0 6 11" fill="none" aria-hidden="true">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M0.838357 10.3233L0 9.48493L4.32329 5.16164L0 0.838358L0.838357 0L6 5.16164L0.838357 10.3233Z" fill="currentColor"/>
+                  </svg>
+                </button>
+                <span className="global-nav__mobile-submenu-title">{currentView.label}</span>
+              </div>
+              <nav className="global-nav__mobile-menu">
+                <ul>
+                  {currentView.items?.map((item) => (
+                    <li key={item.label}>
+                      <a href={item.href}>{item.label}</a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── DESKTOP/TABLET LAYOUT ─────────────────────────────────────────────── */}
+      {(isTablet || isDesktop) && (
+        <>
       {/* ── Top bar: logos / search / utilities ── */}
       <div className="global-nav__top-bar">
         <div className="global-nav__logos">
@@ -228,6 +504,8 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
           />
         ))}
       </div>
+        </>
+      )}
     </div>
   );
 };

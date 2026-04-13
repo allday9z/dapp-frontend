@@ -410,13 +410,13 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
             onClick={() => (mobileDrawerOpen ? closeDrawer() : setNavStack([{ view: 'root' }]))}
           >
             {mobileDrawerOpen ? (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-close" fill="none" viewBox="0 0 18 17" width="18" height="17">
+  <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
+</path></svg>
             ) : (
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-hamburger" fill="none" viewBox="0 0 18 16" width="18" height="16">
+  <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor">
+</path></svg>
             )}
           </button>
           <div className="global-nav__mobile-logos">
@@ -439,9 +439,9 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
         <div className={`global-nav__mobile-drawer${isClosingDrawer ? ' closing' : ''}`}>
           {/* ---- ROOT VIEW — always visible, submenu overlays on top ---- */}
           <div className="global-nav__mobile-drawer-view global-nav__mobile-drawer-view--root">
-              <div className="global-nav__mobile-search-container">
+              {/* <div className="global-nav__mobile-search-container">
                 <SearchInput className="global-nav__search" />
-              </div>
+              </div> */}
               <nav className="global-nav__mobile-menu">
                 <ul>
                   {navMenu.primary.map((item) => (
@@ -528,11 +528,15 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
             <div 
               className={`global-nav__mobile-drawer-view global-nav__mobile-drawer-view--submenu ${isAnimatingOut ? 'exiting' : ''}`}
             >
-              <div className="global-nav__mobile-submenu-header">
+              <div 
+                className="global-nav__mobile-submenu-header"
+                onClick={goBack}
+                role="button"
+                tabIndex={0}
+              >
                 <button
                   type="button"
                   className="global-nav__mobile-back"
-                  onClick={goBack}
                   aria-label="ย้อนกลับ"
                 >
                   <svg className="global-nav__icon-right global-nav__icon-right--back" width="6" height="11" viewBox="0 0 6 11" fill="none" aria-hidden="true">

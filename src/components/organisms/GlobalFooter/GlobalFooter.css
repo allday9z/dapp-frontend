@@ -186,7 +186,7 @@
   }
 
   .global-footer__sitemap-col {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: .5px solid #7D7D7D;
     padding: 1rem 0;
     gap: 0;
   }

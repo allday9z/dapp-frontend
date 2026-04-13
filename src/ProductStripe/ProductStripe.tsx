@@ -131,7 +131,7 @@ export const ProductStripe = ({
   const settings: Settings = {
     dots: showDots,
     infinite: isMobile,
-    speed: isMobile ? 300 : (isSpecialSection ? 1000 : 800),
+    speed: isMobile ? 400 : (isSpecialSection ? 1500 : 800),
     cssEase: "ease-out",
     slidesToShow: isMobile ? 1 : activeSlidesToShow,
     slidesToScroll: isMobile ? 1 : activeSlidesToScroll,

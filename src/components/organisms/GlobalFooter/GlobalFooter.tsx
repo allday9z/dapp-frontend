@@ -255,7 +255,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
             </a>
             <a href="#" aria-label="YouTube">
               <IconYoutube className="global-footer__social-icon" />
-            </a>q
+            </a>
           </div>
         </div>
       </div>

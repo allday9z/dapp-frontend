@@ -83,7 +83,7 @@
 .global-nav__mobile-logos {
   flex: 1;
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .global-nav--mobile .global-nav__mobile-drawer {
@@ -250,7 +250,7 @@
   display: flex;
   flex-direction: column;
   gap: 0;
-  padding: 0 1rem;
+  padding: 8px 24px 8px 24px;
 }
 
 .global-nav__mobile-menu ul {
@@ -262,7 +262,7 @@
 }
 
 .global-nav__mobile-menu li {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #d0d0d0;
 }
 
 .global-nav__mobile-menu details {
@@ -287,9 +287,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem 0;
-  color: #1d1d1f;
+  color: #000;
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 14px;
   font-weight: 500;
   border: none;
   background: none;
@@ -298,6 +298,7 @@
   text-align: left;
   font-family: inherit;
   transition: opacity 0.2s ease;
+  height: 48px;
 }
 
 .global-nav__mobile-menu-item:hover,
@@ -349,10 +350,10 @@
 .global-nav__mobile-menu a {
   display: block;
   padding: 0.75rem 0;
-  color: #666;
+  color: #000;
   text-decoration: none;
-  font-size: 0.8125rem;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .global-nav__mobile-menu a:active {

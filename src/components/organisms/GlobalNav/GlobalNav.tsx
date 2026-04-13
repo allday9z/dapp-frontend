@@ -8,24 +8,46 @@ import { AccountProfile } from '../../../AccountProfile/AccountProfile';
 import { BagCart } from '../../../BagCart/BagCart';
 import navMenu from '../../../data/navigation.json';
 
+/**
+ * GlobalNav Component
+ * 
+ * ─────────────────────────────────────────────────────────────────────────
+ * Features:
+ * ─────────────────────────────────────────────────────────────────────────
+ * 1. Smart Sticky Navigation: Hides on scroll-down, shows on scroll-up
+ * 2. Responsive: Mobile (hamburger), Tablet (condensed), Desktop (full menu)
+ * 3. Mobile Drawer: Overlay navigation with submenu support
+ * 4. Language Switcher: Thai/English language selection
+ * 5. Smooth Animations: Transitions for all state changes
+ * 6. Accessibility: ARIA labels and semantic HTML
+ * 
+ * ─────────────────────────────────────────────────────────────────────────
+ * Breakpoints (pixels):
+ * ─────────────────────────────────────────────────────────────────────────
+ * - Mobile:  < 750px
+ * - Tablet:  750px - 1023px
+ * - Desktop: >= 1024px
+ */
+
 interface GlobalNavProps {
   className?: string;
 }
 
-type BreakpointName = 'mobile' | 'tablet' | 'desktop';
-
+/** Breakpoint detection state */
 type Breakpoints = {
   mobile: boolean;
   tablet: boolean;
   desktop: boolean;
 }
 
+/** Single navigation menu item (may have sub-items) */
 type NavItem = {
   label: string;
   href: string;
   items?: { label: string; href: string }[];
 };
 
+/** Navigation stack for mobile drawer (tracks history for back button) */
 type NavStack = {
   view: 'root' | 'submenu';
   label?: string;
@@ -33,10 +55,17 @@ type NavStack = {
 };
 
 /**
- * Hook to detect current breakpoint
- * Mobile: < 750px
- * Tablet: 750px - 1023px
- * Desktop: >= 1024px
+ * Breakpoint Detection Hook
+ * 
+ * Continuously tracks window width and returns current breakpoint state.
+ * Uses throttling with requestAnimationFrame for performance.
+ * 
+ * Breakpoints:
+ * - Mobile:   < 750px
+ * - Tablet:   750px - 1023px
+ * - Desktop:  >= 1024px
+ * 
+ * @returns Current breakpoint state object
  */
 const useBreakpoint = (): Breakpoints => {
   const [breakpoints, setBreakpoints] = useState<Breakpoints>({
@@ -55,10 +84,10 @@ const useBreakpoint = (): Breakpoints => {
       });
     };
 
-    // Initial check
+    // Initial check on mount
     handleResize();
 
-    // Listen for resize
+    // Listen for resize events
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -66,6 +95,21 @@ const useBreakpoint = (): Breakpoints => {
   return breakpoints;
 };
 
+/**
+ * NavMenuItem Component (Desktop/Tablet only)
+ * 
+ * Renders a single navigation menu item with optional dropdown submenu.
+ * Used in desktop/tablet layouts only (mobile uses drawer instead).
+ * 
+ * Features:
+ * - Shows chevron icon for items with dropdowns
+ * - Dropdown submenu visible on click
+ * - Proper ARIA attributes for accessibility
+ * 
+ * @param item - Navigation item with label, href, and optional items
+ * @param isActive - Whether the dropdown is currently open
+ * @param onToggle - Callback to toggle dropdown state
+ */
 function NavMenuItem({
   item,
   isActive,
@@ -76,6 +120,7 @@ function NavMenuItem({
   onToggle: () => void;
 }) {
   const hasDropdown = item.items && item.items.length > 0;
+  // Generate unique ID for submenu (used for accessibility)
   const submenuId = hasDropdown
     ? `nav-submenu-${item.label.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
     : undefined;
@@ -86,6 +131,7 @@ function NavMenuItem({
         isActive ? ' is-active' : ''
       }`}
     >
+      {/* If has dropdown: render button, otherwise render link */}
       {hasDropdown ? (
         <button
           type="button"
@@ -101,6 +147,8 @@ function NavMenuItem({
           {item.label}
         </a>
       )}
+      
+      {/* Dropdown submenu (only rendered if has dropdown) */}
       {hasDropdown && (
         <ul id={submenuId} className="nav-submenu" aria-hidden={!isActive}>
           {item.items!.map((sub) => (
@@ -121,61 +169,120 @@ const LANGS = [
   { label: 'English', code: 'en' },
 ];
 
+/**
+ * Main GlobalNav Component
+ * 
+ * Renders responsive navigation bar with:
+ * - Mobile: Hamburger menu with drawer overlay
+ * - Tablet/Desktop: Horizontal menu with dropdowns
+ * - Smart sticky behavior (hides on scroll-down, shows on scroll-up)
+ * - Language switcher
+ * - Search and utilities
+ */
 export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
+  // ───────────────────────────────────────────────────────────────────────
+  // REFS (Non-state values used across renders)
+  // ───────────────────────────────────────────────────────────────────────
   const navRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
-  const ticking = useRef(false);
+  const ticking = useRef(false); // Prevents multiple scroll handler calls
+
+  // ───────────────────────────────────────────────────────────────────────
+  // STATE MANAGEMENT
+  // ───────────────────────────────────────────────────────────────────────
+  
+  /** Whether nav is hidden (due to scroll-down) */
   const [isHidden, setIsHidden] = useState(false);
+  
+  /** Currently active menu label (for desktop dropdown) */
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  
+  /** Whether language selector dropdown is open */
   const [langOpen, setLangOpen] = useState(false);
+  
+  /** Currently selected language */
   const [currentLang, setCurrentLang] = useState('ภาษาไทย');
+  
+  /** Navigation stack for mobile drawer (history of views) */
   const [navStack, setNavStack] = useState<NavStack[]>([]);
+  
+  /** Animation state: true while submenu is exiting */
   const [isAnimatingOut, setIsAnimatingOut] = useState(false);
+  
+  /** Animation state: true while drawer is closing */
   const [isClosingDrawer, setIsClosingDrawer] = useState(false);
 
-  // ── Breakpoint detection ──────────────────────────────────────────────────
+  // ───────────────────────────────────────────────────────────────────────
+  // DERIVED STATE
+  // ───────────────────────────────────────────────────────────────────────
+  
+  // Get current breakpoint
   const breakpoints = useBreakpoint();
   const isMobile = breakpoints.mobile;
   const isTablet = breakpoints.tablet;
   const isDesktop = breakpoints.desktop;
 
+  // Mobile drawer is open if we have navigation stack
   const mobileDrawerOpen = navStack.length > 0;
+  // Current view in the navigation stack
   const currentView = navStack[navStack.length - 1];
 
+  // ───────────────────────────────────────────────────────────────────────
+  // MOBILE DRAWER HANDLERS
+  // ───────────────────────────────────────────────────────────────────────
+
+  /** Push a submenu view onto the nav stack (with animation) */
   const openSubmenu = (label: string, items?: { label: string; href: string }[]) => {
     setNavStack([...navStack, { view: 'submenu', label, items }]);
   };
 
+  /** Pop current submenu with exit animation */
   const goBack = () => {
     setIsAnimatingOut(true);
     setTimeout(() => {
       setNavStack(navStack.slice(0, -1));
       setIsAnimatingOut(false);
-    }, 350);
+    }, 350); // Match CSS animation duration
   };
 
+  /** Close mobile drawer with animation */
   const closeDrawer = () => {
-    if (isClosingDrawer) return;
+    if (isClosingDrawer) return; // Prevent duplicate calls
     setIsClosingDrawer(true);
     setTimeout(() => {
       setNavStack([]);
       setIsClosingDrawer(false);
-    }, 350);
+    }, 350); // Match CSS animation duration
   };
 
+  /** Close drawer immediately (no animation - used when resizing to desktop) */
   const closeDrawerImmediate = () => {
     setNavStack([]);
     setIsClosingDrawer(false);
   };
 
-  // ── Close mobile drawer when resizing to desktop ───────────────────────────
+  // ───────────────────────────────────────────────────────────────────────
+  // EFFECTS
+  // ───────────────────────────────────────────────────────────────────────
+
+  /**
+   * Effect 1: Close mobile drawer when window resizes to desktop
+   * 
+   * Purpose: Prevent drawer from staying open after resizing to desktop
+   * Dependency: isMobile, mobileDrawerOpen
+   */
   useEffect(() => {
     if (!isMobile && mobileDrawerOpen) {
       closeDrawerImmediate();
     }
   }, [isMobile, mobileDrawerOpen]);
 
-  // ── Lock/unlock body scroll when mobile drawer opens/closes ────────────────
+  /**
+   * Effect 2: Lock/unlock body scroll when mobile drawer opens/closes
+   * 
+   * Purpose: Prevent page scrolling when drawer is open (standard mobile UX)
+   * Dependency: isMobile, mobileDrawerOpen
+   */
   useEffect(() => {
     if (isMobile && mobileDrawerOpen) {
       document.body.style.overflow = 'hidden';
@@ -191,25 +298,46 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
     };
   }, [isMobile, mobileDrawerOpen]);
 
-  // ── Smart sticky: hide on scroll-down, show on scroll-up ──────────────────
+  /**
+   * Effect 3: Smart Sticky Navigation (hide on scroll-down, show on scroll-up)
+   * 
+   * Purpose: 
+   * - Hide nav when user scrolls past nav height
+   * - Show nav immediately when scrolling back up
+   * - Always show when at top of page
+   * 
+   * Behavior:
+   * - Scroll DOWN past nav height + threshold → hide
+   * - Scroll UP → show
+   * - Scroll < nav height → always show
+   * 
+   * Performance: Uses requestAnimationFrame throttling with flag
+   * Dependency: (none - runs on mount)
+   */
   useEffect(() => {
     const SCROLL_THRESHOLD = navRef.current?.offsetHeight ?? 100;
-    const DOWN_DELTA = 6;
-    const UP_DELTA   = 4;
+    const DOWN_DELTA = 6;  // Pixels to scroll down before hiding
+    const UP_DELTA   = 4;  // Pixels to scroll up before showing
 
     const handleScroll = () => {
+      // Throttle with requestAnimationFrame
       if (ticking.current) return;
       ticking.current = true;
 
       requestAnimationFrame(() => {
         const currentY = Math.max(0, window.scrollY);
 
+        // At top of page: always show
         if (currentY < SCROLL_THRESHOLD) {
           setIsHidden(false);
-        } else if (currentY > lastScrollY.current + DOWN_DELTA) {
+        }
+        // Scrolling down: hide after threshold + delta
+        else if (currentY > lastScrollY.current + DOWN_DELTA) {
           setIsHidden(true);
-          setActiveMenu(null);
-        } else if (currentY < lastScrollY.current - UP_DELTA) {
+          setActiveMenu(null); // Close any open dropdowns
+        }
+        // Scrolling up: show immediately
+        else if (currentY < lastScrollY.current - UP_DELTA) {
           setIsHidden(false);
         }
 
@@ -222,7 +350,12 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // ── Close dropdown when clicking outside nav ───────────────────────────────
+  /**
+   * Effect 4: Close dropdown when clicking outside nav
+   * 
+   * Purpose: Dismiss open menus when user clicks elsewhere on page
+   * Dependency: (none - runs on mount)
+   */
   useEffect(() => {
     const onClickOutside = (e: MouseEvent) => {
       if (!navRef.current?.contains(e.target as Node)) {
@@ -234,13 +367,19 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
     return () => document.removeEventListener('click', onClickOutside);
   }, []);
 
+  // ───────────────────────────────────────────────────────────────────────
+  // EVENT HANDLERS (Desktop/Tablet)
+  // ───────────────────────────────────────────────────────────────────────
+
+  /** Toggle a menu dropdown (only one can be open at a time) */
   const toggleMenu = (label: string) => {
-    setLangOpen(false);
+    setLangOpen(false); // Close language selector
     setActiveMenu((prev) => (prev === label ? null : label));
   };
 
+  /** Toggle language selector dropdown */
   const toggleLang = () => {
-    setActiveMenu(null);
+    setActiveMenu(null); // Close menu dropdowns
     setLangOpen((prev) => !prev);
   };
 
@@ -281,7 +420,8 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
             )}
           </button>
           <div className="global-nav__mobile-logos">
-            <LogoWipApp className="global-nav__logo-wip" />
+              <LogoPartner className="global-nav__logo-partner"/>
+              <LogoWipApp className="global-nav__logo-wip" />
           </div>
           <div className="global-nav__mobile-right-icons">
             <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">

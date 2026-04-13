@@ -623,6 +623,13 @@
 }
 
 .global-nav__logo-partner { flex-shrink: 0 !important; }
+
+@media (max-width: 1024px) {
+  .global-nav__logo-partner {
+    margin-right: 10px;
+  }
+}
+
 .global-nav__logo-wip     { flex-shrink: 0 !important; }
 
 .global-nav__search {

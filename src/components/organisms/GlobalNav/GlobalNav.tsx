@@ -399,40 +399,59 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
         />
       )}
 
-      {/* ── MOBILE DRAWER ──────────────────────────────────────────────────────── */}
       {isMobile && (
-        <div className="global-nav__mobile-header">
-          <button
-            type="button"
-            className="global-nav__hamburger"
-            aria-label={mobileDrawerOpen ? 'ปิดเมนู' : 'เปิดเมนู'}
-            aria-expanded={mobileDrawerOpen}
-            onClick={() => (mobileDrawerOpen ? closeDrawer() : setNavStack([{ view: 'root' }]))}
-          >
-            {mobileDrawerOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 17" width="18" height="17">
-  <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
-</path></svg>
-            ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 16" width="18" height="16">
-  <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor">
-</path></svg>
-            )}
-          </button>
-          <div className="global-nav__mobile-logos">
-              <LogoPartner className="global-nav__logo-partner"/>
-              <LogoWipApp className="global-nav__logo-wip" />
-          </div>
-          <div className="global-nav__mobile-right-icons">
-            <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">
-              <svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true">
-                <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
-              </svg>
-            </a>
-            <BagCart className="global-nav__bag" />
-          </div>
+  <>
+    <div
+      className="my-store-locator my-store-locator--mobile"
+    >
+      <button className='my-store-locator-btn--mobile' type="button" aria-haspopup="dialog">
+        <div className="my-store-locator__icon">
+          <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
+            <path d="M12.7742 13.3755H3.05191C2.2285 13.3755 1.55871 12.7056 1.55871 11.8822L1.55859 5.46973H2.29228V11.8822C2.29228 12.301 2.63304 12.6417 3.0518 12.6417H12.7743C13.1931 12.6417 13.5338 12.3011 13.5338 11.8822L13.534 5.46973H14.2676V11.8822C14.2676 12.7056 13.5977 13.3755 12.7743 13.3755H12.7742Z" fill="#1D1D1F" />
+            <path d="M6.19597 6.04216C5.04487 6.04216 4.1084 5.10557 4.1084 3.95459H4.84209C4.84209 4.70103 5.44941 5.30836 6.19597 5.30836C6.94253 5.30836 7.54985 4.70103 7.54985 3.95459H8.28354C8.28354 5.10557 7.34707 6.04216 6.19597 6.04216Z" fill="#1D1D1F" />
+            <path d="M9.63738 6.04397C8.48628 6.04397 7.5498 5.10738 7.5498 3.95639V2.43213H8.28349V3.95639C8.28349 4.70284 8.89082 5.31016 9.63738 5.31016C10.3839 5.31016 10.9913 4.70284 10.9913 3.95639H11.7249C11.7249 5.10738 10.7885 6.04397 9.63738 6.04397Z" fill="#1D1D1F" />
+            <path d="M13.0793 6.04286C11.9282 6.04286 10.9917 5.10627 10.9917 3.95529V2.43102H11.7254V3.95529C11.7254 4.70173 12.3327 5.30906 13.0793 5.30906C13.8258 5.30906 14.4333 4.70173 14.4333 3.95529V2.54174L13.231 0.73392H2.60295L1.40068 2.54163V3.95517C1.40068 4.70162 2.00812 5.30894 2.75468 5.30894C3.50124 5.30894 4.10856 4.70162 4.10856 3.95517V2.43091H4.84225V3.95517C4.84225 5.10627 3.90578 6.04275 2.75468 6.04275C1.60347 6.04275 0.666992 5.10616 0.666992 3.95517V2.43091C0.666992 2.35862 0.688332 2.2879 0.728328 2.22768L2.10075 0.16379C2.16868 0.0614505 2.28342 0 2.40621 0H13.4275C13.5503 0 13.6651 0.0614477 13.733 0.16379L15.1057 2.22779C15.1458 2.28802 15.167 2.35874 15.167 2.43102V3.95529C15.167 5.10627 14.2305 6.04286 13.0793 6.04286H13.0793Z" fill="#1D1D1F" />
+            <path d="M1.0332 2.06055H14.7997V2.79435H1.0332V2.06055Z" fill="#1D1D1F" />
+            <rect x="5.4806" y="8.38246" width="4.63549" height="4.63549" rx="0.534864" stroke="black" strokeWidth="0.713153" />
+          </svg>
         </div>
-      )}
+        <p className="my-store-locator__info--mobile">เลือกสาขา</p>
+      </button>
+    </div>
+
+    <div className="global-nav__mobile-header">
+      <button
+        type="button"
+        className="global-nav__hamburger"
+        aria-label={mobileDrawerOpen ? 'ปิดเมนู' : 'เปิดเมนู'}
+        aria-expanded={mobileDrawerOpen}
+        onClick={() => (mobileDrawerOpen ? closeDrawer() : setNavStack([{ view: 'root' }]))}
+      >
+        {mobileDrawerOpen ? (
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 17" width="18" height="17">
+            <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor" />
+          </svg>
+        ) : (
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 16" width="18" height="16">
+            <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor" />
+          </svg>
+        )}
+      </button>
+      <div className="global-nav__mobile-logos">
+        <LogoPartner className="global-nav__logo-partner"/>
+        <LogoWipApp className="global-nav__logo-wip" />
+      </div>
+      <div className="global-nav__mobile-right-icons">
+        <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">
+          <svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true">
+            <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
+          </svg>
+        </a>
+        <BagCart className="global-nav__bag" />
+      </div>
+    </div>
+  </>
+)}
 
       {/* ── MOBILE MENU DRAWER ────────────────────────────────────────────────── */}
       {isMobile && (mobileDrawerOpen || isClosingDrawer) && (

@@ -176,7 +176,7 @@
   }
 
   .global-footer__content {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
 
   .global-footer__sitemap {
@@ -222,6 +222,7 @@
 
   .global-footer__col-content.is-open {
     grid-template-rows: 1fr;
+    margin-bottom: 1.25rem;
   }
 
   .global-footer__col-content-inner {

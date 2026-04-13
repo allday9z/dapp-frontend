@@ -2,17 +2,17 @@
  * GlobalNav — Smart Sticky Navigation
  *
  * Behaviour (matches Apple CX guideline + video reference):
- *   1. AnnouncementBar (sibling above) scrolls away normally — not sticky
- *   2. Nav becomes sticky at top:0 after bar exits viewport
- *   3. Scroll DOWN past nav height → nav slides UP and hides (translateY -100%)
- *   4. Scroll UP → nav slides back DOWN into view (translateY 0)
- *   5. At top of page (< navHeight px) → always visible, never hides
- *   Transition is smooth (0.28s ease) — "เลื่อนลงมาเหมือนไม่มีอะไรเกิดขึ้น"
+ * 1. AnnouncementBar (sibling above) scrolls away normally — not sticky
+ * 2. Nav becomes sticky at top:0 after bar exits viewport
+ * 3. Scroll DOWN past nav height → nav slides UP and hides (translateY -100%)
+ * 4. Scroll UP → nav slides back DOWN into view (translateY 0)
+ * 5. At top of page (< navHeight px) → always visible, never hides
+ * Transition is smooth (0.28s ease) — "เลื่อนลงมาเหมือนไม่มีอะไรเกิดขึ้น"
  *
  * Responsive Breakpoints:
- *   - Mobile: < 750px — hamburger menu drawer
- *   - Tablet: 750px - 1023px — condensed horizontal menu
- *   - Desktop: >= 1024px — full horizontal menu
+ * - Mobile: < 750px — hamburger menu drawer
+ * - Tablet: 750px - 1023px — condensed horizontal menu
+ * - Desktop: >= 1024px — full horizontal menu
  */
 
 .global-nav {
@@ -46,7 +46,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────────────────── */
-/* MOBILE LAYOUT (< 750px)                                                    */
+/* MOBILE LAYOUT (< 750px)                                                     */
 /* ─────────────────────────────────────────────────────────────────────────── */
 
 .global-nav--mobile .global-nav__mobile-header {
@@ -91,11 +91,10 @@
 }
 
 .global-nav--mobile .global-nav__mobile-drawer {
-  position: fixed;
-  top: 4.25rem;
+  position: absolute;
+  top: 100%;
   right: 0;
   left: 0;
-  bottom: 0;
   width: 100%;
   height: calc(100vh - 4.25rem);
   max-height: none;
@@ -117,7 +116,7 @@
   bottom: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 100px;
+  padding-bottom: 30vh;
 }
 
 .global-nav__mobile-drawer-view--root {
@@ -508,14 +507,42 @@
 }
 
 .global-nav__mobile-backdrop {
-  position: fixed;
-  top: 4.25rem;
+  position: absolute;
+  top: 100%;
   left: 0;
   right: 0;
-  bottom: 0;
+  height: 100vh;
   background: rgba(0, 0, 0, 0.4);
   z-index: 99;
   animation: backdropFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.my-store-locator--mobile {
+  width: 100%;
+  display: flex;
+  box-shadow: inset 0 -.5px #d2d2d7;
+  height: 48px;
+  align-items: center;
+  padding: 0 16px;
+}
+
+.my-store-locator-btn--mobile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.my-store-locator__info--mobile {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #333;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 18px;
 }
 
 @media screen and (min-width: 750px) {

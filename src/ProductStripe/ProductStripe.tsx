@@ -51,7 +51,7 @@ const CustomArrow = ({ onClick, arrowType, direction, disabled }: ArrowProps) =>
       disabled={disabled}
       type="button"
     >
-      <svg width="5" height="14" viewBox="0 0 8 14" fill="none" style={{opacity: '50%'}}>
+      <svg width="5" height="14" viewBox="0 0 8 14" fill="none" style={{ opacity: "50%" }}>
         <path
           d={direction === "left" ? "M7 1L1 7L7 13" : "M1 1L7 7L1 13"}
           stroke="#1d1d1f"
@@ -131,7 +131,7 @@ export const ProductStripe = ({
   const settings: Settings = {
     dots: showDots,
     infinite: isMobile,
-    speed: isMobile ? 300 : (isSpecialSection ? 2000 : 800),
+    speed: isMobile ? 300 : (isSpecialSection ? 1000 : 800),
     cssEase: "ease-out",
     slidesToShow: isMobile ? 1 : activeSlidesToShow,
     slidesToScroll: isMobile ? 1 : activeSlidesToScroll,
@@ -201,7 +201,7 @@ export const ProductStripe = ({
         arrowType={arrowType}
         direction="right"
         onClick={handleNext}
-        disabled={false}
+        disabled={isMobile ? false : !canGoNext}
       />
       <div className="product-stripe__viewport" style={{ overflow: "hidden" }}>
         <Slider ref={sliderRef} {...settings}>

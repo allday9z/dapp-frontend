@@ -52,11 +52,16 @@
 .global-nav--mobile .global-nav__mobile-header {
   display: flex;
   width: 100%;
+  height: 4.25rem;
+  box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 1rem;
   gap: 1rem;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: #ffffff;
+  position: relative;
+  z-index: 101;
 }
 
 .global-nav__hamburger {
@@ -83,7 +88,6 @@
 .global-nav__mobile-logos {
   flex: 1;
   display: flex;
-  /* justify-content: center; */
 }
 
 .global-nav--mobile .global-nav__mobile-drawer {
@@ -113,15 +117,14 @@
   bottom: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  padding-bottom: 100px;
 }
 
 .global-nav__mobile-drawer-view--root {
-  /* root never animates — stays in place as background */
   z-index: 0;
 }
 
 .global-nav__mobile-drawer-view--submenu {
-  /* overlays on top of root, slides in from right */
   z-index: 1;
   background: #ffffff;
   animation: slideInFromRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -208,7 +211,6 @@
 .global-nav__mobile-submenu-header {
   display: flex;
   align-items: center;
-  /* gap: 1rem; */
   padding: 1.2rem;
   margin-bottom: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -221,8 +223,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 2rem;
-  height: 2rem; */
   color: #1d1d1f;
   flex-shrink: 0;
   padding-right: 10px;
@@ -261,10 +261,9 @@
 }
 
 .global-nav__mobile-menu li {
-    width: 100%;
-    border-bottom: 1px solid #d0d0d0;
-    box-sizing: border-box;
-    padding: 0px 24px 0px 24px;
+  width: 100%;
+  border-bottom: 1px solid #d0d0d0;
+  box-sizing: border-box;
 }
 
 .global-nav__mobile-menu details {
@@ -288,7 +287,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem 24px;
   color: #000;
   text-decoration: none;
   font-size: 14px;
@@ -350,7 +349,6 @@
 
 .global-nav__mobile-menu a {
   display: block;
-  /* padding: 0.75rem 0; */
   color: #000;
   text-decoration: none;
   font-size: 14px;
@@ -362,7 +360,6 @@
   font-weight: 500;
 }
 
-/* ── icon-right chevron ──────────────────────────────────────────────────── */
 .global-nav__icon-right {
   flex-shrink: 0;
   color: #1d1d1f;
@@ -372,7 +369,6 @@
   transform: scaleX(-1);
 }
 
-/* ── Mobile header: right-side icons (account + bag) ──────────────────── */
 .global-nav__mobile-right-icons {
   display: flex;
   align-items: center;
@@ -395,32 +391,41 @@
   opacity: 0.7;
 }
 
-/* ── Secondary menu group (สาขา / การศึกษา / ข้อเสนอ) ───────────────── */
 .global-nav__mobile-menu-secondary {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
   padding-top: 0.5rem;
   margin-top: 0.5rem;
 }
 
 .global-nav__mobile-menu-secondary li {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #d0d0d0;
 }
 
-/* ── Utility section (language + login) ──────────────────────────────── */
 .global-nav__mobile-utility {
-  padding: 0 1rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  margin-top: 0.5rem;
   display: flex;
   flex-direction: column;
+  background-color: #f7f7f7;
+  border-bottom: 1px solid #d0d0d0;
 }
 
-/* Language toggle button */
+.global-nav__mobile-lang {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.global-nav__mobile-lang .disclosure {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
 .global-nav__mobile-lang-btn {
   background: none;
   border: none;
@@ -428,18 +433,15 @@
   display: flex;
   align-items: center;
   gap: 0.375rem;
-  color: #1d1d1f;
-  font-size: 0.9375rem;
+  color: #000;
+  font-size: 14px;
   font-weight: 500;
-  padding: 1rem 0;
+  padding: 1rem 24px;
   width: 100%;
   font-family: inherit;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  border-bottom: 1px solid #d0d0d0;
   transition: opacity 0.2s ease;
-}
-
-.global-nav__mobile-lang-btn:hover {
-  opacity: 0.7;
+  box-sizing: border-box;
 }
 
 .global-nav__mobile-lang-btn .icon-caret {
@@ -452,11 +454,19 @@
   transform: rotate(180deg);
 }
 
-/* Language dropdown list */
 .global-nav__mobile-lang-list {
   list-style: none;
   margin: 0;
-  padding: 0.25rem 0 0.75rem 0.5rem;
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #d0d0d0;
+  padding: 8px 0;
+  z-index: 50;
+  box-sizing: border-box;
 }
 
 .global-nav__mobile-lang-link {
@@ -476,17 +486,15 @@
   font-weight: 600;
 }
 
-/* Login link */
 .global-nav__mobile-account-link {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 1rem 0;
-  color: #1d1d1f;
+  padding: 1rem 24px;
+  color: #000;
   text-decoration: none;
-  font-size: 0.9375rem;
+  font-size: 14px;
   font-weight: 500;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
   transition: opacity 0.2s ease;
 }
 
@@ -494,13 +502,11 @@
   opacity: 0.7;
 }
 
-/* Hide desktop elements on mobile */
 .global-nav--mobile .global-nav__top-bar,
 .global-nav--mobile .global-nav__menu-row {
   display: none;
 }
 
-/* Backdrop overlay */
 .global-nav__mobile-backdrop {
   position: fixed;
   top: 4.25rem;
@@ -511,10 +517,6 @@
   z-index: 99;
   animation: backdropFadeIn 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
-
-/* ─────────────────────────────────────────────────────────────────────────── */
-/* TABLET LAYOUT (750px - 1023px)                                             */
-/* ─────────────────────────────────────────────────────────────────────────── */
 
 @media screen and (min-width: 750px) {
   .global-nav {
@@ -527,13 +529,11 @@
     display: none !important;
   }
 
-  /* Show desktop/tablet elements */
   .global-nav__top-bar,
   .global-nav__menu-row {
     display: flex;
   }
 
-  /* Responsive top bar adjustments */
   .global-nav__top-bar {
     padding: 0 1rem;
     gap: 0.75rem;
@@ -547,7 +547,6 @@
     width: 8rem !important;
   }
 
-  /* Hide search on tablet, show only on desktop */
   .global-nav--tablet .global-nav__search {
     display: none;
   }
@@ -742,14 +741,14 @@
 .global-nav__utilities {
   display: flex;
   flex-direction: row;
-  gap: 0;
+  gap: 1rem;
   align-items: flex-start;
   justify-content: flex-start;
   flex-shrink: 0;
 }
 
 .global-nav__account { width: 2.25rem !important; height: 2.25rem !important; }
-.global-nav__bag     { width: 2.25rem !important; height: 2.25rem !important; }
+.global-nav__bag     { width: 22px !important; height: 20px !important; }
 
 /* ── Menu row ────────────────────────────────────────────────────────────── */
 .global-nav__menu-row {

@@ -410,11 +410,11 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
             onClick={() => (mobileDrawerOpen ? closeDrawer() : setNavStack([{ view: 'root' }]))}
           >
             {mobileDrawerOpen ? (
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-close" fill="none" viewBox="0 0 18 17" width="18" height="17">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 17" width="18" height="17">
   <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor">
 </path></svg>
             ) : (
-              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" class="icon icon-hamburger" fill="none" viewBox="0 0 18 16" width="18" height="16">
+              <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 16" width="18" height="16">
   <path d="M1 .5a.5.5 0 100 1h15.71a.5.5 0 000-1H1zM.5 8a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1A.5.5 0 01.5 8zm0 7a.5.5 0 01.5-.5h15.71a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" fill="currentColor">
 </path></svg>
             )}
@@ -485,35 +485,45 @@ export const GlobalNav = ({ className = '' }: GlobalNavProps) => {
             {/* ── Utility links: language + login ── */}
             <div className="global-nav__mobile-utility">
               <div className="global-nav__mobile-lang">
-                <div className={`disclosure${langOpen ? ' is-open' : ''}`}>
-                  <button
-                    type="button"
-                    className="global-nav__mobile-lang-btn"
-                    aria-expanded={langOpen}
-                    onClick={() => setLangOpen(prev => !prev)}
-                  >
-                    <span>{currentLang}</span>
-                    <svg aria-hidden="true" focusable="false" className="icon-caret" viewBox="0 0 10 6" width="10" height="6">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
-                    </svg>
-                  </button>
-                  {langOpen && (
-                    <ul className="global-nav__mobile-lang-list">
-                      {LANGS.map((lang) => (
-                        <li key={lang.code}>
-                          <a
-                            href="#"
-                            className={`global-nav__mobile-lang-link${currentLang === lang.label ? ' is-active' : ''}`}
-                            onClick={(e) => { e.preventDefault(); setCurrentLang(lang.label); setLangOpen(false); }}
-                          >
-                            {lang.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              </div>
+      <div 
+        className={`disclosure${langOpen ? ' is-open' : ''}`} 
+        style={{ position: 'relative', display: 'block' }}
+      >
+        <button
+          type="button"
+          className="global-nav__mobile-lang-btn"
+          aria-expanded={langOpen}
+          onClick={() => setLangOpen(prev => !prev)}
+        >
+          <span>{currentLang}</span>
+          <svg aria-hidden="true" focusable="false" className="icon-caret" viewBox="0 0 10 6" width="10" height="6">
+            <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
+          </svg>
+        </button>
+        {langOpen && (
+          <ul 
+            className="global-nav__mobile-lang-list"
+          >
+            {LANGS.map((lang) => (
+              <li key={lang.code}>
+                <a
+                  href="#"
+                  className={`global-nav__mobile-lang-link${currentLang === lang.label ? ' is-active' : ''}`}
+                  style={{ padding: '12px 18px', display: 'block' }}
+                  onClick={(e) => { 
+                    e.preventDefault(); 
+                    setCurrentLang(lang.label); 
+                    setLangOpen(false); 
+                  }}
+                >
+                  {lang.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    </div>
               <a href="/account/login" className="global-nav__mobile-account-link">
                 <svg aria-hidden="true" focusable="false" width="18" height="19" viewBox="0 0 18 19" fill="none">
                   <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>

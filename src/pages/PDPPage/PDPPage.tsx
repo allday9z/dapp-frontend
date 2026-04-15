@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./PDPPage.css";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
 import { macbookProFamilyItems } from "../../FamilyStripe/familyStripeData";
@@ -23,6 +23,7 @@ interface PDPData {
   name: string;
   size: string;
   badge?: string;
+  barcode?: string;
   tagline: string;
   sku: string;
   media: MediaItem[];
@@ -54,42 +55,91 @@ const fmt = (n: number) =>
 // ── Gallery ────────────────────────────────────────────────────────────────
 function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
   const [idx, setIdx] = useState(0);
-  const cur = media[idx];
+  const total = media.length;
+  const dragOrigin = useRef<number | null>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+  const next = () => setIdx((i) => (i + 1) % total);
+
+  const onDragBegin = (x: number) => { dragOrigin.current = x; };
+  const onDragEnd = (x: number) => {
+    if (dragOrigin.current === null) return;
+    const delta = dragOrigin.current - x;
+    const threshold = (viewportRef.current?.offsetWidth ?? 292) * 0.16;
+    if (Math.abs(delta) > threshold) { delta > 0 ? next() : prev(); }
+    dragOrigin.current = null;
+  };
 
   return (
     <div className="pdp__gallery">
-      {/* Main viewer */}
-      <div className="pdp__gallery-main">
-        {cur.type === "video" ? (
-          <video
-            key={idx}
-            src={cur.src}
-            poster={cur.poster}
-            className="pdp__gallery-media"
-            controls
-            muted
-            playsInline
-            aria-label={`วิดีโอ ${name}`}
-          />
-        ) : (
-          <img
-            key={idx}
-            src={cur.src}
-            alt={cur.alt ?? name}
-            className="pdp__gallery-media"
-          />
-        )}
+      {/* Viewport — clip window, size driven by CSS --pdp-slide-w */}
+      <div
+        ref={viewportRef}
+        className="pdp__gallery-viewport"
+        onTouchStart={(e) => onDragBegin(e.touches[0].clientX)}
+        onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
+        onMouseDown={(e) => onDragBegin(e.clientX)}
+        onMouseUp={(e) => onDragEnd(e.clientX)}
+      >
+        {/* Track — all slides in a row, transform via CSS calc() */}
+        <div
+          className="pdp__gallery-track"
+          style={{
+            transform: `translate3d(calc(-${idx} * var(--pdp-slide-w)), 0, 0)`,
+            width: `calc(${total} * var(--pdp-slide-w))`,
+          }}
+        >
+          {media.map((m, i) => (
+            <div key={i} className="pdp__gallery-slide">
+              {m.type === "video" ? (
+                <video
+                  src={m.src}
+                  poster={m.poster}
+                  className="pdp__gallery-media"
+                  controls
+                  muted
+                  playsInline
+                  aria-label={`วิดีโอ ${name}`}
+                />
+              ) : (
+                <img
+                  src={m.src}
+                  alt={m.alt ?? name}
+                  className="pdp__gallery-media"
+                  draggable={false}
+                  onDragStart={(e) => e.preventDefault()}
+                />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
 
-      {/* Mobile dot indicator */}
-      <div className="pdp__gallery-dots" aria-hidden="true">
-        {media.map((_, i) => (
-          <button
-            key={i}
-            className={`pdp__gallery-dot${i === idx ? " on" : ""}`}
-            onClick={() => setIdx(i)}
-          />
-        ))}
+      {/* Navigation: prev arrow | dots | next arrow */}
+      <div className="pdp__gallery-nav">
+        <button className="pdp__gallery-arrow" onClick={prev} aria-label="Previous">
+          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
+            <path fillRule="evenodd" clipRule="evenodd" d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z" fill="#333" />
+          </svg>
+        </button>
+        <div className="pdp__gallery-dots" role="tablist" aria-label="Gallery slides">
+          {media.map((_, i) => (
+            <button
+              key={i}
+              role="tab"
+              aria-selected={i === idx}
+              className={`pdp__gallery-dot${i === idx ? " on" : ""}`}
+              onClick={() => setIdx(i)}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button className="pdp__gallery-arrow" onClick={next} aria-label="Next">
+          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
+            <path fillRule="evenodd" clipRule="evenodd" d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z" fill="#333" />
+          </svg>
+        </button>
       </div>
 
       {/* Thumbnail strip */}
@@ -101,7 +151,7 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
             onClick={() => setIdx(i)}
             aria-label={m.type === "video" ? "วิดีโอสินค้า" : `รูปที่ ${i + 1}`}
           >
-            <img src={m.poster ?? m.src} alt="" />
+            <img src={m.poster ?? m.src} alt="" draggable={false} />
             {m.type === "video" && (
               <span className="pdp__gallery-play" aria-hidden="true">▶</span>
             )}
@@ -145,6 +195,96 @@ function Accordion({
   );
 }
 
+// ── Financing Modal ────────────────────────────────────────────────────────
+function FinancingModal({
+  price,
+  currency,
+  defaultTerm,
+  onClose,
+}: {
+  price: number;
+  currency: string;
+  defaultTerm: number;
+  onClose: () => void;
+}) {
+  const [months, setMonths] = useState(defaultTerm);
+  const monthly = Math.round(price / months);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <div
+      className="pdp__modal-overlay"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Financing information"
+    >
+      <div className="pdp__modal">
+        {/* Sticky close button */}
+        <button className="pdp__modal-close" onClick={onClose} aria-label="ปิด">×</button>
+
+        <div className="pdp__modal-body">
+          <h2 className="pdp__modal-title">How does Financing work?</h2>
+          <p className="pdp__modal-text">
+            Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
+            turpis molestie, dictum est a, mattis tellus.
+          </p>
+          <ul className="pdp__modal-list">
+            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          </ul>
+
+          <h3 className="pdp__modal-heading">Vendor plug-in</h3>
+          <div className="pdp__modal-plugin-card">
+            <p className="pdp__modal-plugin-desc">6 interest-free payments of Plan No Fees</p>
+            <div className="pdp__modal-plugin-logo">《 ≡ | Financing logo 》</div>
+            <a href="#" className="pdp__modal-link">Learn more ›</a>
+          </div>
+
+          <h3 className="pdp__modal-heading">Explore options</h3>
+          <ul className="pdp__modal-list">
+            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          </ul>
+
+          <h3 className="pdp__modal-heading">Calculator</h3>
+          <label className="pdp__modal-label">Length</label>
+          <select
+            className="pdp__modal-select"
+            value={months}
+            onChange={(e) => setMonths(Number(e.target.value))}
+          >
+            <option value={6}>6 months</option>
+            <option value={12}>12 months</option>
+            <option value={18}>18 months</option>
+            <option value={24}>24 months</option>
+          </select>
+
+          <label className="pdp__modal-label">Monthly payment</label>
+          <div className="pdp__modal-monthly-display">{fmt(monthly)}</div>
+
+          <h3 className="pdp__modal-heading">Final pricing</h3>
+          <p className="pdp__modal-final">{fmt(monthly)} /mo. for {months} mo.</p>
+
+          <a href="#" className="pdp__modal-link pdp__modal-link--block">
+            Learn more about financing ›
+          </a>
+          <button className="pdp__modal-btn-financing">Start financing</button>
+          <hr className="pdp__modal-divider" />
+          <p className="pdp__modal-disclaimer">This is a disclaimer</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Page ───────────────────────────────────────────────────────────────────
 export const PDPPage = () => {
   const [color, setColor] = useState<ColorOpt>(
@@ -155,8 +295,9 @@ export const PDPPage = () => {
   const [processor, setProcessor] = useState<ConfigOpt>(product.processors[0]);
   const [memory, setMemory]       = useState<ConfigOpt>(product.memory[0]);
   const [storage, setStorage]     = useState<ConfigOpt>(product.storage[0]);
-  const [appleCare, setAppleCare] = useState(false);
-  const [qty, setQty]             = useState(1);
+  const [appleCare, setAppleCare]       = useState(false);
+  const [qty, setQty]                   = useState(1);
+  const [financingOpen, setFinancingOpen] = useState(false);
 
   const totalPrice =
     product.price +
@@ -172,7 +313,7 @@ export const PDPPage = () => {
     { label: "iStudio",     href: "/" },
     { label: "Mac",         href: "/pages/view-all-mac" },
     { label: "MacBook Pro", href: "/collections/macbook-pro" },
-    { label: `${displayName} M5 ${product.sku}`, href: "#" },
+    { label: displayName, href: "#" },
   ];
 
   return (
@@ -205,6 +346,15 @@ export const PDPPage = () => {
         </ol>
       </nav>
 
+      {/* ── Product header — title + SKU + barcode ─────────────────────── */}
+      <div className="pdp__product-header">
+        <h1 className="pdp__product-title">{displayName}</h1>
+        <p className="pdp__product-meta">
+          SKU: {product.sku}
+          {product.barcode && <>&nbsp;&nbsp; Barcode: {product.barcode}</>}
+        </p>
+      </div>
+
       {/* ── 2-column layout ────────────────────────────────────────────── */}
       <div className="pdp__layout">
         {/* Left — Gallery */}
@@ -217,9 +367,18 @@ export const PDPPage = () => {
             <div className="pdp__price">
               {fmt(totalPrice)} {product.currency}
             </div>
-            <div className="pdp__monthly">
-              {fmt(product.monthlyPrice)} /mo for {product.monthlyTerm} months
-            </div>
+            <button
+              className="pdp__monthly-link"
+              onClick={() => setFinancingOpen(true)}
+              aria-label="ดูข้อมูลการผ่อนชำระ"
+            >
+              or {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. ›
+            </button>
+          </div>
+
+          <div className="pdp__action-links">
+            <a href="#" className="pdp__action-link">Learn more <span aria-hidden="true">›</span></a>
+            <a href="#" className="pdp__action-link">Compare models <span aria-hidden="true">›</span></a>
           </div>
 
           <hr className="pdp__divider" />
@@ -566,6 +725,33 @@ export const PDPPage = () => {
           <p className="pdp__accordion-text">{product.warranty}</p>
         </Accordion>
       </div>
+
+      {/* ── Sticky bottom bar ──────────────────────────────────────────── */}
+      <div className="pdp__sticky-bar">
+        <div className="pdp__sticky-bar-price-row">
+          <span className="pdp__sticky-bar-total">{fmt(totalPrice)} {product.currency}</span>
+          <span className="pdp__sticky-bar-or"> or </span>
+          <button
+            className="pdp__monthly-link"
+            onClick={() => setFinancingOpen(true)}
+            aria-label="ดูข้อมูลการผ่อนชำระ"
+          >
+            {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. ›
+          </button>
+        </div>
+        <hr className="pdp__sticky-bar-divider" />
+        <button className="pdp__btn-addcart">Add to cart</button>
+      </div>
+
+      {/* ── Financing Modal ──────────────────────────────────────────────── */}
+      {financingOpen && (
+        <FinancingModal
+          price={totalPrice}
+          currency={product.currency}
+          defaultTerm={product.monthlyTerm}
+          onClose={() => setFinancingOpen(false)}
+        />
+      )}
     </div>
   );
 };

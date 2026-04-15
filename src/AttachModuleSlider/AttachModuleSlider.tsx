@@ -6,7 +6,6 @@ import Slider from "react-slick";
 import type { Settings } from "react-slick";
 import type { AttachModuleSliderProps, AttachModuleSliderItem } from "./attachModuleSliderTypes";
 
-/* ── useDragLink — แยก drag vs click สำหรับ link ใน slider ── */
 function useDragLink() {
   const dragging = useRef(false);
   const onMouseDown = () => { dragging.current = false; };
@@ -15,7 +14,6 @@ function useDragLink() {
   return { onMouseDown, onMouseMove, onClick };
 }
 
-/* ── Tile ────────────────────────────────────────────────────── */
 const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
   const isInfoMode = Boolean(item.subtitle);
   const hasDiscount = Boolean(item.new_price);
@@ -26,7 +24,6 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
 
   return (
     <div className={`attach-slider__tile${isInfoMode ? " attach-slider__tile--info" : ""}`}>
-      {/* Image frame — wrapped in link, drag-safe */}
       {item.ctaHref ? (
         <a
           href={item.ctaHref}
@@ -46,10 +43,8 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
         </div>
       )}
 
-      {/* Info block */}
       <div className="attach-slider__info">
         {isInfoMode ? (
-          /* ── Info card layout (AppleCare style) ── */
           <>
             <div className="attach-slider__name attach-slider__name--info">{item.name}</div>
             {item.subtitle && (
@@ -60,9 +55,7 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
             )}
           </>
         ) : (
-          /* ── Product card layout (default) ── */
           <>
-            {/* Badge — fixed 14px height even when empty */}
             <div
               className="attach-slider__badge"
               style={badge ? { color: badgeColor } : undefined}
@@ -70,14 +63,12 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
               {badge}
             </div>
 
-            {/* Name — fixed 2-line height, underline on hover, drag-safe */}
             {item.ctaHref ? (
               <a href={item.ctaHref} className="attach-slider__name attach-slider__name-link" draggable={false} {...dragLink}>{item.name}</a>
             ) : (
               <div className="attach-slider__name">{item.name}</div>
             )}
 
-            {/* Price block */}
             {item.price && (
               <div className="attach-slider__prices">
                 {hasDiscount ? (
@@ -97,7 +88,6 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
               </div>
             )}
 
-            {/* CTA */}
             {(item.ctaHref || item.ctaLabel) && (
               item.ctaHref ? (
                 <a href={item.ctaHref} className="attach-slider__cta" draggable={false} {...dragLink}>
@@ -116,7 +106,6 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
   );
 };
 
-/* ── AttachModuleSlider ──────────────────────────────────────── */
 export const AttachModuleSlider = ({
   title,
   titleAlign = "center",
@@ -125,18 +114,15 @@ export const AttachModuleSlider = ({
   className = "",
 }: AttachModuleSliderProps): JSX.Element => {
   const sliderRef = useRef<Slider | null>(null);
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const [, setCurrentSlide] = useState(0);
 
   const slideCount = items.length;
-  const slidesPerView = Math.min(slidesToShowProp, slideCount);
-  const canGoPrev = currentSlide > 0;
-  const canGoNext = currentSlide < slideCount - slidesPerView;
 
   const settings: Settings = {
     dots: true,
     infinite: true,
     autoplay: false,
-    speed: 1200,
+    speed: 500,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
     slidesToShow: slidesToShowProp,
     slidesToScroll: 1,
@@ -146,20 +132,17 @@ export const AttachModuleSlider = ({
     responsive: [
       { breakpoint: 1024, settings: { slidesToShow: Math.min(slidesToShowProp, 3), slidesToScroll: 1 } },
       { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      { breakpoint: 600, settings: { slidesToShow: 1, slidesToScroll: 1 } },
+      { breakpoint: 768, settings: { slidesToShow: 1.5, slidesToScroll: 1 } },
     ],
   };
 
   return (
     <section className={`attach-slider ${className}`}>
-      {/* ── Title ── */}
       <div className="attach-slider__head" style={titleAlign === "left" ? { textAlign: "left" } : undefined}>
         <h2 className="attach-slider__title" style={titleAlign === "left" ? { justifyContent: "flex-start", minHeight: "unset" } : undefined}>{title}</h2>
       </div>
 
-      {/* ── Carousel ── */}
       <div className="attach-slider__carousel-wrap">
-        {/* Prev — always visible; disabled = faded + not clickable */}
         <button
           className={`attach-slider__arrow attach-slider__arrow--prev`}
           onClick={() => sliderRef.current?.slickPrev()}
@@ -171,7 +154,6 @@ export const AttachModuleSlider = ({
           </svg>
         </button>
 
-        {/* Slider track */}
         <div className="attach-slider__track">
           {slideCount > 0 ? (
             <Slider ref={sliderRef} {...settings}>
@@ -182,8 +164,7 @@ export const AttachModuleSlider = ({
               ))}
             </Slider>
           ) : (
-            /* Empty state — still show 3 placeholder cards */
-            <div className="attach-slider__empty">
+             <div className="attach-slider__empty">
               {[0, 1, 2].map((i) => (
                 <div key={i} className="attach-slider__empty-card" />
               ))}
@@ -191,7 +172,6 @@ export const AttachModuleSlider = ({
           )}
         </div>
 
-        {/* Next — always visible */}
         <button
           className={`attach-slider__arrow attach-slider__arrow--next`}
           onClick={() => sliderRef.current?.slickNext()}
@@ -204,7 +184,6 @@ export const AttachModuleSlider = ({
         </button>
       </div>
 
-      {/* Always-visible dot row (for empty state or single-page) */}
       {slideCount === 0 && (
         <div className="attach-slider__static-dots">
           {[0, 1, 2].map((i) => (
@@ -213,7 +192,6 @@ export const AttachModuleSlider = ({
         </div>
       )}
 
-      {/* ── Divider ── */}
       <div className="hp-divider" />
     </section>
   );

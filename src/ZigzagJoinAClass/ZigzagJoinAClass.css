@@ -103,3 +103,138 @@
 }
 
 /* nested override styles */
+
+.app-zigzag-property-1-join-a-class-device-mobile,
+.app-zigzag-property-1-join-a-class-device-mobile * {
+  box-sizing: border-box;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile {
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 80%;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .image-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .screen-shot-2022-02-22-at-2-10-2 {
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 38 / 22.75;
+  position: relative;
+  object-fit: cover;
+  display: block;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .text-area {
+  background: var(--color-gray-5, #f2f2f2);
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .frame-439 {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 21.25rem;
+  position: relative;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .frame-1777 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .join-a-class {
+  color: #000000;
+  text-align: center;
+  font-family: var(
+    --display-display-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: var(--display-display-s-font-size, 2rem);
+  line-height: var(--display-display-s-line-height, 2.375rem);
+  font-weight: var(--display-display-s-font-weight, 600);
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile
+  .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-donec-facilisis-lorem-ipsum-dolor-sit-amet {
+  color: var(--text-color-default-text, #121212);
+  text-align: center;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--body-body-s-regular-font-size, 0.875rem);
+  line-height: var(--body-body-s-regular-line-height, 1rem);
+  font-weight: var(--body-body-s-regular-font-weight, 400);
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .cta-instance {
+  flex-shrink: 0 !important;
+  padding: 16px 32px;
+  min-width: 160px;
+}
+
+.app-zigzag-property-1-join-a-class-device-mobile .join-a-class {
+  font-size: 28px;
+}
+
+@media screen and (max-width: 768px) {
+  .app-zigzag-property-1-join-a-class-device-desktop,
+  .app-zigzag-property-1-join-a-class-device-desktop * {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .app-zigzag-property-1-join-a-class-device-mobile,
+  .app-zigzag-property-1-join-a-class-device-mobile * {
+    display: none !important;
+  }
+}

@@ -48,7 +48,7 @@
 @media (max-width:768px) {
   .app-tile__img-wrap {
   width: 100%;
-  height: auto;
+  height: 172px;
   flex-shrink: 0;
   overflow: hidden;
   background: #ffffff;
@@ -112,6 +112,12 @@
   color: #000000;
   letter-spacing: -0.02em;
   overflow: hidden;
+}
+
+@media screen and (max-width:768px) {
+  .app-tile__title {
+    min-height: 64px;
+  }
 }
 
 .app-tile__cta {

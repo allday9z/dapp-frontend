@@ -22,10 +22,19 @@
   width: 100%;
   position: relative;
 }
+
 .organism-app-zigzag-section-device-desktop .app-zigzag-instance {
   flex-shrink: 0 !important;
-  width: 76rem !important;
+  width: 76rem;
 }
+
+@media screen and (max-width: 768px) {
+  .organism-app-zigzag-section-device-desktop .app-zigzag-instance {
+  width: 100%;
+  padding: 0 12px;
+}
+}
+
 .organism-app-zigzag-section-device-desktop .app-zigzag-instance2 {
   flex-shrink: 0 !important;
   width: 76.125rem !important;

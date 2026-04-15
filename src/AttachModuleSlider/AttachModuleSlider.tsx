@@ -1,7 +1,7 @@
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./AttachModuleSlider.css";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import Slider from "react-slick";
 import type { Settings } from "react-slick";
 import type { AttachModuleSliderProps, AttachModuleSliderItem } from "./attachModuleSliderTypes";
@@ -115,6 +115,18 @@ export const AttachModuleSlider = ({
 }: AttachModuleSliderProps): JSX.Element => {
   const sliderRef = useRef<Slider | null>(null);
   const [, setCurrentSlide] = useState(0);
+  
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+    
+    const timer = setTimeout(() => {
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const slideCount = items.length;
 
@@ -156,7 +168,7 @@ export const AttachModuleSlider = ({
 
         <div className="attach-slider__track">
           {slideCount > 0 ? (
-            <Slider ref={sliderRef} {...settings}>
+            <Slider key={isClient ? "client-loaded" : "server-loaded"} ref={sliderRef} {...settings}>
               {items.map((item) => (
                 <div key={item.id} className="attach-slider__item-outer">
                   <Tile item={item} />

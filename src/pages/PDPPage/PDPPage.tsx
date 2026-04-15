@@ -195,6 +195,50 @@ function Accordion({
   );
 }
 
+// ── OptionRow ──────────────────────────────────────────────────────────────
+function OptionRow({
+  label,
+  value,
+  open,
+  onToggle,
+  children,
+}: {
+  label: string;
+  value: string;
+  open: boolean;
+  onToggle: () => void;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="pdp__opt-section">
+      <button className="pdp__opt-row" onClick={onToggle} aria-expanded={open}>
+        <span className="pdp__opt-row-label">{label}</span>
+        <span className="pdp__opt-row-value">
+          {value}
+          <svg
+            className={`pdp__opt-chevron${open ? " open" : ""}`}
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 5l4 4 4-4"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      </button>
+      {open && <div className="pdp__opt-body">{children}</div>}
+      <hr className="pdp__divider" />
+    </div>
+  );
+}
+
 // ── Financing Modal ────────────────────────────────────────────────────────
 function FinancingModal({
   price,
@@ -298,6 +342,15 @@ export const PDPPage = () => {
   const [appleCare, setAppleCare]       = useState(false);
   const [qty, setQty]                   = useState(1);
   const [financingOpen, setFinancingOpen] = useState(false);
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+  const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">("financing");
+
+  const toggleSect = (key: string) =>
+    setOpenSections((prev) => {
+      const next = new Set(prev);
+      next.has(key) ? next.delete(key) : next.add(key);
+      return next;
+    });
 
   const totalPrice =
     product.price +
@@ -381,142 +434,214 @@ export const PDPPage = () => {
             <a href="#" className="pdp__action-link">Compare models <span aria-hidden="true">›</span></a>
           </div>
 
-          <hr className="pdp__divider" />
-
-          <h2 className="pdp__config-heading">กำหนดค่า {product.name}</h2>
+          {/* ── Customize ─────────────────────────────────────────────── */}
+          <h2 className="pdp__section-heading">Customize your {product.name}.</h2>
 
           {/* Color */}
-          <div className="pdp__config-row">
-            <div className="pdp__config-row-top">
-              <span className="pdp__config-label">Color</span>
-            </div>
-            <div className="pdp__color-row">
+          <OptionRow
+            label="Color"
+            value={color.name}
+            open={openSections.has("color")}
+            onToggle={() => toggleSect("color")}
+          >
+            <div className="pdp__swatch-row">
               {product.colors.map((c) => (
                 <button
                   key={c.id}
-                  className={`pdp__color-swatch${c.id === color.id ? " on" : ""}`}
+                  className={`pdp__swatch${c.id === color.id ? " on" : ""}`}
                   style={{ background: c.hex }}
                   onClick={() => setColor(c)}
                   aria-label={c.name}
                   title={c.name}
                 />
               ))}
-              <span className="pdp__color-name">{color.name}</span>
             </div>
-          </div>
-
-          <hr className="pdp__divider" />
+          </OptionRow>
 
           {/* Processor */}
-          <div className="pdp__config-row">
-            <div className="pdp__config-row-top">
-              <span className="pdp__config-label">Processor</span>
-            </div>
-            <div className="pdp__cards pdp__cards--col">
-              {product.processors.map((p) => (
+          <OptionRow
+            label="Processor"
+            value={`${processor.label}${processor.sublabel ? ` ${processor.sublabel}` : ""}`}
+            open={openSections.has("processor")}
+            onToggle={() => toggleSect("processor")}
+          >
+            {product.processors.map((p) => {
+              const t =
+                product.price +
+                p.priceAdd +
+                memory.priceAdd +
+                storage.priceAdd +
+                (appleCare ? product.appleCarePrice : 0);
+              return (
                 <button
                   key={p.id}
-                  className={`pdp__card${p.id === processor.id ? " on" : ""}`}
+                  className={`pdp__opt-card${p.id === processor.id ? " on" : ""}`}
                   onClick={() => setProcessor(p)}
                 >
-                  <span className="pdp__card-label">{p.label}</span>
-                  {p.sublabel && (
-                    <span className="pdp__card-sub">{p.sublabel}</span>
-                  )}
-                  {p.priceAdd > 0 && (
-                    <span className="pdp__card-add">+{fmt(p.priceAdd)}</span>
-                  )}
+                  <span className="pdp__opt-card-info">
+                    <span className="pdp__opt-card-name">{p.label}</span>
+                    {p.sublabel && (
+                      <span className="pdp__opt-card-sub">{p.sublabel}</span>
+                    )}
+                  </span>
+                  <span className="pdp__opt-card-pricing">
+                    <span className="pdp__opt-card-price">{fmt(t)}</span>
+                    <span className="pdp__opt-card-mo">
+                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
+                    </span>
+                  </span>
                 </button>
-              ))}
-            </div>
-            <a href="#" className="pdp__tooltip">
-              ชิปแบบไหนเหมาะกับคุณ? ›
-            </a>
-          </div>
-
-          <hr className="pdp__divider" />
+              );
+            })}
+            <a href="#" className="pdp__opt-link">ชิปแบบไหนเหมาะกับคุณ? ›</a>
+          </OptionRow>
 
           {/* Memory */}
-          <div className="pdp__config-row">
-            <div className="pdp__config-row-top">
-              <span className="pdp__config-label">Memory</span>
-            </div>
-            <div className="pdp__cards pdp__cards--row">
-              {product.memory.map((m) => (
+          <OptionRow
+            label="Memory"
+            value={memory.label}
+            open={openSections.has("memory")}
+            onToggle={() => toggleSect("memory")}
+          >
+            {product.memory.map((m) => {
+              const t =
+                product.price +
+                processor.priceAdd +
+                m.priceAdd +
+                storage.priceAdd +
+                (appleCare ? product.appleCarePrice : 0);
+              return (
                 <button
                   key={m.id}
-                  className={`pdp__card${m.id === memory.id ? " on" : ""}`}
+                  className={`pdp__opt-card${m.id === memory.id ? " on" : ""}`}
                   onClick={() => setMemory(m)}
                 >
-                  <span className="pdp__card-label">{m.label}</span>
-                  {m.priceAdd > 0 && (
-                    <span className="pdp__card-add">+{fmt(m.priceAdd)}</span>
-                  )}
+                  <span className="pdp__opt-card-info">
+                    <span className="pdp__opt-card-name">{m.label}</span>
+                  </span>
+                  <span className="pdp__opt-card-pricing">
+                    <span className="pdp__opt-card-price">{fmt(t)}</span>
+                    <span className="pdp__opt-card-mo">
+                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
+                    </span>
+                  </span>
                 </button>
-              ))}
-            </div>
-            <a href="#" className="pdp__tooltip">
-              RAM ขนาดไหนเหมาะกับคุณ? ›
-            </a>
-          </div>
-
-          <hr className="pdp__divider" />
+              );
+            })}
+            <a href="#" className="pdp__opt-link">RAM ขนาดไหนเหมาะกับคุณ? ›</a>
+          </OptionRow>
 
           {/* Storage */}
-          <div className="pdp__config-row">
-            <div className="pdp__config-row-top">
-              <span className="pdp__config-label">Storage</span>
-            </div>
-            <div className="pdp__cards pdp__cards--row">
-              {product.storage.map((s) => (
+          <OptionRow
+            label="Storage"
+            value={storage.label}
+            open={openSections.has("storage")}
+            onToggle={() => toggleSect("storage")}
+          >
+            {product.storage.map((s) => {
+              const t =
+                product.price +
+                processor.priceAdd +
+                memory.priceAdd +
+                s.priceAdd +
+                (appleCare ? product.appleCarePrice : 0);
+              return (
                 <button
                   key={s.id}
-                  className={`pdp__card${s.id === storage.id ? " on" : ""}`}
+                  className={`pdp__opt-card${s.id === storage.id ? " on" : ""}`}
                   onClick={() => setStorage(s)}
                 >
-                  <span className="pdp__card-label">{s.label}</span>
-                  {s.priceAdd > 0 && (
-                    <span className="pdp__card-add">+{fmt(s.priceAdd)}</span>
-                  )}
+                  <span className="pdp__opt-card-info">
+                    <span className="pdp__opt-card-name">{s.label}</span>
+                  </span>
+                  <span className="pdp__opt-card-pricing">
+                    <span className="pdp__opt-card-price">{fmt(t)}</span>
+                    <span className="pdp__opt-card-mo">
+                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
+                    </span>
+                  </span>
                 </button>
-              ))}
-            </div>
-          </div>
+              );
+            })}
+            <a href="#" className="pdp__opt-link">ต้องการพื้นที่เท่าไหร่? ›</a>
+          </OptionRow>
 
-          <hr className="pdp__divider" />
+          {/* ── Protect ───────────────────────────────────────────────── */}
+          <h2 className="pdp__section-heading">Protect your product.</h2>
 
-          {/* AppleCare+ */}
-          <button
-            className={`pdp__applecare${appleCare ? " on" : ""}`}
-            onClick={() => setAppleCare((v) => !v)}
-            aria-pressed={appleCare}
+          <OptionRow
+            label="AppleCare+"
+            value={appleCare ? "AppleCare+" : "No coverage plan"}
+            open={openSections.has("applecare")}
+            onToggle={() => toggleSect("applecare")}
           >
-            <span
-              className={`pdp__applecare-box${appleCare ? " on" : ""}`}
-              aria-hidden="true"
-            />
-            <span className="pdp__applecare-text">
-              <span className="pdp__applecare-label">AppleCare+</span>
-              <span className="pdp__applecare-sub">
-                {fmt(product.appleCarePrice)} /{" "}
-                {fmt(Math.round(product.appleCarePrice / 12))}/mo
+            <button
+              className={`pdp__opt-card pdp__opt-card--ac${appleCare ? " on" : ""}`}
+              onClick={() => setAppleCare(true)}
+            >
+              <span className="pdp__opt-card-info pdp__opt-card-info--ac">
+                <svg className="pdp__ac-icon" viewBox="0 0 814 1000" width="24" height="24" aria-hidden="true">
+                  <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.1C46.7 790.7 0 663 0 541.8c0-207.3 135.3-316.9 269-316.9 73.1 0 134.2 43.3 180.7 43.3 44 0 114.1-46 196.3-46 31.7 0 121.5 2.8 180.7 85.7zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" fill="#e74c3c" />
+                </svg>
+                <span>AppleCare+ for {product.name} M5 (2 year plan)</span>
               </span>
-            </span>
-          </button>
+              <span className="pdp__opt-card-pricing">
+                <span className="pdp__opt-card-price">{fmt(product.appleCarePrice)}</span>
+                <span className="pdp__opt-card-mo">
+                  {fmt(Math.round(product.appleCarePrice / 12))}/mo.
+                </span>
+              </span>
+            </button>
+            <a href="#" className="pdp__opt-link">Learn more about AppleCare+ ›</a>
+            <button
+              className={`pdp__opt-card${!appleCare ? " on" : ""}`}
+              onClick={() => setAppleCare(false)}
+            >
+              <span className="pdp__opt-card-info">
+                <span className="pdp__opt-card-name">No coverage plan</span>
+              </span>
+            </button>
+          </OptionRow>
 
-          <hr className="pdp__divider" />
+          {/* ── Payment ───────────────────────────────────────────────── */}
+          <h2 className="pdp__section-heading">Select your payment option.</h2>
+
+          <OptionRow
+            label="Financing"
+            value={paymentOpt === "financing" ? "Financing" : "Pay in full"}
+            open={openSections.has("financing")}
+            onToggle={() => toggleSect("financing")}
+          >
+            <button
+              className={`pdp__opt-card${paymentOpt === "financing" ? " on" : ""}`}
+              onClick={() => setPaymentOpt("financing")}
+            >
+              <span className="pdp__opt-card-info">
+                <span className="pdp__opt-card-name">Financing</span>
+              </span>
+            </button>
+            <button
+              className={`pdp__opt-card${paymentOpt === "pay-full" ? " on" : ""}`}
+              onClick={() => setPaymentOpt("pay-full")}
+            >
+              <span className="pdp__opt-card-info">
+                <span className="pdp__opt-card-name">Pay in full</span>
+              </span>
+            </button>
+            <div className="pdp__financing-info">
+              <p className="pdp__financing-desc">
+                6 interest-free payments of Plan A No Fees
+              </p>
+              <div className="pdp__financing-logo">《 ≡ | Financing logo 》</div>
+              <a href="#" className="pdp__opt-link">Explore financing options ›</a>
+            </div>
+            <a href="#" className="pdp__opt-link">Learn more about financing ›</a>
+          </OptionRow>
 
           {/* Delivery */}
           <div className="pdp__delivery">
             <div className="pdp__delivery-item">
-              <svg
-                className="pdp__delivery-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                aria-hidden="true"
-              >
+              <svg className="pdp__delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <rect x="1" y="3" width="15" height="13" rx="1" />
                 <path d="M16 8h4l3 3v5h-7V8z" />
                 <circle cx="5.5" cy="18.5" r="2.5" />
@@ -528,14 +653,7 @@ export const PDPPage = () => {
               </div>
             </div>
             <div className="pdp__delivery-item">
-              <svg
-                className="pdp__delivery-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                aria-hidden="true"
-              >
+              <svg className="pdp__delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
                 <polyline points="9 22 9 12 15 12 15 22" />
               </svg>
@@ -549,22 +667,13 @@ export const PDPPage = () => {
           {/* Service accordions — inside panel */}
           <div className="pdp__service-accordions">
             <Accordion label="บริการทางเทคนิค" service>
-              <p>
-                iStudio มีทีม Apple Certified Technician ให้บริการ One-to-One
-                Setup, Data Migration และ Genius Bar ทุกสาขา
-              </p>
+              <p>iStudio มีทีม Apple Certified Technician ให้บริการ One-to-One Setup, Data Migration และ Genius Bar ทุกสาขา</p>
             </Accordion>
             <Accordion label="ผ่อนชำระ" service>
-              <p>
-                ผ่อน 0% นานสูงสุด 10 เดือนผ่านบัตรเครดิตที่ร่วมรายการ
-                หรือผ่อนไม่ใช้บัตรผ่านโครงการ U•Joy
-              </p>
+              <p>ผ่อน 0% นานสูงสุด 10 เดือนผ่านบัตรเครดิตที่ร่วมรายการ หรือผ่อนไม่ใช้บัตรผ่านโครงการ U•Joy</p>
             </Accordion>
             <Accordion label="Shipping options" service>
-              <p>
-                จัดส่งฟรีทั่วประเทศภายใน 1–3 วันทำการ
-                รับที่ร้านได้ทันทีหากสินค้ามีในสต็อก
-              </p>
+              <p>จัดส่งฟรีทั่วประเทศภายใน 1–3 วันทำการ รับที่ร้านได้ทันทีหากสินค้ามีในสต็อก</p>
             </Accordion>
           </div>
         </div>

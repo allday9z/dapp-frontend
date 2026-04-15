@@ -160,7 +160,7 @@
 .app-zigzag-property-1-store-near-you-device-mobile .copy {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 1rem;
   align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;

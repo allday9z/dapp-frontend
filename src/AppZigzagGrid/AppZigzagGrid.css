@@ -39,6 +39,14 @@
   flex-shrink: 0 !important;
   width: 76.125rem !important;
 }
+
+@media screen and (max-width: 768px) {
+  .organism-app-zigzag-section-device-desktop .app-zigzag-instance2 {
+  width: 100%;
+  padding: 0 12px;
+}
+}
+
 .organism-app-zigzag-section-device-desktop .line-23 {
   margin-top: -0.0625rem;
   border-style: solid;

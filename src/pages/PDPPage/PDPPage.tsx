@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./PDPPage.css";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
 import { macbookProFamilyItems } from "../../FamilyStripe/familyStripeData";
+import { ToggleRow } from "../../components/ToggleRow/ToggleRow";
 import rawData from "../../data/products/macbook-pro-14-m5-pdp.json";
 
 // ── Types ──────────────────────────────────────────────────────────────────
@@ -191,50 +192,6 @@ function Accordion({
         </span>
       </button>
       {open && <div className="pdp__accordion-body">{children}</div>}
-    </div>
-  );
-}
-
-// ── OptionRow ──────────────────────────────────────────────────────────────
-function OptionRow({
-  label,
-  value,
-  open,
-  onToggle,
-  children,
-}: {
-  label: string;
-  value: string;
-  open: boolean;
-  onToggle: () => void;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="pdp__opt-section">
-      <button className="pdp__opt-row" onClick={onToggle} aria-expanded={open}>
-        <span className="pdp__opt-row-label">{label}</span>
-        <span className="pdp__opt-row-value">
-          {value}
-          <svg
-            className={`pdp__opt-chevron${open ? " open" : ""}`}
-            width="14"
-            height="14"
-            viewBox="0 0 14 14"
-            fill="none"
-            aria-hidden="true"
-          >
-            <path
-              d="M3 5l4 4 4-4"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </span>
-      </button>
-      {open && <div className="pdp__opt-body">{children}</div>}
-      <hr className="pdp__divider" />
     </div>
   );
 }
@@ -438,7 +395,7 @@ export const PDPPage = () => {
           <h2 className="pdp__section-heading">Customize your {product.name}.</h2>
 
           {/* Color */}
-          <OptionRow
+          <ToggleRow
             label="Color"
             value={color.name}
             open={openSections.has("color")}
@@ -456,10 +413,10 @@ export const PDPPage = () => {
                 />
               ))}
             </div>
-          </OptionRow>
+          </ToggleRow>
 
           {/* Processor */}
-          <OptionRow
+          <ToggleRow
             label="Processor"
             value={`${processor.label}${processor.sublabel ? ` ${processor.sublabel}` : ""}`}
             open={openSections.has("processor")}
@@ -494,10 +451,10 @@ export const PDPPage = () => {
               );
             })}
             <a href="#" className="pdp__opt-link">ชิปแบบไหนเหมาะกับคุณ? ›</a>
-          </OptionRow>
+          </ToggleRow>
 
           {/* Memory */}
-          <OptionRow
+          <ToggleRow
             label="Memory"
             value={memory.label}
             open={openSections.has("memory")}
@@ -529,10 +486,10 @@ export const PDPPage = () => {
               );
             })}
             <a href="#" className="pdp__opt-link">RAM ขนาดไหนเหมาะกับคุณ? ›</a>
-          </OptionRow>
+          </ToggleRow>
 
           {/* Storage */}
-          <OptionRow
+          <ToggleRow
             label="Storage"
             value={storage.label}
             open={openSections.has("storage")}
@@ -564,12 +521,12 @@ export const PDPPage = () => {
               );
             })}
             <a href="#" className="pdp__opt-link">ต้องการพื้นที่เท่าไหร่? ›</a>
-          </OptionRow>
+          </ToggleRow>
 
           {/* ── Protect ───────────────────────────────────────────────── */}
           <h2 className="pdp__section-heading">Protect your product.</h2>
 
-          <OptionRow
+          <ToggleRow
             label="AppleCare+"
             value={appleCare ? "AppleCare+" : "No coverage plan"}
             open={openSections.has("applecare")}
@@ -601,12 +558,12 @@ export const PDPPage = () => {
                 <span className="pdp__opt-card-name">No coverage plan</span>
               </span>
             </button>
-          </OptionRow>
+          </ToggleRow>
 
           {/* ── Payment ───────────────────────────────────────────────── */}
           <h2 className="pdp__section-heading">Select your payment option.</h2>
 
-          <OptionRow
+          <ToggleRow
             label="Financing"
             value={paymentOpt === "financing" ? "Financing" : "Pay in full"}
             open={openSections.has("financing")}
@@ -636,7 +593,7 @@ export const PDPPage = () => {
               <a href="#" className="pdp__opt-link">Explore financing options ›</a>
             </div>
             <a href="#" className="pdp__opt-link">Learn more about financing ›</a>
-          </OptionRow>
+          </ToggleRow>
 
           {/* Delivery */}
           <div className="pdp__delivery">

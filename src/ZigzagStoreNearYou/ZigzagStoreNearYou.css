@@ -6,21 +6,24 @@
   border-radius: 1rem;
   height: 22.9375rem;
   position: relative;
+  width: 100%;
+  max-width: 76.125rem;
+  margin: 0 auto;
+  overflow: hidden;
 }
 .app-zigzag-property-1-store-near-you-device-desktop .text-box {
   background: var(--color-gray-5, #f2f2f2);
-  border-radius: 0.5rem 0rem 0rem 0.5rem;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 0rem;
   align-items: center;
   justify-content: center;
-  width: 38rem;
-  height: 22.75rem;
+  width: 50%;
+  height: 100%;
   position: absolute;
   left: 0rem;
-  top: 0.09375rem;
+  top: 0rem;
 }
 .app-zigzag-property-1-store-near-you-device-desktop .copy {
   display: flex;
@@ -30,6 +33,7 @@
   justify-content: flex-start;
   flex-shrink: 0;
   width: 21.25rem;
+  max-width: 100%;
   position: relative;
 }
 .app-zigzag-property-1-store-near-you-device-desktop .frame-1775 {
@@ -54,6 +58,7 @@
   font-weight: var(--display-display-s-font-weight, 600);
   position: relative;
   width: 21.25rem;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -72,6 +77,7 @@
   font-weight: var(--body-body-s-regular-font-weight, 400);
   position: relative;
   width: 21.25rem;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -85,24 +91,144 @@
   gap: 0rem;
   align-items: center;
   justify-content: center;
-  width: 38.125rem;
-  height: 22.9375rem;
+  width: 50%;
+  height: 100%;
   position: absolute;
-  left: 38rem;
+  left: 50%;
   top: 0rem;
   overflow: hidden;
 }
 .app-zigzag-property-1-store-near-you-device-desktop
   .tienda-apple-nevada-granada-2 {
-  /* border-style: solid; */
-  /* border-color: #000000; */
   border-width: 0.0625rem;
   flex-shrink: 0;
-  width: 38rem;
-  height: 22.75rem;
+  width: 100%;
+  height: 100%;
   position: relative;
   box-shadow: 0rem 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
   object-fit: cover;
 }
 
-/* nested override styles */
+.app-zigzag-property-1-store-near-you-device-mobile,
+.app-zigzag-property-1-store-near-you-device-mobile * {
+  box-sizing: border-box;
+}
+
+.app-zigzag-property-1-store-near-you-device-mobile {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 80%;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .image-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  order: 1;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .tienda-apple-nevada-granada-2 {
+  border-radius: 0.5rem 0.5rem 0rem 0rem;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 38 / 22.75;
+  position: relative;
+  object-fit: cover;
+  display: block;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .text-box {
+  background: var(--color-gray-5, #f2f2f2);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  order: 2;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  width: 100%;
+  max-width: 21.25rem;
+  position: relative;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .frame-1775 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-shrink: 0;
+  position: relative;
+  width: 100%;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .stores-near-you {
+  color: var(--text-color-default-text, #121212);
+  text-align: center;
+  font-family: var(
+    --display-display-s-font-family,
+    "SfProDisplay-Semibold",
+    sans-serif
+  );
+  font-size: 28px;
+  line-height: var(--display-display-s-line-height, 2.375rem);
+  font-weight: var(--display-display-s-font-weight, 600);
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-zigzag-property-1-store-near-you-device-mobile
+  .lorem-ipsum-dolor-sit-amet-consectetur-adipiscing-elit-donec-facilisis-lorem-ipsum-dolor-sit-amet {
+  color: var(--text-color-default-text, #121212);
+  text-align: center;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: var(--body-body-s-regular-font-size, 0.875rem);
+  line-height: var(--body-body-s-regular-line-height, 1rem);
+  font-weight: var(--body-body-s-regular-font-weight, 400);
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.app-zigzag-property-1-store-near-you-device-mobile .cta-instance {
+  flex-shrink: 0 !important;
+  padding: 16px 32px;
+  min-width: 160px;
+}
+
+@media screen and (max-width: 768px) {
+  .app-zigzag-property-1-store-near-you-device-desktop,
+  .app-zigzag-property-1-store-near-you-device-desktop * {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .app-zigzag-property-1-store-near-you-device-mobile,
+  .app-zigzag-property-1-store-near-you-device-mobile * {
+    display: none !important;
+  }
+}

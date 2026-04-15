@@ -3,13 +3,6 @@
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 768px) {
-  .app-zigzag-property-1-need-help-device-desktop,
-  .app-zigzag-property-1-need-help-device-desktop * {
-    display: none;
-  }
-}
-
 .app-zigzag-property-1-need-help-device-desktop {
   border-radius: 1rem;
   height: 22.75rem;
@@ -106,17 +99,9 @@
   flex-shrink: 0 !important;
 }
 
-/* เอา padding: 0 12px; ออกจาก selector ด้านล่างนี้ */
 .app-zigzag-property-1-need-help-device-mobile,
 .app-zigzag-property-1-need-help-device-mobile * {
   box-sizing: border-box;
-}
-
-@media screen and (min-width: 768px) {
-  .app-zigzag-property-1-need-help-device-mobile,
-  .app-zigzag-property-1-need-help-device-mobile * {
-    display: none;
-  }
 }
 
 .app-zigzag-property-1-need-help-device-mobile {
@@ -220,4 +205,18 @@
 }
 .app-zigzag-property-1-need-help-device-mobile .need-help {
   font-size: 28px;
+}
+
+@media screen and (max-width: 768px) {
+  .app-zigzag-property-1-need-help-device-desktop,
+  .app-zigzag-property-1-need-help-device-desktop * {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .app-zigzag-property-1-need-help-device-mobile,
+  .app-zigzag-property-1-need-help-device-mobile * {
+    display: none !important;
+  }
 }

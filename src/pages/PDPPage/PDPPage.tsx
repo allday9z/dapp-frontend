@@ -143,21 +143,79 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
         </button>
       </div>
 
-      {/* Thumbnail strip */}
-      <div className="pdp__gallery-thumbs">
-        {media.map((m, i) => (
-          <button
-            key={i}
-            className={`pdp__gallery-thumb${i === idx ? " on" : ""}${m.type === "video" ? " vid" : ""}`}
-            onClick={() => setIdx(i)}
-            aria-label={m.type === "video" ? "วิดีโอสินค้า" : `รูปที่ ${i + 1}`}
-          >
-            <img src={m.poster ?? m.src} alt="" draggable={false} />
-            {m.type === "video" && (
-              <span className="pdp__gallery-play" aria-hidden="true">▶</span>
-            )}
-          </button>
-        ))}
+    </div>
+  );
+}
+
+// ── ColorGallery ───────────────────────────────────────────────────────────
+const COLOR_SLIDE_W = 292;
+
+function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
+  const [idx, setIdx] = useState(0);
+  const total = media.length;
+  const dragOrigin = useRef<number | null>(null);
+
+  const prev = () => setIdx((i) => (i - 1 + total) % total);
+  const next = () => setIdx((i) => (i + 1) % total);
+
+  const onDragBegin = (x: number) => { dragOrigin.current = x; };
+  const onDragEnd = (x: number) => {
+    if (dragOrigin.current === null) return;
+    const delta = dragOrigin.current - x;
+    if (Math.abs(delta) > COLOR_SLIDE_W * 0.16) { delta > 0 ? next() : prev(); }
+    dragOrigin.current = null;
+  };
+
+  return (
+    <div className="pdp__color-gallery">
+      <div
+        className="pdp__color-gallery-vp"
+        onTouchStart={(e) => onDragBegin(e.touches[0].clientX)}
+        onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
+        onMouseDown={(e) => onDragBegin(e.clientX)}
+        onMouseUp={(e) => onDragEnd(e.clientX)}
+      >
+        <div
+          className="pdp__color-gallery-track"
+          style={{
+            transform: `translate3d(${-idx * COLOR_SLIDE_W}px, 0, 0)`,
+            width: `${total * COLOR_SLIDE_W}px`,
+          }}
+        >
+          {media.map((m, i) => (
+            <div key={i} className="pdp__color-gallery-slide">
+              <img
+                src={m.poster ?? m.src}
+                alt={m.alt ?? name}
+                className="pdp__color-gallery-img"
+                draggable={false}
+                onDragStart={(e) => e.preventDefault()}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="pdp__color-gallery-nav">
+        <button className="pdp__gallery-arrow" onClick={prev} aria-label="Previous">
+          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
+            <path fillRule="evenodd" clipRule="evenodd" d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z" fill="#333" />
+          </svg>
+        </button>
+        <div className="pdp__gallery-dots">
+          {media.map((_, i) => (
+            <button
+              key={i}
+              className={`pdp__gallery-dot${i === idx ? " on" : ""}`}
+              onClick={() => setIdx(i)}
+              aria-label={`Slide ${i + 1}`}
+            />
+          ))}
+        </div>
+        <button className="pdp__gallery-arrow" onClick={next} aria-label="Next">
+          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
+            <path fillRule="evenodd" clipRule="evenodd" d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z" fill="#333" />
+          </svg>
+        </button>
       </div>
     </div>
   );
@@ -299,7 +357,7 @@ export const PDPPage = () => {
   const [appleCare, setAppleCare]       = useState(false);
   const [qty, setQty]                   = useState(1);
   const [financingOpen, setFinancingOpen] = useState(false);
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set());
+  const [openSections, setOpenSections] = useState<Set<string>>(new Set(["color", "applecare", "financing"]));
   const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">("financing");
 
   const toggleSect = (key: string) =>
@@ -413,6 +471,7 @@ export const PDPPage = () => {
                 />
               ))}
             </div>
+            <ColorGallery media={product.media} name={displayName} />
           </ToggleRow>
 
           {/* Processor */}

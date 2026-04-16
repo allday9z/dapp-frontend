@@ -1,5 +1,6 @@
 import { AppTileGrid } from '../../AppTileGrid/AppTileGrid';
 import type { IAppTileProps } from '../../AppTile/AppTile';
+import "./AccessoriesSection.css";
 
 const accessoriesItems: IAppTileProps[] = [
   {

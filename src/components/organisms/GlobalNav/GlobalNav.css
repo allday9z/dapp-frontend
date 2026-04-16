@@ -52,7 +52,7 @@
 .global-nav--mobile .global-nav__mobile-header {
   display: flex;
   width: 100%;
-  height: 4.25rem;
+  height: 4.375rem;
   box-sizing: border-box;
   align-items: center;
   justify-content: space-between;
@@ -352,6 +352,7 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
+  letter-spacing: 0.05em;
 }
 
 .global-nav__mobile-menu a:active {

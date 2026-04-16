@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+@media screen and (max-width: 768px) {
+  .announcement-bar {
+    min-height: 44px;
+  }
+}
+
 .announcement-bar__nav {
   border: none;
   background: transparent;

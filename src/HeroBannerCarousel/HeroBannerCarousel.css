@@ -10,34 +10,34 @@
   user-select: none;
 }
 
-/* ── Hide Fancyapps built-in UI (we use custom dots) ── */
 .banner-carousel-stage .f-progressbar,
 .banner-carousel-stage .f-button {
   display: none !important;
 }
 
-/* ── Fancyapps stage: fixed 410px height ── */
 .banner-carousel-stage {
   width: 100%;
-  height: 25.625rem; /* 410px */
+  height: 25.625rem;
 }
 
 @media (max-width: 768px) {
   .banner-carousel-stage {
-  height: 340px;
-}
+    height: 365px;
+  }
 }
 
 .banner-carousel-stage .f-carousel__viewport,
 .banner-carousel-stage .f-carousel__track {
   height: 100%;
 }
+
 .banner-carousel-stage .f-carousel__slide {
   border-bottom: 0.0625rem solid rgba(29, 29, 33, 0.25);
   height: 25.625rem;
   overflow: hidden;
   width: 100%;
 }
+
 .banner-carousel-stage .f-carousel__slide a.banner-carousel-link {
   display: flex;
   width: 100%;
@@ -45,6 +45,7 @@
   align-items: center;
   justify-content: center;
 }
+
 .banner-carousel-stage .f-carousel__slide img {
   width: auto;
   height: 100%;
@@ -55,12 +56,8 @@
   -webkit-user-drag: none;
 }
 
-/* ── Dots: white strip below the banner stage ── */
 .banner-carousel-dots-wrap {
   width: 100%;
-  /* top: -40px; */
-  /* background: #ffffff; */
-  /* padding: 1.375rem 0 1.25rem; */
   margin-top: -1.5rem;
   z-index: 2;
   display: flex;
@@ -70,11 +67,10 @@
 
 @media screen and (max-width: 768px) {
   .banner-carousel-dots-wrap {
-  margin-top: -1rem;
-}
+    margin-top: -1rem;
+  }
 }
 
-/* White pill */
 .banner-carousel-dots {
   background: #ffffff;
   border-radius: 2rem;
@@ -87,14 +83,13 @@
   box-shadow: 0 0.25rem 1rem 0 rgba(0, 0, 0, 0.15);
 }
 
-@media (max-width:768px) {
+@media (max-width: 768px) {
   .banner-carousel-dots {
     height: 25px;
     width: auto;
   }
 }
 
-/* Individual dot */
 .banner-carousel-dot {
   width: 0.75rem;
   height: 0.75rem;
@@ -109,23 +104,35 @@
 
 @media (max-width: 768px) {
   .banner-carousel-dot {
-  height: 8px;
-  width: 8px;
+    height: 8px;
+    width: 8px;
   }
 }
 
 .banner-carousel-dot.active {
   background: #1d1d1f;
 }
+
 .banner-carousel-dot:focus-visible {
   outline: 0.125rem solid rgba(0, 113, 227, 0.45);
   outline-offset: 0.125rem;
 }
 
-/* ── Divider: below the dots strip ── */
 .banner-carousel-divider {
   width: 100%;
   height: 0.0625rem;
   background: var(--color-gray-4, #f2f2f2);
   flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .is-desktop {
+    display: none !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .is-mobile {
+    display: none !important;
+  }
 }

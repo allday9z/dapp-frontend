@@ -116,7 +116,7 @@
 
 @media screen and (max-width:768px) {
   .app-tile__title {
-    min-height: 64px;
+    max-height: 64px;
   }
 }
 

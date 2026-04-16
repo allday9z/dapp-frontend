@@ -47,14 +47,5 @@
     "imageAlt": "Mac Studio",
     "detailHref": "/collections/mac-studio",
     "buyHref": "/collections/mac-studio"
-  },
-  {
-    "id": "mac-pro",
-    "name": "Mac Pro",
-    "description": "พลังงานสูงสุดสำหรับผู้เชี่ยวชาญ\nเริ่มต้น ฿299,900",
-    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_Pro_PDP_Image_Position_1__en-US.webp?inline=true",
-    "imageAlt": "Mac Pro",
-    "detailHref": "/collections/mac-pro",
-    "buyHref": "/collections/mac-pro"
   }
 ]

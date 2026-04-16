@@ -2,6 +2,19 @@
    Same width contract as PLPPage.
    FamilyStripe is full-width (outside .lob-page__inner).
 ──────────────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 768px) {
+  .is-desktop {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .is-mobile {
+    display: none !important;
+  }
+}
+
 .lob-page {
   background: #ffffff;
   width: 100%;
@@ -255,12 +268,6 @@
   .lob-page__inner { padding: 0 1.25rem; }
 }
 
-@media (max-width: 768px) {
-  .which-mac-is-right-for-you {
-    height: 15.938rem !important;
-  }
-}
-
 /* ── Mac Family Grid (view-all-mac) ──────────────────────────────────────── */
 .lob-page__family-grid {
   display: grid;
@@ -362,3 +369,4 @@
     grid-template-columns: 1fr;
   }
 }
+

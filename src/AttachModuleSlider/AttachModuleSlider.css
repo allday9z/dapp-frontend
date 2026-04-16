@@ -436,6 +436,8 @@
 .attach-slider .slick-slide { float: left; }
 
 /* ─── Responsive ──────────────────────────────────────────────── */
+
+/* Tablet เล็ก (≤900px): ซ่อนปุ่มซ้าย-ขวา, ลดขนาดรูปภาพ */
 @media (max-width: 900px) {
   .attach-slider__arrow {
     display: none;
@@ -446,6 +448,21 @@
   }
 }
 
+/* Mobile (≤768px): centerMode → ลด padding ข้าง slide + clip track */
+@media (max-width: 768px) {
+  /* ลด padding ข้าง slide เพื่อให้เนื้อหาไม่แน่นเกิน */
+  .attach-slider__item-outer {
+    padding: 0 6px;
+  }
+
+  /* ป้องกัน peek cards ล้นออกนอก section */
+  .attach-slider__track {
+    padding: 0;
+    overflow: hidden;
+  }
+}
+
+/* Mobile (≤600px): รูปภาพ responsive ตามความกว้าง slide (เหมือนเดิม) */
 @media (max-width: 600px) {
   .attach-slider__image-frame {
     width: 100%;

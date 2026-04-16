@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import Slider, { type Settings } from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -14,17 +14,15 @@ interface IFamilyStripeProps {
 interface ArrowProps {
   direction: "left" | "right";
   onClick?: () => void;
-  disabled?: boolean;
 }
 
-const Arrow = ({ direction, onClick, disabled }: ArrowProps) => {
+const Arrow = ({ direction, onClick }: ArrowProps) => {
   const sideClass = direction === "left" ? "prev" : "next";
   return (
     <button
-      className={`family-stripe__arrow family-stripe__arrow--${sideClass}${disabled ? " slick-disabled" : ""}`}
+      className={`family-stripe__arrow family-stripe__arrow--${sideClass}`}
       onClick={onClick}
       aria-label={direction === "left" ? "สไลด์ก่อนหน้า" : "สไลด์ถัดไป"}
-      disabled={disabled}
       type="button"
     >
       <svg
@@ -54,6 +52,22 @@ export const FamilyStripe = ({
   const sliderRef = useRef<Slider | null>(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [currentSlidesToShow, setCurrentSlidesToShow] = useState(2);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 768);
+      if (width >= 1200) setCurrentSlidesToShow(3);
+      else if (width >= 1024) setCurrentSlidesToShow(2);
+      else if (width >= 768) setCurrentSlidesToShow(2);
+      else setCurrentSlidesToShow(1);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const slides = useMemo(() => {
     const productSlides = items.map((item) => (
@@ -117,19 +131,18 @@ export const FamilyStripe = ({
         </a>
       </div>,
     ];
-  }, [items, seeAllHref, seeAllLabel]);
+  }, [items, seeAllHref, seeAllLabel, isDragging]);
 
   const slideCount = slides.length;
-  const slidesToScroll = 1;
-  const canGoPrev = currentSlide > 0;
-  const canGoNext = currentSlide < slideCount - 1;
+  const canGoPrev = isMobile ? false : currentSlide > 0;
+  const canGoNext = isMobile ? true : currentSlide < slideCount - currentSlidesToShow;
 
   const settings: Settings = {
-    slidesToShow: 2,
-    slidesToScroll,
-    infinite: false,
+    slidesToShow: currentSlidesToShow,
+    slidesToScroll: isMobile ? 1 : 3,
+    infinite: isMobile,
+    speed: isMobile ? 500 : 1200,
     variableWidth: true,
-    speed: 1200,
     cssEase: "ease-in-out",
     arrows: false,
     swipeToSlide: true,
@@ -137,55 +150,21 @@ export const FamilyStripe = ({
     draggable: true,
     swipe: true,
     touchMove: true,
-    waitForAnimate:true,
+    waitForAnimate: true,
     accessibility: true,
     centerPadding: "0px",
     onSwipe: () => setIsDragging(true),
     beforeChange: () => setIsDragging(true),
     afterChange: (index) => {
       setCurrentSlide(index);
-      // allow a tick for click events from the swipe to settle
       setTimeout(() => setIsDragging(false), 50);
     },
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 2,
-        },
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
-
-  const handlePrev = () => {
-    if (!canGoPrev) return;
-    sliderRef.current?.slickGoTo(Math.max(0, currentSlide - slidesToScroll));
-  };
-
-  const handleNext = () => {
-    if (!canGoNext) return;
-    sliderRef.current?.slickGoTo(Math.min(slideCount - 1, currentSlide + slidesToScroll));
   };
 
   return (
     <div className={`family-stripe${isDragging ? " is-dragging" : ""}`}>
-      {canGoPrev && <Arrow direction="left" onClick={handlePrev} disabled={!canGoPrev} />}
-      {canGoNext && <Arrow direction="right" onClick={handleNext} disabled={!canGoNext} />}
+      {canGoPrev && <Arrow direction="left" onClick={() => sliderRef.current?.slickPrev()} />}
+      {canGoNext && <Arrow direction="right" onClick={() => sliderRef.current?.slickNext()} />}
 
       <div className="family-stripe__viewport">
         <Slider ref={sliderRef} {...settings}>

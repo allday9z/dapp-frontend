@@ -146,17 +146,14 @@ export const AttachModuleSlider = ({
       { breakpoint: 1024, settings: { slidesToShow: Math.min(slidesToShowProp, 3), slidesToScroll: 1 } },
       // จอ Tablet เล็ก (≤900px): แสดง 2 ใบ
       { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      // จอ Mobile (≤768px): centerMode = กลางเต็ม ซ้าย-ขวาโผล่ครึ่งใบ (effect 1.5)
-      // ปรับ centerPadding เพื่อควบคุมว่าจะโผล่ซ้าย-ขวามากแค่ไหน
-      //   "20%" → ซ้าย-ขวาโผล่ 20% ของหน้าจอ, กลางได้ 60%
-      //   "25%" → ซ้าย-ขวาโผล่ 25% (เท่ากับครึ่งนึงของไพ่กลาง)
+      // จอ Mobile (≤768px): ชิดซ้ายเต็มใบ + card ถัดไปโผล่ครึ่งนึงด้านขวา
+      // ปรับ slidesToShow เพื่อควบคุมขนาดที่โผล่:
+      //   1.2 → โผล่ ~17%  |  1.3 → โผล่ ~23%  |  1.4 → โผล่ ~29%
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 1.3, // ← ปรับตรงนี้เพื่อเพิ่ม/ลดขนาดที่โผล่ด้านขวา
           slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: "20%", // ← ปรับตรงนี้เพื่อเพิ่ม/ลดขนาดที่โผล่ด้านข้าง
         },
       },
     ],

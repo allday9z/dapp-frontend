@@ -448,17 +448,23 @@
   }
 }
 
-/* Mobile (≤768px): centerMode → ลด padding ข้าง slide + clip track */
+/* Mobile (≤768px): ชิดซ้ายเต็มใบ + โผล่ครึ่งนึงด้านขวา + แสดงปุ่ม next */
 @media (max-width: 768px) {
-  /* ลด padding ข้าง slide เพื่อให้เนื้อหาไม่แน่นเกิน */
-  .attach-slider__item-outer {
-    padding: 0 6px;
+  /* แสดงปุ่ม next (>) บน mobile — override จาก ≤900px ที่ซ่อนไว้
+     ปุ่ม prev (<) ยังซ่อนอยู่เพราะไม่ override */
+  .attach-slider__arrow--next {
+    display: flex;
   }
 
-  /* ป้องกัน peek cards ล้นออกนอก section */
+  /* track ชิดขอบซ้าย ไม่มี padding เพื่อให้ card แรกชิดขอบจอ */
   .attach-slider__track {
     padding: 0;
-    overflow: hidden;
+    overflow: hidden; /* clip ไม่ให้ card ที่โผล่ล้นออกนอก section */
+  }
+
+  /* ลด padding ข้าง slide เล็กน้อย */
+  .attach-slider__item-outer {
+    padding: 0 6px;
   }
 }
 

@@ -109,7 +109,7 @@ const LANGS = [
   { label: 'English', code: 'en' },
 ];
 
-const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false }: { onClose: () => void, onOpenDrawer: () => void, alignRight?: boolean }) => {
+const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeName }: { onClose: () => void, onOpenDrawer: () => void, alignRight?: boolean, storeName?: string | null }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   return (
@@ -132,7 +132,7 @@ const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false }: { onCl
         </svg>
       </button>
       <div className="my-store-locator__details-header">
-        <h2 className="my-store-locator__details-title" id="MyStoreDetailsHeading">U•Store มหาวิทยาลัยศรีนครินวิโรฒ (ประสานมิตร)</h2>
+        <h2 className="my-store-locator__details-title" id="MyStoreDetailsHeading">{storeName || 'U•Store มหาวิทยาลัยศรีนครินวิโรฒ (ประสานมิตร)'}</h2>
       </div>
       <div className="js-my-store-locator-location my-store-locator__details-location">เขตวัฒนา, กรุงเทพมหานคร</div>
       <div className="my-store-locator-content">
@@ -218,6 +218,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   
   const [isStoreOpen, setIsStoreOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
   const isStoreOpenRef = useRef(isStoreOpen);
 
   useEffect(() => {
@@ -392,9 +393,9 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                     <rect x="5.4806" y="8.38246" width="4.63549" height="4.63549" rx="0.534864" stroke="black" strokeWidth="0.713153" />
                   </svg>
                 </div>
-                <p className="my-store-locator__info--mobile">เลือกสาขา</p>
+                <p className="my-store-locator__info--mobile">{selectedStoreName || 'เลือกสาขา'}</p>
               </button>
-              {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} />}
+              {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} />}
             </div>
 
             <div className="global-nav__mobile-header">
@@ -583,8 +584,8 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                     <rect x="5.4806" y="8.38246" width="4.63549" height="4.63549" rx="0.534864" stroke="black" strokeWidth="0.713153"></rect>
                   </svg>
                 </div>
-                <StoreLocator text="เลือกสาขา" className="global-nav__store-locator" />
-                {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight />}
+                <StoreLocator text={selectedStoreName || 'เลือกสาขา'} className="global-nav__store-locator" />
+                {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} />}
               </div>
 
               <div className="global-nav__lang">
@@ -654,7 +655,10 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
           </>
         )}
         {isDrawerOpen && (
-          <StoreLocatorDrawer onClose={() => setIsDrawerOpen(false)} />
+          <StoreLocatorDrawer 
+            onClose={() => setIsDrawerOpen(false)} 
+            onSelect={(name) => setSelectedStoreName(name)} 
+          />
         )}
       </div>
     </div>

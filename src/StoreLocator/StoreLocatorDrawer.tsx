@@ -7,7 +7,6 @@ interface StoreData {
   name: string;
   lat: number;
   lng: number;
-  isActive: boolean;
   shortAddress: string;
   mapUrl: string;
   fullAddress: string;
@@ -21,6 +20,7 @@ interface StoreData {
 
 interface StoreLocatorDrawerProps {
   onClose: () => void;
+  onSelect: (storeName: string) => void;
 }
 
 const STORES_DATA: StoreData[] = [
@@ -29,10 +29,9 @@ const STORES_DATA: StoreData[] = [
     name: "iStudio เดอะมอลล์ ไลฟ์สโตร์ งามวงศ์วาน",
     lat: 13.74424,
     lng: 100.546207,
-    isActive: false,
     shortAddress: "เมืองนนทบุรี, นนทบุรี",
     mapUrl: "",
-    fullAddress: "",
+    fullAddress: "เดอะมอลล์ไลฟ์สโตร์ งามวงศ์วาน ตั้งอยู่เลขที่ 30/39-50 (หรือ 430) ถนนงามวงศ์วาน ตำบลบางเขน อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000",
     phoneUrl: "",
     phoneText: "",
     lineUrl: "",
@@ -45,7 +44,6 @@ const STORES_DATA: StoreData[] = [
     name: "iStudio แฟชั่นไอส์แลนด์",
     lat: 13.8123983,
     lng: 100.0726558,
-    isActive: false,
     shortAddress: "คันนายาว, กรุงเทพมหานคร",
     mapUrl: "",
     fullAddress: "",
@@ -55,9 +53,10 @@ const STORES_DATA: StoreData[] = [
   }
 ];
 
-export default function StoreLocatorDrawer({ onClose }: StoreLocatorDrawerProps) {
+export default function StoreLocatorDrawer({ onClose, onSelect }: StoreLocatorDrawerProps) {
   const [distance, setDistance] = useState('all');
   const [expandedStoreId, setExpandedStoreId] = useState<string | null>(null);
+  const [activeStoreId, setActiveStoreId] = useState<string | null>("1");
   const [isMounted, setIsMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   
@@ -85,6 +84,16 @@ export default function StoreLocatorDrawer({ onClose }: StoreLocatorDrawerProps)
     setTimeout(() => {
       onClose();
     }, 300); 
+  };
+
+  const handleSelect = () => {
+    if (activeStoreId) {
+      const selectedStore = STORES_DATA.find(s => s.id === activeStoreId);
+      if (selectedStore) {
+        onSelect(selectedStore.name);
+      }
+    }
+    handleClose();
   };
 
   if (!isMounted) return null;
@@ -175,14 +184,18 @@ export default function StoreLocatorDrawer({ onClose }: StoreLocatorDrawerProps)
               <div 
                 key={store.id}
                 className="js-my-location-result my-location-result my-location-result--drawer apl-section-stores-locator-result" 
-                data-active={store.isActive} 
+                data-active={activeStoreId === store.id} 
                 data-id={store.id} 
                 data-name={store.name} 
                 data-latitude={store.lat} 
                 data-longitude={store.lng} 
                 role="group"
               >
-                <div className="my-location-result-details">
+                <div 
+                  className="my-location-result-details"
+                  onClick={() => setActiveStoreId(activeStoreId === store.id ? null : store.id)}
+                  style={{ cursor: 'pointer' }}
+                >
                   <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาของเรา</div>
                   <section className="js-my-results-details">
                     <div className="my-location-result__details">
@@ -222,7 +235,10 @@ export default function StoreLocatorDrawer({ onClose }: StoreLocatorDrawerProps)
                           className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" 
                           type="button" 
                           data-acc="true"
-                          onClick={() => toggleAccordion(store.id)}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            toggleAccordion(store.id);
+                          }}
                         >
                           <span className="underlined-text">ดูบริการสาขา</span>
                           <i className={`myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon ${expandedStoreId === store.id ? 'expanded' : ''}`} aria-hidden="true" aria-expanded={expandedStoreId === store.id}></i>
@@ -242,7 +258,7 @@ export default function StoreLocatorDrawer({ onClose }: StoreLocatorDrawerProps)
         </div>
 
         <div className="my-store-locator-drawer__footer">
-          <button className="js-store-locator-select-btn my-store-locator__details-btn button button--full-width" type="button" onClick={handleClose}>
+          <button className="js-store-locator-select-btn my-store-locator__details-btn button button--full-width" type="button" onClick={handleSelect}>
             เลือก
           </button>
         </div>

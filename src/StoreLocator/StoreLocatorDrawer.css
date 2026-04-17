@@ -128,6 +128,7 @@ form.nosubmit_form {
 }
 
 .my-store-locator-drawer__use-location-btn {
+    font-family: 'SFProThai';
     padding: 8px 0;
     background-color: transparent;
     color: #0071e3 !important;
@@ -328,4 +329,9 @@ input.nosubmit:active {
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border-width: 0;
+}
+
+.my-location-result.my-location-result--drawer .my-location-result-details+.my-location-result-details--contact a {
+    color: #0071e3;
+    font-weight: 600;
 }

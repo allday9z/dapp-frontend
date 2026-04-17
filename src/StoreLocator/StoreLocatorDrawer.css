@@ -15,7 +15,7 @@
     right: 0;
     bottom: 0;
     width: 21.25rem;
-    height: 100vh;
+    height: 100dvh;
     background-color: #fff;
     z-index: 9999999;
     display: flex;
@@ -49,7 +49,7 @@
 }
 
 .my-store-locator-drawer__inner {
-    max-height: 100%;
+    flex: 1 1 auto;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 20px;
@@ -226,14 +226,6 @@ form.nosubmit_form {
     margin-top: 8px;
 }
 
-.my-location-result__address {
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    margin-top: 8px;
-}
-
 .my-location-result__name {
     font-size: 16px;
     font-style: normal;
@@ -243,10 +235,7 @@ form.nosubmit_form {
 }
 
 .my-store-locator-drawer__footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    flex: 0 0 auto;
     background: #fff;
     box-shadow: 0 .5px #d2d2d2 inset;
     padding: 10px 16px;

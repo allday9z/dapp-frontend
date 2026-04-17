@@ -8,6 +8,7 @@ import { SearchInput } from '../../molecules/SearchInput/SearchInput';
 import { StoreLocator } from '../../molecules/StoreLocator/StoreLocator';
 import { AccountProfile } from '../../../AccountProfile/AccountProfile';
 import { BagCart } from '../../../BagCart/BagCart';
+import StoreLocatorDrawer from '../../../StoreLocator/StoreLocatorDrawer';
 import navMenu from '../../../data/navigation.json';
 
 type Breakpoints = {
@@ -51,9 +52,6 @@ const useBreakpoint = (): Breakpoints => {
 
   return breakpoints;
 };
-
-// ... โค้ดส่วน NavMenuItem, LANGS, StoreDetailsPopup ปล่อยไว้เหมือนเดิม ...
-// (คัดลอกส่วนที่เหลือมาได้เลย)
 
 function NavMenuItem({
   item,
@@ -111,7 +109,7 @@ const LANGS = [
   { label: 'English', code: 'en' },
 ];
 
-const StoreDetailsPopup = ({ onClose, alignRight = false }: { onClose: () => void, alignRight?: boolean }) => {
+const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false }: { onClose: () => void, onOpenDrawer: () => void, alignRight?: boolean }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   return (
@@ -188,6 +186,10 @@ const StoreDetailsPopup = ({ onClose, alignRight = false }: { onClose: () => voi
           className="my-store-locator__details-btn" 
           type="button" 
           aria-haspopup="dialog"
+          onClick={() => {
+            onClose();
+            onOpenDrawer();
+          }}
         >
           เลือกสาขาอื่น
         </button>
@@ -197,15 +199,15 @@ const StoreDetailsPopup = ({ onClose, alignRight = false }: { onClose: () => voi
 }
 
 export const GlobalNav = ({ className = '' }: { className?: string }) => {
-  const wrapperRef = useRef<HTMLDivElement>(null); // ส่วนที่เพิ่มขึ้นมาสำหรับจองพื้นที่
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const lastScrollY = useRef(0);
   const ticking = useRef(false);
 
-  const [navHeight, setNavHeight] = useState(0); // จำความสูงของ Nav
-  const [isFixed, setIsFixed] = useState(false); // ควบคุมว่าเป็น fixed หรือไม่
-  const isFixedRef = useRef(false); // ใช้ช่วยเช็ค State ล่าสุดใน Event Listener
-  const [isHidden, setIsHidden] = useState(false); // ควบคุมการสไลด์ขึ้น
+  const [navHeight, setNavHeight] = useState(0);
+  const [isFixed, setIsFixed] = useState(false);
+  const isFixedRef = useRef(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [langOpen, setLangOpen] = useState(false);
@@ -215,13 +217,13 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const [isClosingDrawer, setIsClosingDrawer] = useState(false);
   
   const [isStoreOpen, setIsStoreOpen] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isStoreOpenRef = useRef(isStoreOpen);
 
   useEffect(() => {
     isStoreOpenRef.current = isStoreOpen;
   }, [isStoreOpen]);
 
-  // คำนวณความสูง Navbar เพื่อจองพื้นที่กันเว็บกระตุก
   useEffect(() => {
     if (navRef.current) setNavHeight(navRef.current.offsetHeight);
     const updateHeight = () => {
@@ -283,7 +285,6 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
     };
   }, [isMobile, mobileDrawerOpen]);
 
-  // ลอจิกควบคุมการสไลด์และ Fixed
   useEffect(() => {
     const DOWN_DELTA = 6;
     const UP_DELTA = 4;
@@ -297,22 +298,18 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
         const wrapperTop = wrapperRef.current?.offsetTop || 0;
         const fullyScrolledOutY = wrapperTop + navHeight;
 
-        // 1. ถ้าอยู่บนสุด หรือหน้าจอเลื่อนอยู่ในช่วง Announcement Bar
         if (currentY <= wrapperTop) {
           setIsFixed(false);
           isFixedRef.current = false;
           setIsHidden(false);
         }
-        // 2. ถ้ากำลังเลื่อนหน้าจอลง (Scroll Down)
         else if (currentY > lastScrollY.current + DOWN_DELTA) {
           if (!isStoreOpenRef.current) {
-            // ถ้ายืนยันว่ายังเห็น Navbar บางส่วน ปล่อยให้มันเลื่อนหายไปแบบธรรมชาติก่อน (กันภาพกระตุก)
             if (!isFixedRef.current && currentY <= fullyScrolledOutY) {
               setIsFixed(false);
               isFixedRef.current = false;
               setIsHidden(false);
             } else {
-              // พอพ้นหน้าจอไปแล้ว ปรับเป็น Fixed แล้วดึงหลบขึ้นไป เพื่อรอรับคำสั่งสไลด์ลง
               setIsFixed(true);
               isFixedRef.current = true;
               setIsHidden(true);
@@ -320,7 +317,6 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
             }
           }
         }
-        // 3. ถ้ากำลังเลื่อนหน้าจอขึ้น (Scroll Up) ให้โชว์ Navbar ติดหน้าจอทันที
         else if (currentY < lastScrollY.current - UP_DELTA) {
           setIsFixed(true);
           isFixedRef.current = true;
@@ -378,10 +374,15 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
         {isMobile && (
           <>
-            <div className="my-store-locator my-store-locator--mobile" style={{ position: 'relative' }}>
-              <button className='my-store-locator-btn--mobile' type="button" aria-haspopup="dialog" onClick={() => setIsStoreOpen(!isStoreOpen)}>
-                <div className="my-store-locator__icon">
-                  {/* SVG paths skipped for brevity, keeping your exact code inside */}
+            <div className="my-store-locator my-store-locator--mobile" style={{ position: 'relative', width: '100%' }}>
+              <button 
+                className='my-store-locator-btn--mobile' 
+                type="button" 
+                aria-haspopup="dialog" 
+                onClick={() => setIsStoreOpen(!isStoreOpen)}
+                style={{ width: '100%', display: 'flex', cursor: 'pointer', background: 'transparent', border: 'none' }}
+              >
+                <div className="my-store-locator__icon" style={{ display: 'flex', alignItems: 'center' }}>
                   <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
                     <path d="M12.7742 13.3755H3.05191C2.2285 13.3755 1.55871 12.7056 1.55871 11.8822L1.55859 5.46973H2.29228V11.8822C2.29228 12.301 2.63304 12.6417 3.0518 12.6417H12.7743C13.1931 12.6417 13.5338 12.3011 13.5338 11.8822L13.534 5.46973H14.2676V11.8822C14.2676 12.7056 13.5977 13.3755 12.7743 13.3755H12.7742Z" fill="#1D1D1F" />
                     <path d="M6.19597 6.04216C5.04487 6.04216 4.1084 5.10557 4.1084 3.95459H4.84209C4.84209 4.70103 5.44941 5.30836 6.19597 5.30836C6.94253 5.30836 7.54985 4.70103 7.54985 3.95459H8.28354C8.28354 5.10557 7.34707 6.04216 6.19597 6.04216Z" fill="#1D1D1F" />
@@ -393,7 +394,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 </div>
                 <p className="my-store-locator__info--mobile">เลือกสาขา</p>
               </button>
-              {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} />}
+              {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} />}
             </div>
 
             <div className="global-nav__mobile-header">
@@ -583,7 +584,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                   </svg>
                 </div>
                 <StoreLocator text="เลือกสาขา" className="global-nav__store-locator" />
-                {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} alignRight />}
+                {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight />}
               </div>
 
               <div className="global-nav__lang">
@@ -651,6 +652,9 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
               ))}
             </div>
           </>
+        )}
+        {isDrawerOpen && (
+          <StoreLocatorDrawer onClose={() => setIsDrawerOpen(false)} />
         )}
       </div>
     </div>

@@ -80,7 +80,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
               className={`global-footer__col-title ${openSections['shop'] ? 'is-open' : ''}`}
               onClick={() => toggleSection('shop')}
             >
-              Shop
+              เลือกซื้อ
               <ChevronIcon />
             </h2>
             <div className={`global-footer__col-content ${openSections['shop'] ? 'is-open' : ''}`}>
@@ -105,7 +105,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
               className={`global-footer__col-title ${openSections['services'] ? 'is-open' : ''}`}
               onClick={() => toggleSection('services')}
             >
-              Services
+              บริการ
               <ChevronIcon />
             </h2>
             <div className={`global-footer__col-content ${openSections['services'] ? 'is-open' : ''}`}>
@@ -130,7 +130,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
               className={`global-footer__col-title ${openSections['about'] ? 'is-open' : ''}`}
               onClick={() => toggleSection('about')}
             >
-              About
+              UFicon
               <ChevronIcon />
             </h2>
             <div className={`global-footer__col-content ${openSections['about'] ? 'is-open' : ''}`}>
@@ -155,7 +155,7 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
               className={`global-footer__col-title ${openSections['policies'] ? 'is-open' : ''}`}
               onClick={() => toggleSection('policies')}
             >
-              Policies
+              นโยบาย
               <ChevronIcon />
             </h2>
             <div className={`global-footer__col-content ${openSections['policies'] ? 'is-open' : ''}`}>

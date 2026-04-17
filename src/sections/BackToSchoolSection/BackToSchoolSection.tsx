@@ -30,7 +30,7 @@ const items: AttachModuleSliderItem[] = [
     badge: "ราคาพิเศษ",
     badgeColor: "#1a7a3c",
     name: "Apple Pencil Pro",
-    price: "เพียง ฿4,390",
+    price: "เพียง ฿4,990",
     installment: "",
     ctaLabel: "สั่งซื้อ",
     ctaHref: "/collections/ipad",

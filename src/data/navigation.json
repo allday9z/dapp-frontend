@@ -14,7 +14,7 @@
         { "label": "Studio Display", "href": "#" },
         { "label": "อุปกรณ์เสริม Mac", "href": "#" },
         { "label": "เปรียบเทียบ Mac", "href": "#" },
-        { "label": "AppleCare+ สำหรับ Mac", "href": "#" }
+        { "label": "AppleCa re+ สำหรับ Mac", "href": "#" }
       ]
     },
     {
@@ -121,6 +121,7 @@
     }
   ],
   "secondary": [
+   
     {
       "label": "ข้อเสนอ",
       "href": "#",
@@ -132,13 +133,13 @@
         { "label": "โปรโมชันบัตรเครดิตหน้าสาขา", "href": "#" }
       ]
     },
+     {
+      "label": "สำหรับธุรกิจ",
+      "href": "https://www.uficon.com/apple-solutions/"
+    },
     {
       "label": "สำหรับการศึกษา",
-      "href": "#",
-      "items": [
-        { "label": "นักศึกษา", "href": "#" },
-        { "label": "นักเรียน", "href": "#" }
-      ]
+      "href": "https://education.uficon.com/"
     }
   ]
 }

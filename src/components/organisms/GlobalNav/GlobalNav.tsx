@@ -8,7 +8,7 @@ import { SearchInput } from '../../molecules/SearchInput/SearchInput';
 import { StoreLocator } from '../../molecules/StoreLocator/StoreLocator';
 import { AccountProfile } from '../../../AccountProfile/AccountProfile';
 import { BagCart } from '../../../BagCart/BagCart';
-import StoreLocatorDrawer from '../../../StoreLocator/StoreLocatorDrawer';
+import StoreLocatorDrawer, { STORES_DATA } from '../../../StoreLocator/StoreLocatorDrawer';
 import navMenu from '../../../data/navigation.json';
 
 type Breakpoints = {
@@ -109,8 +109,26 @@ const LANGS = [
   { label: 'English', code: 'en' },
 ];
 
+function deg2rad(deg: number) {
+  return deg * (Math.PI / 180);
+}
+
+function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371;
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
+}
+
 const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeName }: { onClose: () => void, onOpenDrawer: () => void, alignRight?: boolean, storeName?: string | null }) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const store = STORES_DATA.find(s => s.name === storeName) || STORES_DATA[0];
 
   return (
     <div 
@@ -132,18 +150,20 @@ const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeNam
         </svg>
       </button>
       <div className="my-store-locator__details-header">
-        <h2 className="my-store-locator__details-title" id="MyStoreDetailsHeading">{storeName || 'U•Store มหาวิทยาลัยศรีนครินวิโรฒ (ประสานมิตร)'}</h2>
+        <h2 className="my-store-locator__details-title" id="MyStoreDetailsHeading">{store.name}</h2>
       </div>
-      <div className="js-my-store-locator-location my-store-locator__details-location">เขตวัฒนา, กรุงเทพมหานคร</div>
+      <div className="js-my-store-locator-location my-store-locator__details-location">{store.shortAddress}</div>
       <div className="my-store-locator-content">
         <div className="js-my-store-locator-address my-store-locator__details-info">
-          ที่อยู่: <a href="#" target="_blank" rel="noreferrer" style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร อาคารบริการศาสตราจารย์ ม.ล. ปิ่น มาลากุล แขวงคลองเตยเหนือ เขตวัฒนา กรุงเทพมหานคร 10110</a>
+          ที่อยู่: <a href={store.mapUrl || '#'} target="_blank" rel="noreferrer" style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>{store.fullAddress || store.shortAddress}</a>
         </div>
-        <div className="js-my-store-locator-telephone my-store-locator__details-info">
-          โทร: <a href="tel:(949) 255-1500" style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>+66 81 234 5678</a>
-        </div>
+        {store.phoneText && (
+          <div className="js-my-store-locator-telephone my-store-locator__details-info">
+            โทร: <a href={store.phoneUrl || `tel:${store.phoneText.replace(/\s+/g, '')}`} style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>{store.phoneText}</a>
+          </div>
+        )}
         <div className="js-my-store-locator-hours my-store-locator__details-info">
-          เวลาทำการ: <span>10:00 น. - 21:00 น.</span>
+          เวลาทำการ: <span>{store.hours}</span>
         </div>
         <div className="js-my-store-locator-services">
           <button 
@@ -170,7 +190,13 @@ const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeNam
                 <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>See what your device is worth</a></li>
                 <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>Get help here</a></li>
               </ul>
-              <p style={{ margin: 0, marginTop: '8px' }}><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#0066cc', textDecoration: 'none' }}>Schedule Appointment</a></p>
+              {store.contactUrl && (
+                <p style={{ margin: 0, marginTop: '8px' }}>
+                  <a href={store.contactUrl} target="_blank" rel="noopener noreferrer" className="apl-section-stores-locator-store-services-link" style={{ color: '#0066cc', textDecoration: 'none' }}>
+                    {store.contactText || 'Schedule Appointment'}
+                  </a>
+                </p>
+              )}
             </div>
           )}
         </div>
@@ -224,6 +250,33 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   useEffect(() => {
     isStoreOpenRef.current = isStoreOpen;
   }, [isStoreOpen]);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          let nearestStoreName: string | null = null;
+          let minDistance = Infinity;
+
+          STORES_DATA.forEach(store => {
+            const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+            if (dist < minDistance) {
+              minDistance = dist;
+              nearestStoreName = store.name;
+            }
+          });
+
+          if (nearestStoreName) {
+            setSelectedStoreName(nearestStoreName);
+          }
+        },
+        (error) => {
+          console.log('Location access denied or error:', error);
+        }
+      );
+    }
+  }, []);
 
   useEffect(() => {
     if (navRef.current) setNavHeight(navRef.current.offsetHeight);
@@ -380,7 +433,13 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 className='my-store-locator-btn--mobile' 
                 type="button" 
                 aria-haspopup="dialog" 
-                onClick={() => setIsStoreOpen(!isStoreOpen)}
+                onClick={() => {
+                  if (selectedStoreName) {
+                    setIsStoreOpen(!isStoreOpen);
+                  } else {
+                    setIsDrawerOpen(true);
+                  }
+                }}
                 style={{ width: '100%', display: 'flex', cursor: 'pointer', background: 'transparent', border: 'none' }}
               >
                 <div className="my-store-locator__icon" style={{ display: 'flex', alignItems: 'center' }}>
@@ -395,7 +454,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 </div>
                 <p className="my-store-locator__info--mobile">{selectedStoreName || 'เลือกสาขา'}</p>
               </button>
-              {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} />}
+              {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} />}
             </div>
 
             <div className="global-nav__mobile-header">
@@ -570,7 +629,13 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
               
               <div 
                 style={{ display: 'flex', alignItems: 'center', gap: '8px', position: 'relative', cursor: 'pointer' }}
-                onClick={() => setIsStoreOpen(!isStoreOpen)}
+                onClick={() => {
+                  if (selectedStoreName) {
+                    setIsStoreOpen(!isStoreOpen);
+                  } else {
+                    setIsDrawerOpen(true);
+                  }
+                }}
                 role="button"
                 tabIndex={0}
               >
@@ -585,7 +650,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                   </svg>
                 </div>
                 <StoreLocator text={selectedStoreName || 'เลือกสาขา'} className="global-nav__store-locator" />
-                {isStoreOpen && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} />}
+                {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} />}
               </div>
 
               <div className="global-nav__lang">
@@ -656,6 +721,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
         )}
         {isDrawerOpen && (
           <StoreLocatorDrawer 
+            selectedStoreName={selectedStoreName}
             onClose={() => setIsDrawerOpen(false)} 
             onSelect={(name) => setSelectedStoreName(name)} 
           />

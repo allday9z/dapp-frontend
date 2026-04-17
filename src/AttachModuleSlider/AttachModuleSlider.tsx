@@ -106,6 +106,13 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
   );
 };
 
+function getSlidesToShow(slidesToShowProp: number, w: number): number {
+  if (w <= 580) return 1.5;  // mobile/narrow: peek (2×290px = 580px min for 2 items)
+  if (w <= 768) return 2;    // tablet: 2 items
+  if (w <= 1024) return Math.min(slidesToShowProp, 3);
+  return slidesToShowProp;
+}
+
 export const AttachModuleSlider = ({
   title,
   titleAlign = "center",
@@ -115,48 +122,34 @@ export const AttachModuleSlider = ({
 }: AttachModuleSliderProps): JSX.Element => {
   const sliderRef = useRef<Slider | null>(null);
   const [, setCurrentSlide] = useState(0);
-  
-  const [isClient, setIsClient] = useState(false);
+
+  // ตรวจ window width ตั้งแต่ render แรก — ไม่ flash desktop layout
+  const [winWidth, setWinWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1220
+  );
 
   useEffect(() => {
-    setIsClient(true);
-    
-    const timer = setTimeout(() => {
-      window.dispatchEvent(new Event("resize"));
-    }, 100);
-
-    return () => clearTimeout(timer);
+    const handleResize = () => setWinWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const slideCount = items.length;
+  const activeSlidesToShow = getSlidesToShow(slidesToShowProp, winWidth);
+
+  const isPeekMode = activeSlidesToShow < 2;
 
   const settings: Settings = {
     dots: true,
-    infinite: true,
+    infinite: !isPeekMode, // peek mode ต้องปิด infinite เพราะมี clone slide ซ้าย
     autoplay: false,
     speed: 500,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
-    slidesToShow: slidesToShowProp,
+    slidesToShow: activeSlidesToShow,
     slidesToScroll: 1,
     arrows: false,
     dotsClass: "slick-dots attach-slider__dots",
     afterChange: (index) => setCurrentSlide(index),
-    responsive: [
-      // จอ Tablet ใหญ่ (≤1024px): แสดงตามค่าที่กำหนด สูงสุด 3 ใบ
-      { breakpoint: 1024, settings: { slidesToShow: Math.min(slidesToShowProp, 3), slidesToScroll: 1 } },
-      // จอ Tablet เล็ก (≤900px): แสดง 2 ใบ
-      { breakpoint: 900, settings: { slidesToShow: 2, slidesToScroll: 1 } },
-      // จอ Mobile (≤768px): ชิดซ้ายเต็มใบ + card ถัดไปโผล่ครึ่งนึงด้านขวา
-      // ปรับ slidesToShow เพื่อควบคุมขนาดที่โผล่:
-      //   1.2 → โผล่ ~17%  |  1.3 → โผล่ ~23%  |  1.4 → โผล่ ~29%
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1.3, // ← ปรับตรงนี้เพื่อเพิ่ม/ลดขนาดที่โผล่ด้านขวา
-          slidesToScroll: 1,
-        },
-      },
-    ],
   };
 
   return (
@@ -179,7 +172,7 @@ export const AttachModuleSlider = ({
 
         <div className="attach-slider__track">
           {slideCount > 0 ? (
-            <Slider key={isClient ? "client-loaded" : "server-loaded"} ref={sliderRef} {...settings}>
+            <Slider ref={sliderRef} {...settings}>
               {items.map((item) => (
                 <div key={item.id} className="attach-slider__item-outer">
                   <Tile item={item} />

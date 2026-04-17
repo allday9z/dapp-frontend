@@ -233,4 +233,8 @@
   .family-stripe__tile {
     min-width: 14rem;
   }
+
+  .family-stripe__tile-text {
+    max-width: 155px;
+}
 }

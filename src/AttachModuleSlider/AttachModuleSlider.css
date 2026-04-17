@@ -96,8 +96,8 @@
 
 /* ─── Image frame: 292 × 292, bordered, rounded ──────────────── */
 .attach-slider__image-frame {
-  width: 292px;
-  height: 292px;
+  width: 290px;
+  height: 290px;
   background: #ffffff;
   border: 0.5px solid #7d7d7d;
   border-radius: 8px;
@@ -254,8 +254,8 @@
 /* Always visible — disabled = faded, not clickable */
 .attach-slider__arrow {
   position: absolute;
-  /* vertically centered on the 292px image frame */
-  top: calc(292px / 2);
+  /* vertically centered on the image frame — desktop: 290px/2, mobile overridden */
+  top: calc(290px / 2);
   transform: translateY(-50%);
   width: 48px;
   height: 48px;
@@ -299,6 +299,12 @@
 }
 
 /* ─── Slick dots ──────────────────────────────────────────────── */
+/* ยกเลิก margin-bottom ของ slick-dotted ที่เพิ่มช่องว่างใต้ slider */
+.attach-slider .slick-dotted.slick-slider {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 /* Flow below slides — not absolute, so dots never overlap CTA */
 .attach-slider .attach-slider__dots {
   position: static;
@@ -307,7 +313,7 @@
   align-items: center;
   gap: 12px;
   list-style: none;
-  margin: 32px 0 0px;
+  margin: 16px 0 0;
   padding: 0;
 }
 
@@ -374,7 +380,7 @@
 
 .attach-slider__empty-card {
   flex: 1;
-  height: 292px;
+  height: 290px;
   background: #f5f5f7;
   border: 0.5px solid #d2d2d7;
   border-radius: 8px;
@@ -437,42 +443,35 @@
 
 /* ─── Responsive ──────────────────────────────────────────────── */
 
-/* Tablet เล็ก (≤900px): ซ่อนปุ่มซ้าย-ขวา, ลดขนาดรูปภาพ */
-@media (max-width: 900px) {
+/* ≤989px: ซ่อน arrow ทั้งคู่ */
+@media (max-width: 989px) {
   .attach-slider__arrow {
     display: none;
   }
+  /* image fixed 290×290 centered (ตาม Apple CX) */
   .attach-slider__image-frame {
-    width: 240px;
-    height: 240px;
+    width: 290px;
+    height: 290px;
+    margin: 0 auto;
   }
 }
 
-/* Mobile (≤768px): ชิดซ้ายเต็มใบ + โผล่ครึ่งนึงด้านขวา + แสดงปุ่ม next */
-@media (max-width: 768px) {
-  /* แสดงปุ่ม next (>) บน mobile — override จาก ≤900px ที่ซ่อนไว้
-     ปุ่ม prev (<) ยังซ่อนอยู่เพราะไม่ override */
-  .attach-slider__arrow--next {
-    display: flex;
-  }
-
-  /* track ชิดขอบซ้าย ไม่มี padding เพื่อให้ card แรกชิดขอบจอ */
+/* Peek mode (≤580px): 1.5 items, flush left, image fluid */
+@media (max-width: 580px) {
   .attach-slider__track {
     padding: 0;
-    overflow: hidden; /* clip ไม่ให้ card ที่โผล่ล้นออกนอก section */
   }
-
-  /* ลด padding ข้าง slide เล็กน้อย */
+  .attach-slider .slick-list {
+    overflow: hidden;
+  }
   .attach-slider__item-outer {
     padding: 0 6px;
   }
-}
-
-/* Mobile (≤600px): รูปภาพ responsive ตามความกว้าง slide (เหมือนเดิม) */
-@media (max-width: 600px) {
+  /* fluid image: ขนาดตาม slide (ไม่ overflow slide ≤580px) */
   .attach-slider__image-frame {
     width: 100%;
     height: auto;
     aspect-ratio: 1 / 1;
+    margin: 0;
   }
 }

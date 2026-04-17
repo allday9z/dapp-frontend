@@ -25,7 +25,7 @@
     "id": "mac-mini",
     "name": "Mac mini",
     "description": "พื้นที่เล็ก พลังงานมหาศาล\nเริ่มต้น ฿22,900",
-    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_Mini_PDP_Image_Position_1__en-US.webp?inline=true",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/Mac_mini_with_M4_Silver_PDP_Image_Position_1__en-US_889b9807-eb51-42fc-830d-45c05bf97254.webp",
     "imageAlt": "Mac mini",
     "detailHref": "/collections/mac-mini",
     "buyHref": "/collections/mac-mini"
@@ -34,7 +34,7 @@
     "id": "imac",
     "name": "iMac",
     "description": "All-in-one ที่ดีที่สุดเท่าที่เคยมีมา\nเริ่มต้น ฿46,900",
-    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iMac_24_in_Blue_PDP_Image_Position_1__GBEN.webp?inline=true",
+    "imageSrc": "https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/iMac_M4_Chip_2-port_24-in_Blue_PDP_Image_Position_1__en-US.webp",
     "imageAlt": "iMac",
     "detailHref": "/collections/imac",
     "buyHref": "/collections/imac"

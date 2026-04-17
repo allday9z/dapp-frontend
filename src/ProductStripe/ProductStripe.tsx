@@ -119,7 +119,7 @@ export const ProductStripe = ({
 
   const fallbackResponsive: Settings["responsive"] = [
     {
-      breakpoint: 768,
+      breakpoint: 425,
       settings: {
         slidesToShow: 1,
         slidesToScroll: 1,

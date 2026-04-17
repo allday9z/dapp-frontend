@@ -379,6 +379,10 @@
   .lob-page__family-name { font-size: 1.25rem; }
 }
 
+@media screen and (max-width: 768px) {
+  .lob-page__hero-description { line-height: 20px; line-height: 28px; }
+}
+
 @media (max-width: 480px) {
   .lob-page__family-grid {
     grid-template-columns: 1fr;

@@ -335,3 +335,25 @@ input.nosubmit:active {
     color: #0071e3;
     font-weight: 600;
 }
+
+.my-location-result__services a {
+    text-decoration: none;
+    outline: none;
+    color: #0071e3;
+}
+
+.my-location-result__services-btn {
+    background: none;
+    border-width: medium;
+    border-style: none;
+    border-color: currentcolor;
+    border-image: initial;
+    padding: 0px;
+    color: rgb(0, 102, 204);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: SFProThai;
+    margin-bottom: 10px;
+}

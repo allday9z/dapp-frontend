@@ -556,10 +556,6 @@
     max-width: 25rem !important;
   }
 
-  .global-nav__store-locator {
-    width: 8rem !important;
-  }
-
   .global-nav--tablet .global-nav__search {
     display: none;
   }
@@ -590,10 +586,6 @@
     flex: 1 1 0 !important;
     min-width: 12rem !important;
     max-width: 35rem !important;
-  }
-
-  .global-nav__store-locator {
-    width: 10rem !important;
   }
 
   .global-nav__menu-row {
@@ -647,9 +639,36 @@
   max-width: 35rem !important;
 }
 
+.global-nav__store-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  min-width: 0;
+}
+
 .global-nav__store-locator {
-  width: 10rem !important;
   align-self: unset !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+}
+
+@media screen and (min-width: 750px) {
+  .global-nav__store-locator {
+    max-width: 8rem !important;
+    width: 8rem !important;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .global-nav__store-locator {
+    max-width: 10rem !important;
+    width: 10rem !important;
+  }
 }
 
 .global-nav__visually-hidden {
@@ -968,7 +987,7 @@
     .my-store-locator__details {
         left: 25%;
         transform: translate(-50%);
-        width: 580px;
+        width: 340px;
         border: solid 1px #D9D9D9;
         top: calc(100% + 16px);
         border-radius: 0.75rem;
@@ -1033,11 +1052,8 @@
 .my-location-result__services {
     display: flex;
     flex-direction: column;
-    align-items: center;
     gap: 8px;
     margin-top: 0;
-    visibility: hidden;
-    height: 0;
 }
 
 .my-store-locator__details-footer {
@@ -1105,4 +1121,11 @@
   background: none;
   border: none;
   cursor: pointer;
+}
+
+.my-location-result__services a {
+    text-decoration: none;
+    outline: none;
+    color: #0071e3;
+    font-size: 14px;
 }

@@ -1,58 +1,13 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './StoreLocatorDrawer.css';
-
-export interface StoreData {
-  id: string;
-  name: string;
-  lat: number;
-  lng: number;
-  shortAddress: string;
-  mapUrl: string;
-  fullAddress: string;
-  phoneUrl?: string;
-  phoneText?: string;
-  lineUrl?: string;
-  hours: string;
-  contactUrl?: string;
-  contactText?: string;
-}
+import { STORES_DATA } from './StoreList';
 
 interface StoreLocatorDrawerProps {
   onClose: () => void;
   onSelect: (storeName: string) => void;
   selectedStoreName?: string | null;
 }
-
-export const STORES_DATA: StoreData[] = [
-  {
-    id: "1",
-    name: "iStudio เดอะมอลล์ ไลฟ์สโตร์ งามวงศ์วาน",
-    lat: 13.74424,
-    lng: 100.546207,
-    shortAddress: "เมืองนนทบุรี, นนทบุรี",
-    mapUrl: "",
-    fullAddress: "ร้าน iStudio by UFicon ศูนย์การค้าเดอะมอลล์ไลฟ์สโตร์ งามวงศ์วาน เลขที่ 30/39-50 (หรือ 430) ถนนงามวงศ์วาน ตำบลบางเขน อำเภอเมืองนนทบุรี จังหวัดนนทบุรี 11000",
-    phoneUrl: "",
-    phoneText: "",
-    lineUrl: "",
-    hours: "Every day 10:00 - 22:00",
-    contactUrl: "",
-    contactText: "ติดต่อสาขา"
-  },
-  {
-    id: "2",
-    name: "iStudio แฟชั่นไอส์แลนด์",
-    lat: 13.8123983,
-    lng: 100.0726558,
-    shortAddress: "คันนายาว, กรุงเทพมหานคร",
-    mapUrl: "",
-    fullAddress: "ร้าน iStudio by UFicon ศูนย์การค้าแฟชั่นไอส์แลนด์ เลขที่ 587, 589, 589/7-9 ถนนรามอินทรา แขวงคันนายาว เขตคันนายาว กรุงเทพมหานคร 10230",
-    phoneUrl: "",
-    phoneText: "",
-    hours: "Every day 10:00 - 21:00"
-  }
-];
 
 export function deg2rad(deg: number) {
   return deg * (Math.PI / 180);
@@ -141,9 +96,7 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
             }
           }
         },
-        (error) => {
-          console.log(error);
-        }
+        () => {}
       );
     }
   };
@@ -236,7 +189,7 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
           </div>
 
           <div id="myLocationResults" className="my-store-locator-drawer__search-results">
-            {STORES_DATA.map((store) => (
+            {STORES_DATA.map((store: any) => (
               <div 
                 key={store.id}
                 className="js-my-location-result my-location-result my-location-result--drawer apl-section-stores-locator-result" 
@@ -284,7 +237,7 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                     <span>เวลาทำการ: </span>
                     <span>{store.hours}</span>
                   </li>
-                  {store.contactUrl && (
+                  {((store.services && store.services.length > 0) || store.contactUrl) && (
                     <>
                       <li>
                         <button 
@@ -295,14 +248,34 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                             e.stopPropagation();
                             toggleAccordion(store.id);
                           }}
+                          style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
                         >
                           <span className="underlined-text">ดูบริการสาขา</span>
-                          <i className={`myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon ${expandedStoreId === store.id ? 'expanded' : ''}`} aria-hidden="true" aria-expanded={expandedStoreId === store.id}></i>
+                          <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor" style={{ transform: expandedStoreId === store.id ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+                            <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z"/>
+                          </svg>
                         </button>
                       </li>
                       {expandedStoreId === store.id && (
                         <li className="my-location-result__services js-acc-details" aria-expanded="true">
-                          <p><a href={store.contactUrl} target="_blank" rel="noopener noreferrer"><span className="schedule_btn">{store.contactText || 'ติดต่อสาขา'}</span></a></p>
+                          {store.services && store.services.length > 0 && (
+                            <ul style={{ paddingLeft: '18px', margin: '0 0 8px', listStyleType: 'disc', textAlign: 'left' }}>
+                              {store.services.map((service: any, index: number) => (
+                                <li key={index}>
+                                  <a href={service.url} className="apl-section-stores-locator-store-services-link">
+                                    {service.label}
+                                  </a>
+                                </li>
+                              ))}
+                            </ul>
+                          )}
+                          {store.contactUrl && (
+                            <p style={{ margin: 0, marginTop: '8px' }}>
+                              <a href={store.contactUrl} target="_blank" rel="noopener noreferrer" className="apl-section-stores-locator-store-services-link" style={{ color: '#0071e3', textDecoration: 'none', fontWeight: 600 }}>
+                                {store.contactText || 'ติดต่อสาขา'}
+                              </a>
+                            </p>
+                          )}
                         </li>
                       )}
                     </>

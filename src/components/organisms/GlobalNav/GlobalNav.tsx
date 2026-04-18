@@ -8,7 +8,8 @@ import { SearchInput } from '../../molecules/SearchInput/SearchInput';
 import { StoreLocator } from '../../molecules/StoreLocator/StoreLocator';
 import { AccountProfile } from '../../../AccountProfile/AccountProfile';
 import { BagCart } from '../../../BagCart/BagCart';
-import StoreLocatorDrawer, { STORES_DATA } from '../../../StoreLocator/StoreLocatorDrawer';
+import StoreLocatorDrawer from '../../../StoreLocator/StoreLocatorDrawer';
+import { STORES_DATA } from '../../../StoreLocator/StoreList';
 import navMenu from '../../../data/navigation.json';
 
 type Breakpoints = {
@@ -183,13 +184,17 @@ const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeNam
           </button>
           {isServicesOpen && (
             <div className="my-location-result__services js-acc-details" aria-expanded="true" style={{ marginTop: '12px' }}>
-              <ul style={{ paddingLeft: '20px', margin: '0 0 8px', display: 'flex', flexDirection: 'column', gap: '4px' }}>
-                <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>Apple Official Technical Support</a></li>
-                <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>See all sessions at this store</a></li>
-                <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>Reserve a shopping session</a></li>
-                <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>See what your device is worth</a></li>
-                <li><a href="/" className="apl-section-stores-locator-store-services-link" style={{ color: '#1d1d1f', textDecoration: 'none' }}>Get help here</a></li>
-              </ul>
+              {store.services && store.services.length > 0 && (
+                <ul style={{ paddingLeft: '24px', margin: '0 0 8px', listStyleType: 'disc', textAlign: 'left' }}>
+                  {store.services.map((service, index) => (
+                    <li key={index}>
+                      <a href={service.url} className="apl-section-stores-locator-store-services-link">
+                        {service.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
               {store.contactUrl && (
                 <p style={{ margin: 0, marginTop: '8px' }}>
                   <a href={store.contactUrl} target="_blank" rel="noopener noreferrer" className="apl-section-stores-locator-store-services-link" style={{ color: '#0066cc', textDecoration: 'none' }}>
@@ -252,29 +257,36 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   }, [isStoreOpen]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          let nearestStoreName: string | null = null;
-          let minDistance = Infinity;
+    if (typeof window !== 'undefined') {
+      const savedStore = localStorage.getItem('selectedStore');
+      if (savedStore) {
+        setSelectedStoreName(savedStore);
+        return;
+      }
 
-          STORES_DATA.forEach(store => {
-            const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-            if (dist < minDistance) {
-              minDistance = dist;
-              nearestStoreName = store.name;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            let nearestStoreName: string | null = null;
+            let minDistance = Infinity;
+
+            STORES_DATA.forEach(store => {
+              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+              if (dist < minDistance) {
+                minDistance = dist;
+                nearestStoreName = store.name;
+              }
+            });
+
+            if (nearestStoreName) {
+              setSelectedStoreName(nearestStoreName);
+              localStorage.setItem('selectedStore', nearestStoreName);
             }
-          });
-
-          if (nearestStoreName) {
-            setSelectedStoreName(nearestStoreName);
-          }
-        },
-        (error) => {
-          console.log('Location access denied or error:', error);
-        }
-      );
+          },
+          () => {}
+        );
+      }
     }
   }, []);
 
@@ -408,6 +420,13 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
     setActiveMenu(null);
     setIsStoreOpen(false);
     setLangOpen((prev) => !prev);
+  };
+
+  const handleStoreSelect = (name: string) => {
+    setSelectedStoreName(name);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('selectedStore', name);
+    }
   };
 
   return (
@@ -628,7 +647,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
               <SearchInput className="global-nav__search" />
               
               <div 
-                style={{ display: 'flex', alignItems: 'center', gap: '8px', position: 'relative', cursor: 'pointer' }}
+                className="global-nav__store-container"
                 onClick={() => {
                   if (selectedStoreName) {
                     setIsStoreOpen(!isStoreOpen);
@@ -723,7 +742,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
           <StoreLocatorDrawer 
             selectedStoreName={selectedStoreName}
             onClose={() => setIsDrawerOpen(false)} 
-            onSelect={(name) => setSelectedStoreName(name)} 
+            onSelect={handleStoreSelect} 
           />
         )}
       </div>

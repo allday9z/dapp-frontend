@@ -644,7 +644,6 @@
   align-items: center;
   gap: 8px;
   position: relative;
-  cursor: pointer;
   flex-shrink: 0;
   min-width: 0;
 }
@@ -1009,7 +1008,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 24px;
 }
 
 .my-store-locator__details-location {
@@ -1082,7 +1080,6 @@
 }
 
 .my-store-locator__details-btn--secondary {
-    border: 2px #0071e3;
     color: #0071e3 !important;
     border: 2px solid #0071e3 !important;
     border-radius: 42px;
@@ -1092,6 +1089,12 @@
     text-align: center;
     margin-bottom: 12px;
     min-height: 49px;
+}
+
+.my-store-locator__details-btn--secondary:hover {
+    color: #0054a8 !important;
+    border: 2px solid #0054a8 !important;
+    text-decoration: underline;
 }
 
 .my-store-locator__details-btn {
@@ -1104,6 +1107,12 @@
     font-size: 14px;
     text-align: center;
     min-height: 49px;
+}
+
+.my-store-locator__details-btn:hover {
+    background-color: #0054a8 !important;
+    text-decoration: underline;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

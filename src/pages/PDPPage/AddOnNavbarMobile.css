@@ -1,0 +1,115 @@
+/* ── AddOnNavbarMobile ──────────────────────────────────────────────────── */
+/* Sticky bar that appears at top (below GlobalNav) on PDP mobile only      */
+/* Shows when the product title/price section scrolls above the viewport    */
+
+.addon-navbar-mobile {
+  position: fixed;
+  top: 0; /* sits directly below GlobalNav via padding — GlobalNav is ~70px */
+  left: 0;
+  right: 0;
+  z-index: 90; /* below GlobalNav (z-index:100) */
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+  transform: translateY(-110%);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  will-change: transform;
+}
+
+.addon-navbar-mobile--visible {
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.addon-navbar-mobile__inner {
+  padding: 10px 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+/* Product name */
+.addon-navbar-mobile__name {
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1d1d1f;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Price row */
+.addon-navbar-mobile__pricing {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.addon-navbar-mobile__price {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1d1d1f;
+}
+
+.addon-navbar-mobile__sep {
+  font-size: 12px;
+  color: #6e6e73;
+}
+
+.addon-navbar-mobile__monthly {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #0071e3;
+  line-height: 1;
+}
+
+.addon-navbar-mobile__monthly:hover {
+  text-decoration: underline;
+}
+
+/* Delivery row */
+.addon-navbar-mobile__delivery {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 2px;
+}
+
+.addon-navbar-mobile__delivery-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  color: #1d1d1f;
+  line-height: 1;
+}
+
+.addon-navbar-mobile__delivery-item strong {
+  color: #0071e3;
+  font-weight: 500;
+}
+
+.addon-navbar-mobile__delivery-sep {
+  font-size: 11px;
+  color: #d2d2d7;
+  flex-shrink: 0;
+}
+
+/* ── Show only on mobile (≤749px) ────────────────────────────────────────── */
+@media (min-width: 750px) {
+  .addon-navbar-mobile {
+    display: none;
+  }
+}

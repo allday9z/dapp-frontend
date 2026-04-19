@@ -519,6 +519,12 @@
   width: 100%;
 }
 
+@media screen and (max-width: 768px) {
+  .my-store-locator-btn--mobile {
+  justify-content: left;
+}
+}
+
 .my-store-locator__info--mobile {
   font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   color: #333;

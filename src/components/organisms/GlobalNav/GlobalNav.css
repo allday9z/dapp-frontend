@@ -677,8 +677,8 @@
 
 @media screen and (min-width: 1024px) {
   .global-nav__store-container {
-    width: 320px;
-    max-width: 320px;
+    width: 360px;
+    max-width: 360px;
   }
   .global-nav__store-locator {
     max-width: calc(100% - 24px) !important;

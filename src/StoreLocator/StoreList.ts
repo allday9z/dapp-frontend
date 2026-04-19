@@ -153,4 +153,23 @@ export const STORES_DATA: StoreData[] = [
       { label: "Get help here", url: "/" }
     ]
   },
+  {
+    id: "US-SWU",
+    name: "U•Store มหาวิทยาลัยศรีนครินทรวิโรฒ (ประสานมิตร)",
+    lat: 13.7446599, 
+    lng: 100.5609688,
+    shortAddress: "วัฒนา, กรุงเทพมหานคร",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร อาคารบริการศาสตราจารย์ ม.ล. ปิ่น มาลากุล เลขที่ 114 ซอยสุขุมวิท 23 ถนนสุขุมวิท แขวงคลองเตยเหนือ เขตวัฒนา กรุงเทพมหานคร 10110",
+    phoneUrl: "tel://+66807815577",
+    phoneText: "080 781 5577",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
 ];

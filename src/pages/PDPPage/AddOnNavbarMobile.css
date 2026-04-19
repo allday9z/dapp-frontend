@@ -1,27 +1,11 @@
 /* ── AddOnNavbarMobile ──────────────────────────────────────────────────── */
-/* Sticky bar that appears at top (below GlobalNav) on PDP mobile only      */
-/* Shows when the product title/price section scrolls above the viewport    */
+/* Product info bar below GlobalNav on PDP mobile only                      */
+/* Always visible, scrolls naturally with page content                      */
 
 .addon-navbar-mobile {
-  position: fixed;
-  top: 70px; /* sits directly below GlobalNav (GlobalNav is ~70px tall) */
-  left: 0;
-  right: 0;
-  z-index: 90; /* below GlobalNav (z-index:100) */
-  width: 100vw;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: saturate(180%) blur(20px);
-  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  width: 100%;
+  background: #ffffff;
   border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
-  transform: translateY(-110%);
-  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
-  pointer-events: none;
-  will-change: transform;
-}
-
-.addon-navbar-mobile--visible {
-  transform: translateY(0);
-  pointer-events: auto;
 }
 
 .addon-navbar-mobile__wrapper {

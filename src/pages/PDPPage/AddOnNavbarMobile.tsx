@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react";
 import "./AddOnNavbarMobile.css";
 
 interface AddOnNavbarMobileProps {
@@ -7,8 +6,6 @@ interface AddOnNavbarMobileProps {
   monthly: string;
   monthlyTerm: number;
   onMonthlyClick?: () => void;
-  /** ref of the element — when it scrolls out of view, the navbar appears */
-  triggerRef: React.RefObject<HTMLElement | null>;
 }
 
 export const AddOnNavbarMobile = ({
@@ -17,25 +14,10 @@ export const AddOnNavbarMobile = ({
   monthly,
   monthlyTerm,
   onMonthlyClick,
-  triggerRef,
 }: AddOnNavbarMobileProps) => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const check = () => {
-      if (!triggerRef.current) return;
-      const rect = triggerRef.current.getBoundingClientRect();
-      // Show when the trigger element has scrolled above the viewport
-      setVisible(rect.bottom < 0);
-    };
-
-    window.addEventListener("scroll", check, { passive: true });
-    check();
-    return () => window.removeEventListener("scroll", check);
-  }, [triggerRef]);
 
   return (
-    <div className={`addon-navbar-mobile${visible ? " addon-navbar-mobile--visible" : ""}`} aria-hidden={!visible}>
+    <div className="addon-navbar-mobile">
       <div className="addon-navbar-mobile__wrapper">
         <div className="addon-navbar-mobile__header">
           <div className="addon-navbar-mobile__left">
@@ -49,7 +31,6 @@ export const AddOnNavbarMobile = ({
                 className="addon-navbar-mobile__monthly"
                 onClick={onMonthlyClick}
                 aria-label="ดูข้อมูลการผ่อนชำระ"
-                tabIndex={visible ? 0 : -1}
               >
                 {monthly}/mo. for {monthlyTerm} mo. ›
               </button>

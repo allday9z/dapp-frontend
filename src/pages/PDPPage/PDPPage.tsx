@@ -378,9 +378,6 @@ export const PDPPage = () => {
   const displayName = `${product.size}-inch ${product.name}`;
   const heroImage   = product.media.find((m) => m.type === "image")?.src ?? "";
 
-  // Ref to the product header — AddOnNavbarMobile appears when this scrolls out of view
-  const productHeaderRef = useRef<HTMLDivElement>(null);
-
   const breadcrumbs = [
     { label: "iStudio",     href: "/" },
     { label: "Mac",         href: "/pages/view-all-mac" },
@@ -390,14 +387,13 @@ export const PDPPage = () => {
 
   return (
     <div className="pdp">
-      {/* ── AddOn Navbar Mobile — sticky top bar, mobile only ──────────── */}
+      {/* ── AddOn Navbar Mobile — product info bar below GlobalNav, mobile only ──── */}
       <AddOnNavbarMobile
         productName={displayName}
         price={`${fmt(totalPrice)} ${product.currency}`}
         monthly={fmt(Math.round(totalPrice / product.monthlyTerm))}
         monthlyTerm={product.monthlyTerm}
         onMonthlyClick={() => setFinancingOpen(true)}
-        triggerRef={productHeaderRef}
       />
 
       {/* Family stripe */}
@@ -429,7 +425,7 @@ export const PDPPage = () => {
       </nav> */}
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
-      <div className="pdp__product-header" ref={productHeaderRef}>
+      <div className="pdp__product-header">
         <h1 className="pdp__product-title">{displayName}</h1>
         <p className="pdp__product-meta">
           SKU: {product.sku}

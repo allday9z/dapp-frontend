@@ -671,11 +671,12 @@
 
 @media screen and (min-width: 1024px) {
   .global-nav__store-container {
-    max-width: 14rem;
+    width: 320px;
+    max-width: 320px;
   }
   .global-nav__store-locator {
-    max-width: 10rem !important;
-    width: 10rem !important;
+    max-width: calc(100% - 24px) !important;
+    width: auto !important;
   }
 }
 

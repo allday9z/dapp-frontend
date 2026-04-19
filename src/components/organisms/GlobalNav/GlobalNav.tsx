@@ -30,6 +30,33 @@ type NavStack = {
   items?: { label: string; href: string }[];
 };
 
+const STORE_STORAGE_KEY = 'user_selected_store';
+const STORE_EXPIRY_MS = 60 * 60 * 1000; // 1 ชั่วโมง
+
+const saveStoreToStorage = (storeName: string) => {
+  const data = {
+    name: storeName,
+    expiry: new Date().getTime() + STORE_EXPIRY_MS,
+  };
+  localStorage.setItem(STORE_STORAGE_KEY, JSON.stringify(data));
+};
+
+const getStoreFromStorage = (): string | null => {
+  const itemStr = localStorage.getItem(STORE_STORAGE_KEY);
+  if (!itemStr) return null;
+  try {
+    const item = JSON.parse(itemStr);
+    const now = new Date().getTime();
+    if (now > item.expiry) {
+      localStorage.removeItem(STORE_STORAGE_KEY);
+      return null;
+    }
+    return item.name;
+  } catch (e) {
+    return null;
+  }
+};
+
 const useBreakpoint = (): Breakpoints => {
   const [breakpoints, setBreakpoints] = useState<Breakpoints>({
     mobile: true,
@@ -281,26 +308,35 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      if (navigator.geolocation) {
+      const savedStore = getStoreFromStorage();
+      if (savedStore) {
+        setSelectedStoreName(savedStore);
+      } else {
         setIsLoadingStore(true);
+      }
+
+      if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
             setUserLocation({ lat: latitude, lng: longitude });
             
-            let nearestStoreName: string | null = null;
-            let minDistance = Infinity;
+            if (!savedStore) {
+              let nearestStoreName: string | null = null;
+              let minDistance = Infinity;
 
-            STORES_DATA.forEach(store => {
-              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-              if (dist < minDistance) {
-                minDistance = dist;
-                nearestStoreName = store.name;
+              STORES_DATA.forEach(store => {
+                const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+                if (dist < minDistance) {
+                  minDistance = dist;
+                  nearestStoreName = store.name;
+                }
+              });
+
+              if (nearestStoreName) {
+                setSelectedStoreName(nearestStoreName);
+                saveStoreToStorage(nearestStoreName);
               }
-            });
-
-            if (nearestStoreName) {
-              setSelectedStoreName(nearestStoreName);
             }
             setIsLoadingStore(false);
           },
@@ -308,6 +344,8 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
             setIsLoadingStore(false);
           }
         );
+      } else {
+        setIsLoadingStore(false);
       }
     }
   }, []);
@@ -442,11 +480,10 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
   const handleStoreSelect = (name: string) => {
     setSelectedStoreName(name);
+    saveStoreToStorage(name);
   };
 
-  const displayStoreName = selectedStoreName
-    ? (selectedStoreName.length > 24 ? `${selectedStoreName.substring(0, 24)}...` : selectedStoreName)
-    : 'เลือกสาขา';
+  const displayStoreName = selectedStoreName ? selectedStoreName : 'เลือกสาขา';
 
   return (
     <div ref={wrapperRef} className="global-nav-wrapper" style={{ height: isFixed ? navHeight : undefined, minHeight: navHeight || undefined }}>

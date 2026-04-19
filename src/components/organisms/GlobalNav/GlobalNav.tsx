@@ -814,12 +814,15 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
           </>
         )}
         {isDrawerOpen && (
-          <StoreLocatorDrawer 
+          <StoreLocatorDrawer
             selectedStoreName={selectedStoreName}
-            onClose={() => setIsDrawerOpen(false)} 
-            onSelect={handleStoreSelect} 
+            onClose={() => setIsDrawerOpen(false)}
+            onSelect={handleStoreSelect}
           />
         )}
+
+        {/* Slot for page-specific sticky addon (e.g. PDP product bar) */}
+        <div id="global-nav-addon-slot" />
       </div>
     </div>
   );

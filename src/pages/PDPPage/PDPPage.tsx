@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import "./PDPPage.css";
 import { AddOnNavbarMobile } from "./AddOnNavbarMobile";
 import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
@@ -378,6 +379,12 @@ export const PDPPage = () => {
   const displayName = `${product.size}-inch ${product.name}`;
   const heroImage   = product.media.find((m) => m.type === "image")?.src ?? "";
 
+  // Portal target: the slot inside GlobalNav's fixed container
+  const [navSlot, setNavSlot] = useState<HTMLElement | null>(null);
+  useEffect(() => {
+    setNavSlot(document.getElementById("global-nav-addon-slot"));
+  }, []);
+
   const breadcrumbs = [
     { label: "iStudio",     href: "/" },
     { label: "Mac",         href: "/pages/view-all-mac" },
@@ -387,14 +394,18 @@ export const PDPPage = () => {
 
   return (
     <div className="pdp">
-      {/* ── AddOn Navbar Mobile — product info bar below GlobalNav, mobile only ──── */}
-      <AddOnNavbarMobile
-        productName={displayName}
-        price={`${fmt(totalPrice)} ${product.currency}`}
-        monthly={fmt(Math.round(totalPrice / product.monthlyTerm))}
-        monthlyTerm={product.monthlyTerm}
-        onMonthlyClick={() => setFinancingOpen(true)}
-      />
+      {/* ── AddOn Navbar Mobile — portaled INTO GlobalNav, mobile only ──── */}
+      {navSlot &&
+        createPortal(
+          <AddOnNavbarMobile
+            productName={displayName}
+            price={`${fmt(totalPrice)} ${product.currency}`}
+            monthly={fmt(Math.round(totalPrice / product.monthlyTerm))}
+            monthlyTerm={product.monthlyTerm}
+            onMonthlyClick={() => setFinancingOpen(true)}
+          />,
+          navSlot,
+        )}
 
       {/* Family stripe */}
       <FamilyStripe

@@ -1,63 +1,44 @@
 /* ── AddOnNavbarMobile ──────────────────────────────────────────────────── */
-/* Product info bar below GlobalNav on PDP mobile only                      */
-/* Always visible, scrolls naturally with page content                      */
+/* Product info bar inside GlobalNav (via portal slot).                      */
+/* Renders inside .global-nav → moves with fixed positioning + transforms.  */
+/* Visible only while actively scrolling; collapses on idle.                */
 
 .addon-navbar-mobile {
   width: 100%;
-  background: #ffffff;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.12);
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  border-top: 0.5px solid rgba(0, 0, 0, 0.12);
 }
 
-.addon-navbar-mobile__wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
+.addon-navbar-mobile--visible {
+  grid-template-rows: 1fr;
 }
 
+.addon-navbar-mobile__collapse {
+  overflow: hidden;
+}
+
+/* ── Row 1: product name + price + monthly — single line ────────────────── */
 .addon-navbar-mobile__header {
-  padding: 10px 16px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 12px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 16px 8px;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.addon-navbar-mobile__left {
-  flex: 1;
-  min-width: 0; /* for ellipsis truncation */
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.addon-navbar-mobile__right {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: flex-end;
-}
-
-/* Product name */
 .addon-navbar-mobile__name {
   font-family: 'SF Pro Display', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #1d1d1f;
   line-height: 1.3;
-  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
   overflow: hidden;
   text-overflow: ellipsis;
-}
-
-/* Price row */
-.addon-navbar-mobile__pricing {
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
-  flex-wrap: wrap;
 }
 
 .addon-navbar-mobile__price {
@@ -65,11 +46,13 @@
   font-size: 13px;
   font-weight: 600;
   color: #1d1d1f;
+  flex-shrink: 0;
 }
 
 .addon-navbar-mobile__sep {
   font-size: 12px;
   color: #6e6e73;
+  flex-shrink: 0;
 }
 
 .addon-navbar-mobile__monthly {
@@ -82,23 +65,23 @@
   font-weight: 400;
   color: #0071e3;
   line-height: 1;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .addon-navbar-mobile__monthly:hover {
   text-decoration: underline;
 }
 
-/* Delivery row — horizontal scrollable */
+/* ── Row 2: delivery / pickup — horizontal drag-scroll ──────────────────── */
 .addon-navbar-mobile__delivery {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 12px 16px;
+  gap: 12px;
+  padding: 6px 16px 10px;
   overflow-x: auto;
   overflow-y: hidden;
-  scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-  /* Hide scrollbar but allow scrolling */
   scrollbar-width: none; /* Firefox */
 }
 
@@ -109,7 +92,7 @@
 .addon-navbar-mobile__delivery-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 11px;
   color: #1d1d1f;
@@ -120,8 +103,6 @@
 
 .addon-navbar-mobile__delivery-item svg {
   flex-shrink: 0;
-  width: 14px;
-  height: 14px;
 }
 
 .addon-navbar-mobile__delivery-item strong {

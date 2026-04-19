@@ -79,7 +79,7 @@ export const STORES_DATA: StoreData[] = [
   },
   {
     id: "IS-TR",
-    name: "iStudio ศูนย์การค้าโรบินสัน ไลฟ์สไตล์ ตรัง",
+    name: "iStudio โรบินสัน ไลฟ์สไตล์ ตรัง",
     lat: 7.564249985325683, 
     lng: 99.62746092019248,
     shortAddress: "เมืองตรัง, ตรัง",

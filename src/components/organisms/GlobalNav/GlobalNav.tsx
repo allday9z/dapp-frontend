@@ -272,6 +272,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+  const [isLoadingStore, setIsLoadingStore] = useState(false);
   const isStoreOpenRef = useRef(isStoreOpen);
 
   useEffect(() => {
@@ -280,36 +281,32 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedStore = localStorage.getItem('selectedStore');
-      if (savedStore) {
-        setSelectedStoreName(savedStore);
-      }
-
       if (navigator.geolocation) {
+        setIsLoadingStore(true);
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
             setUserLocation({ lat: latitude, lng: longitude });
             
-            if (!savedStore) {
-              let nearestStoreName: string | null = null;
-              let minDistance = Infinity;
+            let nearestStoreName: string | null = null;
+            let minDistance = Infinity;
 
-              STORES_DATA.forEach(store => {
-                const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-                if (dist < minDistance) {
-                  minDistance = dist;
-                  nearestStoreName = store.name;
-                }
-              });
-
-              if (nearestStoreName) {
-                setSelectedStoreName(nearestStoreName);
-                localStorage.setItem('selectedStore', nearestStoreName);
+            STORES_DATA.forEach(store => {
+              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+              if (dist < minDistance) {
+                minDistance = dist;
+                nearestStoreName = store.name;
               }
+            });
+
+            if (nearestStoreName) {
+              setSelectedStoreName(nearestStoreName);
             }
+            setIsLoadingStore(false);
           },
-          () => {}
+          () => {
+            setIsLoadingStore(false);
+          }
         );
       }
     }
@@ -329,7 +326,6 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const isTablet = breakpoints.tablet;
   const isDesktop = breakpoints.desktop;
 
-  // Re-measure nav height when breakpoint changes (mobile nav differs in height from desktop)
   useEffect(() => {
     if (navRef.current) setNavHeight(navRef.current.offsetHeight);
   }, [isMobile, isTablet]);
@@ -393,13 +389,11 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
         const currentY = Math.max(0, window.scrollY);
 
         if (currentY <= navHeight) {
-          // Back at/near top — unfix nav, let it sit in natural flow
           setIsFixed(false);
           isFixedRef.current = false;
           setIsHidden(false);
         }
         else if (currentY > lastScrollY.current + DOWN_DELTA) {
-          // Scrolling down — fix and hide
           if (!isStoreOpenRef.current) {
             setIsFixed(true);
             isFixedRef.current = true;
@@ -408,7 +402,6 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
           }
         }
         else if (currentY < lastScrollY.current - UP_DELTA) {
-          // Scrolling up — fix and show (slide in from top)
           setIsFixed(true);
           isFixedRef.current = true;
           setIsHidden(false);
@@ -449,10 +442,11 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
   const handleStoreSelect = (name: string) => {
     setSelectedStoreName(name);
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('selectedStore', name);
-    }
   };
+
+  const displayStoreName = selectedStoreName
+    ? (selectedStoreName.length > 24 ? `${selectedStoreName.substring(0, 24)}...` : selectedStoreName)
+    : 'เลือกสาขา';
 
   return (
     <div ref={wrapperRef} className="global-nav-wrapper" style={{ height: isFixed ? navHeight : undefined, minHeight: navHeight || undefined }}>
@@ -477,14 +471,22 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 className='my-store-locator-btn--mobile' 
                 type="button" 
                 aria-haspopup="dialog" 
+                disabled={isLoadingStore}
                 onClick={() => {
+                  if (isLoadingStore) return;
                   if (selectedStoreName) {
                     setIsStoreOpen(!isStoreOpen);
                   } else {
                     setIsDrawerOpen(true);
                   }
                 }}
-                style={{ cursor: 'pointer', background: 'transparent', border: 'none' }}
+                style={{ 
+                  cursor: isLoadingStore ? 'default' : 'pointer', 
+                  background: 'transparent', 
+                  border: 'none',
+                  opacity: isLoadingStore ? 0.5 : 1,
+                  pointerEvents: isLoadingStore ? 'none' : 'auto'
+                }}
               >
                 <div className="my-store-locator__icon" style={{ display: 'flex', alignItems: 'center' }}>
                   <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
@@ -496,9 +498,13 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                     <rect x="5.4806" y="8.38246" width="4.63549" height="4.63549" rx="0.534864" stroke="black" strokeWidth="0.713153" />
                   </svg>
                 </div>
-                <p className="my-store-locator__info--mobile">{selectedStoreName || 'เลือกสาขา'}</p>
+                <p className="my-store-locator__info--mobile">
+                  <span style={{ display: 'block', whiteSpace: 'nowrap' }}>
+                    {isLoadingStore ? 'กำลังโหลดสาขา...' : displayStoreName}
+                  </span>
+                </p>
               </button>
-              {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} userLocation={userLocation} />}
+              {isStoreOpen && selectedStoreName && !isLoadingStore && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} userLocation={userLocation} />}
             </div>
 
             <div className="global-nav__mobile-header">
@@ -674,6 +680,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
               <div 
                 className="global-nav__store-container"
                 onClick={() => {
+                  if (isLoadingStore) return;
                   if (selectedStoreName) {
                     setIsStoreOpen(!isStoreOpen);
                   } else {
@@ -681,7 +688,12 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                   }
                 }}
                 role="button"
-                tabIndex={0}
+                tabIndex={isLoadingStore ? -1 : 0}
+                style={{
+                  opacity: isLoadingStore ? 0.5 : 1,
+                  pointerEvents: isLoadingStore ? 'none' : 'auto',
+                  cursor: isLoadingStore ? 'default' : 'pointer'
+                }}
               >
                 <div className="my-store-locator__icon">
                   <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
@@ -693,49 +705,50 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                     <rect x="5.4806" y="8.38246" width="4.63549" height="4.63549" rx="0.534864" stroke="black" strokeWidth="0.713153"></rect>
                   </svg>
                 </div>
-                <StoreLocator text={selectedStoreName || 'เลือกสาขา'} className="global-nav__store-locator" />
-                {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} userLocation={userLocation} />}
-              </div>
-
-              <div className="global-nav__lang">
-                <h2 className="global-nav__visually-hidden" id="HeaderLanguageLabel">ภาษา</h2>
-                <div className={`disclosure${langOpen ? ' is-open' : ''}`}>
-                  <button
-                    type="button"
-                    className="disclosure__button"
-                    aria-expanded={langOpen}
-                    aria-controls="HeaderLanguageList"
-                    aria-describedby="HeaderLanguageLabel"
-                    onClick={toggleLang}
-                  >
-                    <span className="disclosure__text">{currentLang}</span>
-                    <svg aria-hidden="true" focusable="false" className="icon-caret" viewBox="0 0 10 6" width="10" height="6">
-                      <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
-                    </svg>
-                  </button>
-                  <div className="disclosure__list-wrapper" hidden={!langOpen}>
-                    <ul id="HeaderLanguageList" className="disclosure__list">
-                      {LANGS.map((lang) => (
-                        <li key={lang.code} className="disclosure__item">
-                          <a
-                            href="#"
-                            className={`disclosure__link${currentLang === lang.label ? ' disclosure__link--active' : ''}`}
-                            hrefLang={lang.code}
-                            lang={lang.code}
-                            aria-current={currentLang === lang.label ? true : undefined}
-                            onClick={(e) => { e.preventDefault(); setCurrentLang(lang.label); setLangOpen(false); }}
-                          >
-                            {lang.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+                <StoreLocator text={isLoadingStore ? 'กำลังโหลดสาขา...' : displayStoreName} className="global-nav__store-locator" />
+                {isStoreOpen && selectedStoreName && !isLoadingStore && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} userLocation={userLocation} />}
               </div>
 
               <div className="global-nav__utilities">
-                <AccountProfile className="global-nav__account" />
+                <div className="global-nav__utilities-group">
+                  <div className="global-nav__lang">
+                    <h2 className="global-nav__visually-hidden" id="HeaderLanguageLabel">ภาษา</h2>
+                    <div className={`disclosure${langOpen ? ' is-open' : ''}`}>
+                      <button
+                        type="button"
+                        className="disclosure__button"
+                        aria-expanded={langOpen}
+                        aria-controls="HeaderLanguageList"
+                        aria-describedby="HeaderLanguageLabel"
+                        onClick={toggleLang}
+                      >
+                        <span className="disclosure__text">{currentLang}</span>
+                        <svg aria-hidden="true" focusable="false" className="icon-caret" viewBox="0 0 10 6" width="10" height="6">
+                          <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor" />
+                        </svg>
+                      </button>
+                      <div className="disclosure__list-wrapper" hidden={!langOpen}>
+                        <ul id="HeaderLanguageList" className="disclosure__list">
+                          {LANGS.map((lang) => (
+                            <li key={lang.code} className="disclosure__item">
+                              <a
+                                href="#"
+                                className={`disclosure__link${currentLang === lang.label ? ' disclosure__link--active' : ''}`}
+                                hrefLang={lang.code}
+                                lang={lang.code}
+                                aria-current={currentLang === lang.label ? true : undefined}
+                                onClick={(e) => { e.preventDefault(); setCurrentLang(lang.label); setLangOpen(false); }}
+                              >
+                                {lang.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                  <AccountProfile className="global-nav__account" />
+                </div>
                 <BagCart className="global-nav__bag" />
               </div>
             </div>

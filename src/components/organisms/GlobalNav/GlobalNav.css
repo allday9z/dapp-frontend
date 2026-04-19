@@ -1,6 +1,5 @@
 .global-nav-wrapper {
   width: 100%;
-  /* Reserve space so page doesn't jump when nav becomes position:fixed */
   flex-shrink: 0;
 }
 
@@ -504,6 +503,7 @@
 .my-store-locator--mobile {
   width: 100%;
   display: flex;
+  justify-content: center;
   box-shadow: inset 0 -.5px #d2d2d7;
   height: 48px;
   align-items: center;
@@ -513,6 +513,7 @@
 .my-store-locator-btn--mobile {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   min-width: 0;
   width: 100%;
@@ -526,11 +527,8 @@
   font-weight: 500;
   line-height: 16px;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   height: 18px;
-  flex: 1;
-  text-align: left;
+  text-align: center;
 }
 
 .my-store-locator__info--mobile:hover, .my-store-locator__info--mobile:active {
@@ -559,7 +557,7 @@
   }
 
   .global-nav__search {
-    max-width: 25rem !important;
+    max-width: 440px !important;
   }
 
   .global-nav--tablet .global-nav__search {
@@ -591,7 +589,7 @@
   .global-nav__search {
     flex: 1 1 0 !important;
     min-width: 12rem !important;
-    max-width: 35rem !important;
+    max-width: 440px !important;
   }
 
   .global-nav__menu-row {
@@ -642,16 +640,18 @@
 .global-nav__search {
   flex: 1 1 0 !important;
   min-width: 12rem !important;
-  max-width: 35rem !important;
+  max-width: 440px !important;
 }
 
 .global-nav__store-container {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   position: relative;
   flex-shrink: 0;
   min-width: 0;
+  max-width: 12rem;
 }
 
 .global-nav__store-locator {
@@ -670,6 +670,9 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .global-nav__store-container {
+    max-width: 14rem;
+  }
   .global-nav__store-locator {
     max-width: 10rem !important;
     width: 10rem !important;
@@ -691,7 +694,7 @@
 .global-nav__lang {
   position: relative;
   flex-shrink: 0;
-  width: 7rem;
+  width: auto;
 }
 
 .global-nav__lang .disclosure {
@@ -709,7 +712,7 @@
   font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 0.875rem;
   white-space: nowrap;
-  padding: 0.25rem 0;
+  padding: 0.25rem 0.5rem;
   width: 100%;
 }
 
@@ -773,9 +776,15 @@
   display: flex;
   flex-direction: row;
   gap: 1rem;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   flex-shrink: 0;
+}
+
+.global-nav__utilities-group {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .global-nav__account { width: 2.25rem !important; height: 2.25rem !important; }

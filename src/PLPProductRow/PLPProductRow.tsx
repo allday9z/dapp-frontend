@@ -48,10 +48,12 @@ export const PLPProductRow = ({ product, variant = "plp" }: IPLPProductRowProps)
         </div>
 
         <div className="plp-product-row__actions">
-          <a href={detailHref} className="plp-product-row__detail-link">
-            ดูรายละเอียดสินค้า
-            <span className="plp-product-row__chevron" aria-hidden="true">›</span>
-          </a>
+          {variant === "plp" && (
+            <a href={detailHref} className="plp-product-row__detail-link">
+              ดูรายละเอียดสินค้า
+              <span className="plp-product-row__chevron" aria-hidden="true">›</span>
+            </a>
+          )}
           <a href={buyHref} className="plp-product-row__buy-btn">
             สั่งซื้อ
           </a>

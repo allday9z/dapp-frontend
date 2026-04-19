@@ -1,5 +1,7 @@
 .global-nav-wrapper {
   width: 100%;
+  /* Reserve space so page doesn't jump when nav becomes position:fixed */
+  flex-shrink: 0;
 }
 
 .global-nav {
@@ -512,6 +514,8 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  min-width: 0;
+  width: 100%;
 }
 
 .my-store-locator__info--mobile {
@@ -525,6 +529,8 @@
   overflow: hidden;
   text-overflow: ellipsis;
   height: 18px;
+  flex: 1;
+  text-align: left;
 }
 
 .my-store-locator__info--mobile:hover, .my-store-locator__info--mobile:active {
@@ -986,7 +992,7 @@
     .my-store-locator__details {
         left: 50%;
         transform: translate(-50%);
-        width: 340px;
+        width: 540px;
         border: solid 1px #D9D9D9;
         top: calc(100% + 16px);
         border-radius: 0.75rem;
@@ -1008,6 +1014,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 12px;
 }
 
 .my-store-locator__details-location {
@@ -1076,7 +1083,6 @@
     font-style: normal;
     font-weight: 600;
     line-height: 24px;
-    margin-top: 12px;
 }
 
 .my-store-locator__details-btn--secondary {

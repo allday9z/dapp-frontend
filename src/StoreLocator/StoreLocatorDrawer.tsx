@@ -29,6 +29,7 @@ export function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: numb
 export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreName }: StoreLocatorDrawerProps) {
   const [distance, setDistance] = useState('all');
   const [expandedStoreId, setExpandedStoreId] = useState<string | null>(null);
+  const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   
   const initialStoreId = STORES_DATA.find(s => s.name === selectedStoreName)?.id || null;
   const [activeStoreId, setActiveStoreId] = useState<string | null>(initialStoreId);
@@ -44,6 +45,15 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
     
     document.body.style.overflow = 'hidden';
     document.documentElement.style.overflow = 'hidden';
+
+    if (typeof window !== 'undefined' && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude });
+        },
+        () => {}
+      );
+    }
     
     return () => {
       document.body.style.overflow = originalBodyOverflow;
@@ -77,6 +87,8 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+
           let nearestStoreId: string | null = null;
           let minDistance = Infinity;
 
@@ -90,16 +102,36 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
 
           if (nearestStoreId) {
             setActiveStoreId(nearestStoreId);
-            const element = document.querySelector(`[data-id="${nearestStoreId}"]`);
-            if (element) {
-              element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }
+            setTimeout(() => {
+              const element = document.querySelector(`[data-id="${nearestStoreId}"]`);
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              }
+            }, 100);
           }
         },
         () => {}
       );
     }
   };
+
+  const processedStores = STORES_DATA.map(store => {
+    if (userLocation) {
+      const dist = getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng);
+      return { ...store, distanceVal: dist };
+    }
+    return { ...store, distanceVal: null };
+  });
+
+  const filteredStores = processedStores.filter(store => {
+    if (!userLocation || distance === 'all') return true;
+    return store.distanceVal !== null && store.distanceVal <= Number(distance);
+  }).sort((a, b) => {
+    if (a.distanceVal !== null && b.distanceVal !== null) {
+      return a.distanceVal - b.distanceVal;
+    }
+    return 0;
+  });
 
   if (!isMounted) return null;
 
@@ -167,29 +199,33 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
             
             <div className="my-store-locator-drawer__search-result-options">
               <span className="js-store-locator-results-count my-store-locator-drawer__search-result-label" data-results="ผลลัพธ์" data-result="ผลลัพธ์" data-results-near="สาขาใกล้คุณ" data-result-near="สาขาใกล้คุณ" data-results-near-you="สาขาใกล้คุณ" data-result-near-you="สาขาใกล้คุณ" data-no-results-found="no results found">
-                {STORES_DATA.length} สาขาใกล้คุณ
+                {filteredStores.length} สาขาใกล้คุณ
               </span>
-              <label className="screenreader" htmlFor="storeLocatorDistanceSelectDrawer">
-                Filter stores by distance
-              </label>
-              <select 
-                className="js-store-locator-results-distance my-store-locator-drawer__search-distance-select hidden" 
-                id="storeLocatorDistanceSelectDrawer"
-                value={distance}
-                onChange={(e) => setDistance(e.target.value)}
-              >
-                <option value="all">ทุกสาขา</option>
-                <option value="5">5 km</option>
-                <option value="10">10 km</option>
-                <option value="30">30 km</option>
-                <option value="50">50 km</option>
-                <option value="100">100 km</option>
-              </select>
+              {userLocation && (
+                <>
+                  <label className="screenreader" htmlFor="storeLocatorDistanceSelectDrawer">
+                    Filter stores by distance
+                  </label>
+                  <select 
+                    className="js-store-locator-results-distance my-store-locator-drawer__search-distance-select" 
+                    id="storeLocatorDistanceSelectDrawer"
+                    value={distance}
+                    onChange={(e) => setDistance(e.target.value)}
+                  >
+                    <option value="all">ทุกสาขา</option>
+                    <option value="5">5 km</option>
+                    <option value="10">10 km</option>
+                    <option value="30">30 km</option>
+                    <option value="50">50 km</option>
+                    <option value="100">100 km</option>
+                  </select>
+                </>
+              )}
             </div>
           </div>
 
           <div id="myLocationResults" className="my-store-locator-drawer__search-results">
-            {STORES_DATA.map((store: any) => (
+            {filteredStores.map((store: any) => (
               <div 
                 key={store.id}
                 className="js-my-location-result my-location-result my-location-result--drawer apl-section-stores-locator-result" 
@@ -209,7 +245,11 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                   <section className="js-my-results-details">
                     <div className="my-location-result__details">
                       <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
-                      <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance"></div>
+                      {store.distanceVal !== null && (
+                        <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
+                          {store.distanceVal.toFixed(1)} กิโลเมตร
+                        </div>
+                      )}
                     </div>
                     <div className="my-location-result__address apl-section-stores-locator-store-address">
                       {store.shortAddress}

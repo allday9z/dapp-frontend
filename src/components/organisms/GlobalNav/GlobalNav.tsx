@@ -127,9 +127,25 @@ function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: number, lon
   return d;
 }
 
-const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeName }: { onClose: () => void, onOpenDrawer: () => void, alignRight?: boolean, storeName?: string | null }) => {
+const StoreDetailsPopup = ({ 
+  onClose, 
+  onOpenDrawer, 
+  alignRight = false, 
+  storeName,
+  userLocation 
+}: { 
+  onClose: () => void, 
+  onOpenDrawer: () => void, 
+  alignRight?: boolean, 
+  storeName?: string | null,
+  userLocation?: {lat: number, lng: number} | null 
+}) => {
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const store = STORES_DATA.find(s => s.name === storeName) || STORES_DATA[0];
+
+  const distanceVal = (userLocation && store) 
+    ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
+    : null;
 
   return (
     <div 
@@ -152,6 +168,11 @@ const StoreDetailsPopup = ({ onClose, onOpenDrawer, alignRight = false, storeNam
       </button>
       <div className="my-store-locator__details-header">
         <h2 className="my-store-locator__details-title" id="MyStoreDetailsHeading">{store.name}</h2>
+        {distanceVal !== null && (
+          <span className="js-my-store-locator-distance my-store-locator__details-distance apl-section-stores-locator-store-distance">
+            {distanceVal.toFixed(1)} กิโลเมตร
+          </span>
+        )}
       </div>
       <div className="js-my-store-locator-location my-store-locator__details-location">{store.shortAddress}</div>
       <div className="my-store-locator-content">
@@ -250,6 +271,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const [isStoreOpen, setIsStoreOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
+  const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   const isStoreOpenRef = useRef(isStoreOpen);
 
   useEffect(() => {
@@ -261,27 +283,30 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
       const savedStore = localStorage.getItem('selectedStore');
       if (savedStore) {
         setSelectedStoreName(savedStore);
-        return;
       }
 
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (position) => {
             const { latitude, longitude } = position.coords;
-            let nearestStoreName: string | null = null;
-            let minDistance = Infinity;
+            setUserLocation({ lat: latitude, lng: longitude });
+            
+            if (!savedStore) {
+              let nearestStoreName: string | null = null;
+              let minDistance = Infinity;
 
-            STORES_DATA.forEach(store => {
-              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-              if (dist < minDistance) {
-                minDistance = dist;
-                nearestStoreName = store.name;
+              STORES_DATA.forEach(store => {
+                const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+                if (dist < minDistance) {
+                  minDistance = dist;
+                  nearestStoreName = store.name;
+                }
+              });
+
+              if (nearestStoreName) {
+                setSelectedStoreName(nearestStoreName);
+                localStorage.setItem('selectedStore', nearestStoreName);
               }
-            });
-
-            if (nearestStoreName) {
-              setSelectedStoreName(nearestStoreName);
-              localStorage.setItem('selectedStore', nearestStoreName);
             }
           },
           () => {}
@@ -303,6 +328,11 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const isMobile = breakpoints.mobile;
   const isTablet = breakpoints.tablet;
   const isDesktop = breakpoints.desktop;
+
+  // Re-measure nav height when breakpoint changes (mobile nav differs in height from desktop)
+  useEffect(() => {
+    if (navRef.current) setNavHeight(navRef.current.offsetHeight);
+  }, [isMobile, isTablet]);
 
   const mobileDrawerOpen = navStack.length > 0;
   const currentView = navStack[navStack.length - 1];
@@ -361,29 +391,24 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
 
       requestAnimationFrame(() => {
         const currentY = Math.max(0, window.scrollY);
-        const wrapperTop = wrapperRef.current?.offsetTop || 0;
-        const fullyScrolledOutY = wrapperTop + navHeight;
 
-        if (currentY <= wrapperTop) {
+        if (currentY <= navHeight) {
+          // Back at/near top — unfix nav, let it sit in natural flow
           setIsFixed(false);
           isFixedRef.current = false;
           setIsHidden(false);
         }
         else if (currentY > lastScrollY.current + DOWN_DELTA) {
+          // Scrolling down — fix and hide
           if (!isStoreOpenRef.current) {
-            if (!isFixedRef.current && currentY <= fullyScrolledOutY) {
-              setIsFixed(false);
-              isFixedRef.current = false;
-              setIsHidden(false);
-            } else {
-              setIsFixed(true);
-              isFixedRef.current = true;
-              setIsHidden(true);
-              setActiveMenu(null);
-            }
+            setIsFixed(true);
+            isFixedRef.current = true;
+            setIsHidden(true);
+            setActiveMenu(null);
           }
         }
         else if (currentY < lastScrollY.current - UP_DELTA) {
+          // Scrolling up — fix and show (slide in from top)
           setIsFixed(true);
           isFixedRef.current = true;
           setIsHidden(false);
@@ -430,7 +455,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   };
 
   return (
-    <div ref={wrapperRef} className="global-nav-wrapper" style={{ height: isFixed ? navHeight : 'auto' }}>
+    <div ref={wrapperRef} className="global-nav-wrapper" style={{ height: isFixed ? navHeight : undefined, minHeight: navHeight || undefined }}>
       <div
         ref={navRef}
         className={`global-nav ${isFixed ? 'global-nav--fixed' : ''} ${isHidden ? 'global-nav--hidden' : ''} ${isMobile ? 'global-nav--mobile' : ''} ${isTablet ? 'global-nav--tablet' : ''} ${isDesktop ? 'global-nav--desktop' : ''} ${className}`.trim()}
@@ -459,7 +484,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                     setIsDrawerOpen(true);
                   }
                 }}
-                style={{ width: '100%', display: 'flex', cursor: 'pointer', background: 'transparent', border: 'none' }}
+                style={{ cursor: 'pointer', background: 'transparent', border: 'none' }}
               >
                 <div className="my-store-locator__icon" style={{ display: 'flex', alignItems: 'center' }}>
                   <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="14" viewBox="0 0 16 14" fill="none">
@@ -473,7 +498,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 </div>
                 <p className="my-store-locator__info--mobile">{selectedStoreName || 'เลือกสาขา'}</p>
               </button>
-              {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} />}
+              {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} storeName={selectedStoreName} userLocation={userLocation} />}
             </div>
 
             <div className="global-nav__mobile-header">
@@ -669,7 +694,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                   </svg>
                 </div>
                 <StoreLocator text={selectedStoreName || 'เลือกสาขา'} className="global-nav__store-locator" />
-                {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} />}
+                {isStoreOpen && selectedStoreName && <StoreDetailsPopup onClose={() => setIsStoreOpen(false)} onOpenDrawer={() => setIsDrawerOpen(true)} alignRight storeName={selectedStoreName} userLocation={userLocation} />}
               </div>
 
               <div className="global-nav__lang">

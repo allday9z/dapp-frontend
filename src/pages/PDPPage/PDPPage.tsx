@@ -394,7 +394,7 @@ export const PDPPage = () => {
       />
 
       {/* Breadcrumbs */}
-      <nav className="pdp__breadcrumbs" aria-label="breadcrumb">
+      {/* <nav className="pdp__breadcrumbs" aria-label="breadcrumb">
         <ol className="pdp__breadcrumbs-list">
           {breadcrumbs.map((c, i) => {
             const last = i === breadcrumbs.length - 1;
@@ -412,7 +412,7 @@ export const PDPPage = () => {
             );
           })}
         </ol>
-      </nav>
+      </nav> */}
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
       <div className="pdp__product-header">

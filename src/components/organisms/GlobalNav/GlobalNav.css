@@ -31,6 +31,17 @@
   transform: translateY(-100%);
 }
 
+/* Addon slot: zero-size on desktop so it never affects nav height */
+#global-nav-addon-slot:empty {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  #global-nav-addon-slot {
+    display: none !important;
+  }
+}
+
 .global-nav--mobile .global-nav__mobile-header {
   display: flex;
   width: 100%;

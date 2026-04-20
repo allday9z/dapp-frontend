@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./StoreLocatorPage.css";
 import { STORES_DATA } from "../../StoreLocator/StoreList";
 
@@ -55,6 +55,8 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
   const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   const [isLoadingStore, setIsLoadingStore] = useState(false);
+  const [maxDistance, setMaxDistance] = useState<number | 'all'>(30);
+  const mapRef = useRef<any>(null);
 
   useEffect(() => {
     const fetchLocationAndStore = () => {
@@ -76,7 +78,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                 let nearestStoreName: string | null = null;
                 let minDistance = Infinity;
 
-                STORES_DATA.forEach(store => {
+                STORES_DATA.forEach((store: any) => {
                   const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
                   if (dist < minDistance) {
                     minDistance = dist;
@@ -111,11 +113,106 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
     window.addEventListener('local-store-update', handleLocalUpdate);
     return () => window.removeEventListener('local-store-update', handleLocalUpdate);
   }, []);
+  useEffect(() => {
+    const initializeMap = () => {
+      const mapkit = (window as any).mapkit;
+      if (!mapkit) return;
+
+      try {
+        if (!(window as any).isMapKitInitialized) {
+          mapkit.init({
+            authorizationCallback: function(done: (token: string) => void) {
+              console.warn("Please provide your Apple Maps JWT Token in authorizationCallback.");
+            },
+            language: "th",
+          });
+          (window as any).isMapKitInitialized = true;
+        }
+
+        if (!mapRef.current) {
+          mapRef.current = new mapkit.Map("map", {
+            showsUserLocation: true,
+            showsUserLocationControl: true,
+          });
+        }
+      } catch (error) {
+        console.error("MapKit initialization failed", error);
+      }
+    };
+
+    if ((window as any).mapkit) {
+      initializeMap();
+    } else {
+      const script = document.createElement("script");
+      script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js";
+      script.async = true;
+      script.crossOrigin = "anonymous";
+      script.onload = initializeMap;
+      document.body.appendChild(script);
+    }
+  }, []);
 
   const handleStoreSelect = (name: string) => {
     setSelectedStoreName(name);
     saveStoreToStorage(name);
   };
+
+  const handleDistanceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value;
+    setMaxDistance(value === 'all' ? 'all' : Number(value));
+  };
+
+  const processedStores = STORES_DATA.map((store: any) => {
+    const distanceVal = userLocation 
+      ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
+      : null;
+    return { ...store, distanceVal };
+  });
+
+  let filteredStores = processedStores;
+
+  if (userLocation && maxDistance !== 'all') {
+    filteredStores = filteredStores.filter((store: any) => store.distanceVal !== null && store.distanceVal <= maxDistance);
+  }
+
+  if (userLocation) {
+    filteredStores.sort((a: any, b: any) => {
+      if (a.distanceVal === null) return 1;
+      if (b.distanceVal === null) return -1;
+      return a.distanceVal - b.distanceVal;
+    });
+  }
+  useEffect(() => {
+    if (!mapRef.current || !(window as any).mapkit) return;
+
+    const mapkit = (window as any).mapkit;
+    const map = mapRef.current;
+    map.removeAnnotations(map.annotations);
+    const annotations = filteredStores.map((store: any) => {
+      const coordinate = new mapkit.Coordinate(store.lat, store.lng);
+      const isSelected = selectedStoreName === store.name;
+      
+      const annotation = new mapkit.MarkerAnnotation(coordinate, {
+        title: store.name,
+        subtitle: store.shortAddress || "",
+        color: isSelected ? "#0071E3" : "#FF3B30", 
+        selected: isSelected,
+      });
+      annotation.addEventListener("select", () => {
+        handleStoreSelect(store.name);
+      });
+
+      return annotation;
+    });
+
+    map.addAnnotations(annotations);
+    if (annotations.length > 0) {
+      map.showItems(annotations, {
+        animate: true,
+        padding: new mapkit.Padding(50, 50, 50, 50)
+      });
+    }
+  }, [filteredStores, selectedStoreName]);
 
   return (
     <div className="store-locator-page">
@@ -144,24 +241,23 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                         <span> ใช้ตำแหน่งที่ตั้งของคุณ</span>
                       </button>
                       <div className="my-store-locator-drawer__search-result-options">
-                        <span className="js-store-locator-results-count my-store-locator-drawer__search-result-label apl-section-stores-locator-results-count" data-results="results" data-result="result" data-results-near="results near" data-result-near="result near" data-results-near-you="results near you" data-result-near-you="result near you" data-no-results-found="no results found">{STORES_DATA.length} สาขาใกล้คุณ</span>
+                        <span className="js-store-locator-results-count my-store-locator-drawer__search-result-label apl-section-stores-locator-results-count" data-results="results" data-result="result" data-results-near="results near" data-result-near="result near" data-results-near-you="results near you" data-result-near-you="result near you" data-no-results-found="no results found">{filteredStores.length} สาขาใกล้คุณ</span>
                         <label className="screenreader" htmlFor="storeLocatorDistanceSelect">
                           Filter stores by distance
                         </label>
-                        <select className="js-store-locator-results-distance my-store-locator-drawer__search-distance-select apl-section-stores-locator-distance" id="storeLocatorDistanceSelect" defaultValue="30">
-                          <option value="all">All stores</option>
-                          <option value="5">5 miles</option>
-                          <option value="10">10 miles</option>
-                          <option value="30">30 miles</option>
-                          <option value="50">50 miles</option>
-                          <option value="100">100 miles</option>
+                        <select className="js-store-locator-results-distance my-store-locator-drawer__search-distance-select apl-section-stores-locator-distance" id="storeLocatorDistanceSelect" value={maxDistance} onChange={handleDistanceChange}>
+                          <option value="all">ทุกสาขา</option>
+                          <option value="5">5 กิโลเมตร</option>
+                          <option value="10">10 กิโลเมตร</option>
+                          <option value="30">30 กิโลเมตร</option>
+                          <option value="50">50 กิโลเมตร</option>
+                          <option value="100">100 กิโลเมตร</option>
                         </select>
                       </div>
                     </div>
                     <div id="mobileMapWrapper" className="my-store-locator__mobile-map-wrapper" tabIndex={0} aria-label="Interactive map showing store locations"></div>
                     <div id="myLocationResults" className="my-store-locator-drawer__search-results apl-section-stores-locator-results">
-                      {STORES_DATA.map((store) => {
-                        const distanceVal = userLocation ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) : null;
+                      {filteredStores.map((store: any) => {
                         const isSelected = selectedStoreName === store.name;
 
                         return (
@@ -170,13 +266,13 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                                 <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาที่เลือก</div>
                               )}
                             <div className="my-location-result__image apl-section-stores-locator-store-image" style={{ position: 'relative' }}>
-                              <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989" alt={store.name} />
+                              <img src={store.imageUrl} alt={store.name} />
                             </div>
                             <section className="js-my-results-details">
                               <div className="my-location-result__details">
                                 <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
                                 <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
-                                  {distanceVal !== null ? `${distanceVal.toFixed(1)} km` : '- km'}
+                                  {store.distanceVal !== null ? `${store.distanceVal.toFixed(1)} กิโลเมตร` : ''}
                                 </div>
                               </div>
                               <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
@@ -208,23 +304,22 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                                   <span className="underlined-text">View store services</span>
                                   <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
                                 </button>
-                                <div className="my-location-result__services js-acc-details" aria-expanded="false">
+                                <div className="my-location-result__services" aria-expanded="false">
                                   <ul>
-                                    {store.services.map((service, sIndex) => (
+                                    {store.services.map((service: any, sIndex: number) => (
                                       <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
                                     ))}
                                   </ul>
-                                  <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
                                 </div>
                               </>
                             )}
                             
                             {!isSelected && (
                               <button 
-                                className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store"
+                                className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store make-this-store__button"
                                 onClick={() => handleStoreSelect(store.name)}
                               >
-                                Make this my store
+                                เลือกสาขานี้
                               </button>
                             )}
                           </div>
@@ -244,13 +339,13 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                 </div>
                 <div className="my-store-locator-drawer__bg"></div>
               </div>
+              <div id="map" style={{ height: "1192px", width: "800px", backgroundColor: "#f0f0f0" }}></div>
+
             </div>
           </div>
           <div id="store-overlay" className={`store-overlay-spin ${!isLoadingStore ? 'hidden' : ''}`}>
             <i className="fa fa-spinner fa-spin" style={{ fontSize: "24px" }}></i>
           </div>
-
-          <script src="//appstaging.dev/cdn/shop/t/64/assets/map-page.js?v=103384211591196203711774018334" defer></script>
       </main>
     </div>
   );

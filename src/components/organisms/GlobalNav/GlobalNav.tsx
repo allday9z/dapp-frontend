@@ -234,12 +234,12 @@ const StoreDetailsPopup = ({
             </svg>
           </button>
           {isServicesOpen && (
-            <div className="my-location-result__services js-acc-details" aria-expanded="true" style={{ marginTop: '12px' }}>
+            <div aria-expanded="true" style={{ marginTop: '12px'}}>
               {store.services && store.services.length > 0 && (
                 <ul style={{ paddingLeft: '24px', margin: '0 0 8px', listStyleType: 'disc', textAlign: 'left' }}>
                   {store.services.map((service, index) => (
                     <li key={index}>
-                      <a href={service.url} className="apl-section-stores-locator-store-services-link">
+                      <a href={service.url} className="apl-section-stores-locator-store-services-link" style={{color: '#0071e3', fontSize: '14px'}}>
                         {service.label}
                       </a>
                     </li>

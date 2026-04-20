@@ -17,6 +17,7 @@ export interface StoreData {
   hours: string;
   contactUrl?: string;
   contactText?: string;
+  imageUrl?: string;
   services?: StoreService[];
 }
 
@@ -32,6 +33,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66845280555",
     phoneText: "084 528 0555",
     hours: "เปิดให้บริการทุกวัน 10:00 น. - 21:00 น.",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Premium Partner", url: "/" },
       { label: "Drop Off Servicing", url: "/" },
@@ -50,6 +52,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66845280222",
     phoneText: "084 528 0222",
     hours: "Every day 10:00 - 21:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -69,6 +72,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66854427077",
     phoneText: "085 442 7077",
     hours: "Every day 10:00 - 22:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -88,6 +92,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+6689 071 9900",
     phoneText: "089 071 9900",
     hours: "Every day 10:00 - 21:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -107,6 +112,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66615899967",
     phoneText: "061 589 9967",
     hours: "Every day 10:00 - 21:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -126,6 +132,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66922590299",
     phoneText: "092 259 0299",
     hours: "Every day 10:00 - 21:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -145,6 +152,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66657292887",
     phoneText: "065 729 2887",
     hours: "Every day 10:00 - 21:00",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -164,6 +172,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66807815577",
     phoneText: "080 781 5577",
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import './StoreLocatorDrawer.css';
 import { STORES_DATA } from './StoreList';
@@ -22,8 +22,7 @@ export function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: numb
     Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
     Math.sin(dLon / 2) * Math.sin(dLon / 2);
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const d = R * c;
-  return d;
+  return R * c;
 }
 
 export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreName }: StoreLocatorDrawerProps) {
@@ -61,7 +60,9 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
     };
   }, []);
 
-  const toggleAccordion = (id: string) => {
+  const toggleAccordion = (e: React.MouseEvent, id: string) => {
+    e.preventDefault();
+    e.stopPropagation();
     setExpandedStoreId(prev => (prev === id ? null : id));
   };
 
@@ -213,11 +214,11 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                     onChange={(e) => setDistance(e.target.value)}
                   >
                     <option value="all">ทุกสาขา</option>
-                    <option value="5">5 km</option>
-                    <option value="10">10 km</option>
-                    <option value="30">30 km</option>
-                    <option value="50">50 km</option>
-                    <option value="100">100 km</option>
+                    <option value="5">5 กิโลเมตร</option>
+                    <option value="10">10 กิโลเมตร</option>
+                    <option value="30">30 กิโลเมตร</option>
+                    <option value="50">50 กิโลเมตร</option>
+                    <option value="100">100 กิโลเมตร</option>
                   </select>
                 </>
               )}
@@ -277,17 +278,14 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                     <span>เวลาทำการ: </span>
                     <span>{store.hours}</span>
                   </li>
-                  {((store.services && store.services.length > 0) || store.contactUrl) && (
+                  {((store.services?.length > 0) || store.contactUrl) && (
                     <>
                       <li>
                         <button 
                           className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" 
                           type="button" 
                           data-acc="true"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            toggleAccordion(store.id);
-                          }}
+                          onClick={(e) => toggleAccordion(e, store.id)}
                           style={{ display: 'flex', alignItems: 'center', gap: '6px' }}
                         >
                           <span className="underlined-text">ดูบริการสาขา</span>
@@ -298,7 +296,7 @@ export default function StoreLocatorDrawer({ onClose, onSelect, selectedStoreNam
                       </li>
                       {expandedStoreId === store.id && (
                         <li className="my-location-result__services js-acc-details" aria-expanded="true">
-                          {store.services && store.services.length > 0 && (
+                          {store.services?.length > 0 && (
                             <ul style={{ paddingLeft: '18px', margin: '0 0 8px', listStyleType: 'disc', textAlign: 'left' }}>
                               {store.services.map((service: any, index: number) => (
                                 <li key={index}>

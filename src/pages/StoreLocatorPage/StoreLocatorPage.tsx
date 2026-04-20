@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import "./StoreLocatorPage.css";
 import { STORES_DATA } from "../../StoreLocator/StoreList";
 
@@ -56,7 +56,44 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   const [isLoadingStore, setIsLoadingStore] = useState(false);
   const [maxDistance, setMaxDistance] = useState<number | 'all'>(30);
+  const [isMapLoaded, setIsMapLoaded] = useState(false);
   const mapRef = useRef<any>(null);
+
+  const fetchUserLocation = useCallback((shouldSelectNearest: boolean) => {
+    setIsLoadingStore(true);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setUserLocation({ lat: latitude, lng: longitude });
+
+          if (shouldSelectNearest) {
+            let nearestStoreName: string | null = null;
+            let minDistance = Infinity;
+
+            STORES_DATA.forEach((store: any) => {
+              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+              if (dist < minDistance) {
+                minDistance = dist;
+                nearestStoreName = store.name;
+              }
+            });
+
+            if (nearestStoreName) {
+              setSelectedStoreName(nearestStoreName);
+              saveStoreToStorage(nearestStoreName);
+            }
+          }
+          setIsLoadingStore(false);
+        },
+        () => {
+          setIsLoadingStore(false);
+        }
+      );
+    } else {
+      setIsLoadingStore(false);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchLocationAndStore = () => {
@@ -64,41 +101,9 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
         const savedStore = getStoreFromStorage();
         if (savedStore) {
           setSelectedStoreName(savedStore);
+          fetchUserLocation(false);
         } else {
-          setIsLoadingStore(true);
-        }
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              const { latitude, longitude } = position.coords;
-              setUserLocation({ lat: latitude, lng: longitude });
-              
-              if (!savedStore) {
-                let nearestStoreName: string | null = null;
-                let minDistance = Infinity;
-
-                STORES_DATA.forEach((store: any) => {
-                  const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-                  if (dist < minDistance) {
-                    minDistance = dist;
-                    nearestStoreName = store.name;
-                  }
-                });
-
-                if (nearestStoreName) {
-                  setSelectedStoreName(nearestStoreName);
-                  saveStoreToStorage(nearestStoreName);
-                }
-              }
-              setIsLoadingStore(false);
-            },
-            () => {
-              setIsLoadingStore(false);
-            }
-          );
-        } else {
-          setIsLoadingStore(false);
+          fetchUserLocation(true);
         }
       }
     };
@@ -112,7 +117,8 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
 
     window.addEventListener('local-store-update', handleLocalUpdate);
     return () => window.removeEventListener('local-store-update', handleLocalUpdate);
-  }, []);
+  }, [fetchUserLocation]);
+
   useEffect(() => {
     const initializeMap = () => {
       const mapkit = (window as any).mapkit;
@@ -135,6 +141,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
             showsUserLocationControl: true,
           });
         }
+        setIsMapLoaded(true);
       } catch (error) {
         console.error("MapKit initialization failed", error);
       }
@@ -162,32 +169,37 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
     setMaxDistance(value === 'all' ? 'all' : Number(value));
   };
 
-  const processedStores = STORES_DATA.map((store: any) => {
-    const distanceVal = userLocation 
-      ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
-      : null;
-    return { ...store, distanceVal };
-  });
-
-  let filteredStores = processedStores;
-
-  if (userLocation && maxDistance !== 'all') {
-    filteredStores = filteredStores.filter((store: any) => store.distanceVal !== null && store.distanceVal <= maxDistance);
-  }
-
-  if (userLocation) {
-    filteredStores.sort((a: any, b: any) => {
-      if (a.distanceVal === null) return 1;
-      if (b.distanceVal === null) return -1;
-      return a.distanceVal - b.distanceVal;
+  const filteredStores = useMemo(() => {
+    let stores = STORES_DATA.map((store: any) => {
+      const distanceVal = userLocation 
+        ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
+        : null;
+      return { ...store, distanceVal };
     });
-  }
+
+    if (userLocation && maxDistance !== 'all') {
+      stores = stores.filter((store: any) => store.distanceVal !== null && store.distanceVal <= maxDistance);
+    }
+
+    if (userLocation) {
+      stores.sort((a: any, b: any) => {
+        if (a.distanceVal === null) return 1;
+        if (b.distanceVal === null) return -1;
+        return a.distanceVal - b.distanceVal;
+      });
+    }
+    
+    return stores;
+  }, [userLocation, maxDistance]);
+
   useEffect(() => {
-    if (!mapRef.current || !(window as any).mapkit) return;
+    if (!mapRef.current || !(window as any).mapkit || !isMapLoaded) return;
 
     const mapkit = (window as any).mapkit;
     const map = mapRef.current;
+    
     map.removeAnnotations(map.annotations);
+    
     const annotations = filteredStores.map((store: any) => {
       const coordinate = new mapkit.Coordinate(store.lat, store.lng);
       const isSelected = selectedStoreName === store.name;
@@ -206,13 +218,14 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
     });
 
     map.addAnnotations(annotations);
+    
     if (annotations.length > 0) {
       map.showItems(annotations, {
         animate: true,
         padding: new mapkit.Padding(50, 50, 50, 50)
       });
     }
-  }, [filteredStores, selectedStoreName]);
+  }, [filteredStores, selectedStoreName, isMapLoaded]);
 
   return (
     <div className="store-locator-page">
@@ -233,7 +246,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                       <p className="js-store-locator-search-error my-store-locator-drawer__error hidden">
                         <i className="fa fa-exclamation-triangle" aria-hidden="true"></i> Please fill this out
                       </p>
-                      <button className="js-store-locator-use-location-btn my-store-locator-drawer__use-location-btn apl-section-stores-locator-search-current-location" type="button">
+                      <button className="js-store-locator-use-location-btn my-store-locator-drawer__use-location-btn apl-section-stores-locator-search-current-location" type="button" onClick={() => fetchUserLocation(true)}>
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M11.9023 5.98047C11.309 5.98047 10.729 6.15642 10.2356 6.48606C9.74229 6.8157 9.35777 7.28424 9.13071 7.83242C8.90364 8.3806 8.84423 8.9838 8.95999 9.56574C9.07574 10.1477 9.36147 10.6822 9.78102 11.1018C10.2006 11.5213 10.7351 11.8071 11.3171 11.9228C11.899 12.0386 12.5022 11.9792 13.0504 11.7521C13.5986 11.525 14.0671 11.1405 14.3968 10.6472C14.7264 10.1538 14.9023 9.57381 14.9023 8.98047C14.9014 8.1851 14.5851 7.42256 14.0227 6.86015C13.4603 6.29774 12.6977 5.98137 11.9023 5.98047ZM11.9023 10.4805C11.6057 10.4805 11.3157 10.3925 11.069 10.2277C10.8223 10.0628 10.6301 9.82858 10.5165 9.55449C10.403 9.2804 10.3733 8.9788 10.4312 8.68783C10.489 8.39686 10.6319 8.12959 10.8417 7.91981C11.0515 7.71003 11.3187 7.56717 11.6097 7.50929C11.9007 7.45141 12.2023 7.48112 12.4764 7.59465C12.7505 7.70818 12.9847 7.90044 13.1495 8.14711C13.3144 8.39379 13.4023 8.6838 13.4023 8.98047C13.4019 9.37815 13.2437 9.75942 12.9625 10.0406C12.6813 10.3218 12.3 10.48 11.9023 10.4805Z" fill="#0071E3"></path>
                           <path d="M17.6676 3.21133C16.2423 1.78635 14.3396 0.939858 12.3268 0.835221C10.3141 0.730584 8.33391 1.37522 6.76849 2.64472C5.20307 3.91422 4.16338 5.71858 3.85009 7.70957C3.5368 9.70055 3.97212 11.737 5.07202 13.4259L10.7395 22.1265C10.8657 22.3201 11.0381 22.4792 11.2412 22.5893C11.4444 22.6994 11.6718 22.7571 11.9029 22.7571C12.1339 22.7571 12.3613 22.6994 12.5645 22.5893C12.7676 22.4792 12.9401 22.3201 13.0662 22.1265L18.7339 13.4259C19.7545 11.8592 20.2055 9.98931 20.0114 8.12962C19.8172 6.26993 18.9898 4.53348 17.6676 3.21133ZM17.4771 12.6071L11.9029 21.1642L6.32865 12.6071C4.6224 9.98782 4.98835 6.4825 7.19879 4.27197C7.81653 3.65421 8.54991 3.16418 9.35704 2.82985C10.1642 2.49551 11.0292 2.32344 11.9029 2.32344C12.7765 2.32344 13.6416 2.49551 14.4487 2.82985C15.2559 3.16418 15.9892 3.65421 16.607 4.27197C18.8174 6.4825 19.1833 9.98782 17.4771 12.6071Z" fill="#0071E3"></path>
@@ -261,7 +274,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                         const isSelected = selectedStoreName === store.name;
 
                         return (
-                          <div key={store.id} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
+                          <div key={store.id || store.name} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
                             {isSelected && (
                                 <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาที่เลือก</div>
                               )}
@@ -339,7 +352,6 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                 </div>
                 <div className="my-store-locator-drawer__bg"></div>
               </div>
-              <div id="map" style={{ height: "1192px", width: "800px", backgroundColor: "#f0f0f0" }}></div>
 
             </div>
           </div>

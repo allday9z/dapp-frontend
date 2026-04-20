@@ -1,11 +1,122 @@
-import React from "react";
-import "./StoreLocatorPage.css";
+"use client";
 
-interface StoreLocatorPageProps {
-  // สามารถเพิ่ม props ที่ต้องการใช้งานในอนาคตได้ที่นี่
+import React, { useState, useEffect } from "react";
+import "./StoreLocatorPage.css";
+import { STORES_DATA } from "../../StoreLocator/StoreList";
+
+interface StoreLocatorPageProps {}
+
+const STORE_STORAGE_KEY = 'user_selected_store';
+const STORE_EXPIRY_MS = 60 * 60 * 1000;
+
+const saveStoreToStorage = (storeName: string) => {
+  const data = {
+    name: storeName,
+    expiry: new Date().getTime() + STORE_EXPIRY_MS,
+  };
+  localStorage.setItem(STORE_STORAGE_KEY, JSON.stringify(data));
+  window.dispatchEvent(new Event('local-store-update'));
+};
+
+const getStoreFromStorage = (): string | null => {
+  const itemStr = localStorage.getItem(STORE_STORAGE_KEY);
+  if (!itemStr) return null;
+  try {
+    const item = JSON.parse(itemStr);
+    const now = new Date().getTime();
+    if (now > item.expiry) {
+      localStorage.removeItem(STORE_STORAGE_KEY);
+      return null;
+    }
+    return item.name;
+  } catch (e) {
+    return null;
+  }
+};
+
+function deg2rad(deg: number) {
+  return deg * (Math.PI / 180);
+}
+
+function getDistanceFromLatLonInKm(lat1: number, lon1: number, lat2: number, lon2: number) {
+  const R = 6371;
+  const dLat = deg2rad(lat2 - lat1);
+  const dLon = deg2rad(lon2 - lon1);
+  const a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  const d = R * c;
+  return d;
 }
 
 export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
+  const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
+  const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
+  const [isLoadingStore, setIsLoadingStore] = useState(false);
+
+  useEffect(() => {
+    const fetchLocationAndStore = () => {
+      if (typeof window !== 'undefined') {
+        const savedStore = getStoreFromStorage();
+        if (savedStore) {
+          setSelectedStoreName(savedStore);
+        } else {
+          setIsLoadingStore(true);
+        }
+
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              setUserLocation({ lat: latitude, lng: longitude });
+              
+              if (!savedStore) {
+                let nearestStoreName: string | null = null;
+                let minDistance = Infinity;
+
+                STORES_DATA.forEach(store => {
+                  const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+                  if (dist < minDistance) {
+                    minDistance = dist;
+                    nearestStoreName = store.name;
+                  }
+                });
+
+                if (nearestStoreName) {
+                  setSelectedStoreName(nearestStoreName);
+                  saveStoreToStorage(nearestStoreName);
+                }
+              }
+              setIsLoadingStore(false);
+            },
+            () => {
+              setIsLoadingStore(false);
+            }
+          );
+        } else {
+          setIsLoadingStore(false);
+        }
+      }
+    };
+
+    fetchLocationAndStore();
+
+    const handleLocalUpdate = () => {
+      const savedStore = getStoreFromStorage();
+      if (savedStore) setSelectedStoreName(savedStore);
+    };
+
+    window.addEventListener('local-store-update', handleLocalUpdate);
+    return () => window.removeEventListener('local-store-update', handleLocalUpdate);
+  }, []);
+
+  const handleStoreSelect = (name: string) => {
+    setSelectedStoreName(name);
+    saveStoreToStorage(name);
+  };
+
   return (
     <div className="store-locator-page">
       <main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex={-1}>
@@ -19,7 +130,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                     </h2>
                     <div className="my-store-locator-drawer__search">
                       <form id="storeLocatorSearchForm" className="nosubmit_form my-store-locator-drawer__form apl-section-stores-locator-search">
-                        <input className="nosubmit my-store-locator-drawer__input" id="storeLocatorSearch" type="search" name="storeLocatorSearch" placeholder="Enter City or Postal Code" aria-label="Enter City or Postal Code" role="combobox" aria-expanded="false" aria-owns="myLocations" aria-controls="myLocations" aria-haspopup="listbox" aria-autocomplete="list" autoCorrect="off" autoComplete="off" autoCapitalize="off" spellCheck={false} />
+                        <input className="nosubmit my-store-locator-drawer__input" id="storeLocatorSearch" type="search" name="storeLocatorSearch" placeholder="ป้อนชื่อจังหวัดหรือรหัสไปรษณีย์" aria-label="Enter City or Postal Code" role="combobox" aria-expanded="false" aria-owns="myLocations" aria-controls="myLocations" aria-haspopup="listbox" aria-autocomplete="list" autoCorrect="off" autoComplete="off" autoCapitalize="off" spellCheck={false} />
                       </form>
                       <div className="js-store-locator-search-suggestions my-store-locator-drawer__suggestions hidden"></div>
                       <p className="js-store-locator-search-error my-store-locator-drawer__error hidden">
@@ -33,7 +144,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                         <span> ใช้ตำแหน่งที่ตั้งของคุณ</span>
                       </button>
                       <div className="my-store-locator-drawer__search-result-options">
-                        <span className="js-store-locator-results-count my-store-locator-drawer__search-result-label apl-section-stores-locator-results-count" data-results="results" data-result="result" data-results-near="results near" data-result-near="result near" data-results-near-you="results near you" data-result-near-you="result near you" data-no-results-found="no results found">(number) สาขาใกล้คุณ</span>
+                        <span className="js-store-locator-results-count my-store-locator-drawer__search-result-label apl-section-stores-locator-results-count" data-results="results" data-result="result" data-results-near="results near" data-result-near="result near" data-results-near-you="results near you" data-result-near-you="result near you" data-no-results-found="no results found">{STORES_DATA.length} สาขาใกล้คุณ</span>
                         <label className="screenreader" htmlFor="storeLocatorDistanceSelect">
                           Filter stores by distance
                         </label>
@@ -49,336 +160,76 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                     </div>
                     <div id="mobileMapWrapper" className="my-store-locator__mobile-map-wrapper" tabIndex={0} aria-label="Interactive map showing store locations"></div>
                     <div id="myLocationResults" className="my-store-locator-drawer__search-results apl-section-stores-locator-results">
-                      
-                      {/* Location Result 1 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="true" data-id="gid://shopify/Location/79445033012" data-name="Apple Norway" data-latitude="60.12105010000001" data-longitude="11.4663429" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/apple-irvine.jpg?v=1750142148" alt="Apple Norway" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Apple Norway</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">1631 miles</div>
-                          </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Årnes
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Apple%20Norway&amp;address=Hennivangvegen%20123%2C2150%20%C3%85rnes%2CNorway&amp;ll=60.12105010000001,11.4663429" target="_blank" rel="noreferrer">Hennivangvegen 123, 2150 Årnes, Norway</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:(949) 255-1500">(949) 255-1500</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:irvinespectrum@apple.com">irvinespectrum@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>10:00 a.m. - 9:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Apple%20Norway&amp;address=Hennivangvegen%20123%2C2150%20%C3%85rnes%2CNorway&amp;ll=60.12105010000001,11.4663429" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link"> Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
-                      
-                      {/* Location Result 2 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="false" data-id="gid://shopify/Location/79482126388" data-name="Test Store Location" data-latitude="37.3326256" data-longitude="-122.0052894" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989" alt="Test Store Location" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Test Store Location</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">6462.7 miles</div>
-                          </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Cupertino, CA
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Test%20Store%20Location&amp;address=10600%20North%20Tantau%20Avenue%2CCupertino%20CA%2095014%2CUnited%20States&amp;ll=37.3326256,-122.0052894" target="_blank" rel="noreferrer">10600 North Tantau Avenue, Cupertino CA 95014, United States</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:(555) 555-5555">(555) 555-5555</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:apple@apple.com">apple@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>Monday 10:00 a.m. - 8:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Test%20Store%20Location&amp;address=10600%20North%20Tantau%20Avenue%2CCupertino%20CA%2095014%2CUnited%20States&amp;ll=37.3326256,-122.0052894" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
+                      {STORES_DATA.map((store) => {
+                        const distanceVal = userLocation ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) : null;
+                        const isSelected = selectedStoreName === store.name;
 
-                      {/* Location Result 3 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="false" data-id="gid://shopify/Location/79445065780" data-name="Apple Pasadena" data-latitude="34.145403" data-longitude="-118.1516282" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/apple-pasadena.jpg?v=1750142146" alt="Apple Pasadena" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Apple Pasadena</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">6501.1 miles</div>
+                        return (
+                          <div key={store.id} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
+                            {isSelected && (
+                                <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาที่เลือก</div>
+                              )}
+                            <div className="my-location-result__image apl-section-stores-locator-store-image" style={{ position: 'relative' }}>
+                              <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989" alt={store.name} />
+                            </div>
+                            <section className="js-my-results-details">
+                              <div className="my-location-result__details">
+                                <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
+                                <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
+                                  {distanceVal !== null ? `${distanceVal.toFixed(1)} km` : '- km'}
+                                </div>
+                              </div>
+                              <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
+                                {store.shortAddress}
+                              </div>
+                              <ul className="list-unstyled my-location-result__business">
+                                <li className="my-location-result__address apl-section-stores-locator-store-address-1">
+                                  <span>ที่อยู่: </span>
+                                  <a style={{color:"#0071e3", fontWeight:"600"}} href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noreferrer">{store.fullAddress}</a>
+                                </li>
+                                {store.phoneUrl && store.phoneText && (
+                                  <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
+                                    <span>โทร: </span>
+                                    <a style={{color:"#0071e3", fontWeight:"600"}} href={store.phoneUrl}>{store.phoneText}</a>
+                                  </li>
+                                )}
+                                <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
+                                  <span>เวลาทำการ: </span>
+                                  <span>{store.hours}</span>
+                                </li>
+                              </ul>
+                              <div className="my-location-result__link js-my-location-link visually-hidden">
+                                <a href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                              </div>
+                            </section>
+                            {store.services && store.services.length > 0 && (
+                              <>
+                                <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
+                                  <span className="underlined-text">View store services</span>
+                                  <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
+                                </button>
+                                <div className="my-location-result__services js-acc-details" aria-expanded="false">
+                                  <ul>
+                                    {store.services.map((service, sIndex) => (
+                                      <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
+                                    ))}
+                                  </ul>
+                                  <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
+                                </div>
+                              </>
+                            )}
+                            
+                            {!isSelected && (
+                              <button 
+                                className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store"
+                                onClick={() => handleStoreSelect(store.name)}
+                              >
+                                Make this my store
+                              </button>
+                            )}
                           </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Pasadena, CA
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Apple%20Pasadena&amp;address=54%20West%20Colorado%20Boulevard%2CPasadena%20CA%2091105%2CUnited%20States&amp;ll=34.145403,-118.1516282" target="_blank" rel="noreferrer">54 West Colorado Boulevard, Pasadena CA 91105, United States</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:+1 (626) 463-62232">+1 (626) 463-62232</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:pasadena@apple.com">pasadena@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>10:00 a.m. - 9:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Apple%20Pasadena&amp;address=54%20West%20Colorado%20Boulevard%2CPasadena%20CA%2091105%2CUnited%20States&amp;ll=34.145403,-118.1516282" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link"> Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
-
-                      {/* Location Result 4 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="false" data-id="gid://shopify/Location/79481995316" data-name="Apple The Grove" data-latitude="34.072253" data-longitude="-118.35781" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/apple-the-grove.jpg?v=1750142148" alt="Apple The Grove" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Apple The Grove</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">6512.5 miles</div>
-                          </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Los Angeles, CA
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Apple%20The%20Grove&amp;address=Apple%20The%20Grove%2C%20189%20The%20Grove%20Drive%2CLos%20Angeles%20CA%2090036%2CUnited%20States&amp;ll=34.072253,-118.35781" target="_blank" rel="noreferrer">Apple The Grove, 189 The Grove Drive, Los Angeles CA 90036, United States</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:+918861766654">+918861766654</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:thegrove@apple.com">thegrove@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>10:00 a.m. - 8:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Apple%20The%20Grove&amp;address=Apple%20The%20Grove%2C%20189%20The%20Grove%20Drive%2CLos%20Angeles%20CA%2090036%2CUnited%20States&amp;ll=34.072253,-118.35781" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
-
-                      {/* Location Result 5 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="false" data-id="gid://shopify/Location/79481700404" data-name="Apple South Coast Plaza" data-latitude="33.6919413" data-longitude="-117.8928597" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/apple-south-coast-plaza.jpg?v=1750142149" alt="Apple South Coast Plaza" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Apple South Coast Plaza</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">6515.7 miles</div>
-                          </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Costa Mesa, CA
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Apple%20South%20Coast%20Plaza&amp;address=3333%20Bear%20Street%2CCosta%20Mesa%20CA%2092626%2CUnited%20States&amp;ll=33.6919413,-117.8928597" target="_blank" rel="noreferrer">3333 Bear Street, Costa Mesa CA 92626, United States</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:(714) 424-6331">(714) 424-6331</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:southcoastplaza@apple.com">southcoastplaza@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>10:00 a.m. - 10:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Apple%20South%20Coast%20Plaza&amp;address=3333%20Bear%20Street%2CCosta%20Mesa%20CA%2092626%2CUnited%20States&amp;ll=33.6919413,-117.8928597" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
-
-                      {/* Location Result 6 */}
-                      <div className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active="false" data-id="gid://shopify/Location/79482060852" data-name="Apple Third Street Promenade" data-latitude="34.01544210000001" data-longitude="-118.4952918" role="group" data-events-added="true">
-                        <div className="my-location-result__my-store apl-section-stores-locator-store-label">My store</div>
-                        <div className="my-location-result__image apl-section-stores-locator-store-image">
-                          <img src="https://cdn.shopify.com/s/files/1/0712/7203/8452/files/apple-third-street-promenade.jpg?v=1750142150" alt="Apple Third Street Promenade" />
-                        </div>
-                        <section className="js-my-results-details">
-                          <div className="my-location-result__details">
-                            <div className="my-location-result__name apl-section-stores-locator-store-name">Apple Third Street Promenade</div>
-                            <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">6520.5 miles</div>
-                          </div>
-                          <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                            Santa Monica, CA
-                          </div>
-                          <ul className="list-unstyled my-location-result__business">
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                              <span>Address: </span>
-                              <a href="https://maps.apple.com/place?q=Apple%20Third%20Street%20Promenade&amp;address=1415%20Third%20Street%20Promenade%2CSanta%20Monica%20CA%2090401%2CUnited%20States&amp;ll=34.01544210000001,-118.4952918" target="_blank" rel="noreferrer">1415 Third Street Promenade, Santa Monica CA 90401, United States</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                              <span>Telephone: </span>
-                              <a href="tel:(310) 633-2670">(310) 633-2670</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-email">
-                              <span>Email: </span>
-                              <a href="mailto:thirdstreetpromenade@apple.com">thirdstreetpromenade@apple.com</a>
-                            </li>
-                            <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                              <span>Hours: </span>
-                              <span>10:00 a.m. - 8:00 p.m.</span>
-                            </li>
-                          </ul>
-                          <div className="my-location-result__link js-my-location-link visually-hidden">
-                            <a href="https://maps.apple.com/place?q=Apple%20Third%20Street%20Promenade&amp;address=1415%20Third%20Street%20Promenade%2CSanta%20Monica%20CA%2090401%2CUnited%20States&amp;ll=34.01544210000001,-118.4952918" target="_blank" rel="noopener noreferrer">Get Directions</a>
-                          </div>
-                        </section>
-                        <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                          <span className="underlined-text">View store services</span>
-                          <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                        </button>
-                        <div className="my-location-result__services js-acc-details" aria-expanded="false">
-                          <ul>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Apple Official Technical Support</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See all sessions at this store</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Reserve a shopping session</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">See what your device is worth</a></li>
-                            <li><a href="/" className="apl-section-stores-locator-store-services-link">Get help here</a></li>
-                          </ul>
-                          <p><a href="/" className="apl-section-stores-locator-store-services-link">Schedule Appointment</a></p>
-                        </div>
-                        <button className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store">
-                          Make this my store
-                        </button>
-                      </div>
+                        );
+                      })}
                     </div>
 
                     <div className="my-store-locator-drawer__footer visually-hidden">
@@ -387,35 +238,15 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                       </button>
                     </div>
                   </div>
-                  <div id="storeLocatorDrawerLoading" className="my-store-locator-drawer__loading hidden">
+                  <div id="storeLocatorDrawerLoading" className={`my-store-locator-drawer__loading ${!isLoadingStore ? 'hidden' : ''}`}>
                     <i className="fa fa-spinner fa-spin" style={{ fontSize: "24px" }}></i>
                   </div>
                 </div>
                 <div className="my-store-locator-drawer__bg"></div>
               </div>
-
-              <div id="desktopMapWrapper" className="two-location_map" tabIndex={0} aria-label="Interactive map showing store locations">
-                <div id="map" className="apl-section-stores-locator-map">
-                  <div className="mk-map-view mk-disable-all-gestures" style={{ position: "relative" }}>
-                    <canvas width="794" height="1192" className="syrup-canvas" aria-hidden="true" style={{ width: "794px", height: "1192px", backgroundColor: "rgb(249, 245, 237)" }}></canvas>
-                    <canvas className="rt-root" aria-hidden="true" width="794" height="1192" style={{ width: "794px", height: "1192px" }}></canvas>
-                    <div className="mk-map-node-element" style={{ width: "794px", height: "1192px" }}>
-                      <div className="mk-annotation-container">
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-gu4v1s9d"><i className="fa fa-location-dot active"></i></div>
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-ti7n35nd"><i className="fa fa-location-dot"></i></div>
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-s93spsjs"><i className="fa fa-location-dot"></i></div>
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-pgj4vip3"><i className="fa fa-location-dot"></i></div>
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-m4h2l0co"><i className="fa fa-location-dot"></i></div>
-                        <div className="cd-annotation default_icon_color" slot="mk-slot-unmkd7l4"><i className="fa fa-location-dot"></i></div>
-                      </div>
-                      <div className="mk-controls-container" style={{ inset: "0px" }}></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
-          <div id="store-overlay" className="store-overlay-spin">
+          <div id="store-overlay" className={`store-overlay-spin ${!isLoadingStore ? 'hidden' : ''}`}>
             <i className="fa fa-spinner fa-spin" style={{ fontSize: "24px" }}></i>
           </div>
 

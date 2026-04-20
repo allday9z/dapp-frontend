@@ -31,7 +31,7 @@ type NavStack = {
 };
 
 const STORE_STORAGE_KEY = 'user_selected_store';
-const STORE_EXPIRY_MS = 60 * 60 * 1000; // 1 ชั่วโมง
+const STORE_EXPIRY_MS = 60 * 60 * 1000;
 
 const saveStoreToStorage = (storeName: string) => {
   const data = {
@@ -39,6 +39,7 @@ const saveStoreToStorage = (storeName: string) => {
     expiry: new Date().getTime() + STORE_EXPIRY_MS,
   };
   localStorage.setItem(STORE_STORAGE_KEY, JSON.stringify(data));
+  window.dispatchEvent(new Event('local-store-update'));
 };
 
 const getStoreFromStorage = (): string | null => {
@@ -174,6 +175,8 @@ const StoreDetailsPopup = ({
     ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
     : null;
 
+  const isStoreLocatorPage = typeof window !== 'undefined' && window.location.pathname.includes('store-locator');
+
   return (
     <div 
       className="js-my-store-locator-details my-store-locator__details" 
@@ -254,25 +257,28 @@ const StoreDetailsPopup = ({
           )}
         </div>
       </div>
-      <div className="my-store-locator__details-footer" style={{ display: 'flex', flexDirection: 'column'}}>
-        <a 
-          className="my-store-locator__details-btn--secondary button button--secondary button--full-width" 
-          href="/pages/store-locator"
-        >
-          ดูสาขาในแผนที่
-        </a>
-        <button 
-          className="my-store-locator__details-btn" 
-          type="button" 
-          aria-haspopup="dialog"
-          onClick={() => {
-            onClose();
-            onOpenDrawer();
-          }}
-        >
-          เลือกสาขาอื่น
-        </button>
-      </div>
+      
+      {!isStoreLocatorPage && (
+        <div className="my-store-locator__details-footer" style={{ display: 'flex', flexDirection: 'column'}}>
+          <a 
+            className="my-store-locator__details-btn--secondary button button--secondary button--full-width" 
+            href="/pages/store-locator"
+          >
+            ดูสาขาในแผนที่
+          </a>
+          <button 
+            className="my-store-locator__details-btn" 
+            type="button" 
+            aria-haspopup="dialog"
+            onClick={() => {
+              onClose();
+              onOpenDrawer();
+            }}
+          >
+            เลือกสาขาอื่น
+          </button>
+        </div>
+      )}
     </div>
   );
 }
@@ -307,47 +313,59 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   }, [isStoreOpen]);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const savedStore = getStoreFromStorage();
-      if (savedStore) {
-        setSelectedStoreName(savedStore);
-      } else {
-        setIsLoadingStore(true);
-      }
+    const fetchLocationAndStore = () => {
+      if (typeof window !== 'undefined') {
+        const savedStore = getStoreFromStorage();
+        if (savedStore) {
+          setSelectedStoreName(savedStore);
+        } else {
+          setIsLoadingStore(true);
+        }
 
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setUserLocation({ lat: latitude, lng: longitude });
-            
-            if (!savedStore) {
-              let nearestStoreName: string | null = null;
-              let minDistance = Infinity;
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              const { latitude, longitude } = position.coords;
+              setUserLocation({ lat: latitude, lng: longitude });
+              
+              if (!savedStore) {
+                let nearestStoreName: string | null = null;
+                let minDistance = Infinity;
 
-              STORES_DATA.forEach(store => {
-                const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-                if (dist < minDistance) {
-                  minDistance = dist;
-                  nearestStoreName = store.name;
+                STORES_DATA.forEach(store => {
+                  const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
+                  if (dist < minDistance) {
+                    minDistance = dist;
+                    nearestStoreName = store.name;
+                  }
+                });
+
+                if (nearestStoreName) {
+                  setSelectedStoreName(nearestStoreName);
+                  saveStoreToStorage(nearestStoreName);
                 }
-              });
-
-              if (nearestStoreName) {
-                setSelectedStoreName(nearestStoreName);
-                saveStoreToStorage(nearestStoreName);
               }
+              setIsLoadingStore(false);
+            },
+            () => {
+              setIsLoadingStore(false);
             }
-            setIsLoadingStore(false);
-          },
-          () => {
-            setIsLoadingStore(false);
-          }
-        );
-      } else {
-        setIsLoadingStore(false);
+          );
+        } else {
+          setIsLoadingStore(false);
+        }
       }
-    }
+    };
+
+    fetchLocationAndStore();
+
+    const handleLocalUpdate = () => {
+      const savedStore = getStoreFromStorage();
+      if (savedStore) setSelectedStoreName(savedStore);
+    };
+
+    window.addEventListener('local-store-update', handleLocalUpdate);
+    return () => window.removeEventListener('local-store-update', handleLocalUpdate);
   }, []);
 
   useEffect(() => {
@@ -821,7 +839,6 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
           />
         )}
 
-        {/* Slot for page-specific sticky addon (e.g. PDP product bar) */}
         <div id="global-nav-addon-slot" />
       </div>
     </div>

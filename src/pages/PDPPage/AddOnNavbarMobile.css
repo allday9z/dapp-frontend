@@ -8,6 +8,11 @@
   border-top: 0.5px solid rgba(0, 0, 0, 0.12);
 }
 
+/* Only show when GlobalNav is sticky (fixed) */
+.global-nav:not(.global-nav--fixed) .addon-navbar-mobile {
+  display: none;
+}
+
 /* ── Row 1: product name + price + monthly — single line ────────────────── */
 .addon-navbar-mobile__header {
   display: flex;

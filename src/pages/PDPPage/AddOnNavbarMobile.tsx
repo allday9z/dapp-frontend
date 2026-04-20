@@ -20,15 +20,16 @@ export const AddOnNavbarMobile = ({
       {/* Row 1: product name + price + monthly — single line */}
       <div className="addon-navbar-mobile__header">
         <span className="addon-navbar-mobile__name">{productName}</span>
-        <span className="addon-navbar-mobile__price">{price}</span>
-        <span className="addon-navbar-mobile__sep">or</span>
-        <button
-          className="addon-navbar-mobile__monthly"
-          onClick={onMonthlyClick}
-          aria-label="ดูข้อมูลการผ่อนชำระ"
-        >
-          {monthly}/mo. for {monthlyTerm} mo. ›
-        </button>
+        <div className="addon-navbar-mobile__pricing">
+          <span className="addon-navbar-mobile__price">{price}</span>
+          <button
+            className="addon-navbar-mobile__monthly"
+            onClick={onMonthlyClick}
+            aria-label="ดูข้อมูลการผ่อนชำระ"
+          >
+            or {monthly}/mo. for {monthlyTerm} mo. ›
+          </button>
+        </div>
       </div>
 
       {/* Row 2: delivery / pickup — horizontal scroll */}

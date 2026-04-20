@@ -1104,7 +1104,7 @@
   right: 0;
   background: #fff;
   padding: 0.875rem 1rem 1.25rem;
-  z-index: 100;
+  z-index: 20;
 }
 .pdp__sticky-bar-price-row {
   display: flex;

@@ -4,3 +4,5 @@ dist/
 .history/
 *.log
 .DS_Store
+.vscode/
+.claude/

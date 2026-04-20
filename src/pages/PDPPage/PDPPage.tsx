@@ -436,6 +436,41 @@ export const PDPPage = () => {
       </nav> */}
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
+      <section className="pdp__desktop-hero" aria-label="Desktop product summary">
+        <div className="pdp__desktop-hero-left">
+          <p className="pdp__desktop-hero-badge">FREE AIRPODS</p>
+          <h1 className="pdp__desktop-hero-title">{displayName}</h1>
+          <p className="pdp__desktop-hero-sku">SKU: {product.sku}</p>
+
+          <div className="pdp__desktop-hero-links">
+            <a href="#" className="pdp__desktop-hero-link">Learn more ›</a>
+            |
+            <a href="#" className="pdp__desktop-hero-link">Compare all models ›</a>
+          </div>
+
+          <div className="pdp__desktop-hero-share" aria-label="Share">
+            <span className="pdp__desktop-hero-share-label">Share</span>
+            <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
+            <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
+            <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
+          </div>
+        </div>
+
+        <div className="pdp__desktop-hero-right">
+          <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
+          <p className="pdp__desktop-hero-monthly">
+            {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} months
+          </p>
+          <button
+            className="pdp__desktop-hero-financing"
+            onClick={() => setFinancingOpen(true)}
+            aria-label="Explore financing options"
+          >
+            Explore all financing options ›
+          </button>
+        </div>
+      </section>
+
       <div className="pdp__product-header">
         <h1 className="pdp__product-title">{displayName}</h1>
         <p className="pdp__product-meta">

@@ -57,6 +57,129 @@
   margin: 0;
 }
 
+/* ── Desktop top hero (matches Figma-like desktop header strip) ───────── */
+.pdp__desktop-hero {
+  display: none;
+}
+
+.pdp__desktop-hero-badge {
+  margin: 0 0 0.25rem;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  color: #06c755;
+}
+
+.pdp__desktop-hero-title {
+  margin: 0;
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: clamp(1.875rem, 2.2vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: #1d1d1f;
+}
+
+.pdp__desktop-hero-sku {
+  margin: 0.375rem 0 0;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.75rem;
+  color: #6e6e73;
+}
+
+.pdp__desktop-hero-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.pdp__desktop-hero-link {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #0071e3;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.pdp__desktop-hero-link:hover {
+  text-decoration: underline;
+}
+
+.pdp__desktop-hero-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.875rem;
+}
+
+.pdp__desktop-hero-share-label {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.6875rem;
+  color: #6e6e73;
+}
+
+.pdp__desktop-hero-share-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  border: 0.5px solid #d2d2d7;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.625rem;
+  color: #1d1d1f;
+  text-decoration: none;
+}
+
+.pdp__desktop-hero-right {
+  text-align: right;
+  align-self: center;
+  justify-content: center;
+}
+
+.pdp__desktop-hero-from {
+  margin: 0;
+  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-size: clamp(1.625rem, 2.1vw, 2rem);
+  line-height: 1.1;
+  font-weight: 700;
+  color: #1d1d1f;
+  letter-spacing: -0.02em;
+}
+
+.pdp__desktop-hero-monthly {
+  margin: 0.25rem 0 0;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.9375rem;
+  color: #1d1d1f;
+}
+
+.pdp__desktop-hero-financing {
+  border: none;
+  background: none;
+  padding: 0;
+  margin-top: 0.625rem;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.8125rem;
+  color: #0071e3;
+  cursor: pointer;
+}
+
+.pdp__desktop-hero-financing:hover {
+  text-decoration: underline;
+}
+
+.pdp__desktop-hero-note {
+  margin: 0.375rem 0 0;
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-size: 0.6875rem;
+  color: #6e6e73;
+}
+
 /* ── 2-column layout ───────────────────────────────────────────────────── */
 .pdp__layout {
   display: flex;
@@ -981,12 +1104,25 @@
     margin: 0 auto;
   }
 
-  .pdp__product-header {
-    padding: 0.5rem 6.875rem 0;
+  .pdp__desktop-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 2.5rem;
     max-width: 90rem;
     margin: 0 auto;
+    padding: 0.875rem 6.875rem 1rem;
+    border-bottom: 0.5px solid #d2d2d7;
+    align-items: flex-start;
   }
-  .pdp__product-title { font-size: 1.5rem; }
+
+  .pdp__product-header {
+    display: none;
+  }
+
+  .pdp__price-block,
+  .pdp__action-links {
+    display: none;
+  }
 
   .pdp__layout {
     flex-direction: row;

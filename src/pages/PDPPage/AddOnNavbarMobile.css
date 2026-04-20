@@ -5,18 +5,7 @@
 
 .addon-navbar-mobile {
   width: 100%;
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   border-top: 0.5px solid rgba(0, 0, 0, 0.12);
-}
-
-.addon-navbar-mobile--visible {
-  grid-template-rows: 1fr;
-}
-
-.addon-navbar-mobile__collapse {
-  overflow: hidden;
 }
 
 /* ── Row 1: product name + price + monthly — single line ────────────────── */

@@ -1,6 +1,6 @@
-import { ProductStripe } from '../../ProductStripe/ProductStripe';
-import { AppStripeTextTile } from '../../AppStripeTextTile';
-import type { AppStripeTextTileItem } from '../../AppStripeTextTile/appStripeTextTiles';
+import { ProductStripe } from '@/components/organisms/ProductStripe/ProductStripe';
+import { AppStripeTextTile } from '@/components/molecules/AppStripeTextTile';
+import type { AppStripeTextTileItem } from '@/components/molecules/AppStripeTextTile/appStripeTextTiles';
 
 const appleCareItems: AppStripeTextTileItem[] = [
   {

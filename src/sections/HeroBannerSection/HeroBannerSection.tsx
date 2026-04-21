@@ -1,4 +1,4 @@
-import { HeroBannerCarousel } from '../../HeroBannerCarousel/HeroBannerCarousel';
+import { HeroBannerCarousel } from '@/components/organisms/HeroBannerCarousel/HeroBannerCarousel';
 
 export const HeroBannerSection = () => (
   <section aria-label="Hero Banner">

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './GlobalFooter.css';
-import { IconFacebook } from '../../../IconFacebook/IconFacebook';
-import { IconInstagram } from '../../../IconInstagram/IconInstagram';
-import { IconTiktok } from '../../../IconTiktok/IconTiktok';
-import { IconYoutube } from '../../../IconYoutube/IconYoutube';
-import { IconTwitter } from '../../../IconTwitter/IconTwitter';
+import { IconFacebook } from '../../atoms/icons/IconFacebook/IconFacebook';
+import { IconInstagram } from '../../atoms/icons/IconInstagram/IconInstagram';
+import { IconTiktok } from '../../atoms/icons/IconTiktok/IconTiktok';
+import { IconYoutube } from '../../atoms/icons/IconYoutube/IconYoutube';
+import { IconTwitter } from '../../atoms/icons/IconTwitter/IconTwitter';
 
 interface GlobalFooterProps {
   className?: string;

@@ -1,10 +1,10 @@
-import './styles.css';
-import { Layout } from './Layout/Layout';
-import { HomePage } from './pages/HomePage/HomePage';
-import { PLPPage } from './pages/PLPPage/PLPPage';
-import { LOBPage } from './pages/LOBPage/LOBPage';
-import { PDPPage } from './pages/PDPPage/PDPPage';
-import { StoreLocatorPage } from './pages/StoreLocatorPage/StoreLocatorPage';
+/* Global styles are loaded in index.tsx (fonts, global, vars) */
+import { Layout } from '@/components/organisms/Layout/Layout';
+import { HomePage } from '@/pages/HomePage/HomePage';
+import { PLPPage } from '@/pages/PLPPage/PLPPage';
+import { LOBPage } from '@/pages/LOBPage/LOBPage';
+import { PDPPage } from '@/pages/PDPPage/PDPPage';
+import { StoreLocatorPage } from '@/pages/StoreLocatorPage/StoreLocatorPage';
 
 /**
  * Minimal pathname-based router (no extra dependencies).

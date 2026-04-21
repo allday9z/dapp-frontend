@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import './AnnouncementBar.css';
-import { IconChevronLeft } from '../../../IconChevronLeft/IconChevronLeft';
+import { IconChevronLeft } from '../../atoms/icons/IconChevronLeft/IconChevronLeft';
 
 interface AnnouncementBarProps {
   items: string[];

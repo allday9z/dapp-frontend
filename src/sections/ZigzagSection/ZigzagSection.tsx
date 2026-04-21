@@ -1,4 +1,4 @@
-import { AppZigzagGrid } from '../../AppZigzagGrid/AppZigzagGrid';
+import { AppZigzagGrid } from '@/components/organisms/AppZigzagGrid/AppZigzagGrid';
 
 export const ZigzagSection = () => (
   <section aria-labelledby="zigzag-heading">

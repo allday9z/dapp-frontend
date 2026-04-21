@@ -1,8 +1,8 @@
 import "./PLPPage.css";
-import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
-import type { PLPProduct } from "../../PLPProductRow/PLPProductRow";
-import collectionsData from "../../data/collections.json";
-import macbookData from "../../data/products/macbook.json";
+import { PLPProductRow } from "@/components/molecules/PLPProductRow/PLPProductRow";
+import type { PLPProduct } from "@/components/molecules/PLPProductRow/PLPProductRow";
+import collectionsData from "@/data/collections.json";
+import macbookData from "@/data/products/macbook.json";
 
 // เพิ่ม dataFile ใหม่ตรงนี้เมื่อมี category เพิ่ม
 const DATA_FILES: Record<string, PLPProduct[]> = {

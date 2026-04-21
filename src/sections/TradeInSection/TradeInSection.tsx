@@ -1,5 +1,5 @@
-import { AttachModuleSlider } from "../../AttachModuleSlider";
-import type { AttachModuleSliderItem } from "../../AttachModuleSlider";
+import { AttachModuleSlider } from "../../components/organisms/AttachModuleSlider";
+import type { AttachModuleSliderItem } from "../../components/organisms/AttachModuleSlider";
 
 const items: AttachModuleSliderItem[] = [
   {

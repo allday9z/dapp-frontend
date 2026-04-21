@@ -233,3 +233,39 @@ input.nosubmit {
         grid-row: 1;
     }
 }
+
+.my-location-result__callout--apple {
+    box-shadow: 10px 10px 50px #0000004a;
+    transform-origin: 0 10px;
+    transform: translateY(-20px);
+}
+
+.my-location-result__callout {
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+    min-width: 300px;
+    font-size: 14px;
+    max-width: 360px;
+}
+
+.my-location-result__callout .my-location-result__details {
+    width: 100%;
+}
+
+.my-location-result__callout .my-location-result__name {
+    color: #1d1d1f;
+    font-family: var(--font-body-family);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: .36px;
+}
+
+.my-location-result__address a {
+    color: #0071e3;
+    font-weight: 600;
+}

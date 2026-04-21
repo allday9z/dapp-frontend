@@ -1,6 +1,6 @@
-import { BentoBoxTileBig } from '../../BentoBoxTileBig/BentoBoxTileBig';
-import { BentoBoxTileSmallAirPods } from '../../BentoBoxTileSmallAirPods/BentoBoxTileSmallAirPods';
-import { BentoBoxTileSmallWatchBand } from '../../BentoBoxTileSmallWatchBand/BentoBoxTileSmallWatchBand';
+import { BentoBoxTileBig } from '@/components/molecules/BentoBoxTileBig/BentoBoxTileBig';
+import { BentoBoxTileSmallAirPods } from '@/components/molecules/BentoBoxTileSmallAirPods/BentoBoxTileSmallAirPods';
+import { BentoBoxTileSmallWatchBand } from '@/components/molecules/BentoBoxTileSmallWatchBand/BentoBoxTileSmallWatchBand';
 
 export const BentoBoxSection = () => (
   <section aria-label="โปรโมชันพิเศษ">

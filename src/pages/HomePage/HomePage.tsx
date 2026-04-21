@@ -5,22 +5,22 @@
  * Each section is independently editable in src/sections/.
  * CSS scoping lives in HomepageDeviceDesktop.css (unchanged, 100% original).
  */
-import '../../HomepageWrapper/HomepageWrapper.css';
+import '@/styles/homepage.css';
 
-import { HeroBannerSection }    from '../../sections/HeroBannerSection/HeroBannerSection';
-import { LOBStripeSection }     from '../../sections/LOBStripeSection/LOBStripeSection';
-import { WhatsNewSection }      from '../../sections/WhatsNewSection/WhatsNewSection';
-import { WhyBuySection }        from '../../sections/WhyBuySection/WhyBuySection';
-import { PartnerStripeSection } from '../../sections/PartnerStripeSection/PartnerStripeSection';
-import { BentoBoxSection }      from '../../sections/BentoBoxSection/BentoBoxSection';
-import { TradeInSection }       from '../../sections/TradeInSection/TradeInSection';
-import { BackToSchoolSection }  from '../../sections/BackToSchoolSection/BackToSchoolSection';
-import { ValuePropsSection }    from '../../sections/ValuePropsSection/ValuePropsSection';
-import { AllThingsIPadSection } from '../../sections/AllThingsIPadSection/AllThingsIPadSection';
-import { AccessoriesSection }   from '../../sections/AccessoriesSection/AccessoriesSection';
-import { ZigzagSection }        from '../../sections/ZigzagSection/ZigzagSection';
-import { AppleCareSection }     from '../../sections/AppleCareSection/AppleCareSection';
-import { QuickCheckoutSection } from '../../sections/QuickCheckoutSection/QuickCheckoutSection';
+import { HeroBannerSection }    from '@/sections/HeroBannerSection/HeroBannerSection';
+import { LOBStripeSection }     from '@/sections/LOBStripeSection/LOBStripeSection';
+import { WhatsNewSection }      from '@/sections/WhatsNewSection/WhatsNewSection';
+import { WhyBuySection }        from '@/sections/WhyBuySection/WhyBuySection';
+import { PartnerStripeSection } from '@/sections/PartnerStripeSection/PartnerStripeSection';
+import { BentoBoxSection }      from '@/sections/BentoBoxSection/BentoBoxSection';
+import { TradeInSection }       from '@/sections/TradeInSection/TradeInSection';
+import { BackToSchoolSection }  from '@/sections/BackToSchoolSection/BackToSchoolSection';
+import { ValuePropsSection }    from '@/sections/ValuePropsSection/ValuePropsSection';
+import { AllThingsIPadSection } from '@/sections/AllThingsIPadSection/AllThingsIPadSection';
+import { AccessoriesSection }   from '@/sections/AccessoriesSection/AccessoriesSection';
+import { ZigzagSection }        from '@/sections/ZigzagSection/ZigzagSection';
+import { AppleCareSection }     from '@/sections/AppleCareSection/AppleCareSection';
+import { QuickCheckoutSection } from '@/sections/QuickCheckoutSection/QuickCheckoutSection';
 
 export const HomePage = () => (
   <div className="homepage-device-desktop">

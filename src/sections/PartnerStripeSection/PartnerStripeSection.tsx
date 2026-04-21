@@ -1,5 +1,5 @@
-import { ProductStripe } from '../../ProductStripe/ProductStripe';
-import { appStripeTextTiles, AppStripeTextTile } from '../../AppStripeTextTile';
+import { ProductStripe } from '@/components/organisms/ProductStripe/ProductStripe';
+import { appStripeTextTiles, AppStripeTextTile } from '@/components/molecules/AppStripeTextTile';
 
 export const PartnerStripeSection = () => (
   <section className="hp-partners" aria-labelledby="partner-services-heading">

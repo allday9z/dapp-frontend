@@ -1,0 +1,10 @@
+export { IconChevronDirectionDown } from './IconChevronDirectionDown/IconChevronDirectionDown';
+export { IconChevronDirectionRight } from './IconChevronDirectionRight/IconChevronDirectionRight';
+export { IconChevronLeft } from './IconChevronLeft/IconChevronLeft';
+export { IconFacebook } from './IconFacebook/IconFacebook';
+export { IconInstagram } from './IconInstagram/IconInstagram';
+export { IconSearch } from './IconSearch/IconSearch';
+export { IconStore } from './IconStore/IconStore';
+export { IconTiktok } from './IconTiktok/IconTiktok';
+export { IconTwitter } from './IconTwitter/IconTwitter';
+export { IconYoutube } from './IconYoutube/IconYoutube';

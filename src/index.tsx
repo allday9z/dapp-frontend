@@ -1,7 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import './styles.css';
-import './vars.css';
+import '@/styles/fonts.css';
+import '@/styles/global.css';
+import '@/styles/vars.css';
 
 import App from "./App";
 

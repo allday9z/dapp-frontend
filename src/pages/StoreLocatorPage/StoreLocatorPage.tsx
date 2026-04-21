@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
 import "./StoreLocatorPage.css";
-import { STORES_DATA } from "../../StoreLocator/StoreList";
+import { STORES_DATA } from "@/components/organisms/StoreLocator/StoreList";
 
 interface StoreLocatorPageProps {}
 
@@ -57,7 +57,10 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
   const [isLoadingStore, setIsLoadingStore] = useState(false);
   const [maxDistance, setMaxDistance] = useState<number | 'all'>(30);
   const [isMapLoaded, setIsMapLoaded] = useState(false);
+  const [activePopupStore, setActivePopupStore] = useState<any | null>(null);
+  const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
   const mapRef = useRef<any>(null);
+  const markersLayerRef = useRef<any>(null);
 
   const fetchUserLocation = useCallback((shouldSelectNearest: boolean) => {
     setIsLoadingStore(true);
@@ -72,10 +75,14 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
             let minDistance = Infinity;
 
             STORES_DATA.forEach((store: any) => {
-              const dist = getDistanceFromLatLonInKm(latitude, longitude, store.lat, store.lng);
-              if (dist < minDistance) {
-                minDistance = dist;
-                nearestStoreName = store.name;
+              const lat = parseFloat(String(store.lat));
+              const lng = parseFloat(String(store.lng));
+              if (!isNaN(lat) && !isNaN(lng)) {
+                const dist = getDistanceFromLatLonInKm(latitude, longitude, lat, lng);
+                if (dist < minDistance) {
+                  minDistance = dist;
+                  nearestStoreName = store.name;
+                }
               }
             });
 
@@ -121,47 +128,84 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
 
   useEffect(() => {
     const initializeMap = () => {
-      const mapkit = (window as any).mapkit;
-      if (!mapkit) return;
+      const L = (window as any).L;
+      if (!L) return;
 
       try {
-        if (!(window as any).isMapKitInitialized) {
-          mapkit.init({
-            authorizationCallback: function(done: (token: string) => void) {
-              console.warn("Please provide your Apple Maps JWT Token in authorizationCallback.");
-            },
-            language: "th",
-          });
-          (window as any).isMapKitInitialized = true;
-        }
-
         if (!mapRef.current) {
-          mapRef.current = new mapkit.Map("map", {
-            showsUserLocation: true,
-            showsUserLocationControl: true,
-          });
+          mapRef.current = L.map("desktopMapWrapper", { zoomControl: true }).setView([13.7563, 100.5018], 6);
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          }).addTo(mapRef.current);
         }
         setIsMapLoaded(true);
       } catch (error) {
-        console.error("MapKit initialization failed", error);
       }
     };
 
-    if ((window as any).mapkit) {
+    if ((window as any).L) {
       initializeMap();
     } else {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+      document.head.appendChild(link);
+
       const script = document.createElement("script");
-      script.src = "https://cdn.apple-mapkit.com/mk/5.x.x/mapkit.js";
+      script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
       script.async = true;
-      script.crossOrigin = "anonymous";
+      script.crossOrigin = "";
       script.onload = initializeMap;
       document.body.appendChild(script);
     }
+
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+    };
   }, []);
+
+  useEffect(() => {
+    if (!isMapLoaded || !mapRef.current) return;
+    const map = mapRef.current;
+    
+    const handleMapClick = () => {
+      setActivePopupStore(null);
+    };
+    
+    map.on('click', handleMapClick);
+    
+    return () => {
+      map.off('click', handleMapClick);
+    };
+  }, [isMapLoaded]);
+
+  useEffect(() => {
+    if (!mapRef.current || !activePopupStore) return;
+    const map = mapRef.current;
+
+    const updatePos = () => {
+      const point = map.latLngToContainerPoint([activePopupStore.lat, activePopupStore.lng]);
+      setPopupPosition({ x: point.x, y: point.y });
+    };
+
+    updatePos();
+
+    map.on('move', updatePos);
+    map.on('zoom', updatePos);
+
+    return () => {
+      map.off('move', updatePos);
+      map.off('zoom', updatePos);
+    };
+  }, [activePopupStore, isMapLoaded]);
 
   const handleStoreSelect = (name: string) => {
     setSelectedStoreName(name);
     saveStoreToStorage(name);
+    setActivePopupStore(null);
   };
 
   const handleDistanceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -171,10 +215,12 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
 
   const filteredStores = useMemo(() => {
     let stores = STORES_DATA.map((store: any) => {
-      const distanceVal = userLocation 
-        ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, store.lat, store.lng) 
+      const lat = parseFloat(String(store.lat));
+      const lng = parseFloat(String(store.lng));
+      const distanceVal = (userLocation && !isNaN(lat) && !isNaN(lng))
+        ? getDistanceFromLatLonInKm(userLocation.lat, userLocation.lng, lat, lng) 
         : null;
-      return { ...store, distanceVal };
+      return { ...store, lat, lng, distanceVal };
     });
 
     if (userLocation && maxDistance !== 'all') {
@@ -193,37 +239,67 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
   }, [userLocation, maxDistance]);
 
   useEffect(() => {
-    if (!mapRef.current || !(window as any).mapkit || !isMapLoaded) return;
+    if (!mapRef.current || !(window as any).L || !isMapLoaded) return;
 
-    const mapkit = (window as any).mapkit;
+    const L = (window as any).L;
     const map = mapRef.current;
     
-    map.removeAnnotations(map.annotations);
-    
-    const annotations = filteredStores.map((store: any) => {
-      const coordinate = new mapkit.Coordinate(store.lat, store.lng);
+    if (markersLayerRef.current) {
+      map.removeLayer(markersLayerRef.current);
+    }
+
+    markersLayerRef.current = L.layerGroup().addTo(map);
+    const validCoords: [number, number][] = [];
+
+    filteredStores.forEach((store: any) => {
       const isSelected = selectedStoreName === store.name;
+      const markerColor = isSelected ? "#0071E3" : "#FF3B30";
       
-      const annotation = new mapkit.MarkerAnnotation(coordinate, {
-        title: store.name,
-        subtitle: store.shortAddress || "",
-        color: isSelected ? "#0071E3" : "#FF3B30", 
-        selected: isSelected,
-      });
-      annotation.addEventListener("select", () => {
-        handleStoreSelect(store.name);
+      const lat = parseFloat(String(store.lat));
+      const lng = parseFloat(String(store.lng));
+
+      const customIcon = L.divIcon({
+        className: 'custom-leaflet-marker',
+        html: `<div style="background-color: ${markerColor}; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>`,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
       });
 
-      return annotation;
+      if (!isNaN(lat) && !isNaN(lng)) {
+        const marker = L.marker([lat, lng], { icon: customIcon });
+        
+        marker.on('click', () => {
+          setActivePopupStore(store);
+          map.setView([lat, lng], 16);
+        });
+
+        marker.addTo(markersLayerRef.current);
+        validCoords.push([lat, lng]);
+      }
     });
 
-    map.addAnnotations(annotations);
-    
-    if (annotations.length > 0) {
-      map.showItems(annotations, {
-        animate: true,
-        padding: new mapkit.Padding(50, 50, 50, 50)
-      });
+    let focusedCoords: [number, number] | null = null;
+    if (selectedStoreName) {
+      const sStore = STORES_DATA.find((s: any) => s.name === selectedStoreName);
+      if (sStore) {
+        const sLat = parseFloat(String(sStore.lat));
+        const sLng = parseFloat(String(sStore.lng));
+        if (!isNaN(sLat) && !isNaN(sLng)) {
+          focusedCoords = [sLat, sLng];
+        }
+      }
+    }
+
+    if (focusedCoords) {
+      map.setView(focusedCoords, 15);
+    } else if (validCoords.length > 0) {
+      try {
+        const bounds = L.latLngBounds(validCoords);
+        if (bounds && bounds.isValid()) {
+          map.fitBounds(bounds, { padding: [50, 50], maxZoom: 16 });
+        }
+      } catch (e) {
+      }
     }
   }, [filteredStores, selectedStoreName, isMapLoaded]);
 
@@ -308,7 +384,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                                 </li>
                               </ul>
                               <div className="my-location-result__link js-my-location-link visually-hidden">
-                                <a href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                                <a href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} style={{fontWeight :'600'}} target="_blank" rel="noopener noreferrer">Get Directions</a>
                               </div>
                             </section>
                             {store.services && store.services.length > 0 && (
@@ -353,7 +429,63 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                 <div className="my-store-locator-drawer__bg"></div>
               </div>
 
-              <div id="desktopMapWrapper" className="two-location_map"></div>
+              <div style={{ position: "relative", minHeight: "500px", zIndex: 1, width: "100%" }}>
+                <div id="desktopMapWrapper" className="two-location_map" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}></div>
+                
+                {activePopupStore && (
+                  <div 
+                    style={{
+                      position: "absolute",
+                      left: popupPosition.x,
+                      top: popupPosition.y,
+                      transform: "translate(-50%, calc(-100% - 15px))",
+                      zIndex: 1000,
+                      pointerEvents: "auto",
+                      filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.15))"
+                    }}
+                  >
+                    <div className="my-location-result__callout my-location-result__callout--apple" slot="mk-slot-94tapelj">
+                      <div className="my-location-result__details">
+                        <div className="my-location-result__name apl-section-stores-locator-store-name">{activePopupStore.name}</div>
+                        <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
+                          {activePopupStore.distanceVal !== null && activePopupStore.distanceVal !== undefined ? `${activePopupStore.distanceVal.toFixed(1)} กิโลเมตร` : ''}
+                        </div>
+                      </div>
+                      <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
+                        {activePopupStore.shortAddress}
+                      </div>
+                      <ul className="list-unstyled my-location-result__business">
+                        <li className="my-location-result__address apl-section-stores-locator-store-address-1">
+                          <span>ที่อยู่: </span>
+                          <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer">
+                            {activePopupStore.fullAddress}
+                          </a>
+                        </li>
+                        {activePopupStore.phoneUrl && activePopupStore.phoneText && (
+                          <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
+                            <span>โทร: </span>
+                            <a href={activePopupStore.phoneUrl}>{activePopupStore.phoneText}</a>
+                          </li>
+                        )}
+                        {activePopupStore.email && (
+                          <li className="my-location-result__address apl-section-stores-locator-store-address-email">
+                            <span>Email: </span>
+                            <a href={`mailto:${activePopupStore.email}`}>{activePopupStore.email}</a>
+                          </li>
+                        )}
+                        <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
+                          <span>เวลาทำการ: </span>
+                          <span>{activePopupStore.hours}</span>
+                        </li>
+                      </ul>
+                      <div className="my-location-result__link js-my-location-link visually-hidden">
+                        <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                      </div>
+                      <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                    </div>
+                  </div>
+                )}
+              </div>
 
             </div>
           </div>

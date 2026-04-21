@@ -1,4 +1,4 @@
-import { ValuePropGrid } from '../../ValuePropGrid/ValuePropGrid';
+import { ValuePropGrid } from '@/components/organisms/ValuePropGrid/ValuePropGrid';
 
 export const ValuePropsSection = () => (
   <section aria-labelledby="value-props-heading">

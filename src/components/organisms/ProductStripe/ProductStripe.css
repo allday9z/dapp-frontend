@@ -1,41 +1,60 @@
+/* ── ProductStripe wrapper ── */
 .product-stripe {
+  --product-stripe-edge-padding: max(1rem, calc((100% - 76.25rem) / 2));
+  --product-stripe-arrow-width: 2.5rem;
+  --product-stripe-arrow-offset: 0.75rem;
+  --slick-gap: 1.5rem !important;
   position: relative;
   width: 100%;
 }
 
 .product-stripe__viewport {
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none;
-  cursor: grab;
-  user-select: none;
-  touch-action: pan-y;
-  -webkit-overflow-scrolling: touch;
+  width: calc(100% - var(--product-stripe-edge-padding));
+  position: relative;
+  overflow-x: clip; /* clip slides horizontally, allow shadow to bleed vertically */
+  overflow-y: visible;
+  margin-left: var(--product-stripe-edge-padding);
+  padding: 0.5rem 0 0.5rem 0rem; /* breathing room so shadow is not clipped */
+}
+
+/* Base slick overrides */
+.product-stripe .slick-slider {
+  margin-bottom: 0;
+}
+
+.product-stripe .slick-list {
+  overflow: visible; /* allow shadow to show */
+  margin-left: 5px;
+}
+
+.product-stripe .slick-slide {
+  height: auto;
+  float: left; /* let slick handle the layout */
+}
+
+/* Internal wrapper to handle the gap without breaking slick's width math */
+.product-stripe .product-stripe__item-wrapper {
   width: 100%;
-  gap: 40px;
-}
-.product-stripe__viewport::-webkit-scrollbar {
-  display: none;
-}
-.product-stripe__viewport:active {
-  cursor: grabbing;
-}
-
-.product-stripe__inner {
+  height: 100%;
   display: flex;
-  flex-direction: row;
-  gap: 2.5rem;
-  align-items: flex-start;
-  padding-left: max(1rem, calc((100vw - 76.25rem) / 2));
-  padding-right: 1rem;
-  width: max-content;
+  justify-content: center;
+  margin-right: 24px;
 }
 
+@media (max-width:425px){
+  .product-stripe .product-stripe__item-wrapper {
+  margin-right: 20.5px;
+}
+}
+
+/* ── Arrow Styles ── */
+
+/* 1. Default (White box with chevron) */
 .product-stripe__arrow {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  width: 2.5rem;
+  width: var(--product-stripe-arrow-width);
   height: 100%;
   display: flex;
   align-items: center;
@@ -45,19 +64,153 @@
   cursor: pointer;
   transition: background 0.2s;
   z-index: 2;
+  padding: 0;
 }
+
 .product-stripe__arrow--next {
   right: 0;
-  box-shadow: inset 0.025rem 0 0 0 rgba(66, 66, 69, 0.2);
 }
+
+.product-stripe__arrow--next::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100px;
+  width: 1px;
+  background: #d0d0d0;
+  left: 0;
+}
+
+/* ปุ่ม prev */
 .product-stripe__arrow--prev {
   left: 0;
-  box-shadow: inset -0.025rem 0 0 0 rgba(66, 66, 69, 0.2);
 }
-/* .product-stripe__arrow:hover {
-  background: #f5f5f7;
-} */
+
+.product-stripe__arrow--prev::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100px;
+  width: 1px;
+  background: #d0d0d0;
+  right: 0;
+}
+.product-stripe__arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
 .product-stripe__arrow:focus-visible {
   outline: 0.125rem solid rgba(0, 113, 227, 0.45);
   outline-offset: 0.125rem;
+}
+
+/* 2. Partner (White box with line chevron) */
+.partner-left-arrow,
+.partner-right-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  min-width: 36px;
+  width: 36px;
+  background: #fff;
+  cursor: pointer;
+  height: 100%;
+  z-index: 20;
+  border: none;
+  appearance: none;
+}
+.partner-left-arrow {
+  left: 0;
+}
+.partner-right-arrow {
+  right: 0;
+}
+.partner-left-arrow:before {
+  content: url(https://cdn.shopify.com/s/files/1/0606/7771/8177/files/left-arrow-line.png?v=1651738432);
+}
+.partner-right-arrow:before {
+  content: url(https://cdn.shopify.com/s/files/1/0606/7771/8177/files/right-arrow-line.png?v=1651738448);
+}
+.partner-left-arrow.slick-disabled,
+.partner-right-arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 3. Blue Circle */
+.blue-circle-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  align-items: center;
+  justify-content: center;
+  background: #0071e3;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  padding: 0;
+}
+.blue-circle-arrow--next {
+  right: max(1rem, calc(var(--product-stripe-edge-padding) - 18px));
+}
+.blue-circle-arrow--prev {
+  left: 0;
+}
+.blue-circle-arrow:hover:not(.slick-disabled) {
+  background: #0077ed;
+  transform: translateY(-50%) scale(1.1);
+}
+.blue-circle-arrow.slick-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Dots Styling ── */
+.custom-slick-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0 0 0;
+}
+.custom-slick-dots li {
+  margin: 0;
+}
+.custom-slick-dots button {
+  font-size: 0;
+  line-height: 0;
+  display: block;
+  width: 0.5rem;
+  height: 0.5rem;
+  padding: 0;
+  cursor: pointer;
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: #d2d2d7;
+  border-radius: 50%;
+  transition: background 0.2s, transform 0.2s;
+}
+.custom-slick-dots .slick-active button {
+  background: #1d1d1f;
+  transform: scale(1.2);
+}
+
+@media (max-width: 425px) {
+  .product-stripe {
+    --product-stripe-edge-padding: 1rem;
+  }
+  .partner-left-arrow,
+  .product-stripe__arrow--prev,
+  .blue-circle-arrow--prev {
+    display: none;
+  }
 }

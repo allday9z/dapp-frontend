@@ -1,5 +1,5 @@
-import { AppTileGrid } from '../../AppTileGrid/AppTileGrid';
-import type { IAppTileProps } from '../../AppTile/AppTile';
+import { AppTileGrid } from '@/components/organisms/AppTileGrid/AppTileGrid';
+import type { IAppTileProps } from '@/components/molecules/AppTile/AppTile';
 
 const whatsNewItems: IAppTileProps[] = [
   {

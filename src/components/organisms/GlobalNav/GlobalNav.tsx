@@ -2,15 +2,15 @@
 
 import { useEffect, useRef, useState } from 'react';
 import './GlobalNav.css';
-import { LogoPartner } from '../../../LogoPartner/LogoPartner';
-import { LogoWipApp } from '../../../LogoWipApp/LogoWipApp';
+import { LogoPartner } from '../../atoms/logos/LogoPartner/LogoPartner';
+import { LogoWipApp } from '../../atoms/logos/LogoWipApp/LogoWipApp';
 import { SearchInput } from '../../molecules/SearchInput/SearchInput';
 import { StoreLocator } from '../../molecules/StoreLocator/StoreLocator';
-import { AccountProfile } from '../../../AccountProfile/AccountProfile';
-import { BagCart } from '../../../BagCart/BagCart';
-import StoreLocatorDrawer from '../../../StoreLocator/StoreLocatorDrawer';
-import { STORES_DATA } from '../../../StoreLocator/StoreList';
-import navMenu from '../../../data/navigation.json';
+import { AccountProfile } from '../AccountProfile/AccountProfile';
+import { BagCart } from '../BagCart/BagCart';
+import StoreLocatorDrawer from '../StoreLocator/StoreLocatorDrawer';
+import { STORES_DATA } from '../StoreLocator/StoreList';
+import navMenu from '@/data/navigation.json';
 
 type Breakpoints = {
   mobile: boolean;

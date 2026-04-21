@@ -1,9 +1,0 @@
-.badge {
-  font-family: var(--body-body-s-semibold-font-family, 'SFProThai', sans-serif);
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  line-height: 1;
-  display: inline-block;
-}

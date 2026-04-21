@@ -1,0 +1,41 @@
+/* ============================================
+   Global Resets & Base Styles
+   ============================================ */
+
+/* html must stay at overflow: visible (default) so body's overflow-x: hidden
+   propagates to the viewport — not body itself (which would create a nested scroll container). */
+html {
+  width: 100%;
+}
+
+body {
+  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
+  overflow-x: hidden; /* propagates to viewport because html has default overflow: visible */
+  width: 100%;
+}
+
+a,
+button,
+input,
+select,
+h1,
+h2,
+h3,
+h4,
+h5,
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    background: none;
+
+    -webkit-font-smoothing: antialiased;
+}
+
+menu, ol, ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}

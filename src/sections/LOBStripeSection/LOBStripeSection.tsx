@@ -1,5 +1,5 @@
-import { ProductStripe } from '../../ProductStripe/ProductStripe';
-import { lobStripeTiles, LobStripeTile } from '../../LobStripeTile';
+import { ProductStripe } from '@/components/organisms/ProductStripe/ProductStripe';
+import { lobStripeTiles, LobStripeTile } from '@/components/molecules/LobStripeTile';
 
 export const LOBStripeSection = () => (
   <section className="hp-products" aria-labelledby="all-apple-products-heading">

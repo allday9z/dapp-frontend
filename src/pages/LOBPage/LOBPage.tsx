@@ -1,11 +1,11 @@
 import "./LOBPage.css";
 import { HeadBanner } from "./HeadBanner";
-import { PLPProductRow } from "../../PLPProductRow/PLPProductRow";
-import { FamilyStripe } from "../../FamilyStripe/FamilyStripe";
-import { macCollectionFamilyItems } from "../../FamilyStripe/familyStripeData";
-import type { PLPProduct } from "../../PLPProductRow/PLPProductRow";
-import hero from "../../data/mac-lob-hero.json";
-import macFamilies from "../../data/mac-families.json";
+import { PLPProductRow } from "@/components/molecules/PLPProductRow/PLPProductRow";
+import { FamilyStripe } from "@/components/organisms/FamilyStripe/FamilyStripe";
+import { macCollectionFamilyItems } from "@/components/organisms/FamilyStripe/familyStripeData";
+import type { PLPProduct } from "@/components/molecules/PLPProductRow/PLPProductRow";
+import hero from "@/data/mac-lob-hero.json";
+import macFamilies from "@/data/mac-families.json";
 
 const families = macFamilies as PLPProduct[];
 

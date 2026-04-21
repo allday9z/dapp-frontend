@@ -1,6 +1,6 @@
-import { ProductStripe } from '../../ProductStripe/ProductStripe';
-import { WhyBuyTile } from '../../WhyBuyStripe/WhyBuyTile';
-import { whyBuyItems, whyBuySectionHeading } from '../../WhyBuyStripe/whyBuyData';
+import { ProductStripe } from '@/components/organisms/ProductStripe/ProductStripe';
+import { WhyBuyTile } from '@/components/molecules/WhyBuyStripe/WhyBuyTile';
+import { whyBuyItems, whyBuySectionHeading } from '@/components/molecules/WhyBuyStripe/whyBuyData';
 
 export const WhyBuySection = () => (
   <section className="hp-partners" aria-labelledby="why-buy-heading">

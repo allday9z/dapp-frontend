@@ -107,7 +107,7 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
 };
 
 function getSlidesToShow(slidesToShowProp: number, w: number): number {
-  if (w <= 580) return 1.5;  // mobile/narrow: peek (2×290px = 580px min for 2 items)
+  if (w <= 580) return 2;    // mobile: use integer slidesToShow for stable infinite alignment
   if (w <= 768) return 2;    // tablet: 2 items
   if (w <= 1024) return Math.min(slidesToShowProp, 3);
   return slidesToShowProp;
@@ -137,19 +137,19 @@ export const AttachModuleSlider = ({
   const slideCount = items.length;
   const activeSlidesToShow = getSlidesToShow(slidesToShowProp, winWidth);
 
-  const isPeekMode = activeSlidesToShow < 2;
-
   const settings: Settings = {
     dots: true,
-    infinite: !isPeekMode, // peek mode ต้องปิด infinite เพราะมี clone slide ซ้าย
+    infinite: true,
     autoplay: false,
     speed: 500,
     cssEase: "cubic-bezier(0.4, 0, 0.2, 1)",
     slidesToShow: activeSlidesToShow,
     slidesToScroll: 1,
     arrows: false,
+    initialSlide: 0,
     dotsClass: "slick-dots attach-slider__dots",
     afterChange: (index) => setCurrentSlide(index),
+    swipeToSlide: true,
   };
 
   return (

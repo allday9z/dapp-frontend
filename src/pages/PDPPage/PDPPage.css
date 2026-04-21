@@ -102,6 +102,7 @@
   color: #0071e3;
   text-decoration: none;
   white-space: nowrap;
+  font-weight: 600;
 }
 
 .pdp__desktop-hero-link:hover {

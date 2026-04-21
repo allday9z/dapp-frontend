@@ -16,10 +16,10 @@ interface MediaItem {
   alt?: string;
 }
 
-interface ColorOpt  { id: string; name: string; hex: string; }
+interface ColorOpt { id: string; name: string; hex: string; }
 interface ConfigOpt { id: string; label: string; sublabel?: string; priceAdd: number; }
 interface BundleItem { id: string; name: string; price: number; imageSrc: string; }
-interface SpecItem   { label: string; value: string; }
+interface SpecItem { label: string; value: string; }
 
 interface PDPData {
   id: string;
@@ -354,10 +354,10 @@ export const PDPPage = () => {
       product.colors[0]
   );
   const [processor, setProcessor] = useState<ConfigOpt>(product.processors[0]);
-  const [memory, setMemory]       = useState<ConfigOpt>(product.memory[0]);
-  const [storage, setStorage]     = useState<ConfigOpt>(product.storage[0]);
-  const [appleCare, setAppleCare]       = useState(false);
-  const [qty, setQty]                   = useState(1);
+  const [memory, setMemory] = useState<ConfigOpt>(product.memory[0]);
+  const [storage, setStorage] = useState<ConfigOpt>(product.storage[0]);
+  const [appleCare, setAppleCare] = useState(false);
+  const [qty, setQty] = useState(1);
   const [financingOpen, setFinancingOpen] = useState(false);
   const [openSections, setOpenSections] = useState<Set<string>>(new Set(["color", "applecare", "financing"]));
   const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">("financing");
@@ -377,7 +377,7 @@ export const PDPPage = () => {
     (appleCare ? product.appleCarePrice : 0);
 
   const displayName = `${product.size}-inch ${product.name}`;
-  const heroImage   = product.media.find((m) => m.type === "image")?.src ?? "";
+  const heroImage = product.media.find((m) => m.type === "image")?.src ?? "";
 
   // Portal target: the slot inside GlobalNav's fixed container
   const [navSlot, setNavSlot] = useState<HTMLElement | null>(null);
@@ -386,8 +386,8 @@ export const PDPPage = () => {
   }, []);
 
   const breadcrumbs = [
-    { label: "iStudio",     href: "/" },
-    { label: "Mac",         href: "/pages/view-all-mac" },
+    { label: "iStudio", href: "/" },
+    { label: "Mac", href: "/pages/view-all-mac" },
     { label: "MacBook Pro", href: "/collections/macbook-pro" },
     { label: displayName, href: "#" },
   ];
@@ -443,9 +443,11 @@ export const PDPPage = () => {
           <p className="pdp__desktop-hero-sku">SKU: {product.sku}</p>
 
           <div className="pdp__desktop-hero-links">
-            <a href="#" className="pdp__desktop-hero-link">Learn more ›</a>
-            |
-            <a href="#" className="pdp__desktop-hero-link">Compare all models ›</a>
+            <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม ›</a>
+            <svg xmlns="http://www.w3.org/2000/svg" width="1" height="18" viewBox="0 0 1 18" fill="none">
+              <path d="M0.5 0L0.499999 18" stroke="#D9D9D9" />
+            </svg>
+            <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น ›</a>
           </div>
 
           <div className="pdp__desktop-hero-share" aria-label="Share">

@@ -456,18 +456,28 @@
   }
 }
 
-/* Peek mode (≤580px): 1.5 items, flush left, image fluid */
+/* Mobile (<=580px): run 2 slides internally, but keep a 1.5-like visual size */
 @media (max-width: 580px) {
   .attach-slider__track {
+    max-width: none;
+    width: 133.3333%;
+    margin: 0;
     padding: 0;
   }
   .attach-slider .slick-list {
     overflow: hidden;
   }
+  .attach-slider .attach-slider__dots {
+    /* track is 133.3333% wide — limit dots container to 75% (= 100% viewport) and center */
+    width: 80%;
+    justify-content: center;
+    margin-left: 0;
+    padding-left: 0;
+  }
   .attach-slider__item-outer {
     padding: 0 6px;
   }
-  /* fluid image: ขนาดตาม slide (ไม่ overflow slide ≤580px) */
+  /* fluid image: ขนาดตาม slide (ไม่ overflow slide <=580px) */
   .attach-slider__image-frame {
     width: 100%;
     height: auto;

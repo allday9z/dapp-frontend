@@ -2,6 +2,7 @@
   "name": "react",
   "version": "1.0.0",
   "description": "React example starter project",
+  "packageManager": "bun@1.3.10",
   "keywords": [
     "react",
     "starter"

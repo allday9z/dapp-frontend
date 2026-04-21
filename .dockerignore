@@ -1,0 +1,11 @@
+.git
+.github
+.history
+.vscode
+.claude
+node_modules
+dist
+npm-debug.log*
+bun.lockb
+package-lock.json
+.DS_Store

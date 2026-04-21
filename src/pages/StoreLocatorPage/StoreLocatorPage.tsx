@@ -270,7 +270,9 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
         
         marker.on('click', () => {
           setActivePopupStore(store);
-          map.setView([lat, lng], 16);
+          const targetPoint = map.project([lat, lng], 16);
+          targetPoint.y -= 180;
+          map.setView(map.unproject(targetPoint, 16), 16);
         });
 
         marker.addTo(markersLayerRef.current);
@@ -308,6 +310,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
       <main id="MainContent" className="content-for-layout focus-none" role="main" tabIndex={-1}>
           <div className="store-location-find-main page-width section-stores-locator-padding apl-section-stores-locator">
             <div className="locator_grid">
+              
               <div className="one-search_details">
                 <div className="my-store-locator gradient" tabIndex={-1}>
                   <div className="my-store-locator-drawer__inner">
@@ -344,93 +347,12 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                         </select>
                       </div>
                     </div>
-                    <div id="mobileMapWrapper" className="my-store-locator__mobile-map-wrapper" tabIndex={0} aria-label="Interactive map showing store locations"></div>
-                    <div id="myLocationResults" className="my-store-locator-drawer__search-results apl-section-stores-locator-results">
-                      {filteredStores.map((store: any) => {
-                        const isSelected = selectedStoreName === store.name;
-
-                        return (
-                          <div key={store.id || store.name} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
-                            {isSelected && (
-                                <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาที่เลือก</div>
-                              )}
-                            <div className="my-location-result__image apl-section-stores-locator-store-image" style={{ position: 'relative' }}>
-                              <img src={store.imageUrl} alt={store.name} />
-                            </div>
-                            <section className="js-my-results-details">
-                              <div className="my-location-result__details">
-                                <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
-                                <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
-                                  {store.distanceVal !== null ? `${store.distanceVal.toFixed(1)} กิโลเมตร` : ''}
-                                </div>
-                              </div>
-                              <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
-                                {store.shortAddress}
-                              </div>
-                              <ul className="list-unstyled my-location-result__business">
-                                <li className="my-location-result__address apl-section-stores-locator-store-address-1">
-                                  <span>ที่อยู่: </span>
-                                  <a style={{color:"#0071e3", fontWeight:"600"}} href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noreferrer">{store.fullAddress}</a>
-                                </li>
-                                {store.phoneUrl && store.phoneText && (
-                                  <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
-                                    <span>โทร: </span>
-                                    <a style={{color:"#0071e3", fontWeight:"600"}} href={store.phoneUrl}>{store.phoneText}</a>
-                                  </li>
-                                )}
-                                <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
-                                  <span>เวลาทำการ: </span>
-                                  <span>{store.hours}</span>
-                                </li>
-                              </ul>
-                              <div className="my-location-result__link js-my-location-link visually-hidden">
-                                <a href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} style={{fontWeight :'600'}} target="_blank" rel="noopener noreferrer">Get Directions</a>
-                              </div>
-                            </section>
-                            {store.services && store.services.length > 0 && (
-                              <>
-                                <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                                  <span className="underlined-text">View store services</span>
-                                  <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
-                                </button>
-                                <div className="my-location-result__services" aria-expanded="false">
-                                  <ul>
-                                    {store.services.map((service: any, sIndex: number) => (
-                                      <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </>
-                            )}
-                            
-                            {!isSelected && (
-                              <button 
-                                className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store make-this-store__button"
-                                onClick={() => handleStoreSelect(store.name)}
-                              >
-                                เลือกสาขานี้
-                              </button>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-
-                    <div className="my-store-locator-drawer__footer visually-hidden">
-                      <button className="js-store-locator-select-btn my-store-locator__details-btn button button--full-width" type="button">
-                        Select
-                      </button>
-                    </div>
-                  </div>
-                  <div id="storeLocatorDrawerLoading" className={`my-store-locator-drawer__loading ${!isLoadingStore ? 'hidden' : ''}`}>
-                    <i className="fa fa-spinner fa-spin" style={{ fontSize: "24px" }}></i>
                   </div>
                 </div>
-                <div className="my-store-locator-drawer__bg"></div>
               </div>
 
-              <div style={{ position: "relative", minHeight: "500px", zIndex: 1, width: "100%" }}>
-                <div id="desktopMapWrapper" className="two-location_map" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}></div>
+              <div className="two-location_map">
+                <div id="desktopMapWrapper" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}></div>
                 
                 {activePopupStore && (
                   <div 
@@ -479,12 +401,99 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                         </li>
                       </ul>
                       <div className="my-location-result__link js-my-location-link visually-hidden">
-                        <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                        <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px'}}>ดูเส้นทาง</a>
                       </div>
-                      <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer">Get Directions</a>
+                      <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px'}}>ดูเส้นทาง</a>
                     </div>
                   </div>
                 )}
+              </div>
+
+              <div className="one-search_details">
+                <div className="my-store-locator gradient" tabIndex={-1}>
+                  <div className="my-store-locator-drawer__inner">
+                    <div id="myLocationResults" className="my-store-locator-drawer__search-results apl-section-stores-locator-results">
+                      {filteredStores.map((store: any) => {
+                        const isSelected = selectedStoreName === store.name;
+
+                        return (
+                          <div key={store.id || store.name} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
+                            {isSelected && (
+                                <div className="my-location-result__my-store apl-section-stores-locator-store-label">สาขาที่เลือก</div>
+                              )}
+                            <div className="my-location-result__image apl-section-stores-locator-store-image" style={{ position: 'relative' }}>
+                              <img src={store.imageUrl} alt={store.name} />
+                            </div>
+                            <section className="js-my-results-details">
+                              <div className="my-location-result__details">
+                                <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
+                                <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
+                                  {store.distanceVal !== null ? `${store.distanceVal.toFixed(1)} กิโลเมตร` : ''}
+                                </div>
+                              </div>
+                              <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
+                                {store.shortAddress}
+                              </div>
+                              <ul className="list-unstyled my-location-result__business">
+                                <li className="my-location-result__address apl-section-stores-locator-store-address-1">
+                                  <span>ที่อยู่: </span>
+                                  <a style={{color:"#0071e3", fontWeight:"600"}} href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noreferrer">{store.fullAddress}</a>
+                                </li>
+                                {store.phoneUrl && store.phoneText && (
+                                  <li className="my-location-result__address apl-section-stores-locator-store-address-phone">
+                                    <span>โทร: </span>
+                                    <a style={{color:"#0071e3", fontWeight:"600"}} href={store.phoneUrl}>{store.phoneText}</a>
+                                  </li>
+                                )}
+                                <li className="my-location-result__address apl-section-stores-locator-store-address-hours">
+                                  <span>เวลาทำการ: </span>
+                                  <span>{store.hours}</span>
+                                </li>
+                              </ul>
+                              <div className="my-location-result__link js-my-location-link visually-hidden">
+                                <a href={`https://maps.apple.com/place?q=${encodeURIComponent(store.name)}&ll=${store.lat},${store.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px'}}>ดูเส้นทาง</a>
+                              </div>
+                            </section>
+                            {store.services && store.services.length > 0 && (
+                              <>
+                                <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
+                                  <span className="underlined-text">View store services</span>
+                                  <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
+                                </button>
+                                <div className="my-location-result__services" aria-expanded="false">
+                                  <ul>
+                                    {store.services.map((service: any, sIndex: number) => (
+                                      <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
+                                    ))}
+                                  </ul>
+                                </div>
+                              </>
+                            )}
+                            
+                            {!isSelected && (
+                              <button 
+                                className="js-make-my-store-btn button button--secondary button--full-width my-location-result__make-my-store-btn apl-section-stores-locator-store-set-store make-this-store__button"
+                                onClick={() => handleStoreSelect(store.name)}
+                              >
+                                เลือกสาขานี้
+                              </button>
+                            )}
+                          </div>
+                        );
+                      })}
+                    </div>
+
+                    <div className="my-store-locator-drawer__footer visually-hidden">
+                      <button className="js-store-locator-select-btn my-store-locator__details-btn button button--full-width" type="button">
+                        Select
+                      </button>
+                    </div>
+                  </div>
+                  <div id="storeLocatorDrawerLoading" className={`my-store-locator-drawer__loading ${!isLoadingStore ? 'hidden' : ''}`}>
+                    <i className="fa fa-spinner fa-spin" style={{ fontSize: "24px" }}></i>
+                  </div>
+                </div>
+                <div className="my-store-locator-drawer__bg"></div>
               </div>
 
             </div>

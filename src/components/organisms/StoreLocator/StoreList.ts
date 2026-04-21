@@ -33,12 +33,13 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66845280555",
     phoneText: "084 528 0555",
     hours: "เปิดให้บริการทุกวัน 10:00 น. - 21:00 น.",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TM.jpg",
     services: [
       { label: "Apple Premium Partner", url: "/" },
       { label: "Drop Off Servicing", url: "/" },
       { label: "Click & Collect Available", url: "/" },
-      { label: "Trade-in Service Available", url: "/" }
+      { label: "Trade-in Service Available", url: "/" },
+      { label: "Gruop Demo", url: "/" }
     ]
   },
   {
@@ -52,13 +53,14 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66845280222",
     phoneText: "084 528 0222",
     hours: "Every day 10:00 - 21:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/11/S__61022231.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
       { label: "Reserve a shopping session", url: "/" },
       { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "Get help here", url: "/" },
+      { label: "Gruop Demo", url: "/" }
     ]
   },
   {
@@ -72,7 +74,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66854427077",
     phoneText: "085 442 7077",
     hours: "Every day 10:00 - 22:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-PN.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -92,7 +94,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+6689 071 9900",
     phoneText: "089 071 9900",
     hours: "Every day 10:00 - 21:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TR.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -112,7 +114,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66615899967",
     phoneText: "061 589 9967",
     hours: "Every day 10:00 - 21:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/11/S__47112304.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -132,7 +134,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66922590299",
     phoneText: "092 259 0299",
     hours: "Every day 10:00 - 21:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TK.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -152,7 +154,7 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66657292887",
     phoneText: "065 729 2887",
     hours: "Every day 10:00 - 21:00",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://www.uficon.com/app/uploads/2025/10/1V2A0799-3.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
@@ -163,7 +165,7 @@ export const STORES_DATA: StoreData[] = [
   },
   {
     id: "US-SWU",
-    name: "U•Store มหาวิทยาลัยศรีนครินทรวิโรฒ (ประสานมิตร)",
+    name: "U•Store มหาวิทยาลัยศรีนครินทรวิโรฒ ประสานมิตร",
     lat: 13.7446599, 
     lng: 100.5609688,
     shortAddress: "วัฒนา, กรุงเทพมหานคร",
@@ -172,10 +174,154 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66807815577",
     phoneText: "080 781 5577",
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
-    imageUrl: "https://cdn.shopify.com/s/files/1/0712/7203/8452/files/appleStore_example_smaller.jpg?v=1750143989",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-SWU.jpg",
     services: [
       { label: "Apple Official Technical Support", url: "/" },
       { label: "See all sessions at this store", url: "/" },
+      { label: "Gruop Demo", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+  {
+    id: "US-SR",
+    name: "U•Store ศิริราช ปิยมหาราชการุณย์",
+    lat: 13.760024682507293, 
+    lng: 100.48623364233126,
+    shortAddress: "บางกอกน้อย, กรุงเทพมหานคร",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon โรงพยาบาลศิริราช ปิยมหาราชการุณย์ (SiPH) ชั้น 1 มหาวิทยาลัยมหิดล เลขที่ 2 ถนนพรานนก แขวงศิริราช เขตบางกอกน้อย กรุงเทพฯ 10700",
+    phoneUrl: "tel://+66849339760",
+    phoneText: "084 933 9760",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/01/Untitled-2.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+   {
+    id: "US-PSU",
+    name: "U•Store โรงพยาบาลสงขลานครินทร์",
+    lat: 7.006882915914251, 
+    lng: 100.49359889861147,
+    shortAddress: "หาดใหญ่, สงขลา",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon โรงพยาบาลสงขลานครินทร์ อาคารรัตนชีวรักษ์ ชั้น 1 มหาวิทยาลัยสงขลานครินทร์ เลขที่ 15 ถนนกาญจนวณิชย์ ต.หาดใหญ่ อ.หาดใหญ่ จ.สงขลา 90110",
+    phoneUrl: "tel://+66614166533",
+    phoneText: "061 416 6533",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-PSU.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+  {
+    id: "US-UBRU",
+    name: "U•Store มหาวิทยาลัยราชภัฏอุบลราชธานี",
+    lat: 15.24641060739794, 
+    lng: 104.8490139539419,
+    shortAddress: "เมือง, อุบลราชธานี",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon มหาวิทยาลัยราชภัฏอุบลราชธานี ตึกร้านสวัสดิการ เลขที่ 2 ถนนราชธานี ตำบลในเมือง อำเภอเมือง จังหวัดอุบลราชธานี 34000",
+    phoneUrl: "tel://+66655087018",
+    phoneText: "065 508 7018",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-UBRU.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+    {
+    id: "US-WU",
+    name: "U•Store มหาวิทยาลัยวลัยลักษณ์",
+    lat: 8.649994435198767, 
+    lng: 99.89448842397581,
+    shortAddress: "ท่าศาลา, จังหวัดนครศรีธรรมราช",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon ศูนย์อาหารช่อประดู่ มหาวิทยาลัยวลัยลักษณ์ ห้องเลขที่ A4 เลขที่ 222 หมู่ที่ 10 ตำบลไทยบุรี อำเภอท่าศาลา จังหวัดนครศรีธรรมราช 80160",
+    phoneUrl: "tel://+66982763891",
+    phoneText: "098 276 3891",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-WU.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+   {
+    id: "US-WU",
+    name: "U•Store มหาวิทยาลัยศรีนครินทรวิโรฒ องครักษ์",
+    lat: 14.10959700070463, 
+    lng: 100.98717971479839,
+    shortAddress: "องครักษ์, นครนายก",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon มหาวิทยาลัยศรีนครินทรวิโรฒ องครักษ์ เลขที่ 63 หมู่ 7 ถ.รังสิต-นครนายก ต.องครักษ์ อ.องครักษ์ จ.นครนายก 26120",
+    phoneUrl: "tel://+66649304522",
+    phoneText: "064 930 4522",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2024/01/IMG_3187.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Gruop Demo", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+   {
+    id: "US-SRU",
+    name: "U•Store มหาวิทยาลัยราชภัฏสุราษฎร์ธานี",
+    lat: 9.084248988260702, 
+    lng: 99.36268561479835,
+    shortAddress: "เมืองสุราษฎร์ธานี, สุราษฎร์ธานี",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon มหาวิทยาลัยราชภัฏสุราษฎร์ธานี เลขที่ 272 หมู่ที่ 9 ตำบลขุนทะเล อำเภอเมืองสุราษฎร์ธานี จังหวัดสุราษฎร์ธานี 84100",
+    phoneUrl: "tel://+66811163633",
+    phoneText: "081 116 3633",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-SRU.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Gruop Demo", url: "/" },
+      { label: "Reserve a shopping session", url: "/" },
+      { label: "See what your device is worth", url: "/" },
+      { label: "Get help here", url: "/" }
+    ]
+  },
+   {
+    id: "US-WUH",
+    name: "U•Store โรงพยาบาลศูนย์การแพทย์ มหาวิทยาลัยวลัยลักษณ์",
+    lat: 8.641561244349102, 
+    lng: 99.91442798966226,
+    shortAddress: "ท่าศาลา, นครศรีธรรมราช",
+    mapUrl: "",
+    fullAddress: "U•Store by UFicon โรงพยาบาลศูนย์การแพทย์ มหาวิทยาลัยวลัยลักษณ์ อาคาร A ชั้น G ศูนย์การแพทย์มหาวิทยาลัยวลัยลักษณ์ เลขที่ 222 ตำบล ไทยบุรี อำเภอท่าศาลา นครศรีธรรมราช 80160",
+    phoneUrl: "tel://+66924372564",
+    phoneText: "092 437 2564",
+    hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
+    imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-WUH.jpg",
+    services: [
+      { label: "Apple Official Technical Support", url: "/" },
+      { label: "See all sessions at this store", url: "/" },
+      { label: "Gruop Demo", url: "/" },
       { label: "Reserve a shopping session", url: "/" },
       { label: "See what your device is worth", url: "/" },
       { label: "Get help here", url: "/" }

@@ -24,7 +24,7 @@ interface LayoutProps {
  */
 export const Layout = ({
   children,
-  announcementItems = ['สมัคร U•Joy', 'ผ่อนไม่ใช้บัตร', 'โปรโมชันประจำเดือน'],
+  announcementItems = ['สมัคร U•Joy | ผ่อนไม่ใช้บัตร | โปรโมชันประจำเดือน'],
 }: LayoutProps) => (
   <div className="layout">
     {/* Scrolls away — NOT inside sticky wrapper */}

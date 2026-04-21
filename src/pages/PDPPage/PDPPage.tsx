@@ -385,13 +385,6 @@ export const PDPPage = () => {
     setNavSlot(document.getElementById("global-nav-addon-slot"));
   }, []);
 
-  const breadcrumbs = [
-    { label: "iStudio", href: "/" },
-    { label: "Mac", href: "/pages/view-all-mac" },
-    { label: "MacBook Pro", href: "/collections/macbook-pro" },
-    { label: displayName, href: "#" },
-  ];
-
   return (
     <div className="pdp">
       {/* ── AddOn Navbar Mobile — portaled INTO GlobalNav, mobile only ──── */}
@@ -413,27 +406,6 @@ export const PDPPage = () => {
         seeAllLabel="ดูข้อมูล Mac ทั้งหมด"
         seeAllHref="/pages/view-all-mac"
       />
-
-      {/* Breadcrumbs */}
-      {/* <nav className="pdp__breadcrumbs" aria-label="breadcrumb">
-        <ol className="pdp__breadcrumbs-list">
-          {breadcrumbs.map((c, i) => {
-            const last = i === breadcrumbs.length - 1;
-            return (
-              <li key={i} className="pdp__breadcrumbs-item">
-                {last ? (
-                  <span aria-current="page">{c.label}</span>
-                ) : (
-                  <>
-                    <a href={c.href}>{c.label}</a>
-                    <span aria-hidden="true"> › </span>
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ol>
-      </nav> */}
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
       <section className="pdp__desktop-hero" aria-label="Desktop product summary">

@@ -1,321 +1,154 @@
 # iStudio by UFicon — Copilot Instructions
 
 > Apple Premium Partner e-commerce storefront.
-> Vite + React 18 + TypeScript + Custom CSS (no Tailwind).
-> Design source: Figma → Code. Production: Docker + Nginx on Coolify/PVE.
+> Vite 8 + React 18 + TypeScript (strict) + Custom CSS (no Tailwind).
+> Production: Docker + Nginx on Coolify/PVE behind Cloudflare.
 
----
-
-## 1. Project Identity
+## Project Identity
 
 | Key | Value |
 |-----|-------|
 | Name | iStudio by UFicon |
-| Stack | React 18, TypeScript (strict), Vite 8, Custom CSS |
-| Language | Thai (UI labels) + English (code, comments) |
-| Fonts | `SF Pro Text` (Latin), `SFProThai` (Thai) — self-hosted woff2 |
-| Design tokens | `src/vars.css` (CSS custom properties from Figma) |
+| Stack | React 18, TypeScript strict, Vite 8, Custom CSS |
+| Language | Thai (UI) + English (code) |
+| Fonts | `SF Pro Text` (Latin) + `SFProThai` (Thai) — self-hosted woff2 |
+| Design tokens | `src/styles/vars.css` |
 | Domain | `https://istudio.uficon.com` |
-| Dev server | `http://localhost:5173` |
+| Dev | `http://localhost:5173` |
 
----
-
-## 2. Architecture — Atomic Design + Pages/Sections
+## Architecture — Atomic Design
 
 ```
 src/
-├── index.tsx              # Entry point, renders <App />
-├── App.tsx                # Router / top-level layout
-├── styles.css             # Global font-face + resets
-├── vars.css               # Figma design tokens (CSS vars)
+├── App.tsx                      # Pathname-based router
+├── index.tsx                    # Entry: StrictMode → <App />
+├── styles/                      # fonts.css, global.css, vars.css, homepage.css
 │
 ├── components/
-│   ├── atoms/             # Smallest UI units (Badge, Button, Divider)
-│   │   └── Badge/
-│   │       ├── Badge.tsx
-│   │       └── Badge.css
-│   ├── molecules/         # Composed atoms (ProductCard, SearchInput, StoreLocator)
-│   │   └── ProductCard/
-│   │       ├── ProductCard.tsx
-│   │       └── ProductCard.css
-│   └── organisms/         # Complex UI blocks (GlobalNav, GlobalFooter, BannerCarousel, ProductStripe)
-│       └── GlobalNav/
-│           ├── GlobalNav.tsx
-│           └── GlobalNav.css
+│   ├── atoms/                   # Primitives
+│   │   ├── icons/               # 10 icon components + index.ts barrel
+│   │   ├── logos/               # LogoPartner, LogoWipApp + index.ts barrel
+│   │   ├── CtaButtonPrimaryStateDefault/
+│   │   ├── CtaButtonSecondaryStateDefault/
+│   │   └── MapPinScenarioDefault/
+│   ├── molecules/               # Composed atoms
+│   │   ├── AnnouncementBar/
+│   │   ├── BentoBoxTileBig/
+│   │   ├── PLPProductRow/
+│   │   ├── SearchInput/
+│   │   ├── StoreLocator/
+│   │   └── ...12 components
+│   ├── organisms/               # Complex blocks
+│   │   ├── GlobalNav/
+│   │   ├── GlobalFooter/
+│   │   ├── Layout/
+│   │   ├── ProductStripe/
+│   │   ├── FamilyStripe/
+│   │   ├── HeroBannerCarousel/
+│   │   └── ...13 components
+│   └── ToggleRow/               # PDP-specific toggle
 │
-├── sections/              # Homepage section compositions (HeroBannerSection, BentoBoxSection, etc.)
-│   └── WhatsNewSection/
-│       ├── WhatsNewSection.tsx
-│       └── WhatsNewSection.css
-│
-├── pages/                 # Route-level pages
+├── sections/                    # 15 homepage sections
+├── pages/                       # 5 route pages
 │   ├── HomePage/
-│   ├── PDPPage/
+│   ├── PDPPage/    (+ AddOnNavbarMobile, HeadBanner)
 │   ├── PLPPage/
 │   ├── LOBPage/
 │   └── StoreLocatorPage/
 │
-├── data/                  # Static JSON (mock data, will be replaced by API)
-│   ├── navMenu.json
-│   ├── categories.json
-│   ├── products/
-│   └── banners/
-│
-├── api/                   # Data fetching layer (swap to real API later)
-│   ├── products.ts
-│   ├── banners.ts
-│   └── navigation.ts
-│
-├── hooks/                 # Custom React hooks
-│   ├── useProducts.ts
-│   └── useBanners.ts
-│
-├── types/                 # Shared TypeScript interfaces
-│   ├── index.ts           # Product, NavItem, BannerSlide, etc.
-│   └── shopify.ts         # Shopify-specific types (future)
-│
-├── utils/                 # Pure utility functions
-│   └── formatPrice.ts
-│
-└── [Legacy Figma exports]  # Top-level component folders (AppBlockImageVariant*, Icon*, Logo*, etc.)
-                            # These are Figma-exported components — treat as reference, refactor into components/
+├── data/                        # Mock JSON (navMenu, products/, banners/)
+├── api/                         # Fetch layer + index.ts barrel
+├── hooks/                       # useProducts, useBanners + index.ts barrel
+├── types/                       # index.ts (shared) + shopify.ts
+└── utils/                       # formatPrice
 ```
 
----
+## Import Convention
 
-## 3. Coding Rules
+```tsx
+// Absolute with @/ alias (configured in tsconfig + vite)
+import { ProductStripe } from '@/components/organisms/ProductStripe/ProductStripe';
+import type { Product } from '@/types';
 
-### 3.1 TypeScript
-- `strict: true` — no `any` unless interfacing with Figma exports
-- All props must have explicit interfaces (not inline)
-- Export types from `src/types/index.ts` for shared types
-- Use `type` imports: `import type { Product } from '../types'`
-
-### 3.2 Components
-- **One component per folder**: `ComponentName/ComponentName.tsx` + `ComponentName.css`
-- **No default exports** — use named exports: `export function Button() {}`
-- **Props interface** above the component in the same file
-- **No inline styles** unless dynamic (calculated values, conditional colors)
-- **Currency**: Always THB, use `formatPrice()` from `src/utils/`
-
-### 3.3 CSS (Custom CSS — NO Tailwind)
-- Each component has its own `.css` file, imported directly
-- Use **BEM-like naming**: `.gn-category-link`, `.product-card__price`
-- Use CSS custom properties from `vars.css` when available
-- Font family: always reference `'SF Pro Text', 'SFProThai', -apple-system, sans-serif`
-- **Apple design colors**:
-  - Primary text: `#1d1d1f`
-  - Secondary text: `#6e6e73`
-  - Hover / accent: `#0071e3`
-  - Background: `#ffffff`
-  - Border: `#d2d2d7`
-  - Section alt bg: `#f5f5f7`
-- **Responsive breakpoints**:
-  - Mobile: `< 734px`
-  - Tablet: `734px – 1068px`
-  - Desktop: `> 1068px`
-  - Max content width: `1220px` — use `calc((100% - 76.25rem) / 2)` for Apple centering
-- **Transitions**: `0.3s cubic-bezier(0.4, 0, 0.2, 1)` for smooth Apple-feel
-
-### 3.4 Data Flow
-```
-src/data/*.json  →  src/api/*.ts  →  src/hooks/use*.ts  →  Component
-```
-- JSON files are mock data (will be replaced by Shopify API)
-- API layer simulates async fetch with `Promise` + small delay
-- Hooks return `{ data, loading, error }` pattern
-- Components never import JSON directly — always go through hooks
-
-### 3.5 Images & Assets
-- Product images: external CDN URLs (Shopify/Cloudflare)
-- Icons: inline SVG components (e.g., `IconSearch`, `IconChevronRight`)
-- Logos: dedicated components (`LogoPartner`, `LogoWipApp`, `LogoAppleCare`)
-- Fonts: `/public/fonts/` — SF Pro Text (400/500/600/700) + SFProThai (variable)
-
-### 3.6 State Management
-- **No global state library** — local `useState` + props drilling
-- Complex state: `useReducer` when needed
-- Cross-component: lift state to nearest common parent
-- Persistent state: `localStorage` with expiry (see `STORE_STORAGE_KEY` pattern in GlobalNav)
-
----
-
-## 4. Component Creation Checklist
-
-When creating a new component:
-
-```
-1. [ ] Create folder: src/components/{atoms|molecules|organisms}/ComponentName/
-2. [ ] Create ComponentName.tsx with named export
-3. [ ] Create ComponentName.css with scoped class names
-4. [ ] Define Props interface at top of .tsx file
-5. [ ] Add TypeScript types to src/types/index.ts if shared
-6. [ ] Use semantic HTML + ARIA attributes
-7. [ ] Add responsive styles (mobile-first)
-8. [ ] Test on 375px, 768px, 1440px viewports
+// Barrel imports for high-usage directories
+import { IconFacebook, IconInstagram } from '@/components/atoms/icons';
+import { LogoPartner } from '@/components/atoms/logos';
+import { useProducts } from '@/hooks';
+import { fetchProducts } from '@/api';
 ```
 
----
+## Component Rules
 
-## 5. Legacy Figma Export Components
+- **One folder per component**: `Name/Name.tsx` + `Name.css`
+- **Named exports only**: `export const Button = () => {}`
+- **Props interface** above component in same file
+- **No inline styles** except dynamic values
+- **No `any`** — TypeScript strict enforced
 
-The top-level folders in `src/` (e.g., `AppBlockImageVariant1/`, `IconSearch/`, `FamilyStripe/`) are **Figma auto-exports**. Rules:
+## CSS (Custom — No Tailwind)
 
-- Do NOT modify Figma exports in-place for new features
-- When building features, create proper components in `components/` that reference or replace these
-- Figma exports use `SfProText-*` font-family aliases — these are mapped in `styles.css`
-- Some use `styled-components` — migrate to plain CSS when refactoring
-- `U+F8FF` () is Apple's private-use char — only renders in SF Pro; replace with text in production components
+- Co-located `.css` per component, BEM naming
+- Font: `'SF Pro Text', 'SFProThai', -apple-system, sans-serif`
+- Colors: `#1d1d1f` / `#6e6e73` / `#0071e3` / `#d2d2d7` / `#f5f5f7`
+- Breakpoints: `< 734px` (mobile), `734–1068px` (tablet), `> 1068px` (desktop)
+- Max width: `76.25rem` → `calc((100% - 76.25rem) / 2)` (Apple centering — load-bearing)
+- Transitions: `0.3s cubic-bezier(0.4, 0, 0.2, 1)`
 
----
+## Data Flow
 
-## 6. Key Patterns
+```
+data/*.json → api/*.ts → hooks/use*.ts → Component
+```
 
-### Apple-style centering (1220px container)
+- Components never import JSON directly
+- Hooks return `{ data, loading, error }`
+- Price format: THB via `formatPrice()` — never hardcode
+
+## State
+
+- `useState` + props — no global state library
+- `useReducer` for multi-value changes
+- `localStorage` with TTL for persistence
+- No Context unless 3+ levels prop drilling
+
+## Key Patterns
+
+### Apple centering
 ```css
-.section-inner {
-  max-width: 76.25rem; /* 1220px */
-  margin: 0 auto;
-  padding: 0 calc((100% - 76.25rem) / 2);
-}
+max-width: 76.25rem;
+padding: 0 calc((100% - 76.25rem) / 2);
 ```
 
-### Carousel (react-slick)
+### Carousel peek mode (react-slick)
 ```tsx
-// For fractional slides (peek mode):
-// infinite: false when slidesToShow is fractional
-// CSS media query breakpoint must match calculated width
-const settings = {
-  infinite: slidesToShow >= 2,
-  slidesToShow: 1.15,
-  arrows: false,
-  dots: false,
-};
+{ infinite: slidesToShow >= 2, slidesToShow: 1.15 }
 ```
 
-### Scroll threshold (sticky nav add-ons)
+### Scroll threshold
 ```tsx
-// Use constant measurements, not element positioning
 const NAV_HEIGHT = 52;
-const shouldShow = scrollY > NAV_HEIGHT;
-// NOT: element.offsetTop (couples trigger to action)
+const shouldShow = scrollY > NAV_HEIGHT; // constant, not offsetTop
 ```
 
-### Production file hotfix
-```
-1. SSH → edit production file directly
-2. Verify fix live
-3. THEN commit + push to GitHub
-// Don't wait for CI/CD when production is down
-```
+## DevOps
 
----
-
-## 7. DevOps & Deployment
-
-### Docker Build
-```dockerfile
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci
-COPY . .
-RUN npm run build
-
-FROM nginx:alpine
-COPY --from=builder /app/dist /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 80
-```
-
-### Nginx Config
-- SPA fallback: `try_files $uri $uri/ /index.html`
-- Gzip enabled for text/css/json/js/xml/svg
-- Served on port 80
-
-### Infrastructure
-| Environment | Host |
-|-------------|------|
+| Env | Host |
+|-----|------|
 | Dev | `localhost:5173` (Vite) |
 | Staging | Coolify on `pve01.prod.uficon.com` |
-| Production | Docker + Nginx behind Cloudflare |
+| Prod | Docker (node:20-alpine → nginx:alpine) + Cloudflare |
 
-### Allowed Dev Hosts
-```
-localhost, 127.0.0.1, dev.m2developer.com,
-coolify.pve01.prod.uficon.com,
-filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com
-```
+- SPA fallback: `try_files $uri $uri/ /index.html`
+- Git: branch from `main`, never `push --force`
+- Never commit `.env`, `node_modules/`, `dist/`
 
-### Git Workflow
-- Branch from `main`
-- Commit messages: descriptive, English
-- Never `git push --force`
-- Never commit `.env`, secrets, or `.vscode/`
-- `.gitignore` covers: `node_modules/`, `dist/`, `.vite/`, `.history/`, `.vscode/`, `.claude/`
+## Do NOT
 
----
-
-## 8. Agent Roles
-
-### Frontend Agent
-**Focus**: Components, pages, sections, styling, accessibility
-
-- Follow Atomic Design: atoms → molecules → organisms → sections → pages
-- CSS only (no Tailwind) — use vars.css tokens
-- Mobile-first responsive design
-- All text in Thai for UI, English for code
-- ARIA labels on all interactive elements
-- Test at 375px / 768px / 1440px
-- Carousel libraries: `react-slick`, `embla-carousel-react`, `swiper`
-- Image galleries: `@fancyapps/ui` (Fancybox)
-- Color extraction: `colorthief` (for dynamic product backgrounds)
-
-### DevOps Agent
-**Focus**: Build, deploy, infrastructure, CI/CD
-
-- Dockerfile: multi-stage (node:20-alpine → nginx:alpine)
-- Vite build output → `dist/`
-- Deploy target: Coolify (PVE) or direct Docker
-- Nginx serves SPA with history fallback
-- Cloudflare DNS in front
-- Monitor: Docker logs, nginx access logs
-- SSL: Cloudflare edge certificates
-- No secrets in repo — use environment variables
-
-### Data/API Agent
-**Focus**: Data layer, mock → real API migration
-
-- Current: static JSON in `src/data/`
-- Future: Shopify Storefront API (GraphQL)
-- API layer: `src/api/*.ts` — async functions returning typed data
-- Hooks: `src/hooks/use*.ts` — `{ data, loading, error }` pattern
-- Types: `src/types/index.ts` — Product, BannerSlide, NavItem, etc.
-- Price format: THB, `formatPrice()` utility
-- Shopify types ready at `src/types/shopify.ts`
-
-### QA Agent
-**Focus**: Quality, accessibility, performance
-
-- TypeScript strict mode — no `any` in new code
-- Semantic HTML (nav, main, section, article, aside)
-- ARIA: labels, roles, expanded states, live regions
-- Lighthouse targets: Performance > 90, Accessibility > 95
-- Bundle size: watch Vite build output
-- Fonts: ensure SFProThai loads for Thai text rendering
-- Image optimization: WebP/AVIF from CDN, proper alt text
-
----
-
-## 9. Do NOT
-
-- Use Tailwind CSS (project uses custom CSS)
-- Add global state libraries (Redux, Zustand) without explicit approval
-- Modify Figma export folders for new features
+- Use Tailwind CSS
+- Add state libraries without approval
 - Use `any` type in new code
-- Create components without a matching .css file
-- Hardcode prices (always use `formatPrice()`)
-- Use `px` for font-size in responsive contexts (prefer `rem`)
+- Create components without `.css` file
+- Hardcode prices
+- Use `px` for font-size (use `rem`)
 - Skip ARIA attributes on interactive elements
-- Commit `node_modules/`, `dist/`, `.env`, `.vscode/`, `.claude/`
-- Use `calc((100% - 76.25rem) / 2)` without understanding it (it's Apple's 1220px centering — load-bearing)
+- Put components at `src/` root level (use components/ hierarchy)

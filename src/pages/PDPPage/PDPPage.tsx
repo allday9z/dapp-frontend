@@ -410,16 +410,19 @@ export const PDPPage = () => {
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
       <section className="pdp__desktop-hero" aria-label="Desktop product summary">
         <div className="pdp__desktop-hero-left">
-          <p className="pdp__desktop-hero-badge">FREE AIRPODS</p>
+          <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
           <h1 className="pdp__desktop-hero-title">{displayName}</h1>
-          <p className="pdp__desktop-hero-sku">SKU: {product.sku}</p>
+          <p className="pdp__desktop-hero-sku">
+            SKU: {product.sku}
+            {product.barcode && <span className="pdp__desktop-hero-barcode">Barcode: {product.barcode}</span>}
+          </p>
+
+          <p className="pdp__desktop-hero-gwp">Microsoft Office MS FPP M365 Personal</p>
 
           <div className="pdp__desktop-hero-links">
-            <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม ›</a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1" height="18" viewBox="0 0 1 18" fill="none">
-              <path d="M0.5 0L0.499999 18" stroke="#D9D9D9" />
-            </svg>
-            <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น ›</a>
+            <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม</a>
+            <span className="pdp__desktop-hero-divider" aria-hidden="true" />
+            <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น</a>
           </div>
 
           <div className="pdp__desktop-hero-share" aria-label="Share">
@@ -438,9 +441,9 @@ export const PDPPage = () => {
           <button
             className="pdp__desktop-hero-financing"
             onClick={() => setFinancingOpen(true)}
-            aria-label="Explore financing options"
+            aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
           >
-            Explore all financing options ›
+            เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน ›
           </button>
         </div>
       </section>

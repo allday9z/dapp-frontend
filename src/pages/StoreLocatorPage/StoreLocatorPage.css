@@ -21,7 +21,7 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 0 40px;
     grid-auto-rows: minmax(50px, auto);
     line-height: 20px;
     vertical-align: top !important;
@@ -300,4 +300,19 @@ input.nosubmit {
         line-height: 33px;
         padding-bottom: 16px;
     }
+}
+
+.my-location-result__callout--apple:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-bottom: 13px solid rgba(0, 0, 0, 0);
+    left: 0;
+    right: 0;
+    margin: 0 auto -13px;
+    border-top: 15px solid #fff;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    top: 100%;
 }

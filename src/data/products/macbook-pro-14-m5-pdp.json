@@ -1,6 +1,6 @@
 {
   "id": "macbook-pro-14-m5",
-  "name": "MacBook Pro",
+  "name": "MacBook Pro M5",
   "size": "14",
   "badge": "ใหม่",
   "barcode": "195950714746",
@@ -34,9 +34,9 @@
     { "id": "silver",      "name": "Silver",      "hex": "#e3e3e5" }
   ],
   "processors": [
-    { "id": "m5-10",    "label": "Apple M5",     "sublabel": "10-core CPU and 10-core GPU", "priceAdd": 0 },
-    { "id": "m5pro-14", "label": "Apple M5 Pro", "sublabel": "14-core CPU and 20-core GPU", "priceAdd": 13000 },
-    { "id": "m5max",    "label": "Apple M5 Max", "sublabel": "14-core CPU and 30-core GPU", "priceAdd": 48000 }
+    { "id": "m5-10",    "label": "MacBook Pro M5",     "sublabel": "10-core CPU and 10-core GPU", "priceAdd": 0 },
+    { "id": "m5pro-14", "label": "MacBook Pro M5 Pro", "sublabel": "14-core CPU and 20-core GPU", "priceAdd": 13000 },
+    { "id": "m5max",    "label": "MacBook Pro M5 Max", "sublabel": "14-core CPU and 30-core GPU", "priceAdd": 48000 }
   ],
   "memory": [
     { "id": "16gb", "label": "16GB", "priceAdd": 0 },

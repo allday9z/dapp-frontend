@@ -438,37 +438,66 @@ export const PDPPage = () => {
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
       <section className="pdp__desktop-hero" aria-label="Desktop product summary">
         <div className="pdp__desktop-hero-left">
-          <p className="pdp__desktop-hero-badge">FREE AIRPODS</p>
+          <p className="pdp__desktop-hero-badge">ใหม่</p>
           <h1 className="pdp__desktop-hero-title">{displayName}</h1>
           <p className="pdp__desktop-hero-sku">SKU: {product.sku}</p>
 
           <div className="pdp__desktop-hero-links">
-            <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม ›</a>
-            <svg xmlns="http://www.w3.org/2000/svg" width="1" height="18" viewBox="0 0 1 18" fill="none">
-              <path d="M0.5 0L0.499999 18" stroke="#D9D9D9" />
-            </svg>
-            <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น ›</a>
+            <a href="#" className="pdp__desktop-hero-link">
+              เรียนรู้เพิ่มเติม
+              <svg className="pdp__desktop-hero-chevron" width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
+                <path d="M1 1L5 5L1 9" stroke="#0071E3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
+            <span className="pdp__desktop-hero-divider" aria-hidden="true" />
+            <a href="#" className="pdp__desktop-hero-link">
+              เปรียบเทียบรุ่น
+              <svg className="pdp__desktop-hero-chevron" width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
+                <path d="M1 1L5 5L1 9" stroke="#0071E3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </a>
           </div>
 
           <div className="pdp__desktop-hero-share" aria-label="Share">
-            <span className="pdp__desktop-hero-share-label">Share</span>
-            <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
-            <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
-            <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
+            <div className="pdp__desktop-hero-share-btn">
+              <svg width="13" height="16" viewBox="0 0 13 16" fill="none" aria-hidden="true">
+                <path d="M6.5 1v9M3 4.5L6.5 1 10 4.5M1 11v3a1 1 0 001 1h9a1 1 0 001-1v-3" stroke="#333" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="pdp__desktop-hero-share-label">Share</span>
+            </div>
+            <div className="pdp__desktop-hero-social">
+              <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-social-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M12 2H10C9.17 2 8 2.67 8 4v2H6v2.5h2V14h2.5V8.5H13L13.5 6H10.5V4.5c0-.28.22-.5.5-.5H12V2z" fill="#333"/>
+                </svg>
+              </a>
+              <a href="#" aria-label="Share on Instagram" className="pdp__desktop-hero-social-icon">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <rect x="2" y="2" width="12" height="12" rx="4" stroke="#333" strokeWidth="1.2"/>
+                  <circle cx="8" cy="8" r="2.5" stroke="#333" strokeWidth="1.2"/>
+                  <circle cx="11.5" cy="4.5" r="0.5" fill="#333"/>
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="pdp__desktop-hero-right">
-          <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
-          <p className="pdp__desktop-hero-monthly">
-            {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} months
-          </p>
+          <div className="pdp__desktop-hero-pricing">
+            <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
+            <p className="pdp__desktop-hero-monthly">
+              {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} months
+            </p>
+          </div>
           <button
             className="pdp__desktop-hero-financing"
             onClick={() => setFinancingOpen(true)}
-            aria-label="Explore financing options"
+            aria-label="ดูเพิ่มเติมเกี่ยวกับการผ่อนชำระ"
           >
-            Explore all financing options ›
+            ดูเพิ่มเติมเกี่ยวกับการผ่อนชำระ
+            <svg className="pdp__desktop-hero-chevron" width="6" height="10" viewBox="0 0 6 10" fill="none" aria-hidden="true">
+              <path d="M1 1L5 5L1 9" stroke="#0071E3" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </button>
         </div>
       </section>

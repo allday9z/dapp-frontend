@@ -1,31 +1,37 @@
 .store-location-find-main {
     padding: 60px 0 84px;
 }
-@media screen and (min-width: 750px) {
-    .page-width {
-        padding: 0 5rem;
-    }
-}
+
 .page-width {
-    max-width: 90dvw;
-    margin: 0 auto;
-    padding: 0 1.5rem;
+    max-width: 1260px;
+    width: 100%;
+    margin: 50px auto;
+    padding: 0 16px;
+    box-sizing: border-box;
 }
 
 .locator_grid {
     width: 100%;
     position: relative;
     display: grid;
-    grid-template-columns: 386px 4fr;
+    grid-template-columns: 1fr;
     gap: 40px;
     grid-auto-rows: minmax(50px, auto);
     line-height: 20px;
     vertical-align: top !important;
-    padding: 2rem 0 1.5rem max(1rem, calc((100% - 76.25rem) / 2));
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 990px) {
+    .locator_grid {
+        grid-template-columns: 386px 1fr; 
+    }
 }
 
 .one-search_details {
     grid-column: 1 !important;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 .gradient {
@@ -72,7 +78,9 @@ input.nosubmit {
     padding: 8px 16px 9px 42px;
     border-radius: 32px;
     height: 36px;
-    width: 440px;
+    width: 100%;
+    max-width: 440px;
+    box-sizing: border-box;
 }
 
 .store-location-find-main .my-store-locator-drawer__search-results {
@@ -207,4 +215,21 @@ input.nosubmit {
     font-family: 'SFProThai';
     font-weight: 600;
     font-size: 14px;
+}
+
+.two-location_map {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: center;
+    width: 100%;
+    background-color: #f2f2f2;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+@media screen and (min-width: 990px) {
+    .two-location_map {
+        grid-column: 2;
+        grid-row: 1;
+    }
 }

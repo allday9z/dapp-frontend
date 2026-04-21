@@ -353,6 +353,8 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                 <div className="my-store-locator-drawer__bg"></div>
               </div>
 
+              <div id="desktopMapWrapper" className="two-location_map"></div>
+
             </div>
           </div>
           <div id="store-overlay" className={`store-overlay-spin ${!isLoadingStore ? 'hidden' : ''}`}>

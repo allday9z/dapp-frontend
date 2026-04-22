@@ -204,13 +204,15 @@
     justify-content: space-between;
     align-items: flex-end;
     gap: 24px;
-    padding: 10px max(1rem, calc((100% - 76.25rem) / 2)) 8px;
+    padding: 10px 22px 8px;
+    max-width: 1220px;
+    margin: 0 auto;
     white-space: normal;
     overflow: visible;
   }
 
   .addon-navbar-mobile__name {
-    font-size: clamp(1.5rem, 2.3vw, 2.25rem);
+    font-size: 32px;
     line-height: 1.08;
     font-weight: 700;
     letter-spacing: -0.02em;
@@ -228,14 +230,14 @@
   }
 
   .addon-navbar-mobile__price {
-    font-size: clamp(1.5rem, 2.1vw, 2rem);
+    font-size: 28px;
     line-height: 1.05;
     font-weight: 600;
     letter-spacing: -0.01em;
   }
 
   .addon-navbar-mobile__monthly {
-    font-size: 0.9375rem;
+    font-size: 15px;
     line-height: 1.25;
     color: #1d1d1f;
     font-weight: 400;
@@ -243,21 +245,23 @@
 
   .addon-navbar-mobile__delivery {
     justify-content: flex-end;
-    gap: 10px;
-    padding: 8px max(1rem, calc((100% - 76.25rem) / 2)) 9px;
+    gap: 12px;
+    padding: 8px 22px 9px;
+    max-width: 1220px;
+    margin: 0 auto;
     border-top: 0.5px solid #d2d2d7;
     overflow-x: auto;
   }
 
   .addon-navbar-mobile__delivery-item {
-    font-size: 0.875rem;
+    font-size: 14px;
     line-height: 1.2;
     color: #1d1d1f;
   }
 
   .addon-navbar-mobile__delivery-sep {
     color: #d2d2d7;
-    font-size: 0.75rem;
+    font-size: 12px;
   }
 
   .addon-navbar-mobile__delivery-item strong {

@@ -259,9 +259,7 @@ input.nosubmit {
 }
 
 .my-location-result__callout--apple {
-    box-shadow: 10px 10px 50px #0000004a;
-    transform-origin: 0 10px;
-    transform: translateY(-20px);
+    border-radius: 12px;
 }
 
 .my-location-result__callout {
@@ -270,9 +268,11 @@ input.nosubmit {
     flex-direction: column;
     align-items: flex-start;
     padding: 16px;
-    width: 360px;
+    width: 300px;
+    max-width: calc(100vw - 32px);
     font-size: 14px;
-    border-radius: 0.75rem;
+    box-sizing: border-box;
+    border-radius: 12px;
 }
 
 .my-location-result__callout .my-location-result__details {
@@ -307,12 +307,33 @@ input.nosubmit {
     position: absolute;
     width: 0;
     height: 0;
-    border-bottom: 13px solid rgba(0, 0, 0, 0);
     left: 0;
     right: 0;
-    margin: 0 auto -13px;
-    border-top: 15px solid #fff;
-    border-left: 15px solid transparent;
-    border-right: 15px solid transparent;
+    margin: 0 auto;
+    border-top: 12px solid #fff;
+    border-left: 12px solid transparent;
+    border-right: 12px solid transparent;
     top: 100%;
+}
+
+.custom-leaflet-marker {
+    background: transparent;
+    border: none;
+}
+
+.custom-leaflet-marker .marker-icon {
+    display: block;
+    color: #000;
+    font-size: 36px;
+    line-height: 36px;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    transition: color 0.2s ease-in-out;
+}
+
+.custom-leaflet-marker:hover .marker-icon,
+.custom-leaflet-marker.is-selected .marker-icon {
+    color: #0071e3;
 }

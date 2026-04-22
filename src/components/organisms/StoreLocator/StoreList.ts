@@ -265,7 +265,7 @@ export const STORES_DATA: StoreData[] = [
     ]
   },
    {
-    id: "US-WU",
+    id: "US-SWUOK",
     name: "U•Store มหาวิทยาลัยศรีนครินทรวิโรฒ องครักษ์",
     lat: 14.10959700070463, 
     lng: 100.98717971479839,

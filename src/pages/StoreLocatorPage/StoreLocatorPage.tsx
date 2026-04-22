@@ -59,6 +59,8 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
   const [isMapLoaded, setIsMapLoaded] = useState(false);
   const [activePopupStore, setActivePopupStore] = useState<any | null>(null);
   const [popupPosition, setPopupPosition] = useState({ x: 0, y: 0 });
+  const [expandedServices, setExpandedServices] = useState<Record<string, boolean>>({});
+  
   const mapRef = useRef<any>(null);
   const markersLayerRef = useRef<any>(null);
 
@@ -99,6 +101,15 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
       );
     } else {
       setIsLoadingStore(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!document.querySelector('link[href*="font-awesome"]')) {
+      const faLink = document.createElement("link");
+      faLink.rel = "stylesheet";
+      faLink.href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css";
+      document.head.appendChild(faLink);
     }
   }, []);
 
@@ -213,6 +224,14 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
     setMaxDistance(value === 'all' ? 'all' : Number(value));
   };
 
+  const toggleServiceVisibility = (e: React.MouseEvent, storeName: string) => {
+    e.stopPropagation();
+    setExpandedServices(prev => ({
+      ...prev,
+      [storeName]: !prev[storeName]
+    }));
+  };
+
   const filteredStores = useMemo(() => {
     let stores = STORES_DATA.map((store: any) => {
       const lat = parseFloat(String(store.lat));
@@ -253,16 +272,16 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
 
     filteredStores.forEach((store: any) => {
       const isSelected = selectedStoreName === store.name;
-      const markerColor = isSelected ? "#0071E3" : "#FF3B30";
-      
       const lat = parseFloat(String(store.lat));
       const lng = parseFloat(String(store.lng));
+      
+      const markerClass = isSelected ? 'custom-leaflet-marker is-selected' : 'custom-leaflet-marker';
 
       const customIcon = L.divIcon({
-        className: 'custom-leaflet-marker',
-        html: `<div style="background-color: ${markerColor}; width: 24px; height: 24px; border-radius: 50%; border: 3px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.3);"></div>`,
-        iconSize: [24, 24],
-        iconAnchor: [12, 12]
+        className: markerClass,
+        html: `<i class="fa-solid fa-location-dot marker-icon"></i>`,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36]
       });
 
       if (!isNaN(lat) && !isNaN(lng)) {
@@ -270,9 +289,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
         
         marker.on('click', () => {
           setActivePopupStore(store);
-          const targetPoint = map.project([lat, lng], 16);
-          targetPoint.y -= 180;
-          map.setView(map.unproject(targetPoint, 16), 16);
+          map.panTo([lat, lng]);
         });
 
         marker.addTo(markersLayerRef.current);
@@ -360,13 +377,13 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                       position: "absolute",
                       left: popupPosition.x,
                       top: popupPosition.y,
-                      transform: "translate(-50%, calc(-100% - 15px))",
+                      transform: "translate(-50%, calc(-100% - 58px))",
                       zIndex: 1000,
                       pointerEvents: "auto",
-                      filter: "drop-shadow(0 2px 10px rgba(0,0,0,0.15))"
+                      filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.15))"
                     }}
                   >
-                    <div className="my-location-result__callout my-location-result__callout--apple" slot="mk-slot-94tapelj">
+                    <div className="my-location-result__callout my-location-result__callout--apple">
                       <div className="my-location-result__details">
                         <div className="my-location-result__name apl-section-stores-locator-store-name">{activePopupStore.name}</div>
                         <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
@@ -400,10 +417,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                           <span>{activePopupStore.hours}</span>
                         </li>
                       </ul>
-                      <div className="my-location-result__link js-my-location-link visually-hidden">
-                        <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px'}}>ดูเส้นทาง</a>
-                      </div>
-                      <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px'}}>ดูเส้นทาง</a>
+                      <a href={`https://maps.apple.com/place?q=${encodeURIComponent(activePopupStore.name || '')}&ll=${activePopupStore.lat},${activePopupStore.lng}`} target="_blank" rel="noopener noreferrer" style={{fontWeight:'600', color:'#0071e3', marginTop:'10px', display:'inline-block'}}>ดูเส้นทาง</a>
                     </div>
                   </div>
                 )}
@@ -415,6 +429,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                     <div id="myLocationResults" className="my-store-locator-drawer__search-results apl-section-stores-locator-results">
                       {filteredStores.map((store: any) => {
                         const isSelected = selectedStoreName === store.name;
+                        const isServicesExpanded = !!expandedServices[store.name];
 
                         return (
                           <div key={store.id || store.name} className="js-my-location-result my-location-result apl-section-stores-locator-result" data-active={isSelected ? "true" : "false"} data-id={store.id} data-name={store.name} data-latitude={store.lat} data-longitude={store.lng} role="group" data-events-added="true">
@@ -429,7 +444,7 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                                 <div className="my-location-result__name apl-section-stores-locator-store-name">{store.name}</div>
                                 <div className="my-store-locator__details-distance apl-section-stores-locator-store-distance">
                                   {store.distanceVal !== null ? `${store.distanceVal.toFixed(1)} กิโลเมตร` : ''}
-                                </div>
+                                 </div>
                               </div>
                               <div className="my-location-result__address my-location-result__location apl-section-stores-locator-store-address">
                                 {store.shortAddress}
@@ -456,17 +471,23 @@ export const StoreLocatorPage = (props: StoreLocatorPageProps) => {
                             </section>
                             {store.services && store.services.length > 0 && (
                               <>
-                                <button className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" type="button">
-                                  <span className="underlined-text">View store services</span>
-                                  <i className="myarrow fa fa-chevron-down my-location-result__services-icon js-acc-icon" aria-hidden="true"></i>
+                                <button 
+                                  className="my-location-result__services-btn js-acc-button apl-section-stores-locator-store-services-btn" 
+                                  type="button"
+                                  onClick={(e) => toggleServiceVisibility(e, store.name)}
+                                >
+                                  <span className="underlined-text">ดูบริการสาขา</span>
+                                  <i className={`myarrow fa fa-chevron-${isServicesExpanded ? 'up' : 'down'} my-location-result__services-icon js-acc-icon`} aria-hidden="true"></i>
                                 </button>
-                                <div className="my-location-result__services" aria-expanded="false">
-                                  <ul>
-                                    {store.services.map((service: any, sIndex: number) => (
-                                      <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
-                                    ))}
-                                  </ul>
-                                </div>
+                                {isServicesExpanded && (
+                                  <div className="my-location-result__services" aria-expanded="true">
+                                    <ul style={{ paddingLeft: '24px', listStyleType: 'disc' }}>
+                                      {store.services.map((service: any, sIndex: number) => (
+                                        <li key={sIndex}><a href={service.url} className="apl-section-stores-locator-store-services-link">{service.label}</a></li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                )}
                               </>
                             )}
                             

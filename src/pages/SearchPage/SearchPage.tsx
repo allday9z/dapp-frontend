@@ -1,15 +1,86 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import './SearchPage.css'
+import { useState, useEffect } from "react";
+import './SearchPage.css';
+import StoreLocatorDrawer from '@/components/organisms/StoreLocator/StoreLocatorDrawer';
+
+const STORE_STORAGE_KEY = 'user_selected_store';
+const STORE_EXPIRY_MS = 60 * 60 * 1000;
+
+const saveStoreToStorage = (storeName: string) => {
+  const data = {
+    name: storeName,
+    expiry: new Date().getTime() + STORE_EXPIRY_MS,
+  };
+  localStorage.setItem(STORE_STORAGE_KEY, JSON.stringify(data));
+  window.dispatchEvent(new Event('local-store-update'));
+};
+
+const getStoreFromStorage = (): string | null => {
+  if (typeof window === 'undefined') return null;
+  const itemStr = localStorage.getItem(STORE_STORAGE_KEY);
+  if (!itemStr) return null;
+  try {
+    const item = JSON.parse(itemStr);
+    const now = new Date().getTime();
+    if (now > item.expiry) {
+      localStorage.removeItem(STORE_STORAGE_KEY);
+      return null;
+    }
+    return item.name;
+  } catch (e) {
+    return null;
+  }
+};
+
+const CheckboxIcon = ({ checked }: { checked: boolean }) => {
+  if (!checked) {
+    return (
+      <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
+        <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
+      </div>
+    );
+  }
+  return (
+    <svg className="icon icon-checkbox-on" width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1.865" y="1.365" width="13.27" height="13.27" rx=".427" fill="#0071E3" stroke="#0071E3" strokeWidth=".73"></rect>
+      <path d="M7.417 11.994c-.14 0-.262-.067-.367-.2L4.605 8.78a.656.656 0 0 1-.081-.129.395.395 0 0 1-.024-.133c0-.095.032-.175.095-.238.067-.067.15-.1.248-.1.118 0 .221.058.31.176l2.25 2.808 4.438-6.989a.4.4 0 0 1 .129-.133.322.322 0 0 1 .176-.043c.095 0 .173.03.234.09.06.061.09.14.09.239a.405.405 0 0 1-.019.12.6.6 0 0 1-.067.137L7.77 11.8a.409.409 0 0 1-.353.195Z" fill="#fff"></path>
+    </svg>
+  );
+};
 
 export const SearchPage = () => {
+  const [filters, setFilters] = useState({
+    pickup: false,
+    shipping: false,
+    inStock: false,
+    outOfStock: false
+  });
 
-  const [isChecked, setIsChecked] = useState(false);
+  const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  useEffect(() => {
+    const savedStore = getStoreFromStorage();
+    if (savedStore) setSelectedStoreName(savedStore);
+
+    const handleLocalUpdate = () => {
+      const updatedStore = getStoreFromStorage();
+      if (updatedStore) setSelectedStoreName(updatedStore);
+    };
+
+    window.addEventListener('local-store-update', handleLocalUpdate);
+    return () => window.removeEventListener('local-store-update', handleLocalUpdate);
+  }, []);
+
+  const handleStoreSelect = (name: string) => {
+    setSelectedStoreName(name);
+    saveStoreToStorage(name);
+    setIsDrawerOpen(false);
+  };
 
   return (
     <div id="SearchPage" className="search-page">
-
       <div className="template-search section-template--20346294042676__main-padding apl-section-main-search">
         <div className="template-search__header page-width">
           <h1 className="template-search__header-inner h2 center">ผลลัพธ์การค้นหา</h1>
@@ -91,44 +162,50 @@ export const SearchPage = () => {
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item list-menu__item--pickup apl-section-facet-item active">
                               <label 
-        className="facet-checkbox facet-checkbox--pickup facets__text apl-section-facet-item-title" 
-        style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
-      >
-        <input 
-          type="checkbox" 
-          name="filter.v.m.apple.apl_VariantLocationAvailability" 
-          value="79445033012" 
-          id="Filter-filter.v.m.apple.apl_VariantLocationAvailability-3" 
-          className="js-my-store-pickup-location-input active" 
-          data-location-id="gid://shopify/Location/79445033012" 
-          aria-label="Apple Norway" 
-          checked={isChecked}
-          onChange={(e) => setIsChecked(e.target.checked)}
-          style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
-        />
-        
-        {!isChecked ? (
-          <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
-            <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
-          </div>
-        ) : (
-          <svg className="icon icon-checkbox-on" width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1.865" y="1.365" width="13.27" height="13.27" rx=".427" fill="#0071E3" stroke="#0071E3" strokeWidth=".73"></rect>
-            <path d="M7.417 11.994c-.14 0-.262-.067-.367-.2L4.605 8.78a.656.656 0 0 1-.081-.129.395.395 0 0 1-.024-.133c0-.095.032-.175.095-.238.067-.067.15-.1.248-.1.118 0 .221.058.31.176l2.25 2.808 4.438-6.989a.4.4 0 0 1 .129-.133.322.322 0 0 1 .176-.043c.095 0 .173.03.234.09.06.061.09.14.09.239a.405.405 0 0 1-.019.12.6.6 0 0 1-.067.137L7.77 11.8a.409.409 0 0 1-.353.195Z" fill="#fff"></path>
-          </svg>
-        )}
-        
-        <span>รับสินค้าที่สาขา</span>
-        <span className="visually-hidden" style={{ display: "none" }}>79445033012</span>
-      </label>
-                              <button className="facets__item-pickup js-my-store-locator-search-drawer-launcher" type="button" aria-haspopup="dialog">Apple Norway</button>
+                                className="facet-checkbox facet-checkbox--pickup facets__text apl-section-facet-item-title" 
+                                style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                              >
+                                <input 
+                                  type="checkbox" 
+                                  name="filter.v.m.apple.apl_VariantLocationAvailability" 
+                                  value="79445033012" 
+                                  id="Filter-filter.v.m.apple.apl_VariantLocationAvailability-3" 
+                                  className="js-my-store-pickup-location-input active" 
+                                  data-location-id="gid://shopify/Location/79445033012" 
+                                  aria-label="Store selection" 
+                                  checked={filters.pickup}
+                                  onChange={(e) => setFilters({ ...filters, pickup: e.target.checked })}
+                                  style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                />
+                                <CheckboxIcon checked={filters.pickup} />
+                                <span>รับสินค้าที่สาขา</span>
+                                <span className="visually-hidden" style={{ display: "none" }}>79445033012</span>
+                              </label>
+                              <button 
+                                className="facets__item-pickup js-my-store-locator-search-drawer-launcher" 
+                                type="button" 
+                                aria-haspopup="dialog"
+                                onClick={() => setIsDrawerOpen(true)}
+                              >
+                                {selectedStoreName || 'เลือกสาขา'}
+                              </button>
                             </li>
                             <li className="list-menu__item facets__item show-more-item apl-section-facet-item">
-                              <label htmlFor="Filter-Shipping-13" className="facet-checkbox facets__text apl-section-facet-item-title">
-                                <input type="checkbox" name="filter.v.shipping" value="1" id="Filter-Shipping-13" />
-                                <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
-                                  <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
-                                </div>
+                              <label 
+                                htmlFor="Filter-Shipping-13" 
+                                className="facet-checkbox facets__text apl-section-facet-item-title"
+                                style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                              >
+                                <input 
+                                  type="checkbox" 
+                                  name="filter.v.shipping" 
+                                  value="1" 
+                                  id="Filter-Shipping-13" 
+                                  checked={filters.shipping}
+                                  onChange={(e) => setFilters({ ...filters, shipping: e.target.checked })}
+                                  style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                />
+                                <CheckboxIcon checked={filters.shipping} />
                                 <span aria-hidden="true">บริการจัดส่ง</span>
                                 <span className="visually-hidden">บริการจัดส่ง</span>
                               </label>
@@ -149,20 +226,40 @@ export const SearchPage = () => {
                           <legend className="visually-hidden">สถานะ</legend>
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item apl-section-facet-item">
-                              <label className="facet-checkbox facets__text apl-section-facet-item-title">
-                                <input type="checkbox" name="filter.v.availability" value="1" id="Filter-filter.v.availability-1" aria-label="In stock" />
-                                <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
-                                  <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
-                                </div>
+                              <label 
+                                className="facet-checkbox facets__text apl-section-facet-item-title"
+                                style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer"}}
+                              >
+                                <input 
+                                  type="checkbox" 
+                                  name="filter.v.availability" 
+                                  value="1" 
+                                  id="Filter-filter.v.availability-1" 
+                                  aria-label="In stock" 
+                                  checked={filters.inStock}
+                                  onChange={(e) => setFilters({ ...filters, inStock: e.target.checked })}
+                                  style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                />
+                                <CheckboxIcon checked={filters.inStock} />
                                 <span aria-hidden="true">พร้อมจำหน่าย <span className="filter-count">(17)</span></span>
                                 <span className="visually-hidden">พร้อมจำหน่าย <span className="filter-count">(17 products)</span></span>
                               </label>
 
-                              <label className="facet-checkbox facets__text apl-section-facet-item-title">
-                                <input type="checkbox" name="filter.v.availability" value="1" id="Filter-filter.v.availability-1" aria-label="In stock" />
-                                <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
-                                  <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
-                                </div>
+                              <label 
+                                className="facet-checkbox facets__text apl-section-facet-item-title"
+                                style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                              >
+                                <input 
+                                  type="checkbox" 
+                                  name="filter.v.availability" 
+                                  value="0" 
+                                  id="Filter-filter.v.availability-2" 
+                                  aria-label="Out of stock" 
+                                  checked={filters.outOfStock}
+                                  onChange={(e) => setFilters({ ...filters, outOfStock: e.target.checked })}
+                                  style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                />
+                                <CheckboxIcon checked={filters.outOfStock} />
                                 <span aria-hidden="true">สินค้าหมด <span className="filter-count">(17)</span></span>
                                 <span className="visually-hidden">สินค้าหมด <span className="filter-count">(17 products)</span></span>
                               </label>
@@ -180,40 +277,20 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-5-template--20346294042676__main" className="facets__display-vertical">
                         <div className="facets__header-vertical apl-section-facet-details">
-                          <span className="facets__selected" style={{ fontSize: '13px', color: '#6e6e73' }}>The highest price is $5,100.00</span>
+                          <span className="facets__selected" style={{ fontSize: '14px' }}>ราคาสูงสุดอยู่ที่ ฿0</span>
                         </div>
                         <div className="facets__price">
+                          <span className="field-currency">฿</span>
                           <div className="field">
-                            <label className="field__label" htmlFor="Filter-Price-GTE" style={{ fontSize: '12px' }}>From ($)</label>
-                            <input className="field__input apl-section-facet-price-min" name="filter.v.price.gte" id="Filter-Price-GTE" type="number" placeholder="0" min="0" max="5100.00" />
-                          </div>
-                          <div className="field">
-                            <label className="field__label" htmlFor="Filter-Price-LTE" style={{ fontSize: '12px' }}>To ($)</label>
-                            <input className="field__input apl-section-facet-price-max" name="filter.v.price.lte" id="Filter-Price-LTE" type="number" min="0" placeholder="5100.00" max="5100.00" />
+                            <input className="field__input apl-section-facet-price-min" name="filter.v.price.gte" id="Filter-Price-GTE" type="number" placeholder="จาก" min="0" max="5400.00" />
+                          </div><div className="field">
+                            <input className="field__input apl-section-facet-price-max" name="filter.v.price.lte" id="Filter-Price-LTE" type="number" min="0" placeholder="ถึง" max="5400.00" />
                           </div>
                         </div>
                       </div>
                     </details>
 
                   </div>
-                </form>
-              </div>
-
-              <div className="small-hide">
-                <form className="no-js">
-                  <div className="facet-filters sorting caption">
-                    <div className="facet-filters__field">
-                      <div className="select" style={{ position: 'relative' }}>
-                        <select name="sort_by" className="facet-filters__sort select__select facets__text apl-section-facets-sort" id="SortByNoJs" aria-describedby="a11y-refresh-page-message" defaultValue="relevance">
-                          <option className="apl-section-facets-sort-relevance" value="relevance">Relevance</option>
-                          <option className="apl-section-facets-sort-price-ascending" value="price-ascending">Price, low to high</option>
-                          <option className="apl-section-facets-sort-price-descending" value="price-descending">Price, high to low</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <input type="hidden" name="q" value="15-inch MacBook Air: Apple M3 chip" />
-                  <input name="options[prefix]" type="hidden" value="last" />
                 </form>
               </div>
             </div>
@@ -350,6 +427,13 @@ export const SearchPage = () => {
           </div>
         </div>
       </div>
+      {isDrawerOpen && (
+        <StoreLocatorDrawer
+          selectedStoreName={selectedStoreName}
+          onClose={() => setIsDrawerOpen(false)}
+          onSelect={handleStoreSelect}
+        />
+      )}
     </div>
   );
 };

@@ -14,6 +14,64 @@
     text-align: center;
 }
 
+.facets-vertical .facets__price {
+    padding: .5rem .5rem .5rem 0;
+}
+
+.facets__price {
+    display: flex;
+    padding: 2rem;
+}
+
+.facets__price .field-currency {
+    align-self: center;
+    margin-right: .6rem;
+}
+
+.facets__price .field {
+    align-items: center;
+}
+
+.field {
+    position: relative;
+    width: 100%;
+    display: flex;
+    transition: box-shadow var(--duration-short) ease;
+}
+
+.field:before, .field:after {
+    border-radius: 0;
+}
+
+.facets__header-vertical {
+    padding: 1rem 2rem 1rem 0;
+    font-size: 1.4rem;
+}
+
+.facet-checkbox.facet-checkbox--pickup {
+    width: 100%;
+    padding-bottom: 4px;
+}
+
+.facets__item label, .facets__item input[type=checkbox] {
+    cursor: pointer;
+}
+.facet-checkbox {
+    padding: 6px 2rem 6px 0;
+    flex-grow: 1;
+    position: relative;
+    display: flex;
+    word-break: break-word;
+}
+.facets__text {
+    font-family: var(--font-body-family);
+    color: #000;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
 .search-page {
           font-family: "SFProThai", "SF Pro Text";
           color: #1d1d1f;
@@ -71,7 +129,6 @@
           display: flex;
           align-items: center;
           gap: 10px;
-          margin-top: 15px;
         }
         .field {
           display: flex;
@@ -169,15 +226,20 @@
         .button--primary:hover {
           background-color: #0077ed;
         }
-        .facets__item-pickup {
-          background: none;
-          border: none;
-          color: #0071e3;
-          font-size: 12px;
-          cursor: pointer;
-          padding-left: 26px;
-          text-align: left;
-        }
+        .facets__item .facets__item-pickup {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--AOS-Blue, #0071E3);
+    font-family: var(--font-body-family);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20.002px;
+    outline: inherit;
+    padding-left: 20px;
+    text-align: left;
+}
         @media (max-width: 990px) {
           .facets-vertical {
             flex-direction: column;

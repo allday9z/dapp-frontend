@@ -1,9 +1,12 @@
 "use client";
 
-import React from "react";
+import { useState, useEffect, useRef } from "react";
 import './SearchPage.css'
 
 export const SearchPage = () => {
+
+  const [isChecked, setIsChecked] = useState(false);
+
   return (
     <div id="SearchPage" className="search-page">
 
@@ -19,16 +22,10 @@ export const SearchPage = () => {
                 <details className="mobile-facets__disclosure disclosure-has-popup">
                   <summary className="mobile-facets__open-wrapper focus-offset">
                     <span className="mobile-facets__open">
-                      <svg className="icon icon-filter" aria-hidden="true" focusable="false" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M3.567 9.643a.339.339 0 0 1-.346-.346.339.339 0 0 1 .345-.351h5.565c.098 0 .181.034.25.102.067.068.101.151.101.25a.332.332 0 0 1-.102.243.339.339 0 0 1-.249.102H3.567ZM2.31 6.784a.339.339 0 0 1-.351-.345c0-.098.034-.181.102-.25a.339.339 0 0 1 .249-.101h8.084c.094 0 .175.034.243.102a.339.339 0 0 1 .102.249.339.339 0 0 1-.345.345H2.31ZM1.025 3.925A.339.339 0 0 1 .68 3.58c0-.098.034-.181.102-.25a.332.332 0 0 1 .243-.101h10.631c.094 0 .175.034.243.102.068.068.102.15.102.249a.339.339 0 0 1-.345.345H1.025Z" fill="currentColor"></path>
-                      </svg>
                       <span className="mobile-facets__open-label button-label medium-hide large-up-hide">Add filter</span>
                       <span className="mobile-facets__open-label button-label small-hide">Filter</span>
                     </span>
                     <span tabIndex={0} className="mobile-facets__close mobile-facets__close--no-js">
-                      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" className="icon icon-close" fill="none" viewBox="0 0 18 17" width="18" height="17">
-                        <path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path>
-                      </svg>
                     </span>
                   </summary>
                   <div className="mobile-facets">
@@ -86,9 +83,6 @@ export const SearchPage = () => {
                       <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-label="Get it fast (0 selected)" aria-expanded="true">
                         <div>
                           <span>ตัวเลือกการรับสินค้า <span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count">(0)</span></span>
-                          <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                          </svg>
                         </div>
                       </summary>
                       <div id="Facet-1-template--20346294042676__main" className="parent-display facets__display-vertical">
@@ -96,14 +90,37 @@ export const SearchPage = () => {
                           <legend className="visually-hidden">ตัวเลือกการรับสินค้า</legend>
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item list-menu__item--pickup apl-section-facet-item active">
-                              <label className="facet-checkbox facet-checkbox--pickup facets__text apl-section-facet-item-title">
-                                <input type="checkbox" name="filter.v.m.apple.apl_VariantLocationAvailability" value="79445033012" id="Filter-filter.v.m.apple.apl_VariantLocationAvailability-3" className="js-my-store-pickup-location-input active" data-location-id="gid://shopify/Location/79445033012" aria-label="Apple Norway" />
-                                <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
-                                  <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
-                                </div>
-                                <span>รับสินค้าที่สาขา</span>
-                                <span className="visually-hidden">79445033012</span>
-                              </label>
+                              <label 
+        className="facet-checkbox facet-checkbox--pickup facets__text apl-section-facet-item-title" 
+        style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+      >
+        <input 
+          type="checkbox" 
+          name="filter.v.m.apple.apl_VariantLocationAvailability" 
+          value="79445033012" 
+          id="Filter-filter.v.m.apple.apl_VariantLocationAvailability-3" 
+          className="js-my-store-pickup-location-input active" 
+          data-location-id="gid://shopify/Location/79445033012" 
+          aria-label="Apple Norway" 
+          checked={isChecked}
+          onChange={(e) => setIsChecked(e.target.checked)}
+          style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+        />
+        
+        {!isChecked ? (
+          <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
+            <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
+          </div>
+        ) : (
+          <svg className="icon icon-checkbox-on" width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1.865" y="1.365" width="13.27" height="13.27" rx=".427" fill="#0071E3" stroke="#0071E3" strokeWidth=".73"></rect>
+            <path d="M7.417 11.994c-.14 0-.262-.067-.367-.2L4.605 8.78a.656.656 0 0 1-.081-.129.395.395 0 0 1-.024-.133c0-.095.032-.175.095-.238.067-.067.15-.1.248-.1.118 0 .221.058.31.176l2.25 2.808 4.438-6.989a.4.4 0 0 1 .129-.133.322.322 0 0 1 .176-.043c.095 0 .173.03.234.09.06.061.09.14.09.239a.405.405 0 0 1-.019.12.6.6 0 0 1-.067.137L7.77 11.8a.409.409 0 0 1-.353.195Z" fill="#fff"></path>
+          </svg>
+        )}
+        
+        <span>รับสินค้าที่สาขา</span>
+        <span className="visually-hidden" style={{ display: "none" }}>79445033012</span>
+      </label>
                               <button className="facets__item-pickup js-my-store-locator-search-drawer-launcher" type="button" aria-haspopup="dialog">Apple Norway</button>
                             </li>
                             <li className="list-menu__item facets__item show-more-item apl-section-facet-item">
@@ -124,15 +141,12 @@ export const SearchPage = () => {
                     <details id="Details-2-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="2" open data-filter-menus-expanded="true">
                       <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-label="Availability (0 selected)" aria-expanded="true">
                         <div>
-                          <span>Availability <span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count">(0)</span></span>
-                          <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                          </svg>
+                          <span>สถานะ<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count">(0)</span></span>
                         </div>
                       </summary>
                       <div id="Facet-2-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">Availability</legend>
+                          <legend className="visually-hidden">สถานะ</legend>
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item apl-section-facet-item">
                               <label className="facet-checkbox facets__text apl-section-facet-item-title">
@@ -140,8 +154,17 @@ export const SearchPage = () => {
                                 <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
                                   <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
                                 </div>
-                                <span aria-hidden="true">In stock <span className="filter-count">(17)</span></span>
-                                <span className="visually-hidden">In stock <span className="filter-count">(17 products)</span></span>
+                                <span aria-hidden="true">พร้อมจำหน่าย <span className="filter-count">(17)</span></span>
+                                <span className="visually-hidden">พร้อมจำหน่าย <span className="filter-count">(17 products)</span></span>
+                              </label>
+
+                              <label className="facet-checkbox facets__text apl-section-facet-item-title">
+                                <input type="checkbox" name="filter.v.availability" value="1" id="Filter-filter.v.availability-1" aria-label="In stock" />
+                                <div className="icon icon-checkbox-off" style={{ width: "16px", height: "16px", padding: "1px" }}>
+                                  <div style={{ display: "block", width: "14px", height: "14px", borderRadius: "1px", border: "1.69px solid #D2D2D7" }}></div>
+                                </div>
+                                <span aria-hidden="true">สินค้าหมด <span className="filter-count">(17)</span></span>
+                                <span className="visually-hidden">สินค้าหมด <span className="filter-count">(17 products)</span></span>
                               </label>
                             </li>
                           </ul>
@@ -152,10 +175,7 @@ export const SearchPage = () => {
                     <details id="Details-5-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="5" open data-filter-menus-expanded="true">
                       <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
                         <div>
-                          <span>Price</span>
-                          <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6">
-                            <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                          </svg>
+                          <span>ราคา</span>
                         </div>
                       </summary>
                       <div id="Facet-5-template--20346294042676__main" className="facets__display-vertical">
@@ -189,9 +209,6 @@ export const SearchPage = () => {
                           <option className="apl-section-facets-sort-price-ascending" value="price-ascending">Price, low to high</option>
                           <option className="apl-section-facets-sort-price-descending" value="price-descending">Price, high to low</option>
                         </select>
-                        <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6" style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                          <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                        </svg>
                       </div>
                     </div>
                   </div>
@@ -212,9 +229,6 @@ export const SearchPage = () => {
                       <option className="apl-section-facets-sort-price-ascending" value="price-ascending">Price, low to high</option>
                       <option className="apl-section-facets-sort-price-descending" value="price-descending">Price, high to low</option>
                     </select>
-                    <svg aria-hidden="true" focusable="false" className="icon icon-caret" viewBox="0 0 10 6" style={{ position: 'absolute', right: '12px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none' }}>
-                      <path fillRule="evenodd" clipRule="evenodd" d="M9.354.646a.5.5 0 00-.708 0L5 4.293 1.354.646a.5.5 0 00-.708.708l4 4a.5.5 0 00.708 0l4-4a.5.5 0 000-.708z" fill="currentColor"></path>
-                    </svg>
                   </div>
                 </div>
                 <div className="product-count-vertical light" role="status">

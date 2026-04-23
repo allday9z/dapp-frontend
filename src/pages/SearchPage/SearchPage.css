@@ -15,7 +15,7 @@
 }
 
 .search-page {
-          font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+          font-family: "SFProThai", "SF Pro Text";
           color: #1d1d1f;
           padding: 20px;
         }
@@ -194,3 +194,43 @@
             grid-template-columns: 1fr;
           }
         }
+
+.facets__text {
+  font-family: "SFProThai", "SF Pro Text";
+}
+
+.facets-vertical .facet-checkbox input[type=checkbox] {
+    z-index: 0;
+}
+
+.facet-checkbox input[type=checkbox] {
+    position: absolute;
+    opacity: 1;
+    width: 1.6rem;
+    height: 1.6rem;
+    top: .7rem;
+    left: -.4rem;
+    z-index: 0;
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    border: none;
+}
+.facets__item label, .facets__item input[type=checkbox] {
+    cursor: pointer;
+}
+input[type=checkbox] {
+    display: inline-block;
+    width: auto;
+    margin-right: .5rem;
+}
+input, .field__input, .quantity__button, .field__button {
+    font-family: var(--font-body-family);
+}
+
+.facet-checkbox>.icon {
+    margin-top: 1px;
+    flex-shrink: 0;
+    z-index: 1;
+}

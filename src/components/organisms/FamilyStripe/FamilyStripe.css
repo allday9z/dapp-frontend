@@ -4,13 +4,16 @@
 }
 
 .family-stripe {
-  --family-stripe-edge-padding: max(1.75rem, calc((100% - 90rem) / 2 + 6.875rem));
+  --family-stripe-edge-padding: max(
+    1.75rem,
+    calc((100% - 90rem) / 2 + 6.875rem)
+  );
   --family-stripe-arrow-width: 1.75rem;
   --family-stripe-gap: 0.875rem;
   background: #ffffff;
   width: 100%;
-  height: 6.75rem;
-  max-height: 6.75rem;
+  height: 108px;
+  max-height: 108px;
   position: relative;
   overflow: hidden;
   box-shadow: inset 0 -0.03125rem 0 0 #d2d2d2;
@@ -61,7 +64,9 @@
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 0.75rem;
-  transition: background-color 0.2s ease, opacity 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    opacity 0.2s ease;
   cursor: pointer;
 }
 
@@ -80,24 +85,24 @@
 
 .family-stripe__tile-img {
   padding-left: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 5.25rem;
-    height: 5.25rem;
-    -o-object-fit: contain;
-    object-fit: contain;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 5.25rem;
+  height: 5.25rem;
+  -o-object-fit: contain;
+  object-fit: contain;
 }
 
 .family-stripe__tile-text {
   display: flex;
-    flex-flow: column nowrap;
-    justify-content: center;
-    align-items: flex-start;
-    margin: 1.75rem .375rem .5rem;
-    min-height: 2rem;
-    color: rgba(18, 18, 18, .75);
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 1.75rem 0.375rem 0.5rem;
+  min-height: 2rem;
+  color: rgba(18, 18, 18, 0.75);
 }
 
 .family-stripe__tile-badge-wrap {
@@ -108,7 +113,11 @@
 .family-stripe__tile-badge {
   display: inline-flex;
   align-items: center;
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: var(
+    --label-label-l-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
   font-size: 7px;
   line-height: 12px;
   font-weight: 600;
@@ -131,7 +140,11 @@
 
 .family-stripe__tile-name {
   color: #000;
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: var(
+    --label-label-l-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
   font-size: 11px;
   /* line-height: 18px; */
   font-weight: 600;
@@ -144,8 +157,12 @@
 .family-stripe__tile-price {
   /* margin-top: 4px; */
   color: #6e6e73;
-  font-family: var(--body-body-s-regular-font-family, "SfProText-Regular", sans-serif);
-  font-size: .5625rem;
+  font-family: var(
+    --body-body-s-regular-font-family,
+    "SfProText-Regular",
+    sans-serif
+  );
+  font-size: 0.5625rem;
   line-height: 16px;
   font-weight: 400;
 }
@@ -162,7 +179,11 @@
 }
 
 .family-stripe__see-all-label {
-  font-family: var(--label-label-l-semibold-font-family, "SfProText-Semibold", sans-serif);
+  font-family: var(
+    --label-label-l-semibold-font-family,
+    "SfProText-Semibold",
+    sans-serif
+  );
   font-size: 0.875rem;
   line-height: 1rem;
   font-weight: 600;
@@ -189,10 +210,10 @@
 }
 
 @media (max-width: 768px) {
-          .family-stripe__arrow--prev {
-            display: none !important;
-          }
-        }
+  .family-stripe__arrow--prev {
+    display: none !important;
+  }
+}
 
 .family-stripe__arrow--next {
   right: 0;
@@ -236,5 +257,5 @@
 
   .family-stripe__tile-text {
     max-width: 155px;
-}
+  }
 }

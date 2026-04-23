@@ -9,9 +9,16 @@ html {
 }
 
 body {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  overflow-x: hidden; /* propagates to viewport because html has default overflow: visible */
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  overflow-x: hidden;
   width: 100%;
+  /* letter-spacing: 0.06rem; */
+  -webkit-font-smoothing: antialiased;
 }
 
 a,
@@ -24,18 +31,25 @@ h3,
 h4,
 h5,
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    border: none;
-    text-decoration: none;
-    background: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: none;
+  text-decoration: none;
+  background: none;
 
-    -webkit-font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
 }
 
-menu, ol, ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+menu,
+ol,
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.billboard_icon {
+  margin-left: 3px;
+  font-size: .75em;
 }

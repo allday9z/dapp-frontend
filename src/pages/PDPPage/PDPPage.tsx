@@ -6,7 +6,8 @@ import { FamilyStripe } from "@/components/organisms/FamilyStripe/FamilyStripe";
 import { macbookProFamilyItems } from "@/components/organisms/FamilyStripe/familyStripeData";
 import { ToggleRow } from "@/components/ToggleRow/ToggleRow";
 import rawData from "@/data/products/macbook-pro-14-m5-pdp.json";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShoppingBag, faSearch, faUser, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 // ── Types ──────────────────────────────────────────────────────────────────
 
 interface MediaItem {
@@ -143,6 +144,29 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
             <path fillRule="evenodd" clipRule="evenodd" d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z" fill="#333" />
           </svg>
         </button>
+      </div>
+
+      {/* Thumbnail strip */}
+      <div className="pdp__gallery-thumbs" role="tablist" aria-label="Product images">
+        {media.map((m, i) => (
+          <button
+            key={i}
+            role="tab"
+            aria-selected={i === idx}
+            className={`pdp__gallery-thumb${i === idx ? " on" : ""}`}
+            onClick={() => setIdx(i)}
+            aria-label={`View image ${i + 1}`}
+          >
+            <img
+              src={m.poster ?? m.src}
+              alt={m.alt ?? `${name} ${i + 1}`}
+              draggable={false}
+            />
+            {m.type === "video" && (
+              <span className="pdp__gallery-play" aria-hidden="true">▶</span>
+            )}
+          </button>
+        ))}
       </div>
 
     </div>
@@ -409,43 +433,43 @@ export const PDPPage = () => {
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
       <section className="pdp__desktop-hero" aria-label="Desktop product summary">
-        <div className="pdp__desktop-hero-left">
-          <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
-          <h1 className="pdp__desktop-hero-title">{displayName}</h1>
-          <p className="pdp__desktop-hero-sku">
-            SKU: {product.sku}
-            {product.barcode && <span className="pdp__desktop-hero-barcode">Barcode: {product.barcode}</span>}
-          </p>
+          <div className="pdp__desktop-hero-left">
+            <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
+            <h1 className="pdp__desktop-hero-title">{displayName}</h1>
+            <p className="pdp__desktop-hero-sku">
+              SKU: {product.sku}
+              {product.barcode && <span className="pdp__desktop-hero-barcode">Barcode: {product.barcode}</span>}
+            </p>
 
-          <p className="pdp__desktop-hero-gwp">Microsoft Office MS FPP M365 Personal</p>
+            <p className="pdp__desktop-hero-gwp">Microsoft Office MS FPP M365 Personal</p>
 
-          <div className="pdp__desktop-hero-links">
-            <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม</a>
-            <span className="pdp__desktop-hero-divider" aria-hidden="true" />
-            <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น</a>
+            <div className="pdp__desktop-hero-links">
+              <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม</a>
+              <span className="pdp__desktop-hero-divider" aria-hidden="true" />
+              <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น</a>
+            </div>
+
+            <div className="pdp__desktop-hero-share" aria-label="Share">
+              <span className="pdp__desktop-hero-share-label">Share</span>
+              <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
+              <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
+              <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
+            </div>
           </div>
-
-          <div className="pdp__desktop-hero-share" aria-label="Share">
-            <span className="pdp__desktop-hero-share-label">Share</span>
-            <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
-            <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
-            <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
+          
+          <div className="pdp__desktop-hero-right">
+            <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
+            <p className="pdp__desktop-hero-monthly">
+              or {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+            </p>
+            <button
+              className="pdp__desktop-hero-financing"
+              onClick={() => setFinancingOpen(true)}
+              aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
+            >
+              เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+            </button>
           </div>
-        </div>
-
-        <div className="pdp__desktop-hero-right">
-          <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
-          <p className="pdp__desktop-hero-monthly">
-            {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} months
-          </p>
-          <button
-            className="pdp__desktop-hero-financing"
-            onClick={() => setFinancingOpen(true)}
-            aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
-          >
-            เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน ›
-          </button>
-        </div>
       </section>
 
       <div className="pdp__product-header">
@@ -477,10 +501,10 @@ export const PDPPage = () => {
             </button>
           </div>
 
-          <div className="pdp__action-links">
+          {/* <div className="pdp__action-links">
             <a href="#" className="pdp__action-link">Learn more <span aria-hidden="true">›</span></a>
             <a href="#" className="pdp__action-link">Compare models <span aria-hidden="true">›</span></a>
-          </div>
+          </div> */}
 
           {/* ── Customize ─────────────────────────────────────────────── */}
           <h2 className="pdp__section-heading">Customize your {product.name}.</h2>
@@ -688,7 +712,7 @@ export const PDPPage = () => {
           </ToggleRow>
 
           {/* Delivery */}
-          <div className="pdp__delivery">
+          {/* <div className="pdp__delivery">
             <div className="pdp__delivery-item">
               <svg className="pdp__delivery-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
                 <rect x="1" y="3" width="15" height="13" rx="1" />
@@ -711,10 +735,10 @@ export const PDPPage = () => {
                 <div className="pdp__delivery-sub">ตรวจสอบสาขาใกล้บ้านคุณ</div>
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Service accordions — inside panel */}
-          <div className="pdp__service-accordions">
+          {/* <div className="pdp__service-accordions">
             <Accordion label="บริการทางเทคนิค" service>
               <p>iStudio มีทีม Apple Certified Technician ให้บริการ One-to-One Setup, Data Migration และ Genius Bar ทุกสาขา</p>
             </Accordion>
@@ -724,7 +748,7 @@ export const PDPPage = () => {
             <Accordion label="Shipping options" service>
               <p>จัดส่งฟรีทั่วประเทศภายใน 1–3 วันทำการ รับที่ร้านได้ทันทีหากสินค้ามีในสต็อก</p>
             </Accordion>
-          </div>
+          </div> */}
         </div>
       </div>
 

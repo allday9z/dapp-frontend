@@ -23,7 +23,11 @@
   gap: 0;
 }
 .pdp__breadcrumbs-item {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
   white-space: nowrap;
@@ -35,14 +39,21 @@
   color: #6e6e73;
   text-decoration: none;
 }
-.pdp__breadcrumbs-item a:hover { color: #0071e3; }
+.pdp__breadcrumbs-item a:hover {
+  color: #0071e3;
+}
 
 /* ── Product header (title + SKU + barcode) ────────────────────────────── */
 .pdp__product-header {
   padding: 0.75rem 1rem 0;
 }
 .pdp__product-title {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
   font-size: 1.375rem;
   font-weight: 700;
   color: #1d1d1f;
@@ -51,7 +62,11 @@
   margin: 0 0 0.25rem;
 }
 .pdp__product-meta {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
   margin: 0;
@@ -60,11 +75,18 @@
 /* ── Desktop top hero (matches Figma-like desktop header strip) ───────── */
 .pdp__desktop-hero {
   display: none;
+  position: relative;
 }
 
 .pdp__desktop-hero-badge {
-  margin: 0 0 0.25rem;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  position: absolute;
+  top: -14px;
+  /* margin: 0 0 0.25rem; */
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.01em;
@@ -73,7 +95,11 @@
 
 .pdp__desktop-hero-title {
   margin: 0 0 4px;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
@@ -83,7 +109,11 @@
 
 .pdp__desktop-hero-sku {
   margin: 0.25rem 0 0;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 12px;
   color: #595959;
   font-weight: 600;
@@ -100,7 +130,11 @@
 
 .pdp__desktop-hero-gwp {
   margin: 0.5rem 0 0;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 13px;
   line-height: 1.4;
   color: #5856d6;
@@ -115,7 +149,11 @@
 }
 
 .pdp__desktop-hero-link {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 24px;
   color: #0071e3;
   text-decoration: none;
@@ -150,7 +188,11 @@
 }
 
 .pdp__desktop-hero-share-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
 }
@@ -163,7 +205,11 @@
   height: 1rem;
   border-radius: 50%;
   border: 0.5px solid #d2d2d7;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.625rem;
   color: #1d1d1f;
   text-decoration: none;
@@ -171,26 +217,35 @@
 
 .pdp__desktop-hero-right {
   text-align: right;
-  align-self: center;
+  align-self: flex-start;
 }
 
 .pdp__desktop-hero-from {
   margin: 0;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 42px;
-  line-height: 47px;
+  /* line-height: 47px; */
   font-weight: 600;
   color: #1d1d1f;
   letter-spacing: -0.05em;
 }
 
 .pdp__desktop-hero-monthly {
-  margin: 0.125rem 0 0;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  /* margin: 0.125rem 0 0; */
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 32px;
   line-height: 37px;
   letter-spacing: -0.03em;
-  color: #1d1d1f;
+  color: inherit;
+  font-weight: 400;
 }
 
 .pdp__desktop-hero-financing {
@@ -198,7 +253,11 @@
   background: none;
   padding: 0;
   margin-top: 0.375rem;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 13px;
   font-weight: 600;
   color: #0071e3;
@@ -211,7 +270,11 @@
 
 .pdp__desktop-hero-note {
   margin: 0.375rem 0 0;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
 }
@@ -241,7 +304,9 @@
   cursor: grab;
   user-select: none;
 }
-.pdp__gallery-viewport:active { cursor: grabbing; }
+.pdp__gallery-viewport:active {
+  cursor: grabbing;
+}
 
 /* Track — all slides laid out horizontally, animated via transform */
 .pdp__gallery-track {
@@ -294,8 +359,12 @@
   flex-shrink: 0;
 }
 .pdp__gallery-arrow:hover,
-.pdp__gallery-arrow:focus-visible { background: #e8e8ed; }
-.pdp__gallery-arrow svg path { fill: #333; }
+.pdp__gallery-arrow:focus-visible {
+  background: #e8e8ed;
+}
+.pdp__gallery-arrow svg path {
+  fill: #333;
+}
 
 .pdp__gallery-dots {
   display: flex;
@@ -313,37 +382,42 @@
   padding: 0;
   transition: background 0.15s;
 }
-.pdp__gallery-dot.on { background: #1d1d1f; }
+.pdp__gallery-dot.on {
+  background: #1d1d1f;
+}
 
 /* Thumbnail strip */
+/* Mobile: hidden by default, shown on desktop */
 .pdp__gallery-thumbs {
-  display: flex;
-  gap: 0.375rem;
-  padding: 0.25rem 1rem 0.75rem;
-  overflow-x: auto;
-  scrollbar-width: none;
+  display: none;
 }
-.pdp__gallery-thumbs::-webkit-scrollbar { display: none; }
 
 .pdp__gallery-thumb {
   flex-shrink: 0;
-  width: 3rem;
-  height: 3rem;
+  width: 82px;
+  height: 82px;
   border: 1.5px solid #d2d2d7;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   background: #f5f5f7;
   overflow: hidden;
   cursor: pointer;
-  padding: 0.1875rem;
+  padding: 4px;
   position: relative;
-  transition: border-color 0.15s;
+  transition: border-color 0.2s;
 }
 .pdp__gallery-thumb img {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  display: block;
 }
-.pdp__gallery-thumb.on  { border-color: #0071e3; }
+.pdp__gallery-thumb.on {
+  border-color: #0071e3;
+  border-width: 2px;
+}
+.pdp__gallery-thumb:hover:not(.on) {
+  border-color: #6e6e73;
+}
 
 .pdp__gallery-play {
   position: absolute;
@@ -370,13 +444,21 @@
   padding: 1rem 0 0.5rem;
 }
 .pdp__price {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #1d1d1f;
 }
 .pdp__monthly {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #6e6e73;
   margin-top: 0.125rem;
@@ -391,7 +473,11 @@
 
 /* Config heading */
 .pdp__config-heading {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -406,7 +492,11 @@
   margin-bottom: 0.5rem;
 }
 .pdp__config-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -425,23 +515,38 @@
   border: 2px solid transparent;
   cursor: pointer;
   padding: 0;
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.18);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.18);
   transition: box-shadow 0.15s;
   flex-shrink: 0;
 }
 .pdp__color-swatch.on {
-  box-shadow: 0 0 0 1px rgba(0,0,0,0.18), 0 0 0 3px #fff, 0 0 0 5px #0071e3;
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.18),
+    0 0 0 3px #fff,
+    0 0 0 5px #0071e3;
 }
 .pdp__color-name {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #6e6e73;
 }
 
 /* Config cards */
-.pdp__cards { display: flex; gap: 0.5rem; }
-.pdp__cards--col { flex-direction: column; }
-.pdp__cards--row { flex-direction: row; flex-wrap: wrap; }
+.pdp__cards {
+  display: flex;
+  gap: 0.5rem;
+}
+.pdp__cards--col {
+  flex-direction: column;
+}
+.pdp__cards--row {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
 
 .pdp__card {
   display: flex;
@@ -453,27 +558,48 @@
   background: #fff;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
-.pdp__cards--row .pdp__card { flex: 1 1 0; }
-.pdp__card:hover { border-color: #86868b; }
-.pdp__card.on { border-color: #0071e3; background: #f0f7ff; }
+.pdp__cards--row .pdp__card {
+  flex: 1 1 0;
+}
+.pdp__card:hover {
+  border-color: #86868b;
+}
+.pdp__card.on {
+  border-color: #0071e3;
+  background: #f0f7ff;
+}
 
 .pdp__card-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #1d1d1f;
 }
 .pdp__card-sub {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
   margin-top: 0.0625rem;
   line-height: 1.3;
 }
 .pdp__card-add {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #1d1d1f;
   margin-top: 0.125rem;
@@ -483,13 +609,19 @@
 .pdp__tooltip {
   display: inline-block;
   margin-top: 0.375rem;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #0071e3;
   text-decoration: none;
 }
-.pdp__tooltip:hover { text-decoration: underline; }
+.pdp__tooltip:hover {
+  text-decoration: underline;
+}
 
 /* AppleCare+ toggle */
 .pdp__applecare {
@@ -503,9 +635,14 @@
   background: #fff;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s, background 0.15s;
+  transition:
+    border-color 0.15s,
+    background 0.15s;
 }
-.pdp__applecare.on { border-color: #0071e3; background: #f0f7ff; }
+.pdp__applecare.on {
+  border-color: #0071e3;
+  background: #f0f7ff;
+}
 
 .pdp__applecare-box {
   width: 1.125rem;
@@ -514,7 +651,9 @@
   border-radius: 0.25rem;
   flex-shrink: 0;
   background: #fff;
-  transition: background 0.15s, border-color 0.15s;
+  transition:
+    background 0.15s,
+    border-color 0.15s;
   background-size: 75%;
   background-position: center;
   background-repeat: no-repeat;
@@ -528,14 +667,22 @@
   background-repeat: no-repeat;
 }
 .pdp__applecare-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #1d1d1f;
   display: block;
 }
 .pdp__applecare-sub {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
   display: block;
@@ -562,13 +709,21 @@
   margin-top: 0.0625rem;
 }
 .pdp__delivery-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #1d1d1f;
 }
 .pdp__delivery-sub {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.6875rem;
   color: #6e6e73;
   margin-top: 0.0625rem;
@@ -586,17 +741,23 @@
 
 /* Section headings: "Customize your…" / "Protect your product." / "Select…" */
 .pdp__section-heading {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
-  font-size: 1.375rem;
-  font-weight: 700;
-  color: #1d1d1f;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: rgb(51, 51, 51);
   letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin: 1.75rem 0 0.25rem;
+  line-height: 30px;
+  margin-bottom: 24px;
 }
 
 /* Toggle row */
-.pdp__opt-section { /* wrapper */ }
+.pdp__opt-section {
+  /* wrapper */
+}
 
 .pdp__opt-row {
   width: 100%;
@@ -611,7 +772,11 @@
   text-align: left;
 }
 .pdp__opt-row-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -621,7 +786,11 @@
   display: flex;
   align-items: flex-start;
   gap: 0.25rem;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   color: #6e6e73;
   text-align: right;
@@ -635,7 +804,9 @@
   color: #6e6e73;
   transition: transform 0.2s ease;
 }
-.pdp__opt-chevron.open { transform: rotate(180deg); }
+.pdp__opt-chevron.open {
+  transform: rotate(180deg);
+}
 
 /* Expanded body */
 .pdp__opt-body {
@@ -660,7 +831,9 @@
   text-align: left;
   transition: border-color 0.15s;
 }
-.pdp__opt-card:hover { border-color: #86868b; }
+.pdp__opt-card:hover {
+  border-color: #86868b;
+}
 .pdp__opt-card.on {
   border-color: #0071e3;
   background: rgba(0, 113, 227, 0.04);
@@ -679,14 +852,22 @@
   gap: 0.5rem;
 }
 .pdp__opt-card-name {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   color: #1d1d1f;
   line-height: 1.4;
 }
 .pdp__opt-card-sub {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #6e6e73;
   line-height: 1.3;
@@ -699,32 +880,49 @@
   flex-shrink: 0;
 }
 .pdp__opt-card-price {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   font-weight: 600;
   color: #1d1d1f;
   white-space: nowrap;
 }
 .pdp__opt-card-mo {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #6e6e73;
   white-space: nowrap;
 }
 
 /* AppleCare+ icon */
-.pdp__ac-icon { flex-shrink: 0; margin-top: 0.1rem; }
+.pdp__ac-icon {
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
 
 /* Links inside option body */
 .pdp__opt-link {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #0071e3;
   text-decoration: none;
   display: inline-block;
 }
-.pdp__opt-link:hover { text-decoration: underline; }
+.pdp__opt-link:hover {
+  text-decoration: underline;
+}
 
 /* Color swatches */
 .pdp__swatch-row {
@@ -744,7 +942,9 @@
   transition: outline-color 0.15s;
   flex-shrink: 0;
 }
-.pdp__swatch.on { outline-color: #0071e3; }
+.pdp__swatch.on {
+  outline-color: #0071e3;
+}
 
 /* Financing info card */
 .pdp__financing-info {
@@ -756,13 +956,21 @@
   gap: 0.5rem;
 }
 .pdp__financing-desc {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #1d1d1f;
   margin: 0;
 }
 .pdp__financing-logo {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #6e6e73;
 }
@@ -775,7 +983,11 @@
   border-top: 0.5px solid #d2d2d7;
 }
 .pdp__bundle-title {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -809,15 +1021,26 @@
   height: 85%;
   object-fit: contain;
 }
-.pdp__bundle-info { flex: 1; min-width: 0; }
+.pdp__bundle-info {
+  flex: 1;
+  min-width: 0;
+}
 .pdp__bundle-name {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #1d1d1f;
   line-height: 1.3;
 }
 .pdp__bundle-price {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #6e6e73;
   margin-top: 0.125rem;
@@ -829,13 +1052,22 @@
   border: 1.5px solid #0071e3;
   background: #fff;
   color: #0071e3;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, color 0.15s;
+  transition:
+    background 0.15s,
+    color 0.15s;
 }
-.pdp__bundle-add:hover { background: #0071e3; color: #fff; }
+.pdp__bundle-add:hover {
+  background: #0071e3;
+  color: #fff;
+}
 
 /* ────────────────────────────────────────────────────────────────────────
    ORDER SUMMARY
@@ -865,20 +1097,32 @@
   object-fit: contain;
 }
 .pdp__summary-heading {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #1d1d1f;
   margin: 0;
 }
 .pdp__summary-tagline {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #6e6e73;
   margin: 0.25rem 0 0.75rem;
 }
 .pdp__summary-name {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -894,7 +1138,11 @@
   border-bottom: 0.5px solid #f5f5f7;
 }
 .pdp__summary-config-row dt {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #6e6e73;
   min-width: 5rem;
@@ -903,13 +1151,21 @@
   display: flex;
 }
 .pdp__summary-config-row dd {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #1d1d1f;
   margin: 0;
 }
 .pdp__summary-price {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -924,7 +1180,11 @@
   margin-bottom: 0.625rem;
 }
 .pdp__qty-label {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #1d1d1f;
 }
@@ -948,14 +1208,20 @@
   justify-content: center;
   transition: background 0.15s;
 }
-.pdp__qty-btn:hover { background: #e8e8ed; }
+.pdp__qty-btn:hover {
+  background: #e8e8ed;
+}
 .pdp__qty-input {
   width: 2.5rem;
   text-align: center;
   border: none;
   border-left: 1px solid #d2d2d7;
   border-right: 1px solid #d2d2d7;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #1d1d1f;
   padding: 0;
@@ -964,17 +1230,25 @@
   -moz-appearance: textfield;
 }
 .pdp__qty-input::-webkit-outer-spin-button,
-.pdp__qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+.pdp__qty-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
 
 .pdp__summary-avail {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #0071e3;
   text-decoration: none;
   display: block;
   margin-bottom: 0.875rem;
 }
-.pdp__summary-avail:hover { text-decoration: underline; }
+.pdp__summary-avail:hover {
+  text-decoration: underline;
+}
 
 /* CTA buttons */
 .pdp__btn-buy,
@@ -985,7 +1259,11 @@
   width: 100%;
   padding: 0.9375rem;
   border-radius: 2rem;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   font-weight: 600;
   cursor: pointer;
@@ -994,14 +1272,22 @@
   line-height: 1;
   transition: opacity 0.15s;
 }
-.pdp__btn-buy { background: #0071e3; color: #fff; }
-.pdp__btn-buy:hover { opacity: 0.85; }
+.pdp__btn-buy {
+  background: #0071e3;
+  color: #fff;
+}
+.pdp__btn-buy:hover {
+  opacity: 0.85;
+}
 .pdp__btn-notify {
   background: #fff;
   color: #0071e3;
   border: 1.5px solid #0071e3;
 }
-.pdp__btn-notify:hover { background: #0071e3; color: #fff; }
+.pdp__btn-notify:hover {
+  background: #0071e3;
+  color: #fff;
+}
 
 /* ────────────────────────────────────────────────────────────────────────
    ACCORDION (shared — specs, description, features, inbox, warranty)
@@ -1021,7 +1307,11 @@
   background: none;
   border: none;
   cursor: pointer;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   font-weight: 400;
   color: #1d1d1f;
@@ -1034,13 +1324,19 @@
   line-height: 1;
   flex-shrink: 0;
 }
-.pdp__accordion-chevron.open { transform: rotate(90deg); }
+.pdp__accordion-chevron.open {
+  transform: rotate(90deg);
+}
 
 .pdp__accordion-body {
   padding: 0 1rem 1rem;
 }
 .pdp__accordion-text {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #1d1d1f;
   line-height: 1.6;
@@ -1048,16 +1344,24 @@
 }
 
 /* Specs table */
-.pdp__specs { margin: 0; }
+.pdp__specs {
+  margin: 0;
+}
 .pdp__spec-row {
   display: flex;
   gap: 1rem;
   padding: 0.5rem 0;
   border-bottom: 0.5px solid #f5f5f7;
 }
-.pdp__spec-row:last-child { border-bottom: none; }
+.pdp__spec-row:last-child {
+  border-bottom: none;
+}
 .pdp__spec-row dt {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -1065,7 +1369,11 @@
   flex-shrink: 0;
 }
 .pdp__spec-row dd {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.8125rem;
   color: #1d1d1f;
   margin: 0;
@@ -1079,7 +1387,11 @@
 }
 .pdp__features li,
 .pdp__inbox li {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #1d1d1f;
   line-height: 1.6;
@@ -1095,7 +1407,11 @@
   padding: 0 0 0.75rem;
 }
 .pdp__accordion.pdp__service .pdp__accordion-body p {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #6e6e73;
   line-height: 1.5;
@@ -1106,17 +1422,28 @@
    TABLET (≥768px)
 ──────────────────────────────────────────────────────────────────────── */
 @media (min-width: 768px) {
-  .pdp__breadcrumbs { padding: 0.75rem 2rem 0; }
+  .pdp__breadcrumbs {
+    padding: 0.75rem 2rem 0;
+  }
 
-  .pdp__gallery { --pdp-slide-w: 736px; }
-  .pdp__gallery-thumbs { padding: 0.5rem 2rem 1rem; }
+  .pdp__gallery {
+    --pdp-slide-w: 736px;
+  }
 
-  .pdp__panel { padding: 0 2rem 2.5rem; }
+  .pdp__panel {
+    padding: 0 2rem 2.5rem;
+  }
 
-  .pdp__bundle { padding: 2rem 2rem 1rem; }
-  .pdp__bundle-title { font-size: 1.125rem; }
+  .pdp__bundle {
+    padding: 2rem 2rem 1rem;
+  }
+  .pdp__bundle-title {
+    font-size: 1.125rem;
+  }
 
-  .pdp__summary { padding: 1.5rem 2rem; }
+  .pdp__summary {
+    padding: 1.5rem 2rem;
+  }
   .pdp__summary-inner {
     flex-direction: row;
     align-items: flex-start;
@@ -1128,8 +1455,12 @@
     aspect-ratio: 1;
   }
 
-  .pdp__accordion-toggle { padding: 1rem 2rem; }
-  .pdp__accordion-body   { padding: 0 2rem 1.25rem; }
+  .pdp__accordion-toggle {
+    padding: 1rem 2rem;
+  }
+  .pdp__accordion-body {
+    padding: 0 2rem 1.25rem;
+  }
 }
 
 /* ────────────────────────────────────────────────────────────────────────
@@ -1143,13 +1474,13 @@
   }
 
   .pdp__desktop-hero {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    gap: 32px;
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     max-width: 1264px;
+    padding: 0px 16px;
+    gap: 32px;
     margin: 0 auto;
-    padding: 20px 22px 14px;
     align-items: center;
   }
 
@@ -1166,13 +1497,19 @@
 
   .pdp__desktop-hero-from {
     font-size: 24px;
-    line-height: 44px;
+    /* line-height: 44px; */
+    white-space: nowrap;
   }
 
   .pdp__desktop-hero-monthly {
     font-size: 14px;
     line-height: 28px;
+    white-space: nowrap;
     letter-spacing: -0.01em;
+    display: block;
+    cursor: pointer;
+    color: #0071e3;
+    margin-top: 8px;
   }
 
   .pdp__product-header {
@@ -1188,35 +1525,64 @@
     flex-direction: row;
     max-width: 1264px;
     margin: 0 auto;
-    padding: 24px 22px 48px;
-    gap: 64px;
+    padding: 0px 16px;
+    flex-direction: row;
+    gap: calc(100% * 60 / 1240);
     align-items: flex-start;
   }
 
-  /* Gallery: flexible sticky */
+  /* Gallery: 560px fixed column, sticky */
   .pdp__gallery {
-    flex: 1;
+    --pdp-slide-w: 560px;
+    flex: 0 0 560px;
+    width: 560px;
     min-width: 0;
     padding: 0;
     position: sticky;
     top: 88px;
   }
   .pdp__gallery-viewport {
-    width: 100%;
-    max-width: 640px;
-    border-radius: 16px;
+    width: 560px;
+    aspect-ratio: unset;
+    height: auto;
+    border-radius: 0;
+    overflow: hidden;
   }
-  .pdp__gallery-thumbs { padding: 12px 0 0; }
+  .pdp__gallery-slide {
+    width: 560px;
+    aspect-ratio: unset;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: unset;
+    padding: 0;
+  }
+  .pdp__gallery-media {
+    width: 560px;
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+  .pdp__gallery-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px 0 0;
+    overflow-x: visible;
+  }
 
   /* Panel: fixed width */
   .pdp__panel {
-    flex: 0 0 400px;
+    /* flex: 0 0 400px; */
     padding: 0;
     min-width: 0;
   }
 
   /* Price — keep consistent with mobile */
-  .pdp__price { font-size: 16px; }
+  .pdp__price {
+    font-size: 16px;
+  }
 
   /* Bundle — full-width below fold */
   .pdp__bundle {
@@ -1251,8 +1617,13 @@
     margin: 0 auto;
     padding: 32px 22px 40px;
   }
-  .pdp__summary-inner { gap: 48px; }
-  .pdp__summary-img-wrap { width: 440px; flex-shrink: 0; }
+  .pdp__summary-inner {
+    gap: 48px;
+  }
+  .pdp__summary-img-wrap {
+    width: 440px;
+    flex-shrink: 0;
+  }
   .pdp__summary-config-row {
     align-items: center;
   }
@@ -1266,8 +1637,12 @@
     max-width: 1264px;
     margin: 0 auto;
   }
-  .pdp__accordion-toggle { padding: 18px 22px; }
-  .pdp__accordion-body   { padding: 0 22px 24px; }
+  .pdp__accordion-toggle {
+    padding: 18px 22px;
+  }
+  .pdp__accordion-body {
+    padding: 0 22px 24px;
+  }
 }
 
 /* ── Learn more / Compare models links ────────────────────────────────── */
@@ -1277,12 +1652,18 @@
   padding: 0.5rem 0;
 }
 .pdp__action-link {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.875rem;
   color: #0071e3;
   text-decoration: none;
 }
-.pdp__action-link:hover { text-decoration: underline; }
+.pdp__action-link:hover {
+  text-decoration: underline;
+}
 
 /* ── Monthly link (in panel + sticky bar) ─────────────────────────────── */
 .pdp__monthly-link {
@@ -1290,7 +1671,11 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.75rem;
   color: #0071e3;
   text-decoration: none;
@@ -1320,7 +1705,11 @@
   margin-bottom: 0.625rem;
 }
 .pdp__sticky-bar-total {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 600;
   color: #1d1d1f;
@@ -1341,14 +1730,22 @@
   color: #fff;
   border: none;
   border-radius: 980px;
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
   transition: background 0.15s;
 }
-.pdp__btn-addcart:hover { background: #0077ed; }
-.pdp__btn-addcart:active { background: #006edb; }
+.pdp__btn-addcart:hover {
+  background: #0077ed;
+}
+.pdp__btn-addcart:active {
+  background: #006edb;
+}
 
 /* ── Financing Modal ───────────────────────────────────────────────────── */
 .pdp__modal-overlay {
@@ -1391,13 +1788,19 @@
   z-index: 1;
   flex-shrink: 0;
 }
-.pdp__modal-close:hover { background: #d1d1d6; }
+.pdp__modal-close:hover {
+  background: #d1d1d6;
+}
 .pdp__modal-body {
   padding: 1.25rem 1.25rem 2rem;
   clear: right;
 }
 .pdp__modal-title {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1.75rem;
   font-weight: 700;
   color: #1d1d1f;
@@ -1405,21 +1808,33 @@
   margin: 0 0 1rem;
 }
 .pdp__modal-heading {
-  font-family: 'SF Pro Display', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Display",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 1.25rem;
   font-weight: 700;
   color: #1d1d1f;
   margin: 1.5rem 0 0.625rem;
 }
 .pdp__modal-text {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   color: #1d1d1f;
   line-height: 1.5;
   margin: 0 0 0.875rem;
 }
 .pdp__modal-list {
-  font-family: 'SF Pro Text', 'SFProThai', -apple-system, sans-serif;
+  font-family:
+    "SF Pro Text",
+    "SFProThai",
+    -apple-system,
+    sans-serif;
   font-size: 0.9375rem;
   color: #1d1d1f;
   line-height: 1.5;
@@ -1450,7 +1865,9 @@
   text-decoration: none;
   font-size: 0.9375rem;
 }
-.pdp__modal-link:hover { text-decoration: underline; }
+.pdp__modal-link:hover {
+  text-decoration: underline;
+}
 .pdp__modal-link--block {
   display: block;
   margin: 0.75rem 0;
@@ -1504,7 +1921,9 @@
   margin-top: 0.75rem;
   transition: background 0.15s;
 }
-.pdp__modal-btn-financing:hover { background: #0077ed; }
+.pdp__modal-btn-financing:hover {
+  background: #0077ed;
+}
 .pdp__modal-divider {
   border: none;
   border-top: 0.5px solid #d2d2d7;
@@ -1522,7 +1941,9 @@
     align-self: center;
     max-height: 90vh;
   }
-  .pdp__modal-overlay { align-items: center; }
+  .pdp__modal-overlay {
+    align-items: center;
+  }
 }
 
 /* ── ColorGallery (slider inside Color ToggleRow) ──────────────────────── */
@@ -1539,7 +1960,9 @@
   border-radius: 0.5rem;
   margin: 0 auto;
 }
-.pdp__color-gallery-vp:active { cursor: grabbing; }
+.pdp__color-gallery-vp:active {
+  cursor: grabbing;
+}
 .pdp__color-gallery-track {
   display: flex;
   height: 100%;
@@ -1568,4 +1991,19 @@
   justify-content: center;
   gap: 0.25rem;
   margin-top: 0.5rem;
+}
+
+@media screen and (min-width: 1024px) {
+  .pdp__section-heading {
+    margin-bottom: 0;
+  }
+  .pdp__desktop-hero {
+    margin: 37px auto 32px;
+  }
+
+  .pdp__title {
+    margin-bottom: 16px;
+    font-size: 32px;
+    line-height: 36px;
+  }
 }

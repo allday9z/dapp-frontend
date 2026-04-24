@@ -1574,6 +1574,7 @@
 
   /* Panel: fixed width */
   .pdp__panel {
+    width: 100%;
     /* flex: 0 0 400px; */
     padding: 0;
     min-width: 0;

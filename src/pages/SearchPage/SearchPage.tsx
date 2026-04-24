@@ -50,11 +50,22 @@ const CheckboxIcon = ({ checked }: { checked: boolean }) => {
 };
 
 export const SearchPage = () => {
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Record<string, boolean>>({
     pickup: false,
     shipping: false,
     inStock: false,
-    outOfStock: false
+    outOfStock: false,
+    brandAnker: false,
+    brandApple: false,
+    brandStm: false,
+    catAirtag: false,
+    catAppleWatch: false,
+    catAccessories: false,
+    compIphone17: false,
+    compIphone17Pro: false,
+    compIphone17ProMax: false,
+    cap64gb: false,
+    cap128gb: false
   });
 
   const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
@@ -79,6 +90,10 @@ export const SearchPage = () => {
     setIsDrawerOpen(false);
   };
 
+  const handleFilterChange = (key: string, checked: boolean) => {
+    setFilters(prev => ({ ...prev, [key]: checked }));
+  };
+
   return (
     <div id="SearchPage" className="search-page">
       <div className="template-search section-template--20346294042676__main-padding apl-section-main-search">
@@ -96,8 +111,7 @@ export const SearchPage = () => {
                       <span className="mobile-facets__open-label button-label medium-hide large-up-hide">Add filter</span>
                       <span className="mobile-facets__open-label button-label small-hide">Filter</span>
                     </span>
-                    <span tabIndex={0} className="mobile-facets__close mobile-facets__close--no-js">
-                    </span>
+                    <span tabIndex={0} className="mobile-facets__close mobile-facets__close--no-js"></span>
                   </summary>
                   <div className="mobile-facets">
                     <div className="mobile-facets__inner gradient">
@@ -151,9 +165,9 @@ export const SearchPage = () => {
                     </div>
 
                     <details id="Details-1-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="1" open data-filter-menus-expanded="true">
-                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-label="Get it fast (0 selected)" aria-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
                         <div>
-                          <span>ตัวเลือกการรับสินค้า <span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count">(0)</span></span>
+                          <span>ตัวเลือกการรับสินค้า <span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
                         </div>
                       </summary>
                       <div id="Facet-1-template--20346294042676__main" className="parent-display facets__display-vertical">
@@ -167,19 +181,13 @@ export const SearchPage = () => {
                               >
                                 <input 
                                   type="checkbox" 
-                                  name="filter.v.m.apple.apl_VariantLocationAvailability" 
-                                  value="79445033012" 
-                                  id="Filter-filter.v.m.apple.apl_VariantLocationAvailability-3" 
                                   className="js-my-store-pickup-location-input active" 
-                                  data-location-id="gid://shopify/Location/79445033012" 
-                                  aria-label="Store selection" 
                                   checked={filters.pickup}
-                                  onChange={(e) => setFilters({ ...filters, pickup: e.target.checked })}
+                                  onChange={(e) => handleFilterChange('pickup', e.target.checked)}
                                   style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
                                 />
                                 <CheckboxIcon checked={filters.pickup} />
                                 <span>รับสินค้าที่สาขา</span>
-                                <span className="visually-hidden" style={{ display: "none" }}>79445033012</span>
                               </label>
                               <button 
                                 className="facets__item-pickup js-my-store-locator-search-drawer-launcher" 
@@ -192,22 +200,17 @@ export const SearchPage = () => {
                             </li>
                             <li className="list-menu__item facets__item show-more-item apl-section-facet-item">
                               <label 
-                                htmlFor="Filter-Shipping-13" 
                                 className="facet-checkbox facets__text apl-section-facet-item-title"
                                 style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
                               >
                                 <input 
                                   type="checkbox" 
-                                  name="filter.v.shipping" 
-                                  value="1" 
-                                  id="Filter-Shipping-13" 
                                   checked={filters.shipping}
-                                  onChange={(e) => setFilters({ ...filters, shipping: e.target.checked })}
+                                  onChange={(e) => handleFilterChange('shipping', e.target.checked)}
                                   style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
                                 />
                                 <CheckboxIcon checked={filters.shipping} />
                                 <span aria-hidden="true">บริการจัดส่ง</span>
-                                <span className="visually-hidden">บริการจัดส่ง</span>
                               </label>
                             </li>
                           </ul>
@@ -216,9 +219,9 @@ export const SearchPage = () => {
                     </details>
 
                     <details id="Details-2-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="2" open data-filter-menus-expanded="true">
-                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-label="Availability (0 selected)" aria-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
                         <div>
-                          <span>สถานะ<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count">(0)</span></span>
+                          <span>สถานะ<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
                         </div>
                       </summary>
                       <div id="Facet-2-template--20346294042676__main" className="parent-display facets__display-vertical">
@@ -232,17 +235,12 @@ export const SearchPage = () => {
                               >
                                 <input 
                                   type="checkbox" 
-                                  name="filter.v.availability" 
-                                  value="1" 
-                                  id="Filter-filter.v.availability-1" 
-                                  aria-label="In stock" 
                                   checked={filters.inStock}
-                                  onChange={(e) => setFilters({ ...filters, inStock: e.target.checked })}
+                                  onChange={(e) => handleFilterChange('inStock', e.target.checked)}
                                   style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
                                 />
                                 <CheckboxIcon checked={filters.inStock} />
-                                <span aria-hidden="true">พร้อมจำหน่าย <span className="filter-count">(17)</span></span>
-                                <span className="visually-hidden">พร้อมจำหน่าย <span className="filter-count">(17 products)</span></span>
+                                <span aria-hidden="true">พร้อมจำหน่าย</span>
                               </label>
 
                               <label 
@@ -251,19 +249,86 @@ export const SearchPage = () => {
                               >
                                 <input 
                                   type="checkbox" 
-                                  name="filter.v.availability" 
-                                  value="0" 
-                                  id="Filter-filter.v.availability-2" 
-                                  aria-label="Out of stock" 
                                   checked={filters.outOfStock}
-                                  onChange={(e) => setFilters({ ...filters, outOfStock: e.target.checked })}
+                                  onChange={(e) => handleFilterChange('outOfStock', e.target.checked)}
                                   style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
                                 />
                                 <CheckboxIcon checked={filters.outOfStock} />
-                                <span aria-hidden="true">สินค้าหมด <span className="filter-count">(17)</span></span>
-                                <span className="visually-hidden">สินค้าหมด <span className="filter-count">(17 products)</span></span>
+                                <span aria-hidden="true">สินค้าหมด</span>
                               </label>
                             </li>
+                          </ul>
+                        </fieldset>
+                      </div>
+                    </details>
+
+                    <details id="Details-3-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="3" open data-filter-menus-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
+                        <div>
+                          <span>แบรนด์<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
+                        </div>
+                      </summary>
+                      <div id="Facet-3-template--20346294042676__main" className="parent-display facets__display-vertical">
+                        <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
+                          <legend className="visually-hidden">แบรนด์</legend>
+                          <ul className="list-unstyled no-js-hidden">
+                            {[
+                              { id: 'brandAnker', label: 'ANKER' },
+                              { id: 'brandApple', label: 'Apple' },
+                              { id: 'brandStm', label: 'STM' }
+                            ].map((brand) => (
+                              <li key={brand.id} className="list-menu__item facets__item apl-section-facet-item">
+                                <label 
+                                  className="facet-checkbox facets__text apl-section-facet-item-title"
+                                  style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                                >
+                                  <input 
+                                    type="checkbox" 
+                                    checked={filters[brand.id]}
+                                    onChange={(e) => handleFilterChange(brand.id, e.target.checked)}
+                                    style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                  />
+                                  <CheckboxIcon checked={filters[brand.id]} />
+                                  <span aria-hidden="true">{brand.label}</span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </fieldset>
+                      </div>
+                    </details>
+
+                    <details id="Details-4-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="4" open data-filter-menus-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
+                        <div>
+                          <span>หมวดหมู่<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
+                        </div>
+                      </summary>
+                      <div id="Facet-4-template--20346294042676__main" className="parent-display facets__display-vertical">
+                        <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
+                          <legend className="visually-hidden">หมวดหมู่</legend>
+                          <ul className="list-unstyled no-js-hidden">
+                            {[
+                              { id: 'catAirtag', label: 'AirTag' },
+                              { id: 'catAppleWatch', label: 'Apple Watch' },
+                              { id: 'catAccessories', label: 'อุปกรณ์เสริม' }
+                            ].map((cat) => (
+                              <li key={cat.id} className="list-menu__item facets__item apl-section-facet-item">
+                                <label 
+                                  className="facet-checkbox facets__text apl-section-facet-item-title"
+                                  style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                                >
+                                  <input 
+                                    type="checkbox" 
+                                    checked={filters[cat.id]}
+                                    onChange={(e) => handleFilterChange(cat.id, e.target.checked)}
+                                    style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                  />
+                                  <CheckboxIcon checked={filters[cat.id]} />
+                                  <span aria-hidden="true">{cat.label}</span>
+                                </label>
+                              </li>
+                            ))}
                           </ul>
                         </fieldset>
                       </div>
@@ -272,10 +337,46 @@ export const SearchPage = () => {
                     <details id="Details-5-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="5" open data-filter-menus-expanded="true">
                       <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
                         <div>
+                          <span>ความเข้ากันได้<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
+                        </div>
+                      </summary>
+                      <div id="Facet-5-template--20346294042676__main" className="parent-display facets__display-vertical">
+                        <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
+                          <legend className="visually-hidden">ความเข้ากันได้</legend>
+                          <ul className="list-unstyled no-js-hidden">
+                            {[
+                              { id: 'compIphone17', label: 'iPhone 17' },
+                              { id: 'compIphone17Pro', label: 'iPhone 17 Pro' },
+                              { id: 'compIphone17ProMax', label: 'iPhone 17 Pro Max' }
+                            ].map((comp) => (
+                              <li key={comp.id} className="list-menu__item facets__item apl-section-facet-item">
+                                <label 
+                                  className="facet-checkbox facets__text apl-section-facet-item-title"
+                                  style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                                >
+                                  <input 
+                                    type="checkbox" 
+                                    checked={filters[comp.id]}
+                                    onChange={(e) => handleFilterChange(comp.id, e.target.checked)}
+                                    style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                  />
+                                  <CheckboxIcon checked={filters[comp.id]} />
+                                  <span aria-hidden="true">{comp.label}</span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </fieldset>
+                      </div>
+                    </details>
+
+                    <details id="Details-6-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="6" open data-filter-menus-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
+                        <div>
                           <span>ราคา</span>
                         </div>
                       </summary>
-                      <div id="Facet-5-template--20346294042676__main" className="facets__display-vertical">
+                      <div id="Facet-6-template--20346294042676__main" className="facets__display-vertical">
                         <div className="facets__header-vertical apl-section-facet-details">
                           <span className="facets__selected" style={{ fontSize: '14px' }}>ราคาสูงสุดอยู่ที่ ฿0</span>
                         </div>
@@ -287,6 +388,41 @@ export const SearchPage = () => {
                             <input className="field__input apl-section-facet-price-max" name="filter.v.price.lte" id="Filter-Price-LTE" type="number" min="0" placeholder="ถึง" max="5400.00" />
                           </div>
                         </div>
+                      </div>
+                    </details>
+
+                    <details id="Details-7-template--20346294042676__main" className="facets__disclosure-vertical js-filter" data-index="7" open data-filter-menus-expanded="true">
+                      <summary className="facets__summary facets__text focus-offset apl-section-facet-heading" aria-expanded="true">
+                        <div>
+                          <span>ความจุ<span className="facets__selected no-js-hidden hidden apl-section-facet-item-selected-count"></span></span>
+                        </div>
+                      </summary>
+                      <div id="Facet-7-template--20346294042676__main" className="parent-display facets__display-vertical">
+                        <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
+                          <legend className="visually-hidden">ความจุ</legend>
+                          <ul className="list-unstyled no-js-hidden">
+                            {[
+                              { id: 'cap64gb', label: '64GB' },
+                              { id: 'cap128gb', label: '128GB' }
+                            ].map((cap) => (
+                              <li key={cap.id} className="list-menu__item facets__item apl-section-facet-item">
+                                <label 
+                                  className="facet-checkbox facets__text apl-section-facet-item-title"
+                                  style={{ display: "flex", alignItems: "center", gap: "8px", cursor: "pointer" }}
+                                >
+                                  <input 
+                                    type="checkbox" 
+                                    checked={filters[cap.id]}
+                                    onChange={(e) => handleFilterChange(cap.id, e.target.checked)}
+                                    style={{ position: "absolute", opacity: 0, width: 0, height: 0 }}
+                                  />
+                                  <CheckboxIcon checked={filters[cap.id]} />
+                                  <span aria-hidden="true">{cap.label}</span>
+                                </label>
+                              </li>
+                            ))}
+                          </ul>
+                        </fieldset>
                       </div>
                     </details>
 

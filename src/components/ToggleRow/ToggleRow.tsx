@@ -90,9 +90,9 @@ function injectStyles(): void {
 // ── Props ─────────────────────────────────────────────────────────────────
 export interface ToggleRowProps {
   /** Left-side label (bold) */
-  label: string;
+  label: ReactNode;
   /** Right-side selected value summary */
-  value: string;
+  value: ReactNode;
   /** Whether the body is expanded */
   open: boolean;
   /** Click handler to toggle open/close */
@@ -101,6 +101,10 @@ export interface ToggleRowProps {
   children: ReactNode;
   /** Show bottom divider line (default: true) */
   divider?: boolean;
+  /** Optional class for ToggleRow root */
+  className?: string;
+  /** Optional class for ToggleRow body container */
+  bodyClassName?: string;
 }
 
 // ── Component ─────────────────────────────────────────────────────────────
@@ -111,11 +115,15 @@ export function ToggleRow({
   onToggle,
   children,
   divider = true,
+  className,
+  bodyClassName,
 }: ToggleRowProps) {
   injectStyles();
+  const rootClassName = className ? `tog ${className}` : "tog";
+  const bodyClass = bodyClassName ? `tog__body ${bodyClassName}` : "tog__body";
 
   return (
-    <div className="tog">
+    <div className={rootClassName}>
       <button
         className="tog__btn"
         type="button"
@@ -147,7 +155,7 @@ export function ToggleRow({
       {/* Smooth slide wrapper */}
       <div className={`tog__wrap${open ? " open" : ""}`}>
         <div className="tog__inner">
-          <div className="tog__body">{children}</div>
+          <div className={bodyClass}>{children}</div>
         </div>
       </div>
 

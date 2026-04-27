@@ -86,5 +86,36 @@
     "อะแดปเตอร์ USB-C Power Adapter 70W",
     "สาย USB-C Charge Cable (2 เมตร)"
   ],
-  "warranty": "Apple 1 Year Limited Warranty พร้อมบริการ iStudio by Synnex"
+  "warranty": "Apple 1 Year Limited Warranty พร้อมบริการ iStudio by Synnex",
+  "content": {
+    "heroGwp": "Microsoft Office MS FPP M365 Personal",
+    "heroLearnMoreLabel": "เรียนรู้เพิ่มเติม",
+    "heroLearnMoreHref": "#",
+    "heroCompareLabel": "เปรียบเทียบรุ่น",
+    "heroCompareHref": "#",
+    "shareLabel": "Share",
+    "sectionCustomizeTitle": "Customize your",
+    "sectionProtectTitle": "Protect your product.",
+    "sectionPaymentTitle": "Select your payment option.",
+    "processorHelpLabel": "ชิปแบบไหนเหมาะกับคุณ? ›",
+    "memoryHelpLabel": "RAM ขนาดไหนเหมาะกับคุณ? ›",
+    "storageHelpLabel": "ต้องการพื้นที่เท่าไหร่? ›",
+    "appleCareLearnMoreLabel": "Learn more about AppleCare+ ›",
+    "financingDesc": "6 interest-free payments of Plan A No Fees",
+    "financingExploreLabel": "Explore financing options ›",
+    "financingLearnMoreLabel": "Learn more about financing ›",
+    "bundleTitle": "แนะนำซื้อคู่กัน",
+    "bundleAddButton": "เพิ่ม",
+    "summaryHeadingPrefix": "Your new",
+    "stockAvailabilityLabel": "ดูข้อมูล stock availability ›",
+    "buyNowLabel": "ซื้อเลย",
+    "notifyLabel": "แจ้งเตือนเมื่อมีสินค้า",
+    "stickyOrLabel": "or",
+    "addToCartLabel": "Add to cart",
+    "modalDialogLabel": "Financing information",
+    "modalTitle": "How does Financing work?",
+    "modalLengthOptions": [6, 12, 18, 24],
+    "modalPerMonthTemplate": " /mo. for {months} mo.",
+    "modalStartFinancingLabel": "Start financing"
+  }
 }

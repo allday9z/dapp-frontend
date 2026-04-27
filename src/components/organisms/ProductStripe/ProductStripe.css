@@ -204,7 +204,7 @@
   transform: scale(1.2);
 }
 
-@media (max-width: 425px) {
+@media (max-width: 768px) {
   .product-stripe {
     --product-stripe-edge-padding: 1rem;
   }

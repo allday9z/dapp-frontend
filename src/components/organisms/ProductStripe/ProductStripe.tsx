@@ -195,7 +195,7 @@ export const ProductStripe = ({
         arrowType={arrowType}
         direction="left"
         onClick={handlePrev}
-        disabled={isMobile ? false : !canGoPrev}
+        disabled={isMobile ? true : !canGoPrev}
       />
       <CustomArrow
         arrowType={arrowType}

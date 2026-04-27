@@ -501,6 +501,16 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
     saveStoreToStorage(name);
   };
 
+  const handleSearchSubmit = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const input = e.target as HTMLInputElement;
+      if (input.tagName === 'INPUT' && input.value.trim() !== '') {
+        window.location.href = `/search?q=${encodeURIComponent(input.value.trim())}`;
+      }
+    }
+  };
+
   const displayStoreName = selectedStoreName ? selectedStoreName : 'เลือกสาขา';
 
   return (
@@ -730,7 +740,9 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 <LogoPartner className="global-nav__logo-partner" />
                 <LogoWipApp className="global-nav__logo-wip" />
               </div>
-              <SearchInput className="global-nav__search" />
+              <div onKeyDown={handleSearchSubmit} style={{ display: 'contents' }}>
+                <SearchInput className="global-nav__search" />
+              </div>
               
               <div 
                 className="global-nav__store-container"

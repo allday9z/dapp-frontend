@@ -31,7 +31,6 @@
   transform: translateY(-100%);
 }
 
-/* Addon slot: zero-size on desktop so it never affects nav height */
 #global-nav-addon-slot:empty {
   display: none;
 }
@@ -190,6 +189,76 @@
   }
   to {
     transform: translateX(100%);
+  }
+}
+
+.global-nav__mobile-search-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  color: #1d1d1f;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.global-nav__mobile-search-toggle:hover {
+  opacity: 0.7;
+}
+
+.global-nav__mobile-search-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 1000;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.global-nav__mobile-search-drawer.slide-in-right {
+  animation: slideInFromRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.global-nav__mobile-search-drawer.slide-out-right {
+  animation: slideOutToRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.price-segment-discount {
+  border-radius: 6px;
+  background: #c31432;
+  padding: 1px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: white;
+  display: inline-block;
+  font-size: 15px;
+}
+
+#price-item-sale {
+  font-family: var(--font-body-family);
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 28px;
+  letter-spacing: -0.02em;
+}
+
+.footerOr3 {
+  display: none;
+}
+
+@media screen and (max-width: 767px) {
+  #price-element .footerOr3 {
+    display: inline-block;
+    color: #000;
   }
 }
 

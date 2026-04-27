@@ -17,11 +17,12 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "types": ["vite/client"],
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
     }
   },
-  "include": ["src"],
-  // "references": "./tsconfig.node.json" 
+  "include": ["src"]
+  // "references": "./tsconfig.node.json"
 }

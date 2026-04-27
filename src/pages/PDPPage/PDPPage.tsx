@@ -17,15 +17,34 @@ interface MediaItem {
   alt?: string;
 }
 
-interface ColorOpt { id: string; name: string; hex: string; }
-interface ConfigOpt { id: string; label: string; sublabel?: string; priceAdd: number; }
+interface ColorOpt { id: string; name: string; hex?: string; imageSrc?: string; selected?: boolean; }
+interface ConfigOpt { id: string; label: string; sublabel?: string; priceAdd: number; selected?: boolean; }
 interface BundleItem { id: string; name: string; price: number; imageSrc: string; }
 interface SpecItem { label: string; value: string; }
+interface CustomizeOption {
+  id: string;
+  label: string;
+  sublabel?: string;
+  priceAdd?: number;
+  hex?: string;
+  imageSrc?: string;
+  selected?: boolean;
+}
+
+interface CustomizeGroup {
+  key: string;
+  label: string;
+  type?: "swatch" | "cards";
+  defaultOptionId?: string;
+  helpLabel?: string;
+  helpHref?: string;
+  options: CustomizeOption[];
+}
 
 interface PDPData {
   id: string;
   name: string;
-  size: string;
+  size?: string;
   badge?: string;
   barcode?: string;
   tagline: string;
@@ -33,24 +52,277 @@ interface PDPData {
   media: MediaItem[];
   price: number;
   currency: string;
-  monthlyPrice: number;
-  monthlyTerm: number;
+  monthlyPrice?: number;
+  monthlyTerm?: number;
   available: boolean;
-  defaultColor: string;
-  colors: ColorOpt[];
-  processors: ConfigOpt[];
-  memory: ConfigOpt[];
-  storage: ConfigOpt[];
-  appleCarePrice: number;
-  bundleItems: BundleItem[];
-  specs: SpecItem[];
+  defaultColor?: string;
+  colors?: ColorOpt[];
+  processors?: ConfigOpt[];
+  memory?: ConfigOpt[];
+  storage?: ConfigOpt[];
+  customize?: CustomizeGroup[];
+  appleCarePrice?: number;
+  bundleItems?: BundleItem[];
+  specs?: SpecItem[];
   description: string;
-  features: string[];
-  inBox: string[];
-  warranty: string;
+  features?: string[];
+  inBox?: string[];
+  warranty?: string;
+  content?: Partial<PDPContent>;
+}
+
+interface PDPContent {
+  heroGwp: string;
+  heroLearnMoreLabel: string;
+  heroLearnMoreHref: string;
+  heroCompareLabel: string;
+  heroCompareHref: string;
+  shareLabel: string;
+  sectionCustomizeTitle: string;
+  sectionProtectTitle: string;
+  sectionPaymentTitle: string;
+  colorLabel: string;
+  processorLabel: string;
+  memoryLabel: string;
+  storageLabel: string;
+  processorHelpLabel: string;
+  processorHelpHref: string;
+  memoryHelpLabel: string;
+  memoryHelpHref: string;
+  storageHelpLabel: string;
+  storageHelpHref: string;
+  appleCareLabel: string;
+  noCoverageLabel: string;
+  appleCarePlanLabel: string;
+  appleCareLearnMoreLabel: string;
+  appleCareLearnMoreHref: string;
+  financingLabel: string;
+  payInFullLabel: string;
+  financingDesc: string;
+  financingLogoText: string;
+  financingExploreLabel: string;
+  financingExploreHref: string;
+  financingLearnMoreLabel: string;
+  financingLearnMoreHref: string;
+  bundleTitle: string;
+  bundleAddButton: string;
+  summaryHeadingPrefix: string;
+  summaryColorLabel: string;
+  summaryProcessorLabel: string;
+  summaryMemoryLabel: string;
+  summaryStorageLabel: string;
+  summaryAppleCareLabel: string;
+  summaryAppleCareValue: string;
+  qtyLabel: string;
+  stockAvailabilityLabel: string;
+  stockAvailabilityHref: string;
+  buyNowLabel: string;
+  notifyLabel: string;
+  specsAccordionLabel: string;
+  descriptionAccordionLabel: string;
+  featuresAccordionLabel: string;
+  inBoxAccordionLabel: string;
+  warrantyAccordionLabel: string;
+  stickyOrLabel: string;
+  addToCartLabel: string;
+  modalDialogLabel: string;
+  modalTitle: string;
+  modalIntro: string;
+  modalIntroBullets: string[];
+  modalVendorTitle: string;
+  modalVendorDescription: string;
+  modalVendorLogoText: string;
+  modalVendorLearnMoreLabel: string;
+  modalVendorLearnMoreHref: string;
+  modalExploreTitle: string;
+  modalExploreBullets: string[];
+  modalCalculatorTitle: string;
+  modalLengthLabel: string;
+  modalLengthOptions: number[];
+  modalMonthlyPaymentLabel: string;
+  modalFinalPricingTitle: string;
+  modalPerMonthTemplate: string;
+  modalLearnMoreFinancingLabel: string;
+  modalLearnMoreFinancingHref: string;
+  modalStartFinancingLabel: string;
+  modalDisclaimer: string;
 }
 
 const product = rawData as PDPData;
+
+const DEFAULT_CONTENT: PDPContent = {
+  heroGwp: "Microsoft Office MS FPP M365 Personal",
+  heroLearnMoreLabel: "เรียนรู้เพิ่มเติม",
+  heroLearnMoreHref: "#",
+  heroCompareLabel: "เปรียบเทียบรุ่น",
+  heroCompareHref: "#",
+  shareLabel: "Share",
+  sectionCustomizeTitle: "Customize your",
+  sectionProtectTitle: "Protect your product.",
+  sectionPaymentTitle: "Select your payment option.",
+  colorLabel: "Color",
+  processorLabel: "Processor",
+  memoryLabel: "Memory",
+  storageLabel: "Storage",
+  processorHelpLabel: "ชิปแบบไหนเหมาะกับคุณ? ›",
+  processorHelpHref: "#",
+  memoryHelpLabel: "RAM ขนาดไหนเหมาะกับคุณ? ›",
+  memoryHelpHref: "#",
+  storageHelpLabel: "ต้องการพื้นที่เท่าไหร่? ›",
+  storageHelpHref: "#",
+  appleCareLabel: "AppleCare+",
+  noCoverageLabel: "No coverage plan",
+  appleCarePlanLabel: "(2 year plan)",
+  appleCareLearnMoreLabel: "Learn more about AppleCare+ ›",
+  appleCareLearnMoreHref: "#",
+  financingLabel: "Financing",
+  payInFullLabel: "Pay in full",
+  financingDesc: "6 interest-free payments of Plan A No Fees",
+  financingLogoText: "《 ≡ | Financing logo 》",
+  financingExploreLabel: "Explore financing options ›",
+  financingExploreHref: "#",
+  financingLearnMoreLabel: "Learn more about financing ›",
+  financingLearnMoreHref: "#",
+  bundleTitle: "แนะนำซื้อคู่กัน",
+  bundleAddButton: "เพิ่ม",
+  summaryHeadingPrefix: "Your new",
+  summaryColorLabel: "Color",
+  summaryProcessorLabel: "Processor",
+  summaryMemoryLabel: "Memory",
+  summaryStorageLabel: "Storage",
+  summaryAppleCareLabel: "AppleCare+",
+  summaryAppleCareValue: "เพิ่มแล้ว",
+  qtyLabel: "Qty",
+  stockAvailabilityLabel: "ดูข้อมูล stock availability ›",
+  stockAvailabilityHref: "#",
+  buyNowLabel: "ซื้อเลย",
+  notifyLabel: "แจ้งเตือนเมื่อมีสินค้า",
+  specsAccordionLabel: "ข้อมูลจำเพาะ",
+  descriptionAccordionLabel: "คำอธิบายสินค้า",
+  featuresAccordionLabel: "คุณสมบัติเด่น",
+  inBoxAccordionLabel: "อุปกรณ์ในกล่อง",
+  warrantyAccordionLabel: "การรับประกัน",
+  stickyOrLabel: "or",
+  addToCartLabel: "Add to cart",
+  modalDialogLabel: "Financing information",
+  modalTitle: "How does Financing work?",
+  modalIntro: "Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.",
+  modalIntroBullets: [
+    "Morem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Morem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Morem ipsum dolor sit amet, consectetur adipiscing elit.",
+  ],
+  modalVendorTitle: "Vendor plug-in",
+  modalVendorDescription: "6 interest-free payments of Plan No Fees",
+  modalVendorLogoText: "《 ≡ | Financing logo 》",
+  modalVendorLearnMoreLabel: "Learn more ›",
+  modalVendorLearnMoreHref: "#",
+  modalExploreTitle: "Explore options",
+  modalExploreBullets: [
+    "Korem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Korem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "Korem ipsum dolor sit amet, consectetur adipiscing elit.",
+  ],
+  modalCalculatorTitle: "Calculator",
+  modalLengthLabel: "Length",
+  modalLengthOptions: [6, 12, 18, 24],
+  modalMonthlyPaymentLabel: "Monthly payment",
+  modalFinalPricingTitle: "Final pricing",
+  modalPerMonthTemplate: " /mo. for {months} mo.",
+  modalLearnMoreFinancingLabel: "Learn more about financing ›",
+  modalLearnMoreFinancingHref: "#",
+  modalStartFinancingLabel: "Start financing",
+  modalDisclaimer: "This is a disclaimer",
+};
+
+const content: PDPContent = {
+  ...DEFAULT_CONTENT,
+  ...(product.content ?? {}),
+};
+
+const buildLegacyCustomizeGroups = (data: PDPData, uiContent: PDPContent): CustomizeGroup[] => {
+  const groups: CustomizeGroup[] = [];
+
+  if (data.colors?.length) {
+    groups.push({
+      key: "color",
+      label: uiContent.colorLabel,
+      type: "swatch",
+      defaultOptionId: data.defaultColor,
+      options: data.colors.map((item) => ({
+        id: item.id,
+        label: item.name,
+        hex: item.hex,
+        imageSrc: item.imageSrc,
+        priceAdd: 0,
+        selected: item.selected ?? item.id === data.defaultColor,
+      })),
+    });
+  }
+
+  if (data.processors?.length) {
+    groups.push({
+      key: "processor",
+      label: uiContent.processorLabel,
+      type: "cards",
+      helpLabel: uiContent.processorHelpLabel,
+      helpHref: uiContent.processorHelpHref,
+      options: data.processors.map((item, index) => ({
+        ...item,
+        selected: item.selected ?? index === 0,
+      })),
+    });
+  }
+
+  if (data.memory?.length) {
+    groups.push({
+      key: "memory",
+      label: uiContent.memoryLabel,
+      type: "cards",
+      helpLabel: uiContent.memoryHelpLabel,
+      helpHref: uiContent.memoryHelpHref,
+      options: data.memory.map((item, index) => ({
+        ...item,
+        selected: item.selected ?? index === 0,
+      })),
+    });
+  }
+
+  if (data.storage?.length) {
+    groups.push({
+      key: "storage",
+      label: uiContent.storageLabel,
+      type: "cards",
+      helpLabel: uiContent.storageHelpLabel,
+      helpHref: uiContent.storageHelpHref,
+      options: data.storage.map((item, index) => ({
+        ...item,
+        selected: item.selected ?? index === 0,
+      })),
+    });
+  }
+
+  return groups;
+};
+
+const getCustomizeGroups = (data: PDPData, uiContent: PDPContent): CustomizeGroup[] => {
+  const source = data.customize?.length ? data.customize : buildLegacyCustomizeGroups(data, uiContent);
+  return source.filter((group) => group.options.length > 0);
+};
+
+const getInitialCustomizeSelections = (groups: CustomizeGroup[]): Record<string, string> => {
+  return groups.reduce<Record<string, string>>((accumulator, group) => {
+    const selectedOption = group.options.find((option) => option.selected) ??
+      group.options.find((option) => option.id === group.defaultOptionId) ??
+      group.options[0];
+
+    if (selectedOption) {
+      accumulator[group.key] = selectedOption.id;
+    }
+
+    return accumulator;
+  }, {});
+};
 
 // ── Helpers ────────────────────────────────────────────────────────────────
 const fmt = (n: number) =>
@@ -370,6 +642,7 @@ function FinancingModal({
 }) {
   const [months, setMonths] = useState(defaultTerm);
   const monthly = Math.round(price / months);
+  const perMonthText = content.modalPerMonthTemplate.replace("{months}", String(months));
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
@@ -383,63 +656,59 @@ function FinancingModal({
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
       role="dialog"
       aria-modal="true"
-      aria-label="Financing information"
+      aria-label={content.modalDialogLabel}
     >
       <div className="pdp__modal">
         {/* Sticky close button */}
         <button className="pdp__modal-close" onClick={onClose} aria-label="ปิด">×</button>
 
         <div className="pdp__modal-body">
-          <h2 className="pdp__modal-title">How does Financing work?</h2>
-          <p className="pdp__modal-text">
-            Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-            turpis molestie, dictum est a, mattis tellus.
-          </p>
+          <h2 className="pdp__modal-title">{content.modalTitle}</h2>
+          <p className="pdp__modal-text">{content.modalIntro}</p>
           <ul className="pdp__modal-list">
-            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Morem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            {content.modalIntroBullets.map((item, idx) => (
+              <li key={`intro-${idx}`}>{item}</li>
+            ))}
           </ul>
 
-          <h3 className="pdp__modal-heading">Vendor plug-in</h3>
+          <h3 className="pdp__modal-heading">{content.modalVendorTitle}</h3>
           <div className="pdp__modal-plugin-card">
-            <p className="pdp__modal-plugin-desc">6 interest-free payments of Plan No Fees</p>
-            <div className="pdp__modal-plugin-logo">《 ≡ | Financing logo 》</div>
-            <a href="#" className="pdp__modal-link">Learn more ›</a>
+            <p className="pdp__modal-plugin-desc">{content.modalVendorDescription}</p>
+            <div className="pdp__modal-plugin-logo">{content.modalVendorLogoText}</div>
+            <a href={content.modalVendorLearnMoreHref} className="pdp__modal-link">{content.modalVendorLearnMoreLabel}</a>
           </div>
 
-          <h3 className="pdp__modal-heading">Explore options</h3>
+          <h3 className="pdp__modal-heading">{content.modalExploreTitle}</h3>
           <ul className="pdp__modal-list">
-            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Korem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            {content.modalExploreBullets.map((item, idx) => (
+              <li key={`explore-${idx}`}>{item}</li>
+            ))}
           </ul>
 
-          <h3 className="pdp__modal-heading">Calculator</h3>
-          <label className="pdp__modal-label">Length</label>
+          <h3 className="pdp__modal-heading">{content.modalCalculatorTitle}</h3>
+          <label className="pdp__modal-label">{content.modalLengthLabel}</label>
           <select
             className="pdp__modal-select"
             value={months}
             onChange={(e) => setMonths(Number(e.target.value))}
           >
-            <option value={6}>6 months</option>
-            <option value={12}>12 months</option>
-            <option value={18}>18 months</option>
-            <option value={24}>24 months</option>
+            {content.modalLengthOptions.map((option) => (
+              <option key={option} value={option}>{option} months</option>
+            ))}
           </select>
 
-          <label className="pdp__modal-label">Monthly payment</label>
+          <label className="pdp__modal-label">{content.modalMonthlyPaymentLabel}</label>
           <div className="pdp__modal-monthly-display">{fmt(monthly)}</div>
 
-          <h3 className="pdp__modal-heading">Final pricing</h3>
-          <p className="pdp__modal-final">{fmt(monthly)} /mo. for {months} mo.</p>
+          <h3 className="pdp__modal-heading">{content.modalFinalPricingTitle}</h3>
+          <p className="pdp__modal-final">{fmt(monthly)}{perMonthText}</p>
 
-          <a href="#" className="pdp__modal-link pdp__modal-link--block">
-            Learn more about financing ›
+          <a href={content.modalLearnMoreFinancingHref} className="pdp__modal-link pdp__modal-link--block">
+            {content.modalLearnMoreFinancingLabel}
           </a>
-          <button className="pdp__modal-btn-financing">Start financing</button>
+          <button className="pdp__modal-btn-financing">{content.modalStartFinancingLabel}</button>
           <hr className="pdp__modal-divider" />
-          <p className="pdp__modal-disclaimer">This is a disclaimer</p>
+          <p className="pdp__modal-disclaimer">{content.modalDisclaimer}</p>
         </div>
       </div>
     </div>
@@ -448,19 +717,33 @@ function FinancingModal({
 
 // ── Page ───────────────────────────────────────────────────────────────────
 export const PDPPage = () => {
-  const [color, setColor] = useState<ColorOpt>(
-    () =>
-      product.colors.find((c) => c.id === product.defaultColor) ??
-      product.colors[0]
+  const customizeGroups = getCustomizeGroups(product, content);
+  const [selectedCustomize, setSelectedCustomize] = useState<Record<string, string>>(
+    () => getInitialCustomizeSelections(customizeGroups)
   );
-  const [processor, setProcessor] = useState<ConfigOpt>(product.processors[0]);
-  const [memory, setMemory] = useState<ConfigOpt>(product.memory[0]);
-  const [storage, setStorage] = useState<ConfigOpt>(product.storage[0]);
   const [appleCare, setAppleCare] = useState(false);
   const [qty, setQty] = useState(1);
   const [financingOpen, setFinancingOpen] = useState(false);
-  const [openSections, setOpenSections] = useState<Set<string>>(new Set(["color", "applecare", "financing"]));
+  const [openSections, setOpenSections] = useState<Set<string>>(
+    new Set([customizeGroups[0]?.key, "applecare", "financing"].filter(Boolean) as string[])
+  );
   const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">("financing");
+  const [isStickyDesktopHero, setIsStickyDesktopHero] = useState(false);
+  const [isStickyDesktopHeroVisible, setIsStickyDesktopHeroVisible] = useState(false);
+  const desktopHeroRef = useRef<HTMLElement | null>(null);
+
+  const getSelectedCustomizeOption = (group: CustomizeGroup) => {
+    return group.options.find((option) => option.id === selectedCustomize[group.key]) ?? group.options[0];
+  };
+
+  const selectedColor = customizeGroups.find((group) => group.key === "color");
+  const appleCarePrice = product.appleCarePrice ?? 0;
+  const monthlyTerm = product.monthlyTerm ?? 12;
+  const bundleItems = product.bundleItems ?? [];
+  const specs = product.specs ?? [];
+  const features = product.features ?? [];
+  const inBox = product.inBox ?? [];
+  const warranty = product.warranty ?? "";
 
   const toggleSect = (key: string) =>
     setOpenSections((prev) => {
@@ -471,18 +754,49 @@ export const PDPPage = () => {
 
   const totalPrice =
     product.price +
-    processor.priceAdd +
-    memory.priceAdd +
-    storage.priceAdd +
-    (appleCare ? product.appleCarePrice : 0);
+    customizeGroups.reduce((sum, group) => sum + (getSelectedCustomizeOption(group)?.priceAdd ?? 0), 0) +
+    (appleCare ? appleCarePrice : 0);
 
-  const displayName = `${product.size}-inch ${product.name}`;
+  const displayName = product.size ? `${product.size}-inch ${product.name}` : product.name;
   const heroImage = product.media.find((m) => m.type === "image")?.src ?? "";
 
   // Portal target: the slot inside GlobalNav's fixed container
   const [navSlot, setNavSlot] = useState<HTMLElement | null>(null);
   useEffect(() => {
     setNavSlot(document.getElementById("global-nav-addon-slot"));
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    let lastScrollY = window.scrollY;
+
+    const evaluateStickyVisibility = () => {
+      if (!mediaQuery.matches || !desktopHeroRef.current) {
+        setIsStickyDesktopHero(false);
+        setIsStickyDesktopHeroVisible(false);
+        lastScrollY = window.scrollY;
+        return;
+      }
+
+      const currentScrollY = window.scrollY;
+      const stickyTriggerOffset = 52;
+      const heroBottom = desktopHeroRef.current.getBoundingClientRect().bottom;
+      const shouldStick = heroBottom <= stickyTriggerOffset;
+      const isScrollingUp = currentScrollY < lastScrollY - 2;
+
+      setIsStickyDesktopHero(shouldStick);
+      setIsStickyDesktopHeroVisible(shouldStick && isScrollingUp);
+      lastScrollY = currentScrollY;
+    };
+
+    evaluateStickyVisibility();
+    window.addEventListener("scroll", evaluateStickyVisibility, { passive: true });
+    window.addEventListener("resize", evaluateStickyVisibility);
+
+    return () => {
+      window.removeEventListener("scroll", evaluateStickyVisibility);
+      window.removeEventListener("resize", evaluateStickyVisibility);
+    };
   }, []);
 
   return (
@@ -493,8 +807,8 @@ export const PDPPage = () => {
           <AddOnNavbarMobile
             productName={displayName}
             price={`${fmt(totalPrice)} ${product.currency}`}
-            monthly={fmt(Math.round(totalPrice / product.monthlyTerm))}
-            monthlyTerm={product.monthlyTerm}
+            monthly={fmt(Math.round(totalPrice / monthlyTerm))}
+            monthlyTerm={monthlyTerm}
             onMonthlyClick={() => setFinancingOpen(true)}
           />,
           navSlot,
@@ -507,8 +821,31 @@ export const PDPPage = () => {
         seeAllHref="/pages/view-all-mac"
       />
 
+      <section
+        className={`pdp__desktop-hero pdp__desktop-hero--sticky cto-header js-cto-header apl-section-cto-header-sticky js-cto-header-sticky${isStickyDesktopHero ? " is-sticky" : ""}${isStickyDesktopHeroVisible ? " is-visible header-is-sticky" : ""}`}
+        aria-label="Sticky desktop product summary"
+      >
+        <div className="pdp__desktop-hero-left">
+          <h2 className="pdp__desktop-hero-title">{displayName}</h2>
+          <p className="pdp__desktop-hero-gwp">{content.heroGwp}</p>
+
+          <div className="pdp__desktop-hero-links">
+            <a href={content.heroLearnMoreHref} className="pdp__desktop-hero-link">{content.heroLearnMoreLabel}</a>
+            <span className="pdp__desktop-hero-divider" aria-hidden="true" />
+            <a href={content.heroCompareHref} className="pdp__desktop-hero-link">{content.heroCompareLabel}</a>
+          </div>
+        </div>
+
+        <div className="pdp__desktop-hero-right">
+          <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
+          <p className="pdp__desktop-hero-monthly">
+            or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+          </p>
+        </div>
+      </section>
+
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
-      <section className="pdp__desktop-hero" aria-label="Desktop product summary">
+      <section ref={desktopHeroRef} className="pdp__desktop-hero" aria-label="Desktop product summary">
           <div className="pdp__desktop-hero-left">
             <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
             <h1 className="pdp__desktop-hero-title">{displayName}</h1>
@@ -517,16 +854,16 @@ export const PDPPage = () => {
               {product.barcode && <span className="pdp__desktop-hero-barcode">Barcode: {product.barcode}</span>}
             </p>
 
-            <p className="pdp__desktop-hero-gwp">Microsoft Office MS FPP M365 Personal</p>
+            <p className="pdp__desktop-hero-gwp">{content.heroGwp}</p>
 
             <div className="pdp__desktop-hero-links">
-              <a href="#" className="pdp__desktop-hero-link">เรียนรู้เพิ่มเติม</a>
+              <a href={content.heroLearnMoreHref} className="pdp__desktop-hero-link">{content.heroLearnMoreLabel}</a>
               <span className="pdp__desktop-hero-divider" aria-hidden="true" />
-              <a href="#" className="pdp__desktop-hero-link">เปรียบเทียบรุ่น</a>
+              <a href={content.heroCompareHref} className="pdp__desktop-hero-link">{content.heroCompareLabel}</a>
             </div>
 
             <div className="pdp__desktop-hero-share" aria-label="Share">
-              <span className="pdp__desktop-hero-share-label">Share</span>
+              <span className="pdp__desktop-hero-share-label">{content.shareLabel}</span>
               <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
               <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
               <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
@@ -536,7 +873,7 @@ export const PDPPage = () => {
           <div className="pdp__desktop-hero-right">
             <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
             <p className="pdp__desktop-hero-monthly">
-              or {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+              or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
             </p>
             <button
               className="pdp__desktop-hero-financing"
@@ -573,7 +910,7 @@ export const PDPPage = () => {
               onClick={() => setFinancingOpen(true)}
               aria-label="ดูข้อมูลการผ่อนชำระ"
             >
-              or {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. ›
+              or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. ›
             </button>
           </div>
 
@@ -583,144 +920,105 @@ export const PDPPage = () => {
           </div> */}
 
           {/* ── Customize ─────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading pdp_sec_head1">Customize your {product.name}.</h2>
+          <h2 className="pdp__section-heading pdp_sec_head1">{content.sectionCustomizeTitle} {product.name}.</h2>
 
-          {/* Color */}
-          <ToggleRow
-            label="Color"
-            value={color.name}
-            open={openSections.has("color")}
-            onToggle={() => toggleSect("color")}
-          >
-            <div className="pdp__swatch-row">
-              {product.colors.map((c) => (
-                <button
-                  key={c.id}
-                  className={`pdp__swatch${c.id === color.id ? " on" : ""}`}
-                  style={{ background: c.hex }}
-                  onClick={() => setColor(c)}
-                  aria-label={c.name}
-                  title={c.name}
-                />
-              ))}
-            </div>
-            <ColorGallery media={product.media} name={displayName} />
-          </ToggleRow>
+          {customizeGroups.map((group) => {
+            const selectedOption = getSelectedCustomizeOption(group);
+            const value = [selectedOption?.label, selectedOption?.sublabel].filter(Boolean).join(" ");
 
-          {/* Processor */}
-          <ToggleRow
-            label="Processor"
-            value={`${processor.label}${processor.sublabel ? ` ${processor.sublabel}` : ""}`}
-            open={openSections.has("processor")}
-            onToggle={() => toggleSect("processor")}
-          >
-            {product.processors.map((p) => {
-              const t =
-                product.price +
-                p.priceAdd +
-                memory.priceAdd +
-                storage.priceAdd +
-                (appleCare ? product.appleCarePrice : 0);
-              return (
-                <button
-                  key={p.id}
-                  className={`pdp__opt-card${p.id === processor.id ? " on" : ""}`}
-                  onClick={() => setProcessor(p)}
-                >
-                  <span className="pdp__opt-card-info">
-                    <span className="pdp__opt-card-name">{p.label}</span>
-                    {p.sublabel && (
-                      <span className="pdp__opt-card-sub">{p.sublabel}</span>
+            return (
+              <ToggleRow
+                key={group.key}
+                label={group.label}
+                value={value}
+                open={openSections.has(group.key)}
+                onToggle={() => toggleSect(group.key)}
+              >
+                {group.type === "swatch" ? (
+                  <>
+                    <div className="pdp__swatch-row">
+                      {group.options.map((option) => (
+                        <button
+                          key={option.id}
+                          className={`pdp__swatch${option.id === selectedOption?.id ? " on" : ""}`}
+                          style={option.hex
+                            ? { background: option.hex }
+                            : option.imageSrc
+                              ? {
+                                  backgroundImage: `url(${option.imageSrc})`,
+                                  backgroundPosition: "center",
+                                  backgroundSize: "cover",
+                                }
+                              : undefined}
+                          onClick={() =>
+                            setSelectedCustomize((prev) => ({
+                              ...prev,
+                              [group.key]: option.id,
+                            }))
+                          }
+                          aria-label={option.label}
+                          title={option.label}
+                        />
+                      ))}
+                    </div>
+                    {group.key === "color" && <ColorGallery media={product.media} name={displayName} />}
+                  </>
+                ) : (
+                  <>
+                    {group.options.map((option) => {
+                      const optionTotal =
+                        product.price +
+                        customizeGroups.reduce((sum, candidateGroup) => {
+                          if (candidateGroup.key === group.key) {
+                            return sum + (option.priceAdd ?? 0);
+                          }
+
+                          return sum + (getSelectedCustomizeOption(candidateGroup)?.priceAdd ?? 0);
+                        }, 0) +
+                        (appleCare ? appleCarePrice : 0);
+
+                      return (
+                        <button
+                          key={option.id}
+                          className={`pdp__opt-card${option.id === selectedOption?.id ? " on" : ""}`}
+                          onClick={() =>
+                            setSelectedCustomize((prev) => ({
+                              ...prev,
+                              [group.key]: option.id,
+                            }))
+                          }
+                          type="button"
+                        >
+                          <span className="pdp__opt-card-info">
+                            <span className="pdp__opt-card-name">{option.label}</span>
+                            {option.sublabel && (
+                              <span className="pdp__opt-card-sub">{option.sublabel}</span>
+                            )}
+                          </span>
+                          <span className="pdp__opt-card-pricing">
+                            <span className="pdp__opt-card-price">{fmt(optionTotal)}</span>
+                            <span className="pdp__opt-card-mo">
+                              {fmt(Math.round(optionTotal / monthlyTerm))}/mo.
+                            </span>
+                          </span>
+                        </button>
+                      );
+                    })}
+                    {group.helpLabel && (
+                      <a href={group.helpHref ?? "#"} className="pdp__opt-link">{group.helpLabel}</a>
                     )}
-                  </span>
-                  <span className="pdp__opt-card-pricing">
-                    <span className="pdp__opt-card-price">{fmt(t)}</span>
-                    <span className="pdp__opt-card-mo">
-                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-            <a href="#" className="pdp__opt-link">ชิปแบบไหนเหมาะกับคุณ? ›</a>
-          </ToggleRow>
-
-          {/* Memory */}
-          <ToggleRow
-            label="Memory"
-            value={memory.label}
-            open={openSections.has("memory")}
-            onToggle={() => toggleSect("memory")}
-          >
-            {product.memory.map((m) => {
-              const t =
-                product.price +
-                processor.priceAdd +
-                m.priceAdd +
-                storage.priceAdd +
-                (appleCare ? product.appleCarePrice : 0);
-              return (
-                <button
-                  key={m.id}
-                  className={`pdp__opt-card${m.id === memory.id ? " on" : ""}`}
-                  onClick={() => setMemory(m)}
-                >
-                  <span className="pdp__opt-card-info">
-                    <span className="pdp__opt-card-name">{m.label}</span>
-                  </span>
-                  <span className="pdp__opt-card-pricing">
-                    <span className="pdp__opt-card-price">{fmt(t)}</span>
-                    <span className="pdp__opt-card-mo">
-                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-            <a href="#" className="pdp__opt-link">RAM ขนาดไหนเหมาะกับคุณ? ›</a>
-          </ToggleRow>
-
-          {/* Storage */}
-          <ToggleRow
-            label="Storage"
-            value={storage.label}
-            open={openSections.has("storage")}
-            onToggle={() => toggleSect("storage")}
-          >
-            {product.storage.map((s) => {
-              const t =
-                product.price +
-                processor.priceAdd +
-                memory.priceAdd +
-                s.priceAdd +
-                (appleCare ? product.appleCarePrice : 0);
-              return (
-                <button
-                  key={s.id}
-                  className={`pdp__opt-card${s.id === storage.id ? " on" : ""}`}
-                  onClick={() => setStorage(s)}
-                >
-                  <span className="pdp__opt-card-info">
-                    <span className="pdp__opt-card-name">{s.label}</span>
-                  </span>
-                  <span className="pdp__opt-card-pricing">
-                    <span className="pdp__opt-card-price">{fmt(t)}</span>
-                    <span className="pdp__opt-card-mo">
-                      {fmt(Math.round(t / product.monthlyTerm))}/mo.
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
-            <a href="#" className="pdp__opt-link">ต้องการพื้นที่เท่าไหร่? ›</a>
-          </ToggleRow>
+                  </>
+                )}
+              </ToggleRow>
+            );
+          })}
 
           {/* ── Protect ───────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading">Protect your product.</h2>
+          <h2 className="pdp__section-heading">{content.sectionProtectTitle}</h2>
 
           <ToggleRow
-            label="AppleCare+"
-            value={appleCare ? "AppleCare+" : "No coverage plan"}
+            label={content.appleCareLabel}
+            value={appleCare ? content.appleCareLabel : content.noCoverageLabel}
             open={openSections.has("applecare")}
             onToggle={() => toggleSect("applecare")}
           >
@@ -732,59 +1030,64 @@ export const PDPPage = () => {
                 <svg className="pdp__ac-icon" viewBox="0 0 814 1000" width="24" height="24" aria-hidden="true">
                   <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.1C46.7 790.7 0 663 0 541.8c0-207.3 135.3-316.9 269-316.9 73.1 0 134.2 43.3 180.7 43.3 44 0 114.1-46 196.3-46 31.7 0 121.5 2.8 180.7 85.7zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" fill="#e74c3c" />
                 </svg>
-                <span>AppleCare+ for {product.name} M5 (2 year plan)</span>
+                <span>{content.appleCareLabel} for {product.name} M5 {content.appleCarePlanLabel}</span>
               </span>
               <span className="pdp__opt-card-pricing">
-                <span className="pdp__opt-card-price">{fmt(product.appleCarePrice)}</span>
+                  <span className="pdp__opt-card-price">{fmt(appleCarePrice)}</span>
                 <span className="pdp__opt-card-mo">
-                  {fmt(Math.round(product.appleCarePrice / 12))}/mo.
+                    {fmt(Math.round(appleCarePrice / 12))}/mo.
                 </span>
               </span>
             </button>
-            <a href="#" className="pdp__opt-link">Learn more about AppleCare+ ›</a>
+            <a href={content.appleCareLearnMoreHref} className="pdp__opt-link">{content.appleCareLearnMoreLabel}</a>
             <button
               className={`pdp__opt-card${!appleCare ? " on" : ""}`}
               onClick={() => setAppleCare(false)}
             >
               <span className="pdp__opt-card-info">
-                <span className="pdp__opt-card-name">No coverage plan</span>
+                <span className="pdp__opt-card-name">{content.noCoverageLabel}</span>
               </span>
             </button>
           </ToggleRow>
 
           {/* ── Payment ───────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading">Select your payment option.</h2>
+          <h2 className="pdp__section-heading">{content.sectionPaymentTitle}</h2>
 
           <ToggleRow
-            label="Financing"
-            value={paymentOpt === "financing" ? "Financing" : "Pay in full"}
+            label={content.financingLabel}
+            value={paymentOpt === "financing" ? content.financingLabel : content.payInFullLabel}
             open={openSections.has("financing")}
             onToggle={() => toggleSect("financing")}
+            bodyClassName="pdp__payment-body"
           >
-            <button
-              className={`pdp__opt-card${paymentOpt === "financing" ? " on" : ""}`}
-              onClick={() => setPaymentOpt("financing")}
-            >
-              <span className="pdp__opt-card-info">
-                <span className="pdp__opt-card-name">Financing</span>
-              </span>
-            </button>
-            <button
-              className={`pdp__opt-card${paymentOpt === "pay-full" ? " on" : ""}`}
-              onClick={() => setPaymentOpt("pay-full")}
-            >
-              <span className="pdp__opt-card-info">
-                <span className="pdp__opt-card-name">Pay in full</span>
-              </span>
-            </button>
+            <div className="pdp__payment-options">
+              <button
+                className={`pdp__opt-card${paymentOpt === "financing" ? " on" : ""}`}
+                onClick={() => setPaymentOpt("financing")}
+                type="button"
+              >
+                <span className="pdp__opt-card-info">
+                  <span className="pdp__opt-card-name">{content.financingLabel}</span>
+                </span>
+              </button>
+              <button
+                className={`pdp__opt-card${paymentOpt === "pay-full" ? " on" : ""}`}
+                onClick={() => setPaymentOpt("pay-full")}
+                type="button"
+              >
+                <span className="pdp__opt-card-info">
+                  <span className="pdp__opt-card-name">{content.payInFullLabel}</span>
+                </span>
+              </button>
+            </div>
             <div className="pdp__financing-info">
               <p className="pdp__financing-desc">
-                6 interest-free payments of Plan A No Fees
+                {content.financingDesc}
               </p>
-              <div className="pdp__financing-logo">《 ≡ | Financing logo 》</div>
-              <a href="#" className="pdp__opt-link">Explore financing options ›</a>
+              <div className="pdp__financing-logo">{content.financingLogoText}</div>
+              <a href={content.financingExploreHref} className="pdp__opt-link">{content.financingExploreLabel}</a>
             </div>
-            <a href="#" className="pdp__opt-link">Learn more about financing ›</a>
+            <a href={content.financingLearnMoreHref} className="pdp__opt-link">{content.financingLearnMoreLabel}</a>
           </ToggleRow>
 
           {/* Delivery */}
@@ -830,9 +1133,9 @@ export const PDPPage = () => {
 
       {/* ── แนะนำซื้อคู่กัน ─────────────────────────────────────────────── */}
       <section className="pdp__bundle">
-        <h2 className="pdp__bundle-title">แนะนำซื้อคู่กัน</h2>
+        <h2 className="pdp__bundle-title">{content.bundleTitle}</h2>
         <div className="pdp__bundle-list">
-          {product.bundleItems.map((item) => (
+          {bundleItems.map((item) => (
             <div key={item.id} className="pdp__bundle-item">
               <div className="pdp__bundle-img">
                 <img src={item.imageSrc} alt={item.name} />
@@ -843,7 +1146,7 @@ export const PDPPage = () => {
                   {fmt(item.price)} {product.currency}
                 </div>
               </div>
-              <button className="pdp__bundle-add">เพิ่ม</button>
+              <button className="pdp__bundle-add">{content.bundleAddButton}</button>
             </div>
           ))}
         </div>
@@ -860,36 +1163,29 @@ export const PDPPage = () => {
           {/* Details */}
           <div className="pdp__summary-details">
             <h2 className="pdp__summary-heading">
-              Your new {product.name}.
+              {content.summaryHeadingPrefix} {product.name}.
             </h2>
             <p className="pdp__summary-tagline">{product.tagline}</p>
 
             <div className="pdp__summary-name">{displayName} M5</div>
 
             <dl className="pdp__summary-config">
-              <div className="pdp__summary-config-row">
-                <dt>Color</dt>
-                <dd>{color.name}</dd>
-              </div>
-              <div className="pdp__summary-config-row">
-                <dt>Processor</dt>
-                <dd>
-                  {processor.label}
-                  {processor.sublabel && ` ${processor.sublabel}`}
-                </dd>
-              </div>
-              <div className="pdp__summary-config-row">
-                <dt>Memory</dt>
-                <dd>{memory.label}</dd>
-              </div>
-              <div className="pdp__summary-config-row">
-                <dt>Storage</dt>
-                <dd>{storage.label}</dd>
-              </div>
+              {customizeGroups.map((group) => {
+                const selectedOption = getSelectedCustomizeOption(group);
+                return (
+                  <div key={group.key} className="pdp__summary-config-row">
+                    <dt>{group.label}</dt>
+                    <dd>
+                      {selectedOption?.label}
+                      {selectedOption?.sublabel && ` ${selectedOption.sublabel}`}
+                    </dd>
+                  </div>
+                );
+              })}
               {appleCare && (
                 <div className="pdp__summary-config-row">
-                  <dt>AppleCare+</dt>
-                  <dd>เพิ่มแล้ว</dd>
+                  <dt>{content.summaryAppleCareLabel}</dt>
+                  <dd>{content.summaryAppleCareValue}</dd>
                 </div>
               )}
             </dl>
@@ -901,7 +1197,7 @@ export const PDPPage = () => {
             {/* Qty */}
             <div className="pdp__qty-row">
               <label className="pdp__qty-label" htmlFor="pdp-qty">
-                Qty
+                {content.qtyLabel}
               </label>
               <div className="pdp__qty-ctrl">
                 <button
@@ -929,17 +1225,17 @@ export const PDPPage = () => {
               </div>
             </div>
 
-            <a href="#" className="pdp__summary-avail">
-              ดูข้อมูล stock availability ›
+            <a href={content.stockAvailabilityHref} className="pdp__summary-avail">
+              {content.stockAvailabilityLabel}
             </a>
 
             {product.available ? (
               <button className="pdp__btn-buy">
-                ซื้อเลย {product.currency}
+                {content.buyNowLabel} {product.currency}
               </button>
             ) : (
               <button className="pdp__btn-notify">
-                แจ้งเตือนเมื่อมีสินค้า
+                {content.notifyLabel}
               </button>
             )}
           </div>
@@ -948,9 +1244,9 @@ export const PDPPage = () => {
 
       {/* ── Accordions ──────────────────────────────────────────────────── */}
       <div className="pdp__accordions">
-        <Accordion label="ข้อมูลจำเพาะ">
+        <Accordion label={content.specsAccordionLabel}>
           <dl className="pdp__specs">
-            {product.specs.map((s, i) => (
+            {specs.map((s, i) => (
               <div key={i} className="pdp__spec-row">
                 <dt>{s.label}</dt>
                 <dd>{s.value}</dd>
@@ -959,27 +1255,27 @@ export const PDPPage = () => {
           </dl>
         </Accordion>
 
-        <Accordion label="คำอธิบายสินค้า">
+        <Accordion label={content.descriptionAccordionLabel}>
           <p className="pdp__accordion-text">{product.description}</p>
         </Accordion>
 
-        <Accordion label="คุณสมบัติเด่น">
+        <Accordion label={content.featuresAccordionLabel}>
           <ul className="pdp__features">
-            {product.features.map((f, i) => (
+            {features.map((f, i) => (
               <li key={i}>{f}</li>
             ))}
           </ul>
         </Accordion>
 
-        <Accordion label="อุปกรณ์ในกล่อง">
+        <Accordion label={content.inBoxAccordionLabel}>
           <ul className="pdp__inbox">
-            {product.inBox.map((item, i) => (
+            {inBox.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
           </ul>
         </Accordion>
 
-        <Accordion label="การรับประกัน">
+        <Accordion label={content.warrantyAccordionLabel}>
           <p className="pdp__accordion-text">{product.warranty}</p>
         </Accordion>
       </div>
@@ -988,17 +1284,17 @@ export const PDPPage = () => {
       <div className="pdp__sticky-bar">
         <div className="pdp__sticky-bar-price-row">
           <span className="pdp__sticky-bar-total">{fmt(totalPrice)} {product.currency}</span>
-          <span className="pdp__sticky-bar-or"> or </span>
+          <span className="pdp__sticky-bar-or"> {content.stickyOrLabel} </span>
           <button
             className="pdp__monthly-link"
             onClick={() => setFinancingOpen(true)}
             aria-label="ดูข้อมูลการผ่อนชำระ"
           >
-            {fmt(Math.round(totalPrice / product.monthlyTerm))}/mo. for {product.monthlyTerm} mo. ›
+            {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. ›
           </button>
         </div>
         <hr className="pdp__sticky-bar-divider" />
-        <button className="pdp__btn-addcart">Add to cart</button>
+        <button className="pdp__btn-addcart">{content.addToCartLabel}</button>
       </div>
 
       {/* ── Financing Modal ──────────────────────────────────────────────── */}
@@ -1006,7 +1302,7 @@ export const PDPPage = () => {
         <FinancingModal
           price={totalPrice}
           currency={product.currency}
-          defaultTerm={product.monthlyTerm}
+          defaultTerm={monthlyTerm}
           onClose={() => setFinancingOpen(false)}
         />
       )}

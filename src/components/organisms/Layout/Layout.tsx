@@ -6,7 +6,7 @@ import { GlobalFooter } from '../GlobalFooter/GlobalFooter';
 
 interface LayoutProps {
   children: ReactNode;
-  announcementItems?: string[];
+  announcementItems?: ReactNode[];
 }
 
 /**
@@ -24,7 +24,11 @@ interface LayoutProps {
  */
 export const Layout = ({
   children,
-  announcementItems = ['สมัคร U•Joy | ผ่อนไม่ใช้บัตร | โปรโมชันประจำเดือน'],
+  announcementItems = [
+    <>
+      <a href="/promotions">สมัคร U•Joy</a> | <a href="/promotions">ผ่อนไม่ใช้บัตร</a> | <a href="/promotions">โปรโมชันประจำเดือน</a>
+    </>,
+  ],
 }: LayoutProps) => (
   <div className="layout">
     {/* Scrolls away — NOT inside sticky wrapper */}

@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
+import type { ReactNode } from 'react';
 import './AnnouncementBar.css';
 import { IconChevronLeft } from '../../atoms/icons/IconChevronLeft/IconChevronLeft';
 
 interface AnnouncementBarProps {
-  items: string[];
+  items: ReactNode[];
   className?: string;
 }
 

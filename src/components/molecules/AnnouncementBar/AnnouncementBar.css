@@ -61,5 +61,16 @@
   font-family: 'SFProThai', 'SfProText-Regular', sans-serif;
   font-size: 0.8125rem;
   line-height: 1;
-  font-weight: 400;
+  font-weight: 500;
+}
+
+.announcement-bar__text a {
+  color: inherit;
+  /* text-decoration: underline; */
+}
+
+.announcement-bar__text a:hover,
+.announcement-bar__text a:focus-visible {
+  opacity: 0.9;
+  text-decoration: underline;
 }

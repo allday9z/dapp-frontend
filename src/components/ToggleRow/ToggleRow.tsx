@@ -31,12 +31,13 @@ const CSS = `
   align-items: flex-start;
   gap: 0.3rem;
   font-family: 'SF Pro Text', 'SFProThai', -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 0.9375rem;
-  color: #6e6e73;
+  font-size: 16px;
+  color: #000000;
   text-align: right;
   flex: 1;
   justify-content: flex-end;
-  line-height: 1.4;
+  line-height: 1.2;
+  font-weight: 400;
 }
 .tog__chevron {
   flex-shrink: 0;

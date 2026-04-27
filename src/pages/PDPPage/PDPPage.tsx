@@ -59,40 +59,110 @@ const fmt = (n: number) =>
 // ── Gallery ────────────────────────────────────────────────────────────────
 function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
   const [idx, setIdx] = useState(0);
+  const idxRef = useRef(0);
   const total = media.length;
-  const dragOrigin = useRef<number | null>(null);
-  const viewportRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const thumbsRef = useRef<HTMLDivElement>(null);
+  const thumbDragOrigin = useRef<number | null>(null);
 
+  // Keep idxRef in sync (for use inside window event closures)
+  useEffect(() => { idxRef.current = idx; }, [idx]);
+
+  // Infinity wrap
   const prev = () => setIdx((i) => (i - 1 + total) % total);
   const next = () => setIdx((i) => (i + 1) % total);
 
-  const onDragBegin = (x: number) => { dragOrigin.current = x; };
-  const onDragEnd = (x: number) => {
-    if (dragOrigin.current === null) return;
-    const delta = dragOrigin.current - x;
-    const threshold = (viewportRef.current?.offsetWidth ?? 292) * 0.16;
-    if (Math.abs(delta) > threshold) { delta > 0 ? next() : prev(); }
-    dragOrigin.current = null;
+  // Manage track transform via DOM (not React style) for smooth drag
+  const applyTransform = (offset = 0, animate = true) => {
+    if (!trackRef.current) return;
+    trackRef.current.style.transition = animate ? "" : "none";
+    trackRef.current.style.transform = `translate3d(calc(-${idxRef.current} * var(--pdp-slide-w) + ${offset}px), 0, 0)`;
+  };
+
+  // Re-apply transform with animation whenever idx changes (button/dot nav)
+  useEffect(() => { applyTransform(0, true); }, [idx]);
+
+  // Auto-scroll thumbnail strip to center active thumb
+  useEffect(() => {
+    const container = thumbsRef.current;
+    if (!container) return;
+    const thumb = container.children[idx] as HTMLElement | undefined;
+    if (!thumb) return;
+    const thumbCenter = thumb.offsetLeft + thumb.offsetWidth / 2;
+    container.scrollTo({ left: thumbCenter - container.offsetWidth / 2, behavior: "smooth" });
+  }, [idx]);
+
+  const dragThreshold = 30;
+
+  // Mouse drag — attach to window so tracking never loses the cursor
+  const onViewportMouseDown = (e: React.MouseEvent) => {
+    const startX = e.clientX;
+    applyTransform(0, false);
+
+    const onMove = (ev: MouseEvent) => {
+      applyTransform(ev.clientX - startX, false);
+    };
+    const onUp = (ev: MouseEvent) => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      const delta = startX - ev.clientX;
+      if (Math.abs(delta) > dragThreshold) {
+        delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+      } else {
+        applyTransform(0, true); // snap back, no step
+      }
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+  };
+
+  // Touch drag
+  const touchStartX = useRef<number | null>(null);
+  const onViewportTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+    applyTransform(0, false);
+  };
+  const onViewportTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    applyTransform(e.touches[0].clientX - touchStartX.current, false);
+  };
+  const onViewportTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const delta = touchStartX.current - e.changedTouches[0].clientX;
+    touchStartX.current = null;
+    if (Math.abs(delta) > dragThreshold) {
+      delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+    } else {
+      applyTransform(0, true);
+    }
+  };
+
+  // Thumb strip — 1-step lock drag (no visual offset needed)
+  const onThumbDragBegin = (x: number) => { thumbDragOrigin.current = x; };
+  const onThumbDragEnd = (x: number) => {
+    if (thumbDragOrigin.current === null) return;
+    const delta = thumbDragOrigin.current - x;
+    if (Math.abs(delta) > dragThreshold) {
+      delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+    }
+    thumbDragOrigin.current = null;
   };
 
   return (
     <div className="pdp__gallery">
       {/* Viewport — clip window, size driven by CSS --pdp-slide-w */}
       <div
-        ref={viewportRef}
         className="pdp__gallery-viewport"
-        onTouchStart={(e) => onDragBegin(e.touches[0].clientX)}
-        onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
-        onMouseDown={(e) => onDragBegin(e.clientX)}
-        onMouseUp={(e) => onDragEnd(e.clientX)}
+        onMouseDown={onViewportMouseDown}
+        onTouchStart={onViewportTouchStart}
+        onTouchMove={onViewportTouchMove}
+        onTouchEnd={onViewportTouchEnd}
       >
-        {/* Track — all slides in a row, transform via CSS calc() */}
+        {/* Track — transform managed via DOM (applyTransform), not React inline style */}
         <div
+          ref={trackRef}
           className="pdp__gallery-track"
-          style={{
-            transform: `translate3d(calc(-${idx} * var(--pdp-slide-w)), 0, 0)`,
-            width: `calc(${total} * var(--pdp-slide-w))`,
-          }}
+          style={{ width: `calc(${total} * var(--pdp-slide-w))` }}
         >
           {media.map((m, i) => (
             <div key={i} className="pdp__gallery-slide">
@@ -146,14 +216,20 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
         </button>
       </div>
 
-      {/* Thumbnail strip */}
-      <div className="pdp__gallery-thumbs" role="tablist" aria-label="Product images">
+      {/* Thumbnail strip — single row, drag = 1-step lock */}
+      <div
+        ref={thumbsRef}
+        className="pdp__gallery-thumbs"
+        aria-label="Product images"
+        onTouchStart={(e) => onThumbDragBegin(e.touches[0].clientX)}
+        onTouchEnd={(e) => onThumbDragEnd(e.changedTouches[0].clientX)}
+        onMouseDown={(e) => onThumbDragBegin(e.clientX)}
+        onMouseUp={(e) => onThumbDragEnd(e.clientX)}
+      >
         {media.map((m, i) => (
           <button
             key={i}
-            role="tab"
-            aria-selected={i === idx}
-            className={`pdp__gallery-thumb${i === idx ? " on" : ""}`}
+            className="pdp__gallery-thumb"
             onClick={() => setIdx(i)}
             aria-label={`View image ${i + 1}`}
           >
@@ -507,7 +583,7 @@ export const PDPPage = () => {
           </div> */}
 
           {/* ── Customize ─────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading">Customize your {product.name}.</h2>
+          <h2 className="pdp__section-heading pdp_sec_head1">Customize your {product.name}.</h2>
 
           {/* Color */}
           <ToggleRow

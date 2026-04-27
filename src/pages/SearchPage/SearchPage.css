@@ -1,9 +1,10 @@
 .search-page {
-    font-family: "SFProThai", "SF Pro Text";
+    color: #1d1d1f;
+    padding: 20px;
+    margin-top: 1.5rem;
 }
 
 .template-search__header-inner {
-    font-family: "SFProThai", "SF Pro Text";
     font-size: 32px;
     font-style: normal;
     font-weight: 600;
@@ -14,6 +15,38 @@
     text-align: center;
 }
 
+.page-width {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.template-search__header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.facets-vertical {
+    display: flex;
+    gap: 40px;
+}
+
+.facets-wrapper {
+    width: 260px;
+    flex-shrink: 0;
+}
+
+.product-grid-container {
+    flex-grow: 1;
+}
+
+.facets-vertical-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
 .facets-vertical .facets__price {
     padding: .5rem .5rem .5rem 0;
 }
@@ -21,26 +54,28 @@
 .facets__price {
     display: flex;
     padding: 2rem;
+    align-items: center;
+    gap: 10px;
 }
 
 .facets__price .field-currency {
     align-self: center;
-    margin-right: .6rem;
-}
-
-.facets__price .field {
-    align-items: center;
 }
 
 .field {
     position: relative;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 5px;
     transition: box-shadow var(--duration-short) ease;
 }
 
-.field:before, .field:after {
-    border-radius: 0;
+.field__input {
+    padding: 8px 12px;
+    border: 1px solid #d2d2d7;
+    border-radius: 8px;
+    width: 100%;
 }
 
 .facets__header-vertical {
@@ -48,23 +83,49 @@
     font-size: 1.4rem;
 }
 
+.facets__summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 1px solid #d2d2d7;
+    list-style: none;
+}
+
+.facets__summary::-webkit-details-marker {
+    display: none;
+}
+
+.list-unstyled {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+}
+
+.list-menu__item {
+    font-size: 14px;
+}
+
+.facet-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 6px 2rem 6px 0;
+    flex-grow: 1;
+    position: relative;
+    word-break: break-word;
+}
+
 .facet-checkbox.facet-checkbox--pickup {
     width: 100%;
     padding-bottom: 4px;
 }
 
-.facets__item label, .facets__item input[type=checkbox] {
-    cursor: pointer;
-}
-.facet-checkbox {
-    padding: 6px 2rem 6px 0;
-    flex-grow: 1;
-    position: relative;
-    display: flex;
-    word-break: break-word;
-}
 .facets__text {
-    font-family: var(--font-body-family);
+    font-family: "SFProThai", "SF Pro Text";
     color: #000;
     font-size: 16px;
     font-style: normal;
@@ -72,160 +133,117 @@
     line-height: 20px;
 }
 
-.search-page {
-          font-family: "SFProThai", "SF Pro Text";
-          color: #1d1d1f;
-          padding: 20px;
-        }
-        .page-width {
-          max-width: 1400px;
-          margin: 0 auto;
-          padding: 0 20px;
-        }
-        .template-search__header {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-        .facets-vertical {
-          display: flex;
-          gap: 40px;
-        }
-        .facets-wrapper {
-          width: 260px;
-          flex-shrink: 0;
-        }
-        .product-grid-container {
-          flex-grow: 1;
-        }
-        .facets__summary {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 15px 0;
-          font-weight: 600;
-          cursor: pointer;
-          border-bottom: 1px solid #d2d2d7;
-          list-style: none;
-        }
-        .facets__summary::-webkit-details-marker {
-          display: none;
-        }
-        .list-unstyled {
-          list-style: none;
-          padding: 0;
-          margin: 15px 0;
-        }
-        .list-menu__item {
-          font-size: 14px;
-        }
-        .facet-checkbox {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          cursor: pointer;
-        }
-        .facets__price {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-        }
-        .field {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-        }
-        .field__input {
-          padding: 8px 12px;
-          border: 1px solid #d2d2d7;
-          border-radius: 8px;
-          width: 100%;
-        }
-        .facet-filters {
-          display: flex;
-          justify-content: flex-end;
-          margin-bottom: 20px;
-        }
-        .select__select, .select-custom {
-          padding: 8px 30px 8px 12px;
-          border-radius: 8px;
-          border: 1px solid #d2d2d7;
-          appearance: none;
-          background: transparent;
-        }
-        .grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-        }
-        .card1 {
-          background: #fff;
-          border-radius: 18px;
-          padding: 20px;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .card1:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-        }
-        .card__media img {
-          width: 100%;
-          height: auto;
-          object-fit: contain;
-          margin-bottom: 20px;
-        }
-        .card-info {
-          display: flex;
-          flex-direction: column;
-          flex-grow: 1;
-        }
-        .card-head {
-          font-size: 16px;
-          line-height: 1.4;
-          margin: 0 0 10px 0;
-        }
-        .full-unstyled-link {
-          text-decoration: none;
-          color: inherit;
-        }
-        .full-unstyled-link:hover {
-          color: #0071e3;
-        }
-        .price-item {
-          font-size: 18px;
-          font-weight: 600;
-        }
-        .net-monthly-pricing {
-          font-size: 13px;
-          color: #6e6e73;
-          margin-top: 8px;
-          margin-bottom: 20px;
-        }
-        .button-cart {
-          margin-top: auto;
-        }
-        .button--primary {
-          background-color: #0071e3;
-          color: white;
-          border: none;
-          border-radius: 999px;
-          padding: 10px 20px;
-          width: 100%;
-          font-size: 14px;
-          font-weight: 400;
-          cursor: pointer;
-          display: inline-block;
-          text-align: center;
-          text-decoration: none;
-          box-sizing: border-box;
-        }
-        .button--primary:hover {
-          background-color: #0077ed;
-        }
-        .facets__item .facets__item-pickup {
+.select__select, .select-custom {
+    padding: 8px 30px 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #d2d2d7;
+    appearance: none;
+    background: transparent;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.card1 {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease;
+}
+
+.card__media {
+    border: .5px solid #7d7d7d;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.card__media img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.card1:hover .card__media img {
+    transform: scale(1.05);
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-head {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    min-height: 40px;
+    text-align: center;
+}
+
+.price-item-old-1 {
+  font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -.02em;
+    color: #000;
+}
+
+.full-unstyled-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.full-unstyled-link:hover {
+    color: #0071e3;
+}
+
+.net-monthly-pricing {
+    font-size: 13px;
+    color: #6e6e73;
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
+.button-cart {
+    margin-top: auto;
+}
+
+.button--primary {
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 20px;
+    width: 100%;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.button--primary:hover {
+    background-color: #0077ed;
+}
+
+.facets__item .facets__item-pickup {
     background: none;
     border: none;
     cursor: pointer;
@@ -239,26 +257,6 @@
     padding-left: 20px;
     text-align: left;
 }
-        @media (max-width: 990px) {
-          .facets-vertical {
-            flex-direction: column;
-          }
-          .facets-wrapper {
-            width: 100%;
-          }
-          .grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
-        }
-        @media (max-width: 750px) {
-          .grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-.facets__text {
-  font-family: "SFProThai", "SF Pro Text";
-}
 
 .facets-vertical .facet-checkbox input[type=checkbox] {
     z-index: 0;
@@ -266,26 +264,15 @@
 
 .facet-checkbox input[type=checkbox] {
     position: absolute;
-    opacity: 1;
-    width: 1.6rem;
-    height: 1.6rem;
-    top: .7rem;
-    left: -.4rem;
-    z-index: 0;
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: #fff;
-    margin: 0;
-    border: none;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
+
 .facets__item label, .facets__item input[type=checkbox] {
     cursor: pointer;
 }
-input[type=checkbox] {
-    display: inline-block;
-    width: auto;
-    margin-right: .5rem;
-}
+
 input, .field__input, .quantity__button, .field__button {
     font-family: var(--font-body-family);
 }
@@ -294,4 +281,27 @@ input, .field__input, .quantity__button, .field__button {
     margin-top: 1px;
     flex-shrink: 0;
     z-index: 1;
+}
+
+@media (max-width: 990px) {
+    .facets-vertical {
+        flex-direction: column;
+    }
+    .facets-wrapper {
+        width: 100%;
+    }
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .facets-vertical-form {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 750px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
 }

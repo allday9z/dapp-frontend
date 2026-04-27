@@ -3,6 +3,74 @@
 import { useState, useEffect } from "react";
 import './SearchPage.css';
 import StoreLocatorDrawer from '@/components/organisms/StoreLocator/StoreLocatorDrawer';
+import { PRODUCTS } from './SearchPageProduct';
+
+const ProductCard = ({ product }: { product: any }) => {
+  if (product.type === 'article') {
+    return (
+      <div className="grid__item product-item search-product-card">
+        <div className="article-card-wrapper card-wrapper underline-links-hover" style={{ height: '100%' }}>
+          <div className="card1 card card--card card--text ratio color-background-2" style={{ '--ratio-percent': '100%', justifyContent: 'center', alignItems: 'center' } as React.CSSProperties}>
+            <div className="card__content" style={{ textAlign: 'center' }}>
+              <div className="card__information">
+                <h3 className="card__heading" style={{ fontSize: '20px', margin: '0' }}>
+                  <a href={product.url} className="full-unstyled-link">{product.title}</a>
+                </h3>
+              </div>
+              <div className="card__badge" style={{ marginTop: '10px' }}>
+                <span className="badge color-background-1" style={{ fontSize: '12px', background: '#f5f5f7', padding: '4px 8px', borderRadius: '4px' }}>{product.badge}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="grid__item product-item search-product-card">
+      <div className="underline-links-hover" style={{ height: '100%' }}>
+        <div className="card1 card apl-section-product-card card--standard card--media" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
+          <a href={product.url} className="full-unstyled-link" aria-hidden="false">
+            <div className="you_may_also_like card-pro card__inner color-background-2 ratio" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
+              <div className="card__media">
+                <div className="media media--transparent media--hover-effect">
+                  <img src={product.image} loading="lazy" alt={product.title} className="motion-reduce img-reduce apl-section-product-card-image" width="4000" height="4000" />
+                </div>
+              </div>
+            </div>
+          </a>
+          <div className="card-info card__content">
+            <div className="card__information">
+              <h3 className="card-head h5 apl-section-product-title">
+                <a href={product.url} className="full-unstyled-link full-unstyled-link-1">{product.title}</a>
+              </h3>
+              <div className="card-information">
+                <div className="fbt_cartCSS price price-product" data-prodprice={product.price}>
+                  <div className="price__container_carousel price__container_">
+                    <div className="price__regular apl-section-product-price">
+                      <div className="price-item-old-1">
+                        <span className="price-item price-item--regular">{product.price}</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="net-monthly-pricing net-monthly-pricing--product_card first-party apl-section-net-monthly-pricing">
+                    <span>{product.monthly}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="button-cart">
+              <div className="product-form__buttons card-slider-buttons button_primary_clckd">
+                <a href={product.url} className="button_primary_anchor card-btn button--full-width button--primary apl-section-product-card-button">Shop</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const STORE_STORAGE_KEY = 'user_selected_store';
 const STORE_EXPIRY_MS = 60 * 60 * 1000;
@@ -139,7 +207,7 @@ export const SearchPage = () => {
 
               <div className="product-count light hidden" role="status">
                 <h2 className="product-count__text text-body">
-                  <span id="ProductCount">22 products</span>
+                  <span id="ProductCount">{PRODUCTS.length} products</span>
                 </h2>
               </div>
             </div>
@@ -172,7 +240,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-1-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">ตัวเลือกการรับสินค้า</legend>
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item list-menu__item--pickup apl-section-facet-item active">
                               <label 
@@ -226,7 +293,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-2-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">สถานะ</legend>
                           <ul className="list-unstyled no-js-hidden">
                             <li className="list-menu__item facets__item apl-section-facet-item">
                               <label 
@@ -270,7 +336,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-3-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">แบรนด์</legend>
                           <ul className="list-unstyled no-js-hidden">
                             {[
                               { id: 'brandAnker', label: 'ANKER' },
@@ -306,7 +371,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-4-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">หมวดหมู่</legend>
                           <ul className="list-unstyled no-js-hidden">
                             {[
                               { id: 'catAirtag', label: 'AirTag' },
@@ -342,7 +406,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-5-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">ความเข้ากันได้</legend>
                           <ul className="list-unstyled no-js-hidden">
                             {[
                               { id: 'compIphone17', label: 'iPhone 17' },
@@ -399,7 +462,6 @@ export const SearchPage = () => {
                       </summary>
                       <div id="Facet-7-template--20346294042676__main" className="parent-display facets__display-vertical">
                         <fieldset className="facets-wrap parent-wrap facets-wrap-vertical apl-section-facet-list">
-                          <legend className="visually-hidden">ความจุ</legend>
                           <ul className="list-unstyled no-js-hidden">
                             {[
                               { id: 'cap64gb', label: '64GB' },
@@ -435,19 +497,19 @@ export const SearchPage = () => {
           <div className="product-grid-container" id="ProductGridContainer">
             <div className="facets facets-vertical-sort no-js-hidden">
               <form className="facets-vertical-form" id="FacetSortForm">
+                <div className="product-count-vertical light" role="status">
+                  <h2 className="product-count__text text-body" style={{ margin: 0, fontSize: '14px', fontWeight: '400', color: '#6e6e73' }}>
+                    <span id="ProductCount">{PRODUCTS.length} สินค้า</span>
+                  </h2>
+                </div>
                 <div className="facet-filters sorting caption">
-                  <div className="facet-filters__field" style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '20px', position: 'relative' }}>
+                  <div className="facet-filters__field" style={{ display: 'flex', position: 'relative' }}>
                     <select name="sort_by" className="facet-filters__sort select-custom apl-section-facets-sort" id="SortBy" aria-describedby="a11y-refresh-page-message" defaultValue="relevance">
-                      <option className="apl-section-facets-sort-relevance" value="relevance">Relevance</option>
+                      <option className="apl-section-facets-sort-relevance" value="relevance">ที่เกี่ยวข้องที่สุด</option>
                       <option className="apl-section-facets-sort-price-ascending" value="price-ascending">Price, low to high</option>
                       <option className="apl-section-facets-sort-price-descending" value="price-descending">Price, high to low</option>
                     </select>
                   </div>
-                </div>
-                <div className="product-count-vertical light" role="status">
-                  <h2 className="product-count__text text-body" style={{ margin: '0 0 20px 0', fontSize: '14px', color: '#6e6e73' }}>
-                    <span id="ProductCountDesktop">22 products</span>
-                  </h2>
                 </div>
               </form>
             </div>
@@ -456,108 +518,9 @@ export const SearchPage = () => {
               <div className="loading-overlay gradient"></div>
               
               <div data-section-id="template--20346294042676__main" data-sectionid="template--20346294042676__main" className="grid product-grid grid--1-col-tablet-down grid--3-col-desktop" aria-label="Search resultscarousel">
-                
-                <div className="grid__item product-item search-product-card" aria-label="Slide 1 of 22">
-                  <div className="underline-links-hover" style={{ height: '100%' }}>
-                    <div className="card1 card apl-section-product-card card--standard card--media card1--46889580298292" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
-                      <a href="/products/15-inch-macbook-air-mryp3ll-a" className="full-unstyled-link" aria-hidden="false">
-                        <div className="you_may_also_like card-pro card__inner color-background-2 ratio" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
-                          <div className="card__media">
-                            <div className="media media--transparent media--hover-effect">
-                              <img src="//appstaging.dev/cdn/shop/files/IMG-12357281_c7cc6bc0-58ca-4b1d-aba8-5a81d246086d_533x.jpg?v=1750710001" srcSet="//appstaging.dev/cdn/shop/files/IMG-12357281_c7cc6bc0-58ca-4b1d-aba8-5a81d246086d_165x.jpg?v=1750710001 165w, //appstaging.dev/cdn/shop/files/IMG-12357281_c7cc6bc0-58ca-4b1d-aba8-5a81d246086d_360x.jpg?v=1750710001 360w" sizes="(min-width: 1220px) 272px, (min-width: 990px) calc((100vw - 130px) / 4), calc((100vw - 35px) / 2)" loading="lazy" alt="MacBook_Air_15" className="motion-reduce img-reduce apl-section-product-card-image" width="4000" height="4000" />
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="card-info card__content">
-                        <div className="card__information">
-                          <h3 className="card-head h5 apl-section-product-title">
-                            <a href="/products/15-inch-macbook-air-mryp3ll-a" className="full-unstyled-link full-unstyled-link-1">15-inch MacBook Air: Apple M3 chip with 8‑core CPU and 10‑core GPU, 256GB SSD - Silver</a>
-                          </h3>
-                          <div className="card-information">
-                            <div className="fbt_cartCSS price price-product-GA-46889580298292 price-product" data-prodprice="$4,000.00 USD">
-                              <div className="price__container_carousel price__container_">
-                                <div className="price__regular apl-section-product-price">
-                                  <div className="price-item-old-1">
-                                    <span className="price-item price-item--regular">$4,000.00 USD</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="net-monthly-pricing net-monthly-pricing--product_card first-party apl-section-net-monthly-pricing">
-                                <span>$333.33/mo. for 12 mo.</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="button-cart">
-                          <div className="product-form__buttons card-slider-buttons button_primary_clckd" id="button_primary_clckd_46889580298292">
-                            <a href="/products/15-inch-macbook-air-mryp3ll-a" className="button_primary_anchor card-btn button--full-width button--primary slider-form-46889580298292 apl-section-product-card-button">Shop</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid__item product-item search-product-card" aria-label="Slide 2 of 22">
-                  <div className="underline-links-hover" style={{ height: '100%' }}>
-                    <div className="card1 card apl-section-product-card card--standard card--media card1--46890827153460" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
-                      <a href="/products/15-inch-macbook-air-mc9d4ll-a" className="full-unstyled-link" aria-hidden="false">
-                        <div className="you_may_also_like card-pro card__inner color-background-2 ratio" style={{ '--ratio-percent': '100%' } as React.CSSProperties}>
-                          <div className="card__media">
-                            <div className="media media--transparent media--hover-effect">
-                              <img src="//appstaging.dev/cdn/shop/files/IMG-12357290_397ece17-093c-4949-bd10-3a0c04dd6a6a_533x.jpg?v=1750128950" sizes="(min-width: 1220px) 272px, calc((100vw - 35px) / 2)" loading="lazy" alt="MacBook_Air_Space_Gray" className="motion-reduce img-reduce apl-section-product-card-image" width="4000" height="4000" />
-                            </div>
-                          </div>
-                        </div>
-                      </a>
-                      <div className="card-info card__content">
-                        <div className="card__information">
-                          <h3 className="card-head h5 apl-section-product-title">
-                            <a href="/products/15-inch-macbook-air-mc9d4ll-a" className="full-unstyled-link full-unstyled-link-1">15-inch MacBook Air: Apple M3 chip with 8‑core CPU and 10‑core GPU, 256GB SSD - Space Gray</a>
-                          </h3>
-                          <div className="card-information">
-                            <div className="fbt_cartCSS price price-product-GA-46890827153460 price-product" data-prodprice="$5,000.00 USD">
-                              <div className="price__container_carousel price__container_">
-                                <div className="price__regular apl-section-product-price">
-                                  <div className="price-item-old-1">
-                                    <span className="price-item price-item--regular">$5,000.00 USD</span>
-                                  </div>
-                                </div>
-                              </div>
-                              <div className="net-monthly-pricing net-monthly-pricing--product_card first-party apl-section-net-monthly-pricing">
-                                <span>$416.66/mo. for 12 mo.</span>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div className="button-cart">
-                          <div className="product-form__buttons card-slider-buttons button_primary_clckd">
-                            <a href="/products/15-inch-macbook-air-mc9d4ll-a" className="button_primary_anchor card-btn button--full-width button--primary slider-form-46890827153460 apl-section-product-card-button">Shop</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid__item product-item search-product-card" aria-label="Slide 21 of 22">
-                  <div className="article-card-wrapper card-wrapper underline-links-hover" style={{ height: '100%' }}>
-                    <div className="card1 card card--card card--text ratio color-background-2" style={{ '--ratio-percent': '100%', justifyContent: 'center', alignItems: 'center' } as React.CSSProperties}>
-                      <div className="card__content" style={{ textAlign: 'center' }}>
-                        <div className="card__information">
-                          <h3 className="card__heading" style={{ fontSize: '20px', margin: '0' }}>
-                            <a href="/pages/imac-m4" className="full-unstyled-link">iMac M4</a>
-                          </h3>
-                        </div>
-                        <div className="card__badge" style={{ marginTop: '10px' }}>
-                          <span className="badge color-background-1" style={{ fontSize: '12px', background: '#f5f5f7', padding: '4px 8px', borderRadius: '4px' }}>Page Content</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
+                {PRODUCTS.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
               </div>
             </div>
           </div>

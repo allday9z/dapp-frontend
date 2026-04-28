@@ -11,6 +11,7 @@ import { BagCart } from '../BagCart/BagCart';
 import StoreLocatorDrawer from '../StoreLocator/StoreLocatorDrawer';
 import { STORES_DATA } from '../StoreLocator/StoreList';
 import navMenu from '@/data/navigation.json';
+import SearchDrawerMobile from '../SearchDrawer/SearchDrawer';
 
 type Breakpoints = {
   mobile: boolean;
@@ -306,6 +307,10 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
   const [selectedStoreName, setSelectedStoreName] = useState<string | null>(null);
   const [userLocation, setUserLocation] = useState<{lat: number, lng: number} | null>(null);
   const [isLoadingStore, setIsLoadingStore] = useState(false);
+  
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
+  const [isClosingMobileSearch, setIsClosingMobileSearch] = useState(false);
+
   const isStoreOpenRef = useRef(isStoreOpen);
 
   useEffect(() => {
@@ -415,12 +420,25 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
     setIsClosingDrawer(false);
   };
 
+  const openMobileSearch = () => {
+    setIsMobileSearchOpen(true);
+  };
+
+  const closeMobileSearch = () => {
+    if (isClosingMobileSearch) return;
+    setIsClosingMobileSearch(true);
+    setTimeout(() => {
+      setIsMobileSearchOpen(false);
+      setIsClosingMobileSearch(false);
+    }, 350);
+  };
+
   useEffect(() => {
     if (!isMobile && mobileDrawerOpen) closeDrawerImmediate();
   }, [isMobile, mobileDrawerOpen]);
 
   useEffect(() => {
-    if (isMobile && mobileDrawerOpen) {
+    if (isMobile && (mobileDrawerOpen || isMobileSearchOpen)) {
       document.body.style.overflow = 'hidden';
       document.documentElement.style.overflow = 'hidden';
     } else {
@@ -431,7 +449,7 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
       document.body.style.overflow = 'auto';
       document.documentElement.style.overflow = 'auto';
     };
-  }, [isMobile, mobileDrawerOpen]);
+  }, [isMobile, mobileDrawerOpen, isMobileSearchOpen]);
 
   useEffect(() => {
     const DOWN_DELTA = 6;
@@ -595,6 +613,16 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                 <LogoWipApp className="global-nav__logo-wip" />
               </div>
               <div className="global-nav__mobile-right-icons">
+                <button
+                  type="button"
+                  className="global-nav__mobile-search-toggle"
+                  aria-label="ค้นหา"
+                  onClick={openMobileSearch}
+                >
+                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
+                    <path fillRule="evenodd" clipRule="evenodd" d="M11.5 7c0 2.485-2.015 4.5-4.5 4.5S2.5 9.485 2.5 7 4.515 2.5 7 2.5 11.5 4.515 11.5 7zM16 15.293l-4.512-4.512A6.467 6.467 0 0013 7c0-3.314-2.686-6-6-6S1 3.686 1 7s2.686 6 6 6c1.4 0 2.685-.48 3.78-1.28l4.513 4.512L16 15.293z" />
+                  </svg>
+                </button>
                 <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">
                   <svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true">
                     <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
@@ -843,12 +871,19 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
             </div>
           </>
         )}
+        
         {isDrawerOpen && (
           <StoreLocatorDrawer
             selectedStoreName={selectedStoreName}
             onClose={() => setIsDrawerOpen(false)}
             onSelect={handleStoreSelect}
           />
+        )}
+        
+        {isMobileSearchOpen && (
+          <div className={`global-nav__mobile-search-drawer ${isClosingMobileSearch ? 'slide-out-right' : 'slide-in-right'}`}>
+            <SearchDrawerMobile onClose={closeMobileSearch} />
+          </div>
         )}
 
         <div id="global-nav-addon-slot" />

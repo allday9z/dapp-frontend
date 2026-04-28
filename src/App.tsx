@@ -1,9 +1,9 @@
 /* Global styles are loaded in index.tsx (fonts, global, vars) */
 import { lazy, Suspense } from 'react';
 import { Layout } from '@/components/organisms/Layout/Layout';
+import { HomePage } from '@/pages/HomePage/HomePage';
 
 // Lazy-load each page → separate JS chunk per route
-const HomePage       = lazy(() => import('@/pages/HomePage/HomePage').then(m => ({ default: m.HomePage })));
 const PLPPage        = lazy(() => import('@/pages/PLPPage/PLPPage').then(m => ({ default: m.PLPPage })));
 const LOBPage        = lazy(() => import('@/pages/LOBPage/LOBPage').then(m => ({ default: m.LOBPage })));
 const PDPPage        = lazy(() => import('@/pages/PDPPage/PDPPage').then(m => ({ default: m.PDPPage })));

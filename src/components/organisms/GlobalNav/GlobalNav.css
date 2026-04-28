@@ -31,6 +31,12 @@
   transform: translateY(-100%);
 }
 
+.global-nav:has(.global-nav__mobile-search-drawer) {
+  z-index: 2147483647;
+  transform: none !important;
+  will-change: auto !important;
+}
+
 #global-nav-addon-slot:empty {
   display: none;
 }
@@ -213,14 +219,21 @@
 .global-nav__mobile-search-drawer {
   position: fixed;
   top: 0;
-  right: 0;
-  width: 100%;
-  height: 100vh;
+  left: 0;
+  width: 100dvw;
+  height: 100dvh;
   background: #fff;
-  z-index: 1000;
+  z-index: 2147483647;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
+  margin: 0;
+  padding: 0;
+}
+
+.global-nav__mobile-search-drawer > div {
+  width: 100%;
+  min-height: 100%;
 }
 
 .global-nav__mobile-search-drawer.slide-in-right {

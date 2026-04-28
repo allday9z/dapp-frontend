@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SearchDrawerMobile() {
+export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }) {
   const quickLinks = [
     { label: 'Find a Store', href: '/pages/store-locator' },
     { label: 'AirPods', href: '/collections/airpods-3rd-gen' },
@@ -19,7 +19,7 @@ export default function SearchDrawerMobile() {
     <div className="search-modal modal__content gradient" role="dialog" aria-modal="true" aria-label="Search">
       <div className="modal-overlay" />
       <div className="search-modal__content search-modal__content-bottom" tabIndex={-1}>
-        <button type="button" className="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="Close">
+        <button type="button" onClick={onClose} className="search-modal__close-button modal__close-button link link--text focus-inset" aria-label="Close">
           <svg className="icon icon-close" aria-hidden="true" focusable="false">
             <use href="#icon-close" />
           </svg>

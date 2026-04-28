@@ -16,7 +16,7 @@ export const ZigzagNeedHelp = ({
         className={"app-zigzag-property-1-need-help-device-desktop " + className}
       >
         <div className="image-area">
-          <img className="download-2-2" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/service.jpg?inline=true" alt="" />
+          <img className="download-2-2" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/service.jpg?inline=true" alt="" loading="lazy" decoding="async" fetchPriority="low" width={608} height={364} />
         </div>
         <div className="text">
           <div className="frame-438">
@@ -42,7 +42,7 @@ export const ZigzagNeedHelp = ({
         className={"app-zigzag-property-1-need-help-device-mobile " + className}
       >
         <div className="image-area">
-          <img className="download-2-2" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/service.jpg?inline=true" alt="" />
+          <img className="download-2-2" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/service.jpg?inline=true" alt="" loading="lazy" decoding="async" fetchPriority="low" width={608} height={364} />
         </div>
         <div className="text">
           <div className="frame-438">

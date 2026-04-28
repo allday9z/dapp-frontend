@@ -190,6 +190,10 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
                     src="/apple-partner-footer/apple-partner-1.svg"
                     alt="Apple Premium Partner"
                     className="global-footer__partner-logo global-footer__partner-logo--premium"
+                    loading="lazy"
+                    decoding="async"
+                    width={76}
+                    height={36}
                     onError={(e) => {
                       e.currentTarget.src = '/group0.svg';
                     }}
@@ -198,6 +202,10 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
                     src="/apple-partner-footer/apple-partner-2.svg"
                     alt="Authorized Service Provider"
                     className="global-footer__partner-logo global-footer__partner-logo--service"
+                    loading="lazy"
+                    decoding="async"
+                    width={253}
+                    height={64}
                     onError={(e) => {
                       e.currentTarget.src = '/vector0.svg';
                     }}
@@ -206,6 +214,10 @@ export const GlobalFooter = ({ className = '' }: GlobalFooterProps) => {
                     src="/apple-partner-footer/apple-partner-3.svg"
                     alt="Authorized Education Specialist"
                     className="global-footer__partner-logo global-footer__partner-logo--education"
+                    loading="lazy"
+                    decoding="async"
+                    width={293}
+                    height={68}
                     onError={(e) => {
                       e.currentTarget.src = '/vector2.svg';
                     }}

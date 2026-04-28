@@ -47,87 +47,83 @@ export const HeroBannerCarousel = ({
   slides = SLIDES,
   className = "",
 }: IHeroBannerCarouselProps): JSX.Element => {
-  const desktopContainerRef = useRef<HTMLDivElement>(null);
-  const mobileContainerRef = useRef<HTMLDivElement>(null);
-  const desktopInstanceRef = useRef<CarouselInstance | null>(null);
-  const mobileInstanceRef = useRef<CarouselInstance | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const instanceRef = useRef<CarouselInstance | null>(null);
   const [activeIdx, setActiveIdx] = useState(0);
 
   useEffect(() => {
-    const initCarousel = (
-      container: HTMLDivElement | null,
-      instanceRef: React.MutableRefObject<CarouselInstance | null>
-    ) => {
-      if (!container) return;
+    const container = containerRef.current;
+    if (!container) return;
 
-      const instance = Carousel(
-        container,
-        {
-          infinite: true,
-          transition: "slide",
-          slidesPerPage: 1,
-          Autoplay: { timeout: 5000, pauseOnHover: true },
-        },
-        { Autoplay }
-      );
+    const instance = Carousel(
+      container,
+      {
+        infinite: true,
+        transition: "slide",
+        slidesPerPage: 1,
+        Autoplay: { timeout: 5000, pauseOnHover: true },
+      },
+      { Autoplay }
+    );
 
-      instance.on("change", (_api: unknown, newPageIndex: number) => {
-        setActiveIdx(newPageIndex);
-      });
+    instance.on("change", (_api: unknown, newPageIndex: number) => {
+      setActiveIdx(newPageIndex);
+    });
 
-      instance.init();
-      instanceRef.current = instance;
-    };
-
-    initCarousel(desktopContainerRef.current, desktopInstanceRef);
-    initCarousel(mobileContainerRef.current, mobileInstanceRef);
+    instance.init();
+    instanceRef.current = instance;
 
     return () => {
-      desktopInstanceRef.current?.destroy();
-      mobileInstanceRef.current?.destroy();
-      desktopInstanceRef.current = null;
-      mobileInstanceRef.current = null;
+      instanceRef.current?.destroy();
+      instanceRef.current = null;
     };
   }, []);
 
-  const goTo = (i: number) => {
-    desktopInstanceRef.current?.goTo(i);
-    mobileInstanceRef.current?.goTo(i);
+  const goTo = (index: number) => {
+    instanceRef.current?.goTo(index);
   };
 
   return (
     <div className={`banner-carousel-property-1-organism-property-2-homepage-banner-section ${className}`.trim()}>
       <div
-        ref={desktopContainerRef}
-        className="f-carousel banner-carousel-stage is-desktop"
+        ref={containerRef}
+        className="f-carousel banner-carousel-stage"
         style={{ backgroundColor: slides[activeIdx]?.bgColor, transition: "background-color 0.6s ease" }}
       >
-        {slides.map((slide, i) => (
-          <div key={i} className="f-carousel__slide">
+        {slides.map((slide, index) => (
+          <div key={index} className="f-carousel__slide">
             {slide.href ? (
               <a href={slide.href} className="banner-carousel-link" draggable={false}>
-                <img src={slide.desktopSrc} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
+                <picture className="banner-carousel-picture">
+                  <source media="(max-width: 768px)" srcSet={slide.mobileSrc} />
+                  <img
+                    src={slide.desktopSrc}
+                    alt={slide.alt ?? `slide ${index + 1}`}
+                    draggable={false}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "low"}
+                    decoding="async"
+                    width={1400}
+                    height={700}
+                    sizes="100vw"
+                  />
+                </picture>
               </a>
             ) : (
-              <img src={slide.desktopSrc} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
-            )}
-          </div>
-        ))}
-      </div>
-
-      <div
-        ref={mobileContainerRef}
-        className="f-carousel banner-carousel-stage is-mobile"
-        style={{ backgroundColor: slides[activeIdx]?.bgColor, transition: "background-color 0.6s ease" }}
-      >
-        {slides.map((slide, i) => (
-          <div key={i} className="f-carousel__slide">
-            {slide.href ? (
-              <a href={slide.href} className="banner-carousel-link" draggable={false}>
-                <img src={slide.mobileSrc} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
-              </a>
-            ) : (
-              <img src={slide.mobileSrc} alt={slide.alt ?? `slide ${i + 1}`} draggable={false} />
+              <picture className="banner-carousel-picture">
+                <source media="(max-width: 768px)" srcSet={slide.mobileSrc} />
+                <img
+                  src={slide.desktopSrc}
+                  alt={slide.alt ?? `slide ${index + 1}`}
+                  draggable={false}
+                  loading={index === 0 ? "eager" : "lazy"}
+                  fetchPriority={index === 0 ? "high" : "low"}
+                  decoding="async"
+                  width={1400}
+                  height={700}
+                  sizes="100vw"
+                />
+              </picture>
             )}
           </div>
         ))}
@@ -135,14 +131,14 @@ export const HeroBannerCarousel = ({
 
       <div className="banner-carousel-dots-wrap">
         <div className="banner-carousel-dots">
-          {slides.map((_, i) => (
+          {slides.map((_, index) => (
             <button
-              key={i}
+              key={index}
               type="button"
-              className={`banner-carousel-dot${i === activeIdx ? " active" : ""}`}
-              onClick={() => goTo(i)}
-              aria-label={`Slide ${i + 1}`}
-              aria-current={i === activeIdx ? "true" : undefined}
+              className={`banner-carousel-dot${index === activeIdx ? " active" : ""}`}
+              onClick={() => goTo(index)}
+              aria-label={`Slide ${index + 1}`}
+              aria-current={index === activeIdx ? "true" : undefined}
             />
           ))}
         </div>

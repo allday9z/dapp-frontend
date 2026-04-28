@@ -40,6 +40,11 @@ export const ZigzagStoreNearYou = ({
           className="tienda-apple-nevada-granada-2"
           src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/store.jpg?inline=true"
           alt="ภาพหน้าร้าน Apple Store"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          width={609}
+          height={367}
         />
       </div>
     </div>
@@ -72,6 +77,11 @@ export const ZigzagStoreNearYou = ({
           className="tienda-apple-nevada-granada-2"
           src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/store.jpg?inline=true"
           alt="ภาพหน้าร้าน Apple Store"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          width={609}
+          height={367}
         />
       </div>
     </div>

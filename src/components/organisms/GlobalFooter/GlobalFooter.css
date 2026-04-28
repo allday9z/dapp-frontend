@@ -79,6 +79,7 @@
 }
 
 .global-footer__partner-logo {
+  display: block;
   max-width: 8rem;
   height: auto;
   object-fit: contain;

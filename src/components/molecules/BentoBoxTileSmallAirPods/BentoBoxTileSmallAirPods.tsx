@@ -32,7 +32,7 @@ export const BentoBoxTileSmallAirPods = ({
       }
     >
       <div className="image-area">
-        <img className="image-103" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19356952_m_jpeg_1-homepage_highlight_2_banner_retina_medium.jpg?inline=true"  alt="" />
+        <img className="image-103" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19356952_m_jpeg_1-homepage_highlight_2_banner_retina_medium.jpg?inline=true" alt="" loading="lazy" decoding="async" fetchPriority="low" width={197} height={200} />
       </div>
       <div className="frame-487">
         <div className="contents">

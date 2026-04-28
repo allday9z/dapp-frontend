@@ -46,8 +46,14 @@
   justify-content: center;
 }
 
+.banner-carousel-picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .banner-carousel-stage .f-carousel__slide img {
-  width: auto;
+  width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
@@ -123,16 +129,4 @@
   height: 0.0625rem;
   background: var(--color-gray-4, #f2f2f2);
   flex-shrink: 0;
-}
-
-@media (max-width: 768px) {
-  .is-desktop {
-    display: none !important;
-  }
-}
-
-@media (min-width: 769px) {
-  .is-mobile {
-    display: none !important;
-  }
 }

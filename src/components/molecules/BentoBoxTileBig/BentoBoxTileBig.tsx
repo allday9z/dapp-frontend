@@ -51,7 +51,7 @@ export const BentoBoxTileBig = ({
           <CtaButtonPrimaryStateDefault className="cta-instance"></CtaButtonPrimaryStateDefault>
         </div>
       </div>
-      <img className="image-120" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19296604_m_jpeg_1-homepage_highlight_1_banner_retina_medium.jpg?inline=true"  alt="" />
+      <img className="image-120" src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/IMG-19296604_m_jpeg_1-homepage_highlight_1_banner_retina_medium.jpg?inline=true" alt="" loading="lazy" decoding="async" fetchPriority="low" width={362} height={362} />
     </div>
   );
 };

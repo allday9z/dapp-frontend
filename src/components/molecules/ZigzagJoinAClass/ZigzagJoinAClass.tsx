@@ -22,6 +22,11 @@ export const ZigzagJoinAClass = ({
           className="screen-shot-2022-02-22-at-2-10-2"
           src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/group%20demo.jpg?inline=true"
           alt="ภาพกิจกรรมเข้าร่วมคลาสในร้าน"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          width={608}
+          height={364}
         />
       </div>
       <div className="text-area">
@@ -54,6 +59,11 @@ export const ZigzagJoinAClass = ({
           className="screen-shot-2022-02-22-at-2-10-2"
           src="https://filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com/api/public/dl/FH-wjIaJ/DAPP/group%20demo.jpg?inline=true"
           alt="ภาพกิจกรรมเข้าร่วมคลาสในร้าน"
+          loading="lazy"
+          decoding="async"
+          fetchPriority="low"
+          width={608}
+          height={364}
         />
       </div>
       <div className="text-area">

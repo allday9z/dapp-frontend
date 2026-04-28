@@ -65,10 +65,11 @@ const CSS = `
   min-height: 0;
 }
 .tog__body {
-  padding-bottom: 0.75rem;
+  padding-left: 0.3rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  padding-bottom: 16px;
 }
 
 .tog__divider {

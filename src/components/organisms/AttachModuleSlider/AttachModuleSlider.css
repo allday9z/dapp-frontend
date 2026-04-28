@@ -242,7 +242,8 @@
 }
 
 .attach-slider__cta:hover {
-  background: #0077ed;
+  background: #0054A8;
+  text-decoration: underline;
 }
 
 .attach-slider__cta:focus-visible {
@@ -273,8 +274,7 @@
 }
 
 .attach-slider__arrow:hover:not(.is-disabled) {
-  background: #0077ed;
-  transform: translateY(-50%) scale(1.08);
+  background: #0054A8;
 }
 
 /* Disabled: faded and not clickable — but STILL VISIBLE */

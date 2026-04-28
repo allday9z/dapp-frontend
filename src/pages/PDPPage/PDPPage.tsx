@@ -6,8 +6,13 @@ import { FamilyStripe } from "@/components/organisms/FamilyStripe/FamilyStripe";
 import { macbookProFamilyItems } from "@/components/organisms/FamilyStripe/familyStripeData";
 import { ToggleRow } from "@/components/ToggleRow/ToggleRow";
 import rawData from "@/data/products/macbook-pro-14-m5-pdp.json";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faShoppingBag, faSearch, faUser, faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faShoppingBag,
+  faSearch,
+  faUser,
+  faAngleRight,
+} from "@fortawesome/free-solid-svg-icons";
 // ── Types ──────────────────────────────────────────────────────────────────
 
 interface MediaItem {
@@ -17,10 +22,30 @@ interface MediaItem {
   alt?: string;
 }
 
-interface ColorOpt { id: string; name: string; hex?: string; imageSrc?: string; selected?: boolean; }
-interface ConfigOpt { id: string; label: string; sublabel?: string; priceAdd: number; selected?: boolean; }
-interface BundleItem { id: string; name: string; price: number; imageSrc: string; }
-interface SpecItem { label: string; value: string; }
+interface ColorOpt {
+  id: string;
+  name: string;
+  hex?: string;
+  imageSrc?: string;
+  selected?: boolean;
+}
+interface ConfigOpt {
+  id: string;
+  label: string;
+  sublabel?: string;
+  priceAdd: number;
+  selected?: boolean;
+}
+interface BundleItem {
+  id: string;
+  name: string;
+  price: number;
+  imageSrc: string;
+}
+interface SpecItem {
+  label: string;
+  value: string;
+}
 interface CustomizeOption {
   id: string;
   label: string;
@@ -206,7 +231,8 @@ const DEFAULT_CONTENT: PDPContent = {
   addToCartLabel: "Add to cart",
   modalDialogLabel: "Financing information",
   modalTitle: "How does Financing work?",
-  modalIntro: "Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.",
+  modalIntro:
+    "Sorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis molestie, dictum est a, mattis tellus.",
   modalIntroBullets: [
     "Morem ipsum dolor sit amet, consectetur adipiscing elit.",
     "Morem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -240,7 +266,10 @@ const content: PDPContent = {
   ...(product.content ?? {}),
 };
 
-const buildLegacyCustomizeGroups = (data: PDPData, uiContent: PDPContent): CustomizeGroup[] => {
+const buildLegacyCustomizeGroups = (
+  data: PDPData,
+  uiContent: PDPContent,
+): CustomizeGroup[] => {
   const groups: CustomizeGroup[] = [];
 
   if (data.colors?.length) {
@@ -249,7 +278,7 @@ const buildLegacyCustomizeGroups = (data: PDPData, uiContent: PDPContent): Custo
       label: uiContent.colorLabel,
       type: "swatch",
       defaultOptionId: data.defaultColor,
-      options: data.colors.map((item) => ({
+      options: data.colors.map(item => ({
         id: item.id,
         label: item.name,
         hex: item.hex,
@@ -305,15 +334,23 @@ const buildLegacyCustomizeGroups = (data: PDPData, uiContent: PDPContent): Custo
   return groups;
 };
 
-const getCustomizeGroups = (data: PDPData, uiContent: PDPContent): CustomizeGroup[] => {
-  const source = data.customize?.length ? data.customize : buildLegacyCustomizeGroups(data, uiContent);
-  return source.filter((group) => group.options.length > 0);
+const getCustomizeGroups = (
+  data: PDPData,
+  uiContent: PDPContent,
+): CustomizeGroup[] => {
+  const source = data.customize?.length
+    ? data.customize
+    : buildLegacyCustomizeGroups(data, uiContent);
+  return source.filter(group => group.options.length > 0);
 };
 
-const getInitialCustomizeSelections = (groups: CustomizeGroup[]): Record<string, string> => {
+const getInitialCustomizeSelections = (
+  groups: CustomizeGroup[],
+): Record<string, string> => {
   return groups.reduce<Record<string, string>>((accumulator, group) => {
-    const selectedOption = group.options.find((option) => option.selected) ??
-      group.options.find((option) => option.id === group.defaultOptionId) ??
+    const selectedOption =
+      group.options.find(option => option.selected) ??
+      group.options.find(option => option.id === group.defaultOptionId) ??
       group.options[0];
 
     if (selectedOption) {
@@ -325,8 +362,7 @@ const getInitialCustomizeSelections = (groups: CustomizeGroup[]): Record<string,
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────
-const fmt = (n: number) =>
-  `฿${n.toLocaleString("th-TH")}`;
+const fmt = (n: number) => `฿${n.toLocaleString("th-TH")}`;
 
 // ── Gallery ────────────────────────────────────────────────────────────────
 function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
@@ -338,11 +374,13 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
   const thumbDragOrigin = useRef<number | null>(null);
 
   // Keep idxRef in sync (for use inside window event closures)
-  useEffect(() => { idxRef.current = idx; }, [idx]);
+  useEffect(() => {
+    idxRef.current = idx;
+  }, [idx]);
 
   // Infinity wrap
-  const prev = () => setIdx((i) => (i - 1 + total) % total);
-  const next = () => setIdx((i) => (i + 1) % total);
+  const prev = () => setIdx(i => (i - 1 + total) % total);
+  const next = () => setIdx(i => (i + 1) % total);
 
   // Manage track transform via DOM (not React style) for smooth drag
   const applyTransform = (offset = 0, animate = true) => {
@@ -352,7 +390,9 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
   };
 
   // Re-apply transform with animation whenever idx changes (button/dot nav)
-  useEffect(() => { applyTransform(0, true); }, [idx]);
+  useEffect(() => {
+    applyTransform(0, true);
+  }, [idx]);
 
   // Auto-scroll thumbnail strip to center active thumb
   useEffect(() => {
@@ -361,7 +401,10 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
     const thumb = container.children[idx] as HTMLElement | undefined;
     if (!thumb) return;
     const thumbCenter = thumb.offsetLeft + thumb.offsetWidth / 2;
-    container.scrollTo({ left: thumbCenter - container.offsetWidth / 2, behavior: "smooth" });
+    container.scrollTo({
+      left: thumbCenter - container.offsetWidth / 2,
+      behavior: "smooth",
+    });
   }, [idx]);
 
   const dragThreshold = 30;
@@ -379,7 +422,9 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
       window.removeEventListener("mouseup", onUp);
       const delta = startX - ev.clientX;
       if (Math.abs(delta) > dragThreshold) {
-        delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+        delta > 0
+          ? setIdx(i => (i + 1) % total)
+          : setIdx(i => (i - 1 + total) % total);
       } else {
         applyTransform(0, true); // snap back, no step
       }
@@ -403,19 +448,25 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
     const delta = touchStartX.current - e.changedTouches[0].clientX;
     touchStartX.current = null;
     if (Math.abs(delta) > dragThreshold) {
-      delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+      delta > 0
+        ? setIdx(i => (i + 1) % total)
+        : setIdx(i => (i - 1 + total) % total);
     } else {
       applyTransform(0, true);
     }
   };
 
   // Thumb strip — 1-step lock drag (no visual offset needed)
-  const onThumbDragBegin = (x: number) => { thumbDragOrigin.current = x; };
+  const onThumbDragBegin = (x: number) => {
+    thumbDragOrigin.current = x;
+  };
   const onThumbDragEnd = (x: number) => {
     if (thumbDragOrigin.current === null) return;
     const delta = thumbDragOrigin.current - x;
     if (Math.abs(delta) > dragThreshold) {
-      delta > 0 ? setIdx((i) => (i + 1) % total) : setIdx((i) => (i - 1 + total) % total);
+      delta > 0
+        ? setIdx(i => (i + 1) % total)
+        : setIdx(i => (i - 1 + total) % total);
     }
     thumbDragOrigin.current = null;
   };
@@ -454,7 +505,7 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
                   alt={m.alt ?? name}
                   className="pdp__gallery-media"
                   draggable={false}
-                  onDragStart={(e) => e.preventDefault()}
+                  onDragStart={e => e.preventDefault()}
                 />
               )}
             </div>
@@ -464,12 +515,31 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
 
       {/* Navigation: prev arrow | dots | next arrow */}
       <div className="pdp__gallery-nav">
-        <button className="pdp__gallery-arrow" onClick={prev} aria-label="Previous">
-          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
-            <path fillRule="evenodd" clipRule="evenodd" d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z" fill="#333" />
+        <button
+          className="pdp__gallery-arrow"
+          onClick={prev}
+          aria-label="Previous"
+        >
+          <svg
+            width="33"
+            height="33"
+            viewBox="0 0 33 33"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z"
+              fill="#333"
+            />
           </svg>
         </button>
-        <div className="pdp__gallery-dots" role="tablist" aria-label="Gallery slides">
+        <div
+          className="pdp__gallery-dots"
+          role="tablist"
+          aria-label="Gallery slides"
+        >
           {media.map((_, i) => (
             <button
               key={i}
@@ -482,8 +552,19 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
           ))}
         </div>
         <button className="pdp__gallery-arrow" onClick={next} aria-label="Next">
-          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
-            <path fillRule="evenodd" clipRule="evenodd" d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z" fill="#333" />
+          <svg
+            width="33"
+            height="33"
+            viewBox="0 0 33 33"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z"
+              fill="#333"
+            />
           </svg>
         </button>
       </div>
@@ -493,10 +574,10 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
         ref={thumbsRef}
         className="pdp__gallery-thumbs"
         aria-label="Product images"
-        onTouchStart={(e) => onThumbDragBegin(e.touches[0].clientX)}
-        onTouchEnd={(e) => onThumbDragEnd(e.changedTouches[0].clientX)}
-        onMouseDown={(e) => onThumbDragBegin(e.clientX)}
-        onMouseUp={(e) => onThumbDragEnd(e.clientX)}
+        onTouchStart={e => onThumbDragBegin(e.touches[0].clientX)}
+        onTouchEnd={e => onThumbDragEnd(e.changedTouches[0].clientX)}
+        onMouseDown={e => onThumbDragBegin(e.clientX)}
+        onMouseUp={e => onThumbDragEnd(e.clientX)}
       >
         {media.map((m, i) => (
           <button
@@ -511,12 +592,13 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
               draggable={false}
             />
             {m.type === "video" && (
-              <span className="pdp__gallery-play" aria-hidden="true">▶</span>
+              <span className="pdp__gallery-play" aria-hidden="true">
+                ▶
+              </span>
             )}
           </button>
         ))}
       </div>
-
     </div>
   );
 }
@@ -529,14 +611,18 @@ function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
   const total = media.length;
   const dragOrigin = useRef<number | null>(null);
 
-  const prev = () => setIdx((i) => (i - 1 + total) % total);
-  const next = () => setIdx((i) => (i + 1) % total);
+  const prev = () => setIdx(i => (i - 1 + total) % total);
+  const next = () => setIdx(i => (i + 1) % total);
 
-  const onDragBegin = (x: number) => { dragOrigin.current = x; };
+  const onDragBegin = (x: number) => {
+    dragOrigin.current = x;
+  };
   const onDragEnd = (x: number) => {
     if (dragOrigin.current === null) return;
     const delta = dragOrigin.current - x;
-    if (Math.abs(delta) > COLOR_SLIDE_W * 0.16) { delta > 0 ? next() : prev(); }
+    if (Math.abs(delta) > COLOR_SLIDE_W * 0.16) {
+      delta > 0 ? next() : prev();
+    }
     dragOrigin.current = null;
   };
 
@@ -544,10 +630,10 @@ function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
     <div className="pdp__color-gallery">
       <div
         className="pdp__color-gallery-vp"
-        onTouchStart={(e) => onDragBegin(e.touches[0].clientX)}
-        onTouchEnd={(e) => onDragEnd(e.changedTouches[0].clientX)}
-        onMouseDown={(e) => onDragBegin(e.clientX)}
-        onMouseUp={(e) => onDragEnd(e.clientX)}
+        onTouchStart={e => onDragBegin(e.touches[0].clientX)}
+        onTouchEnd={e => onDragEnd(e.changedTouches[0].clientX)}
+        onMouseDown={e => onDragBegin(e.clientX)}
+        onMouseUp={e => onDragEnd(e.clientX)}
       >
         <div
           className="pdp__color-gallery-track"
@@ -563,16 +649,31 @@ function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
                 alt={m.alt ?? name}
                 className="pdp__color-gallery-img"
                 draggable={false}
-                onDragStart={(e) => e.preventDefault()}
+                onDragStart={e => e.preventDefault()}
               />
             </div>
           ))}
         </div>
       </div>
       <div className="pdp__color-gallery-nav">
-        <button className="pdp__gallery-arrow" onClick={prev} aria-label="Previous">
-          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
-            <path fillRule="evenodd" clipRule="evenodd" d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z" fill="#333" />
+        <button
+          className="pdp__gallery-arrow"
+          onClick={prev}
+          aria-label="Previous"
+        >
+          <svg
+            width="33"
+            height="33"
+            viewBox="0 0 33 33"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="m18.192 23.704 1.016-1.118-5.236-5.764 5.236-5.765-1.016-1.118-6.25 6.883 6.25 6.882Z"
+              fill="#333"
+            />
           </svg>
         </button>
         <div className="pdp__gallery-dots">
@@ -586,8 +687,19 @@ function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
           ))}
         </div>
         <button className="pdp__gallery-arrow" onClick={next} aria-label="Next">
-          <svg width="33" height="33" viewBox="0 0 33 33" fill="none" aria-hidden="true">
-            <path fillRule="evenodd" clipRule="evenodd" d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z" fill="#333" />
+          <svg
+            width="33"
+            height="33"
+            viewBox="0 0 33 33"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="m13.957 10.02-1.02 1.124 5.26 5.792-5.26 5.792 1.02 1.124 6.281-6.916-6.28-6.915Z"
+              fill="#333"
+            />
           </svg>
         </button>
       </div>
@@ -612,7 +724,7 @@ function Accordion({
     <div className={`pdp__accordion${service ? " pdp__service" : ""}`}>
       <button
         className="pdp__accordion-toggle"
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => setOpen(v => !v)}
         aria-expanded={open}
       >
         <span>{label}</span>
@@ -642,10 +754,15 @@ function FinancingModal({
 }) {
   const [months, setMonths] = useState(defaultTerm);
   const monthly = Math.round(price / months);
-  const perMonthText = content.modalPerMonthTemplate.replace("{months}", String(months));
+  const perMonthText = content.modalPerMonthTemplate.replace(
+    "{months}",
+    String(months),
+  );
 
   useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [onClose]);
@@ -653,14 +770,18 @@ function FinancingModal({
   return (
     <div
       className="pdp__modal-overlay"
-      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+      onClick={e => {
+        if (e.target === e.currentTarget) onClose();
+      }}
       role="dialog"
       aria-modal="true"
       aria-label={content.modalDialogLabel}
     >
       <div className="pdp__modal">
         {/* Sticky close button */}
-        <button className="pdp__modal-close" onClick={onClose} aria-label="ปิด">×</button>
+        <button className="pdp__modal-close" onClick={onClose} aria-label="ปิด">
+          ×
+        </button>
 
         <div className="pdp__modal-body">
           <h2 className="pdp__modal-title">{content.modalTitle}</h2>
@@ -673,9 +794,18 @@ function FinancingModal({
 
           <h3 className="pdp__modal-heading">{content.modalVendorTitle}</h3>
           <div className="pdp__modal-plugin-card">
-            <p className="pdp__modal-plugin-desc">{content.modalVendorDescription}</p>
-            <div className="pdp__modal-plugin-logo">{content.modalVendorLogoText}</div>
-            <a href={content.modalVendorLearnMoreHref} className="pdp__modal-link">{content.modalVendorLearnMoreLabel}</a>
+            <p className="pdp__modal-plugin-desc">
+              {content.modalVendorDescription}
+            </p>
+            <div className="pdp__modal-plugin-logo">
+              {content.modalVendorLogoText}
+            </div>
+            <a
+              href={content.modalVendorLearnMoreHref}
+              className="pdp__modal-link"
+            >
+              {content.modalVendorLearnMoreLabel}
+            </a>
           </div>
 
           <h3 className="pdp__modal-heading">{content.modalExploreTitle}</h3>
@@ -690,23 +820,37 @@ function FinancingModal({
           <select
             className="pdp__modal-select"
             value={months}
-            onChange={(e) => setMonths(Number(e.target.value))}
+            onChange={e => setMonths(Number(e.target.value))}
           >
-            {content.modalLengthOptions.map((option) => (
-              <option key={option} value={option}>{option} months</option>
+            {content.modalLengthOptions.map(option => (
+              <option key={option} value={option}>
+                {option} months
+              </option>
             ))}
           </select>
 
-          <label className="pdp__modal-label">{content.modalMonthlyPaymentLabel}</label>
+          <label className="pdp__modal-label">
+            {content.modalMonthlyPaymentLabel}
+          </label>
           <div className="pdp__modal-monthly-display">{fmt(monthly)}</div>
 
-          <h3 className="pdp__modal-heading">{content.modalFinalPricingTitle}</h3>
-          <p className="pdp__modal-final">{fmt(monthly)}{perMonthText}</p>
+          <h3 className="pdp__modal-heading">
+            {content.modalFinalPricingTitle}
+          </h3>
+          <p className="pdp__modal-final">
+            {fmt(monthly)}
+            {perMonthText}
+          </p>
 
-          <a href={content.modalLearnMoreFinancingHref} className="pdp__modal-link pdp__modal-link--block">
+          <a
+            href={content.modalLearnMoreFinancingHref}
+            className="pdp__modal-link pdp__modal-link--block"
+          >
             {content.modalLearnMoreFinancingLabel}
           </a>
-          <button className="pdp__modal-btn-financing">{content.modalStartFinancingLabel}</button>
+          <button className="pdp__modal-btn-financing">
+            {content.modalStartFinancingLabel}
+          </button>
           <hr className="pdp__modal-divider" />
           <p className="pdp__modal-disclaimer">{content.modalDisclaimer}</p>
         </div>
@@ -718,25 +862,36 @@ function FinancingModal({
 // ── Page ───────────────────────────────────────────────────────────────────
 export const PDPPage = () => {
   const customizeGroups = getCustomizeGroups(product, content);
-  const [selectedCustomize, setSelectedCustomize] = useState<Record<string, string>>(
-    () => getInitialCustomizeSelections(customizeGroups)
-  );
+  const [selectedCustomize, setSelectedCustomize] = useState<
+    Record<string, string>
+  >(() => getInitialCustomizeSelections(customizeGroups));
   const [appleCare, setAppleCare] = useState(false);
   const [qty, setQty] = useState(1);
   const [financingOpen, setFinancingOpen] = useState(false);
   const [openSections, setOpenSections] = useState<Set<string>>(
-    new Set([customizeGroups[0]?.key, "applecare", "financing"].filter(Boolean) as string[])
+    new Set(
+      [customizeGroups[0]?.key, "applecare", "financing"].filter(
+        Boolean,
+      ) as string[],
+    ),
   );
-  const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">("financing");
+  const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">(
+    "financing",
+  );
   const [isStickyDesktopHero, setIsStickyDesktopHero] = useState(false);
-  const [isStickyDesktopHeroVisible, setIsStickyDesktopHeroVisible] = useState(false);
+  const [isStickyDesktopHeroVisible, setIsStickyDesktopHeroVisible] =
+    useState(false);
   const desktopHeroRef = useRef<HTMLElement | null>(null);
 
   const getSelectedCustomizeOption = (group: CustomizeGroup) => {
-    return group.options.find((option) => option.id === selectedCustomize[group.key]) ?? group.options[0];
+    return (
+      group.options.find(
+        option => option.id === selectedCustomize[group.key],
+      ) ?? group.options[0]
+    );
   };
 
-  const selectedColor = customizeGroups.find((group) => group.key === "color");
+  const selectedColor = customizeGroups.find(group => group.key === "color");
   const appleCarePrice = product.appleCarePrice ?? 0;
   const monthlyTerm = product.monthlyTerm ?? 12;
   const bundleItems = product.bundleItems ?? [];
@@ -746,7 +901,7 @@ export const PDPPage = () => {
   const warranty = product.warranty ?? "";
 
   const toggleSect = (key: string) =>
-    setOpenSections((prev) => {
+    setOpenSections(prev => {
       const next = new Set(prev);
       next.has(key) ? next.delete(key) : next.add(key);
       return next;
@@ -754,11 +909,16 @@ export const PDPPage = () => {
 
   const totalPrice =
     product.price +
-    customizeGroups.reduce((sum, group) => sum + (getSelectedCustomizeOption(group)?.priceAdd ?? 0), 0) +
+    customizeGroups.reduce(
+      (sum, group) => sum + (getSelectedCustomizeOption(group)?.priceAdd ?? 0),
+      0,
+    ) +
     (appleCare ? appleCarePrice : 0);
 
-  const displayName = product.size ? `${product.size}-inch ${product.name}` : product.name;
-  const heroImage = product.media.find((m) => m.type === "image")?.src ?? "";
+  const displayName = product.size
+    ? `${product.size}-inch ${product.name}`
+    : product.name;
+  const heroImage = product.media.find(m => m.type === "image")?.src ?? "";
 
   // Portal target: the slot inside GlobalNav's fixed container
   const [navSlot, setNavSlot] = useState<HTMLElement | null>(null);
@@ -790,7 +950,9 @@ export const PDPPage = () => {
     };
 
     evaluateStickyVisibility();
-    window.addEventListener("scroll", evaluateStickyVisibility, { passive: true });
+    window.addEventListener("scroll", evaluateStickyVisibility, {
+      passive: true,
+    });
     window.addEventListener("resize", evaluateStickyVisibility);
 
     return () => {
@@ -830,59 +992,116 @@ export const PDPPage = () => {
           <p className="pdp__desktop-hero-gwp">{content.heroGwp}</p>
 
           <div className="pdp__desktop-hero-links">
-            <a href={content.heroLearnMoreHref} className="pdp__desktop-hero-link">{content.heroLearnMoreLabel}</a>
+            <a
+              href={content.heroLearnMoreHref}
+              className="pdp__desktop-hero-link"
+            >
+              {content.heroLearnMoreLabel}
+            </a>
             <span className="pdp__desktop-hero-divider" aria-hidden="true" />
-            <a href={content.heroCompareHref} className="pdp__desktop-hero-link">{content.heroCompareLabel}</a>
+            <a
+              href={content.heroCompareHref}
+              className="pdp__desktop-hero-link"
+            >
+              {content.heroCompareLabel}
+            </a>
           </div>
         </div>
 
         <div className="pdp__desktop-hero-right">
-          <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
+          <p className="pdp__desktop-hero-from">
+            {fmt(totalPrice)} {product.currency}
+          </p>
           <p className="pdp__desktop-hero-monthly">
-            or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+            or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm}{" "}
+            mo.{" "}
+            <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
           </p>
         </div>
       </section>
 
       {/* ── Product header — title + SKU + barcode ─────────────────────── */}
-      <section ref={desktopHeroRef} className="pdp__desktop-hero" aria-label="Desktop product summary">
-          <div className="pdp__desktop-hero-left">
-            <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
-            <h1 className="pdp__desktop-hero-title">{displayName}</h1>
-            <p className="pdp__desktop-hero-sku">
-              SKU: {product.sku}
-              {product.barcode && <span className="pdp__desktop-hero-barcode">Barcode: {product.barcode}</span>}
-            </p>
+      <section
+        ref={desktopHeroRef}
+        className="pdp__desktop-hero"
+        aria-label="Desktop product summary"
+      >
+        <div className="pdp__desktop-hero-left">
+          <p className="pdp__desktop-hero-badge">{product.badge ?? "ใหม่"}</p>
+          <h1 className="pdp__desktop-hero-title">{displayName}</h1>
+          <p className="pdp__desktop-hero-sku">
+            SKU: {product.sku}
+            {product.barcode && (
+              <span className="pdp__desktop-hero-barcode">
+                Barcode: {product.barcode}
+              </span>
+            )}
+          </p>
 
-            <p className="pdp__desktop-hero-gwp">{content.heroGwp}</p>
+          <p className="pdp__desktop-hero-gwp">{content.heroGwp}</p>
 
-            <div className="pdp__desktop-hero-links">
-              <a href={content.heroLearnMoreHref} className="pdp__desktop-hero-link">{content.heroLearnMoreLabel}</a>
-              <span className="pdp__desktop-hero-divider" aria-hidden="true" />
-              <a href={content.heroCompareHref} className="pdp__desktop-hero-link">{content.heroCompareLabel}</a>
-            </div>
-
-            <div className="pdp__desktop-hero-share" aria-label="Share">
-              <span className="pdp__desktop-hero-share-label">{content.shareLabel}</span>
-              <a href="#" aria-label="Share on Facebook" className="pdp__desktop-hero-share-icon">f</a>
-              <a href="#" aria-label="Share on X" className="pdp__desktop-hero-share-icon">x</a>
-              <a href="#" aria-label="Share on Pinterest" className="pdp__desktop-hero-share-icon">p</a>
-            </div>
-          </div>
-          
-          <div className="pdp__desktop-hero-right">
-            <p className="pdp__desktop-hero-from">{fmt(totalPrice)} {product.currency}</p>
-            <p className="pdp__desktop-hero-monthly">
-              or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
-            </p>
-            <button
-              className="pdp__desktop-hero-financing"
-              onClick={() => setFinancingOpen(true)}
-              aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
+          <div className="pdp__desktop-hero-links">
+            <a
+              href={content.heroLearnMoreHref}
+              className="pdp__desktop-hero-link"
             >
-              เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
-            </button>
+              {content.heroLearnMoreLabel}
+            </a>
+            <span className="pdp__desktop-hero-divider" aria-hidden="true" />
+            <a
+              href={content.heroCompareHref}
+              className="pdp__desktop-hero-link"
+            >
+              {content.heroCompareLabel}
+            </a>
           </div>
+
+          <div className="pdp__desktop-hero-share" aria-label="Share">
+            <span className="pdp__desktop-hero-share-label">
+              {content.shareLabel}
+            </span>
+            <a
+              href="#"
+              aria-label="Share on Facebook"
+              className="pdp__desktop-hero-share-icon"
+            >
+              f
+            </a>
+            <a
+              href="#"
+              aria-label="Share on X"
+              className="pdp__desktop-hero-share-icon"
+            >
+              x
+            </a>
+            <a
+              href="#"
+              aria-label="Share on Pinterest"
+              className="pdp__desktop-hero-share-icon"
+            >
+              p
+            </a>
+          </div>
+        </div>
+
+        <div className="pdp__desktop-hero-right">
+          <p className="pdp__desktop-hero-from">
+            {fmt(totalPrice)} {product.currency}
+          </p>
+          <p className="pdp__desktop-hero-monthly">
+            or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm}{" "}
+            mo.{" "}
+            <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+          </p>
+          <button
+            className="pdp__desktop-hero-financing"
+            onClick={() => setFinancingOpen(true)}
+            aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
+          >
+            เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน{" "}
+            <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+          </button>
+        </div>
       </section>
 
       <div className="pdp__product-header">
@@ -910,7 +1129,8 @@ export const PDPPage = () => {
               onClick={() => setFinancingOpen(true)}
               aria-label="ดูข้อมูลการผ่อนชำระ"
             >
-              or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. ›
+              or {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for{" "}
+              {monthlyTerm} mo. ›
             </button>
           </div>
 
@@ -920,11 +1140,15 @@ export const PDPPage = () => {
           </div> */}
 
           {/* ── Customize ─────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading pdp_sec_head1">{content.sectionCustomizeTitle} {product.name}.</h2>
+          <h2 className="pdp__section-heading pdp_sec_head1">
+            {content.sectionCustomizeTitle} {product.name}.
+          </h2>
 
-          {customizeGroups.map((group) => {
+          {customizeGroups.map(group => {
             const selectedOption = getSelectedCustomizeOption(group);
-            const value = [selectedOption?.label, selectedOption?.sublabel].filter(Boolean).join(" ");
+            const value = [selectedOption?.label, selectedOption?.sublabel]
+              .filter(Boolean)
+              .join(" ");
 
             return (
               <ToggleRow
@@ -937,21 +1161,23 @@ export const PDPPage = () => {
                 {group.type === "swatch" ? (
                   <>
                     <div className="pdp__swatch-row">
-                      {group.options.map((option) => (
+                      {group.options.map(option => (
                         <button
                           key={option.id}
                           className={`pdp__swatch${option.id === selectedOption?.id ? " on" : ""}`}
-                          style={option.hex
-                            ? { background: option.hex }
-                            : option.imageSrc
-                              ? {
-                                  backgroundImage: `url(${option.imageSrc})`,
-                                  backgroundPosition: "center",
-                                  backgroundSize: "cover",
-                                }
-                              : undefined}
+                          style={
+                            option.hex
+                              ? { background: option.hex }
+                              : option.imageSrc
+                                ? {
+                                    backgroundImage: `url(${option.imageSrc})`,
+                                    backgroundPosition: "center",
+                                    backgroundSize: "cover",
+                                  }
+                                : undefined
+                          }
                           onClick={() =>
-                            setSelectedCustomize((prev) => ({
+                            setSelectedCustomize(prev => ({
                               ...prev,
                               [group.key]: option.id,
                             }))
@@ -961,11 +1187,13 @@ export const PDPPage = () => {
                         />
                       ))}
                     </div>
-                    {group.key === "color" && <ColorGallery media={product.media} name={displayName} />}
+                    {group.key === "color" && (
+                      <ColorGallery media={product.media} name={displayName} />
+                    )}
                   </>
                 ) : (
                   <>
-                    {group.options.map((option) => {
+                    {group.options.map(option => {
                       const optionTotal =
                         product.price +
                         customizeGroups.reduce((sum, candidateGroup) => {
@@ -973,7 +1201,11 @@ export const PDPPage = () => {
                             return sum + (option.priceAdd ?? 0);
                           }
 
-                          return sum + (getSelectedCustomizeOption(candidateGroup)?.priceAdd ?? 0);
+                          return (
+                            sum +
+                            (getSelectedCustomizeOption(candidateGroup)
+                              ?.priceAdd ?? 0)
+                          );
                         }, 0) +
                         (appleCare ? appleCarePrice : 0);
 
@@ -982,7 +1214,7 @@ export const PDPPage = () => {
                           key={option.id}
                           className={`pdp__opt-card${option.id === selectedOption?.id ? " on" : ""}`}
                           onClick={() =>
-                            setSelectedCustomize((prev) => ({
+                            setSelectedCustomize(prev => ({
                               ...prev,
                               [group.key]: option.id,
                             }))
@@ -990,13 +1222,19 @@ export const PDPPage = () => {
                           type="button"
                         >
                           <span className="pdp__opt-card-info">
-                            <span className="pdp__opt-card-name">{option.label}</span>
-                            {option.sublabel && (
-                              <span className="pdp__opt-card-sub">{option.sublabel}</span>
-                            )}
+                            <span className="pdp__opt-card-name">
+                              {option.label}
+                            </span>
+                            {/* {option.sublabel && (
+                              <span className="pdp__opt-card-sub">
+                                {option.sublabel}
+                              </span>
+                            )} */}
                           </span>
                           <span className="pdp__opt-card-pricing">
-                            <span className="pdp__opt-card-price">{fmt(optionTotal)}</span>
+                            <span className="pdp__opt-card-price">
+                              {fmt(optionTotal)}
+                            </span>
                             <span className="pdp__opt-card-mo">
                               {fmt(Math.round(optionTotal / monthlyTerm))}/mo.
                             </span>
@@ -1005,7 +1243,9 @@ export const PDPPage = () => {
                       );
                     })}
                     {group.helpLabel && (
-                      <a href={group.helpHref ?? "#"} className="pdp__opt-link">{group.helpLabel}</a>
+                      <a href={group.helpHref ?? "#"} className="pdp__opt-link">
+                        {group.helpLabel}
+                      </a>
                     )}
                   </>
                 )}
@@ -1014,7 +1254,9 @@ export const PDPPage = () => {
           })}
 
           {/* ── Protect ───────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading">{content.sectionProtectTitle}</h2>
+          <h2 className="pdp__section-heading">
+            {content.sectionProtectTitle}
+          </h2>
 
           <ToggleRow
             label={content.appleCareLabel}
@@ -1027,35 +1269,59 @@ export const PDPPage = () => {
               onClick={() => setAppleCare(true)}
             >
               <span className="pdp__opt-card-info pdp__opt-card-info--ac">
-                <svg className="pdp__ac-icon" viewBox="0 0 814 1000" width="24" height="24" aria-hidden="true">
-                  <path d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.1C46.7 790.7 0 663 0 541.8c0-207.3 135.3-316.9 269-316.9 73.1 0 134.2 43.3 180.7 43.3 44 0 114.1-46 196.3-46 31.7 0 121.5 2.8 180.7 85.7zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z" fill="#e74c3c" />
+                <svg
+                  className="pdp__ac-icon"
+                  viewBox="0 0 814 1000"
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M788.1 340.9c-5.8 4.5-108.2 62.2-108.2 190.5 0 148.4 130.3 200.9 134.2 202.2-.6 3.2-20.7 71.9-68.7 141.9-42.8 61.6-87.5 123.1-155.5 123.1s-85.5-39.5-164-39.5c-76 0-103.7 40.8-165.9 40.8s-105-37.5-155.5-127.1C46.7 790.7 0 663 0 541.8c0-207.3 135.3-316.9 269-316.9 73.1 0 134.2 43.3 180.7 43.3 44 0 114.1-46 196.3-46 31.7 0 121.5 2.8 180.7 85.7zm-234-181.5c31.1-36.9 53.1-88.1 53.1-139.3 0-7.1-.6-14.3-1.9-20.1-50.6 1.9-110.8 33.7-147.1 75.8-28.5 32.4-55.1 83.6-55.1 135.5 0 7.8 1.3 15.6 1.9 18.1 3.2.6 8.4 1.3 13.6 1.3 45.4 0 102.5-30.4 135.5-71.3z"
+                    fill="#e74c3c"
+                  />
                 </svg>
-                <span>{content.appleCareLabel} for {product.name} M5 {content.appleCarePlanLabel}</span>
+                <span>
+                  {content.appleCareLabel} for {product.name} M5{" "}
+                  {content.appleCarePlanLabel}
+                </span>
               </span>
               <span className="pdp__opt-card-pricing">
-                  <span className="pdp__opt-card-price">{fmt(appleCarePrice)}</span>
+                <span className="pdp__opt-card-price">
+                  {fmt(appleCarePrice)}
+                </span>
                 <span className="pdp__opt-card-mo">
-                    {fmt(Math.round(appleCarePrice / 12))}/mo.
+                  {fmt(Math.round(appleCarePrice / 12))}/mo.
                 </span>
               </span>
             </button>
-            <a href={content.appleCareLearnMoreHref} className="pdp__opt-link">{content.appleCareLearnMoreLabel}</a>
+            <a href={content.appleCareLearnMoreHref} className="pdp__opt-link">
+              {content.appleCareLearnMoreLabel}
+            </a>
             <button
               className={`pdp__opt-card${!appleCare ? " on" : ""}`}
               onClick={() => setAppleCare(false)}
             >
               <span className="pdp__opt-card-info">
-                <span className="pdp__opt-card-name">{content.noCoverageLabel}</span>
+                <span className="pdp__opt-card-name">
+                  {content.noCoverageLabel}
+                </span>
               </span>
             </button>
           </ToggleRow>
 
           {/* ── Payment ───────────────────────────────────────────────── */}
-          <h2 className="pdp__section-heading">{content.sectionPaymentTitle}</h2>
+          <h2 className="pdp__section-heading">
+            {content.sectionPaymentTitle}
+          </h2>
 
           <ToggleRow
             label={content.financingLabel}
-            value={paymentOpt === "financing" ? content.financingLabel : content.payInFullLabel}
+            value={
+              paymentOpt === "financing"
+                ? content.financingLabel
+                : content.payInFullLabel
+            }
             open={openSections.has("financing")}
             onToggle={() => toggleSect("financing")}
             bodyClassName="pdp__payment-body"
@@ -1067,7 +1333,9 @@ export const PDPPage = () => {
                 type="button"
               >
                 <span className="pdp__opt-card-info">
-                  <span className="pdp__opt-card-name">{content.financingLabel}</span>
+                  <span className="pdp__opt-card-name">
+                    {content.financingLabel}
+                  </span>
                 </span>
               </button>
               <button
@@ -1076,18 +1344,24 @@ export const PDPPage = () => {
                 type="button"
               >
                 <span className="pdp__opt-card-info">
-                  <span className="pdp__opt-card-name">{content.payInFullLabel}</span>
+                  <span className="pdp__opt-card-name">
+                    {content.payInFullLabel}
+                  </span>
                 </span>
               </button>
             </div>
             <div className="pdp__financing-info">
-              <p className="pdp__financing-desc">
-                {content.financingDesc}
-              </p>
-              <div className="pdp__financing-logo">{content.financingLogoText}</div>
-              <a href={content.financingExploreHref} className="pdp__opt-link">{content.financingExploreLabel}</a>
+              <p className="pdp__financing-desc">{content.financingDesc}</p>
+              <div className="pdp__financing-logo">
+                {content.financingLogoText}
+              </div>
+              <a href={content.financingExploreHref} className="pdp__opt-link">
+                {content.financingExploreLabel}
+              </a>
             </div>
-            <a href={content.financingLearnMoreHref} className="pdp__opt-link">{content.financingLearnMoreLabel}</a>
+            <a href={content.financingLearnMoreHref} className="pdp__opt-link">
+              {content.financingLearnMoreLabel}
+            </a>
           </ToggleRow>
 
           {/* Delivery */}
@@ -1135,10 +1409,15 @@ export const PDPPage = () => {
       <section className="pdp__bundle">
         <h2 className="pdp__bundle-title">{content.bundleTitle}</h2>
         <div className="pdp__bundle-list">
-          {bundleItems.map((item) => (
+          {bundleItems.map(item => (
             <div key={item.id} className="pdp__bundle-item">
               <div className="pdp__bundle-img">
-                <img src={item.imageSrc} alt={item.name} loading="lazy" decoding="async" />
+                <img
+                  src={item.imageSrc}
+                  alt={item.name}
+                  loading="lazy"
+                  decoding="async"
+                />
               </div>
               <div className="pdp__bundle-info">
                 <div className="pdp__bundle-name">{item.name}</div>
@@ -1146,7 +1425,9 @@ export const PDPPage = () => {
                   {fmt(item.price)} {product.currency}
                 </div>
               </div>
-              <button className="pdp__bundle-add">{content.bundleAddButton}</button>
+              <button className="pdp__bundle-add">
+                {content.bundleAddButton}
+              </button>
             </div>
           ))}
         </div>
@@ -1157,7 +1438,13 @@ export const PDPPage = () => {
         <div className="pdp__summary-inner">
           {/* Product image */}
           <div className="pdp__summary-img-wrap">
-            <img src={heroImage} alt={displayName} className="pdp__summary-img" loading="lazy" decoding="async" />
+            <img
+              src={heroImage}
+              alt={displayName}
+              className="pdp__summary-img"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           {/* Details */}
@@ -1170,14 +1457,15 @@ export const PDPPage = () => {
             <div className="pdp__summary-name">{displayName} M5</div>
 
             <dl className="pdp__summary-config">
-              {customizeGroups.map((group) => {
+              {customizeGroups.map(group => {
                 const selectedOption = getSelectedCustomizeOption(group);
                 return (
                   <div key={group.key} className="pdp__summary-config-row">
                     <dt>{group.label}</dt>
                     <dd>
                       {selectedOption?.label}
-                      {selectedOption?.sublabel && ` ${selectedOption.sublabel}`}
+                      {selectedOption?.sublabel &&
+                        ` ${selectedOption.sublabel}`}
                     </dd>
                   </div>
                 );
@@ -1202,7 +1490,7 @@ export const PDPPage = () => {
               <div className="pdp__qty-ctrl">
                 <button
                   className="pdp__qty-btn"
-                  onClick={() => setQty((q) => Math.max(1, q - 1))}
+                  onClick={() => setQty(q => Math.max(1, q - 1))}
                   aria-label="ลดจำนวน"
                 >
                   −
@@ -1217,7 +1505,7 @@ export const PDPPage = () => {
                 />
                 <button
                   className="pdp__qty-btn"
-                  onClick={() => setQty((q) => q + 1)}
+                  onClick={() => setQty(q => q + 1)}
                   aria-label="เพิ่มจำนวน"
                 >
                   +
@@ -1225,7 +1513,10 @@ export const PDPPage = () => {
               </div>
             </div>
 
-            <a href={content.stockAvailabilityHref} className="pdp__summary-avail">
+            <a
+              href={content.stockAvailabilityHref}
+              className="pdp__summary-avail"
+            >
               {content.stockAvailabilityLabel}
             </a>
 
@@ -1234,9 +1525,7 @@ export const PDPPage = () => {
                 {content.buyNowLabel} {product.currency}
               </button>
             ) : (
-              <button className="pdp__btn-notify">
-                {content.notifyLabel}
-              </button>
+              <button className="pdp__btn-notify">{content.notifyLabel}</button>
             )}
           </div>
         </div>
@@ -1283,14 +1572,17 @@ export const PDPPage = () => {
       {/* ── Sticky bottom bar ──────────────────────────────────────────── */}
       <div className="pdp__sticky-bar">
         <div className="pdp__sticky-bar-price-row">
-          <span className="pdp__sticky-bar-total">{fmt(totalPrice)} {product.currency}</span>
+          <span className="pdp__sticky-bar-total">
+            {fmt(totalPrice)} {product.currency}
+          </span>
           <span className="pdp__sticky-bar-or"> {content.stickyOrLabel} </span>
           <button
             className="pdp__monthly-link"
             onClick={() => setFinancingOpen(true)}
             aria-label="ดูข้อมูลการผ่อนชำระ"
           >
-            {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm} mo. ›
+            {fmt(Math.round(totalPrice / monthlyTerm))}/mo. for {monthlyTerm}{" "}
+            mo. ›
           </button>
         </div>
         <hr className="pdp__sticky-bar-divider" />

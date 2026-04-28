@@ -170,6 +170,11 @@ input.nosubmit {
     width: 100%;
 }
 
+.my-location-result__services-btn:hover {
+  color: #0054A8;
+  text-decoration: underline;
+}
+
 .my-location-result__services-pgs {
     display: flex;
     flex-direction: column;

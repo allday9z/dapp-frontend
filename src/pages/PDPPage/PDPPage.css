@@ -758,10 +758,6 @@
   margin-bottom: 24px;
 }
 
-.pdp__section-heading:not(.pdp_sec_head1) {
-  margin-top: 42pxs;
-}
-
 /* Toggle row */
 /* .pdp__opt-section {
 
@@ -827,29 +823,28 @@
 /* Option card */
 .pdp__opt-card {
   width: 100%;
-  display: flex;
-  align-items: flex-start;
   justify-content: space-between;
-  gap: 0.75rem;
+  gap: 30px;
   padding: 0.875rem 1rem;
-  border: 1px solid #d2d2d7;
+  border: 1.2px solid #d2d2d7;
   border-radius: 0.75rem;
   background: none;
   cursor: pointer;
   text-align: left;
-  transition: border-color 0.15s;
+  /* transition: border-color 0.15s; */
+  display: flex;
+  align-items: center;
 }
 .pdp__opt-card:hover {
-  border-color: #86868b;
+  border-color: #0270e3;
 }
 .pdp__opt-card.on {
-  border-color: #0071e3;
   background: rgba(0, 113, 227, 0.04);
+  border: 2px solid #0071e3;
 }
 
 .pdp__opt-card-info {
-  display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 0.125rem;
   flex: 1;
   min-width: 0;
@@ -865,9 +860,9 @@
     "SFProThai",
     -apple-system,
     sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  color: #1d1d1f;
+  font-size: 16px;
+  color: #000;
+  font-weight: 500;
   line-height: 1.4;
 }
 .pdp__opt-card-sub {
@@ -2087,5 +2082,9 @@
     font-size: 32px;
     line-height: 36px;
     margin: 0;
+  }
+
+  .pdp__section-heading:not(.pdp_sec_head1) {
+    margin-top: 42px;
   }
 }

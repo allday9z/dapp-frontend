@@ -100,6 +100,7 @@
 
 /* ── Bento box ── */
 .homepage-device-desktop .hp-bento {
+  border-bottom: 0.0625rem solid var(--color-gray-4, #dadada);
   background: var(--color-gray-5, #f2f2f2);
   padding: 2rem max(1rem, calc((100% - 76.25rem) / 2));
   display: flex;

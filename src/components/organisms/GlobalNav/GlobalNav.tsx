@@ -208,11 +208,11 @@ const StoreDetailsPopup = ({
       <div className="js-my-store-locator-location my-store-locator__details-location">{store.shortAddress}</div>
       <div className="my-store-locator-content">
         <div className="js-my-store-locator-address my-store-locator__details-info">
-          ที่อยู่: <a href={store.mapUrl || '#'} target="_blank" rel="noreferrer" style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>{store.fullAddress || store.shortAddress}</a>
+          ที่อยู่: <a className="uficon-box-links" href={store.mapUrl || '#'} target="_blank" rel="noreferrer">{store.fullAddress || store.shortAddress}</a>
         </div>
         {store.phoneText && (
           <div className="js-my-store-locator-telephone my-store-locator__details-info">
-            โทร: <a href={store.phoneUrl || `tel:${store.phoneText.replace(/\s+/g, '')}`} style={{ color: '#0066cc', textDecoration: 'none', fontWeight: '600' }}>{store.phoneText}</a>
+            โทร: <a className="uficon-box-links" href={store.phoneUrl || `tel:${store.phoneText.replace(/\s+/g, '')}`}>{store.phoneText}</a>
           </div>
         )}
         <div className="js-my-store-locator-hours my-store-locator__details-info">
@@ -227,7 +227,6 @@ const StoreDetailsPopup = ({
               e.stopPropagation();
               setIsServicesOpen(!isServicesOpen);
             }}
-            style={{ background: 'none', border: 'none', padding: 0, color: '#0066cc', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontFamily: 'SFProThai' }}
           >
             <span className="underlined-text">ดูบริการสาขา</span>
             <svg width="10" height="6" viewBox="0 0 10 6" fill="currentColor" style={{ transform: isServicesOpen ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
@@ -619,16 +618,21 @@ export const GlobalNav = ({ className = '' }: { className?: string }) => {
                   aria-label="ค้นหา"
                   onClick={openMobileSearch}
                 >
-                  <svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true">
-                    <path fillRule="evenodd" clipRule="evenodd" d="M11.5 7c0 2.485-2.015 4.5-4.5 4.5S2.5 9.485 2.5 7 4.515 2.5 7 2.5 11.5 4.515 11.5 7zM16 15.293l-4.512-4.512A6.467 6.467 0 0013 7c0-3.314-2.686-6-6-6S1 3.686 1 7s2.686 6 6 6c1.4 0 2.685-.48 3.78-1.28l4.513 4.512L16 15.293z" />
-                  </svg>
+                  <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+<circle cx="6.19355" cy="6.19355" r="5.69355" stroke="black"/>
+<path d="M15.6465 16.3536C15.8418 16.5489 16.1583 16.5489 16.3536 16.3536C16.5489 16.1583 16.5489 15.8418 16.3536 15.6465L16.0001 16.0001L15.6465 16.3536ZM16.0001 16.0001L16.3536 15.6465L10.6762 9.96908L10.3226 10.3226L9.96908 10.6762L15.6465 16.3536L16.0001 16.0001Z" fill="black"/>
+</svg>
                 </button>
                 <a href="/account/login" className="global-nav__mobile-account" aria-label="เข้าสู่ระบบ">
                   <svg width="18" height="19" viewBox="0 0 18 19" fill="none" aria-hidden="true">
                     <path fillRule="evenodd" clipRule="evenodd" d="M6 4.5a3 3 0 116 0 3 3 0 01-6 0zm3-4a4 4 0 100 8 4 4 0 000-8zm5.58 12.15c1.12.82 1.83 2.24 1.91 4.85H1.51c.08-2.6.79-4.03 1.9-4.85C4.66 11.75 6.5 11.5 9 11.5s4.35.26 5.58 1.15zM9 10.5c-2.5 0-4.65.24-6.17 1.35C1.27 12.98.5 14.93.5 18v.5h17V18c0-3.07-.77-5.02-2.33-6.15-1.52-1.1-3.67-1.35-6.17-1.35z" fill="currentColor"/>
                   </svg>
                 </a>
-                <BagCart className="global-nav__bag" />
+                <a href="/account/login" className="global-nav__mobile-bag">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M3.21892 16C2.41812 16 1.81477 15.7996 1.40888 15.3987C1.00299 15.0032 0.800049 14.4127 0.800049 13.6272V5.11935C0.800049 4.33384 1.00299 3.74336 1.40888 3.34789C1.81477 2.94701 2.41812 2.74657 3.21892 2.74657H12.697C13.4923 2.74657 14.0929 2.94701 14.4988 3.34789C14.9102 3.74877 15.1158 4.33926 15.1158 5.11935V13.6272C15.1158 14.4127 14.9184 15.0032 14.5235 15.3987C14.134 15.7996 13.5773 16 12.8533 16H3.21892ZM3.24361 15.0005H12.8286C13.2071 15.0005 13.5142 14.8813 13.7501 14.643C13.9859 14.4046 14.1039 14.0498 14.1039 13.5785V5.16811C14.1039 4.70222 13.9777 4.35009 13.7254 4.11173C13.4786 3.86795 13.1275 3.74606 12.6723 3.74606H3.24361C2.77738 3.74606 2.42086 3.86795 2.17404 4.11173C1.9327 4.35009 1.81203 4.70222 1.81203 5.16811V13.5785C1.81203 14.0498 1.9327 14.4046 2.17404 14.643C2.42086 14.8813 2.77738 15.0005 3.24361 15.0005ZM4.87264 3.06348C4.87264 2.48925 5.00703 1.9719 5.27579 1.51143C5.55004 1.05096 5.92027 0.685289 6.3865 0.414424C6.85272 0.138141 7.37654 0 7.95794 0C8.53935 0 9.06317 0.138141 9.52939 0.414424C9.99561 0.685289 10.3631 1.05096 10.6319 1.51143C10.9061 1.9719 11.0432 2.48925 11.0432 3.06348H10.0313C10.0313 2.65719 9.94076 2.29694 9.75976 1.98273C9.58424 1.66311 9.34016 1.41121 9.02751 1.22702C8.71487 1.04283 8.35835 0.950736 7.95794 0.950736C7.55754 0.950736 7.20102 1.04283 6.88837 1.22702C6.57573 1.41121 6.32891 1.66311 6.1479 1.98273C5.97238 2.29694 5.88462 2.65719 5.88462 3.06348H4.87264Z" fill="black"/>
+</svg>
+                </a>
               </div>
             </div>
           </>

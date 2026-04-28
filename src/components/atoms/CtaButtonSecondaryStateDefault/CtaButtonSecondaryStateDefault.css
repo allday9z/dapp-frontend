@@ -18,7 +18,8 @@
   justify-content: center;
   position: relative;
 }
-.cta-button-secondary-state-default .buy-now {
+
+.cta-button-secondary-state-default {
   color: var(--color-blue, #0071e3);
   text-align: center;
   font-family: var(
@@ -30,6 +31,16 @@
   line-height: var(--body-body-s-semibold-line-height, 1rem);
   font-weight: var(--body-body-s-semibold-font-weight, 600);
   position: relative;
+}
+
+.cta-button-secondary-state-default .buy-now:hover {
+  color: #0054A8;
+}
+
+.cta-button-secondary-state-default:hover {
+  border-color: #0054A8;
+  text-decoration: underline;
+  color: #0054A8;
 }
 
 /* nested override styles */

@@ -19,6 +19,12 @@
   position: relative;
 }
 
+.cta-button-primary-state-default:hover {
+  background-color: #0054A8 !important;
+  text-decoration: underline !important;
+  color: white;
+}
+
 .cta-button-primary-state-default .add-to-cart {
   color: var(--color-white, #ffffff);
   text-align: center;

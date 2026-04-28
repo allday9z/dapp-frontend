@@ -242,7 +242,6 @@ input, .field__input, .quantity__button, .field__button {
     .search-quick-links .search-quick-links__link {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
         font-weight: 600;
         color: #0071e3;
         font-size: 14px;

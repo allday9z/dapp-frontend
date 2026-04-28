@@ -36,10 +36,11 @@ export const STORES_DATA: StoreData[] = [
     imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TM.jpg",
     services: [
       { label: "Apple Premium Partner", url: "/" },
-      { label: "Drop Off Servicing", url: "/" },
-      { label: "Click & Collect Available", url: "/" },
-      { label: "Trade-in Service Available", url: "/" },
-      { label: "Gruop Demo", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการดูแลเครื่องครบวงจร", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "Group Demo", url: "/" }
     ]
   },
   {
@@ -53,14 +54,13 @@ export const STORES_DATA: StoreData[] = [
     phoneUrl: "tel://+66845280222",
     phoneText: "084 528 0222",
     hours: "เปิดให้บริการทุกวัน 10:00 - 21:00",
-    imageUrl: "https://www.uficon.com/app/uploads/2025/11/S__61022231.jpg",
+    imageUrl: "https://www.uficon.com/app/uploads/2026/04/IS-FI.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" },
-      { label: "Gruop Demo", url: "/" }
+      { label: "Apple Premium Partner", url: "/" },
+      { label: "บริการดูแลเครื่องครบวงจร", url: "/" },
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "Group Demo", url: "/" }
     ]
   },
   {
@@ -76,11 +76,9 @@ export const STORES_DATA: StoreData[] = [
     hours: "เปิดให้บริการทุกวัน 10:00 - 22:00",
     imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-PN.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" }
     ]
   },
   {
@@ -96,11 +94,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "เปิดให้บริการทุกวัน 10:00 - 21:00",
     imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TR.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
+    
     ]
   },
   {
@@ -116,11 +113,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "เปิดให้บริการทุกวัน 10:00 - 21:00",
     imageUrl: "https://www.uficon.com/app/uploads/2025/11/S__47112304.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
+    
     ]
   },
   {
@@ -136,11 +132,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "เปิดให้บริการทุกวัน 10:00 - 21:00",
     imageUrl: "https://www.uficon.com/app/uploads/2025/10/iS-TK.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการรับฝากเครื่องซ่อม", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
     ]
   },
   {
@@ -156,11 +151,9 @@ export const STORES_DATA: StoreData[] = [
     hours: "เปิดให้บริการทุกวัน 10:00 - 21:00",
     imageUrl: "https://www.uficon.com/app/uploads/2025/10/1V2A0799-3.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
     ]
   },
   {
@@ -176,12 +169,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-SWU.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Gruop Demo", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+       { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "ทดลองการใช้ Mac", url: "/" }
     ]
   },
   {
@@ -197,11 +188,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/01/Untitled-2.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการรับฝากเครื่องซ่อม", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" }
     ]
   },
    {
@@ -217,11 +207,9 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-PSU.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+       { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+       { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
     ]
   },
   {
@@ -237,11 +225,9 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-UBRU.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+       { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+       { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
     ]
   },
     {
@@ -249,7 +235,7 @@ export const STORES_DATA: StoreData[] = [
     name: "U•Store มหาวิทยาลัยวลัยลักษณ์",
     lat: 8.649994435198767, 
     lng: 99.89448842397581,
-    shortAddress: "ท่าศาลา, จังหวัดนครศรีธรรมราช",
+    shortAddress: "ท่าศาลา, นครศรีธรรมราช",
     mapUrl: "",
     fullAddress: "ศูนย์อาหารช่อประดู่ มหาวิทยาลัยวลัยลักษณ์ ห้องเลขที่ A4 เลขที่ 222 หมู่ที่ 10 ตำบลไทยบุรี อำเภอท่าศาลา จังหวัดนครศรีธรรมราช 80160",
     phoneUrl: "tel://+66982763891",
@@ -257,11 +243,9 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-WU.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" }
     ]
   },
    {
@@ -277,12 +261,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2024/01/IMG_3187.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Gruop Demo", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+      { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "ทดลองการใช้ Mac", url: "/" }
     ]
   },
    {
@@ -298,12 +280,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-SRU.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Gruop Demo", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+       { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "ทดลองการใช้ Mac", url: "/" }
     ]
   },
    {
@@ -319,12 +299,10 @@ export const STORES_DATA: StoreData[] = [
     hours: "วันจันทร์-วันเสาร์ 09:00 - 18:00 น. (หยุดวันอาทิตย์และวันนักขัตฤกษ์)",
     imageUrl: "https://education.uficon.com/app/uploads/2025/10/US-WUH.jpg",
     services: [
-      { label: "Apple Official Technical Support", url: "/" },
-      { label: "See all sessions at this store", url: "/" },
-      { label: "Gruop Demo", url: "/" },
-      { label: "Reserve a shopping session", url: "/" },
-      { label: "See what your device is worth", url: "/" },
-      { label: "Get help here", url: "/" }
+       { label: "สั่งออนไลน์ รับสินค้าที่ร้าน", url: "/" },
+      { label: "บริการเก่าแลกใหม่", url: "/" },
+      { label: "บริการให้คำปรึกษาการใช้งาน", url: "/" },
+      { label: "ทดลองการใช้ Mac", url: "/" }
     ]
   },
 ];

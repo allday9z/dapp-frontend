@@ -216,34 +216,6 @@
   opacity: 0.7;
 }
 
-.global-nav__mobile-search-drawer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100dvw;
-  height: 100dvh;
-  background: #fff;
-  z-index: 2147483647;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-  padding: 0;
-}
-
-.global-nav__mobile-search-drawer > div {
-  width: 100%;
-  min-height: 100%;
-}
-
-.global-nav__mobile-search-drawer.slide-in-right {
-  animation: slideInFromRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.global-nav__mobile-search-drawer.slide-out-right {
-  animation: slideOutToRight 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
 .price-segment-discount {
   border-radius: 6px;
   background: #c31432;

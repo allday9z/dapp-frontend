@@ -1,4 +1,5 @@
 import React from 'react';
+import './SearchDrawer.css'
 
 export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }) {
   const quickLinks = [

@@ -6,8 +6,8 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
     { label: 'ค้นหาสาขา', href: '/pages/store-locator' },
     { label: 'AirPods', href: '/collections/airpods-3rd-gen' },
     { label: 'iPhone 17', href: '/collections/iphone-17' },
-    { label: 'Partner Trade-in', href: '/pages/trade-in' },
-    { label: 'Partner Business', href: '/pages/partner-business-account-terms' },
+    { label: 'เก่าแลกใหม่', href: '/pages/trade-in' },
+    { label: 'สำหรับธุรกิจ', href: '/pages/partner-business-account-terms' },
   ];
 
   const ArrowRightIcon = () => (
@@ -25,9 +25,16 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
         </button>
         <div className="search-modal__form" data-loading-text="Loading...">
           <form action="/search" method="get" role="search">
-            <div className="field">
+            <div className="field" style={{ position: 'relative' }}>
+              <div style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', pointerEvents: 'none', color: '#888', display: 'flex' }}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+              </div>
               <input
                 className="search__input field__input"
+                style={{ paddingLeft: '44px' }}
                 id="Search-In-Modal"
                 type="search"
                 name="q"
@@ -44,7 +51,7 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
                 autoCapitalize="off"
                 spellCheck="false"
               />
-              <label className="field__label" htmlFor="Search-In-Modal">ค้นหา</label>
+              <label className="field__label" htmlFor="Search-In-Modal" style={{ left: '28px' }}>ค้นหา</label>
               <input type="hidden" name="options[prefix]" value="last" />
             </div>
             <div className="predictive-search predictive-search--header" tabIndex={-1} data-predictive-search="">

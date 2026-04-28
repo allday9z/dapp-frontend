@@ -758,6 +758,10 @@
   margin-bottom: 24px;
 }
 
+.pdp__section-heading:not(.pdp_sec_head1) {
+  margin-top: 42pxs;
+}
+
 /* Toggle row */
 /* .pdp__opt-section {
 

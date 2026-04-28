@@ -145,7 +145,7 @@ form.search-modal__form {
     .search-modal__form #Search-In-Modal {
         position: static;
         margin: 0;
-        padding: 8px 1rem 9px 3rem;
+        padding: 8px 1rem 9px 1rem;
         width: 100%;
         font-size: 14px;
         line-height: 16px;

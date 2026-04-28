@@ -76,6 +76,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
+  min-height: 11rem;
 }
 
 .global-footer__partner-logo {
@@ -92,6 +93,15 @@
 
 .global-footer__partner-logo--premium {
   width: 6rem;
+  aspect-ratio: 76 / 36;
+}
+
+.global-footer__partner-logo--service {
+  aspect-ratio: 253 / 64;
+}
+
+.global-footer__partner-logo--education {
+  aspect-ratio: 293 / 68;
 }
 
 .global-footer__bottom {

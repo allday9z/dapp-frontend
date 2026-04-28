@@ -92,6 +92,9 @@ export const FamilyStripe = ({
               draggable={false}
               onDragStart={(e) => e.preventDefault()}
               loading="lazy"
+              decoding="async"
+              width={84}
+              height={84}
             />
           </div>
           <div className="family-stripe__tile-text">

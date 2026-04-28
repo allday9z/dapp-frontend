@@ -11,6 +11,18 @@ export const LobStripeTile = ({
   className = "",
 }: ILobStripeTileProps): JSX.Element => {
   const variantClassName = `lob-stripe-tile--${item.id}`;
+  const imageDimensionsById: Record<string, { width: number; height: number }> = {
+    mac: { width: 100, height: 60 },
+    "i-pad": { width: 77, height: 60 },
+    "i-phone": { width: 60, height: 60 },
+    watch: { width: 82, height: 60 },
+    music: { width: 77, height: 60 },
+    "tv-home": { width: 63, height: 60 },
+    accessories: { width: 60, height: 60 },
+    entertainment: { width: 100, height: 66 },
+    airtag: { width: 80, height: 48 },
+  };
+  const imageDimensions = imageDimensionsById[item.id] ?? { width: 100, height: 60 };
 
   return (
     <div className={`lob-stripe-tile ${variantClassName} ${className}`.trim()} style={{ marginRight: '16px' }}>
@@ -19,6 +31,10 @@ export const LobStripeTile = ({
           className="lob-stripe-tile__image"
           src={item.imageSrc}
           alt={item.imageAlt}
+          loading="lazy"
+          decoding="async"
+          width={imageDimensions.width}
+          height={imageDimensions.height}
         />
       </div>
       <div className="lob-stripe-tile__description">

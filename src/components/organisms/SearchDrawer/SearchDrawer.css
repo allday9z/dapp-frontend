@@ -114,8 +114,9 @@
 }
 
 .search-modal__form {
+    align-items: center;
     min-height: 38px;
-    width: 100%;
+    padding: 0 1.5rem;
 }
 
 form.search-modal__form {
@@ -145,10 +146,12 @@ form.search-modal__form {
         position: static;
         margin: 0;
         padding: 8px 1rem 9px 3rem;
-        height: 100%;
+        width: 100%;
         font-size: 14px;
         line-height: 16px;
         font-weight: 500;
+        border: 1px solid #7d7d7d;
+        border-radius: 42px;
     }
 }
 
@@ -216,8 +219,7 @@ input, .field__input, .quantity__button, .field__button {
 
 @media screen and (max-width: 1024px) {
     .search-modal__content__nav {
-        margin-top: 2.5rem;
-        padding-left: 1.4rem;
+        margin-top: 2rem;
     }
 }
 
@@ -226,7 +228,7 @@ input, .field__input, .quantity__button, .field__button {
         font-weight: 600;
         font-size: 24px;
         line-height: 28px;
-        margin-bottom: 1.6rem;
+        margin-bottom: 1rem;
     }
 }
 

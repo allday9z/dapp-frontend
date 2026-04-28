@@ -3,7 +3,7 @@ import './SearchDrawer.css'
 
 export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }) {
   const quickLinks = [
-    { label: 'Find a Store', href: '/pages/store-locator' },
+    { label: 'ค้นหาสาขา', href: '/pages/store-locator' },
     { label: 'AirPods', href: '/collections/airpods-3rd-gen' },
     { label: 'iPhone 17', href: '/collections/iphone-17' },
     { label: 'Partner Trade-in', href: '/pages/trade-in' },
@@ -24,7 +24,7 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
             <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" viewBox="0 0 18 17" width="18" height="17"><path d="M.865 15.978a.5.5 0 00.707.707l7.433-7.431 7.579 7.282a.501.501 0 00.846-.37.5.5 0 00-.153-.351L9.712 8.546l7.417-7.416a.5.5 0 10-.707-.708L8.991 7.853 1.413.573a.5.5 0 10-.693.72l7.563 7.268-7.418 7.417z" fill="currentColor"></path></svg>
         </button>
         <div className="search-modal__form" data-loading-text="Loading...">
-          <form action="/search" method="get" role="search" className="search search-modal__form">
+          <form action="/search" method="get" role="search">
             <div className="field">
               <input
                 className="search__input field__input"
@@ -51,7 +51,7 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
             </div>
             <span className="predictive-search-status visually-hidden" role="status" aria-hidden="true" />
           </form>
-        </div>
+
         <div className="search-modal__content__nav search-quick-links">
           <h2 className="search-quick-links__heading">ทางลัด</h2>
           <ul className="list-unstyled">
@@ -64,6 +64,7 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
               </li>
             ))}
           </ul>
+        </div>
         </div>
       </div>
     </div>

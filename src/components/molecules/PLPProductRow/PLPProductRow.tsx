@@ -23,7 +23,6 @@ interface IPLPProductRowProps {
 
 export const PLPProductRow = ({ product, variant = "plp" }: IPLPProductRowProps) => {
   const { badge, badgeColor = "#bf4800", name, description, imageSrc, imageAlt, detailHref = "#", buyHref = "#" } = product;
-  const imageSize = variant === "lob" ? 270 : 248;
 
   const badgeStyle = { color: badgeColor } as CSSProperties;
 
@@ -69,8 +68,6 @@ export const PLPProductRow = ({ product, variant = "plp" }: IPLPProductRowProps)
           className="plp-product-row__image"
           loading="lazy"
           decoding="async"
-          width={imageSize}
-          height={imageSize}
         />
       </div>
     </div>

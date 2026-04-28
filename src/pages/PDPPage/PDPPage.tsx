@@ -1138,7 +1138,7 @@ export const PDPPage = () => {
           {bundleItems.map((item) => (
             <div key={item.id} className="pdp__bundle-item">
               <div className="pdp__bundle-img">
-                <img src={item.imageSrc} alt={item.name} loading="lazy" decoding="async" width={56} height={56} />
+                <img src={item.imageSrc} alt={item.name} loading="lazy" decoding="async" />
               </div>
               <div className="pdp__bundle-info">
                 <div className="pdp__bundle-name">{item.name}</div>
@@ -1157,7 +1157,7 @@ export const PDPPage = () => {
         <div className="pdp__summary-inner">
           {/* Product image */}
           <div className="pdp__summary-img-wrap">
-            <img src={heroImage} alt={displayName} className="pdp__summary-img" loading="lazy" decoding="async" width={320} height={240} />
+            <img src={heroImage} alt={displayName} className="pdp__summary-img" loading="lazy" decoding="async" />
           </div>
 
           {/* Details */}

@@ -34,12 +34,12 @@ const Tile = ({ item }: { item: AttachModuleSliderItem }) => {
           {...dragLink}
         >
           <div className="attach-slider__image-frame">
-            {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} loading="lazy" decoding="async" width={290} height={290} />}
+            {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} loading="lazy" decoding="async" />}
           </div>
         </a>
       ) : (
         <div className="attach-slider__image-frame">
-          {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} loading="lazy" decoding="async" width={290} height={290} />}
+          {item.imageSrc && <img src={item.imageSrc} alt={item.name} draggable={false} loading="lazy" decoding="async" />}
         </div>
       )}
 

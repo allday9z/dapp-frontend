@@ -34,7 +34,7 @@ export const AppTile = ({
     <div className={`app-tile ${className ?? ""}`}>
       <div className="app-tile__card">
         <div className="app-tile__img-wrap">
-          <img src={image} alt={imageAlt} width={208} height={208} loading="lazy" decoding="async" />
+          <img src={image} alt={imageAlt} loading="lazy" decoding="async" />
         </div>
         <div className="app-tile__text">
           <div className="app-tile__header">

@@ -60,11 +60,6 @@ export default function SearchDrawerMobile({ onClose }: { onClose?: () => void }
               </button>
             </div>
             <div className="predictive-search predictive-search--header" tabIndex={-1} data-predictive-search="">
-              <div className="predictive-search__loading-state">
-                <svg aria-hidden="true" focusable="false" className="spinner" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
-                  <circle className="path" fill="none" strokeWidth="6" cx="33" cy="33" r="30" />
-                </svg>
-              </div>
             </div>
             <span className="predictive-search-status visually-hidden" role="status" aria-hidden="true" />
           </form>

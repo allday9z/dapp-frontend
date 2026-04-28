@@ -11,7 +11,7 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    allowedHosts: ['dev.m2developer.com', 'coolify.pve01.prod.uficon.com', 'filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com', 'localhost', '127.0.0.1'],
+    allowedHosts: ['dev.m2developer.com', 'coolify.pve01.prod.uficon.com', 'dapp.coolify.pve01.prod.uficon.com', 'filebrowser-dapp-uficon.coolify.pve01.prod.uficon.com', 'localhost', '127.0.0.1'],
   },
   build: {
     rollupOptions: {

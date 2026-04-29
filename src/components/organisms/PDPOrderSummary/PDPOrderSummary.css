@@ -233,6 +233,13 @@
   line-height: 1;
 }
 
+.pdpos__ujoy-coin-img {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+  object-fit: contain;
+}
+
 .pdpos__ujoy-text {
   font-family: "Inter", "SF Pro Text", -apple-system, sans-serif;
   font-size: 0.75rem;

@@ -88,5 +88,46 @@ export const PRODUCTS = [
     image: 'https://www.uficon.com/app/uploads/2025/09/AirPods_Pro_3_Sep25_PDP_Image_Position_1__TH-TH-400x480.jpg',
     price: '฿8,490',
     monthly: '฿849/ด. นาน 10 ด.'
+  },
+  {
+    id: '46890827153469',
+    type: 'product',
+    title: '13-inch MacBook Neo: Apple A18 Pro chip with 6‑core CPU and 5‑core GPU, 256 SSD - Citrus',
+    url: '#',
+    image: 'https://www.uficon.com/app/uploads/2026/03/MacBook_13-in_A18_Pro_Citrus_PDP_Image_Position_1__TH-TH.webp',
+    price: '฿19,900',
+    monthly: '฿1,990/ด. นาน 10 ด.'
+  },
+  {
+    id: '46890827153470',
+    type: 'product',
+    title: 'Apple 20W USB-C Power Adapter',
+    url: '#',
+    image: 'https://www.uficon.com/app/uploads/2024/01/MU822.jpeg',
+    price: '฿790',
+  },
+  {
+    id: '46890827153471',
+    type: 'product',
+    title: 'Apple MagSafe Charger',
+    url: '#',
+    image: 'https://www.uficon.com/app/uploads/2021/08/Magsafe.001.jpeg',
+    price: '฿1,590',
+  },
+  {
+    id: '46890827153472',
+    type: 'product',
+    title: 'Apple Pencil Pro',
+    url: '#',
+    image: 'https://www.uficon.com/app/uploads/2024/05/SEA_Apple_Pencil_Pro_PDP_Image_Position-1.jpg',
+    price: '฿4,990',
+  },
+  {
+    id: '46890827153473',
+    type: 'product',
+    title: 'Apple Pencil (USB-C)',
+    url: '#',
+    image: 'https://www.uficon.com/app/uploads/2023/11/MUWA3.jpeg',
+    price: '฿3,190',
   }
 ];

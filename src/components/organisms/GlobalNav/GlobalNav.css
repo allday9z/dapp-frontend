@@ -736,7 +736,7 @@
   position: relative;
   flex-shrink: 0;
   min-width: 0;
-  max-width: 12rem;
+  max-width: 260px;
 }
 
 .global-nav__store-locator {
@@ -745,24 +745,8 @@
   overflow: hidden !important;
   text-overflow: ellipsis !important;
   display: block !important;
-}
-
-@media screen and (min-width: 750px) {
-  .global-nav__store-locator {
-    max-width: 8rem !important;
-    width: 8rem !important;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .global-nav__store-container {
-    width: 360px;
-    max-width: 360px;
-  }
-  .global-nav__store-locator {
-    max-width: calc(100% - 24px) !important;
-    width: auto !important;
-  }
+  max-width: calc(100% - 24px) !important;
+  width: auto !important;
 }
 
 .global-nav__visually-hidden {
@@ -872,13 +856,24 @@
 }
 
 .global-nav__utilities-group {
-  display: flex;
-  align-items: center;
-  gap: 0.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
 }
 
-.global-nav__account { width: 2.25rem !important; height: 2.25rem !important; }
-.global-nav__bag     { width: 22px !important; height: 20px !important; }
+.global-nav__account, .global-nav__bag {
+  width: 24px !important;
+  height: 24px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.global-nav__account svg, .global-nav__bag svg {
+  width: 20px;
+  height: 20px;
+}
 
 .global-nav__menu-row {
   padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
@@ -1089,7 +1084,7 @@
 
 @media screen and (min-width: 1024px) {
     .my-store-locator__details {
-        left: 50%;
+        left: 40%;
         transform: translate(-50%);
         width: 540px;
         border: solid 1px #D9D9D9;

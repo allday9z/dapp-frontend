@@ -144,11 +144,6 @@
   transition: background 0.15s ease, color 0.15s ease;
 }
 
-.plp-product-row__buy-btn:hover {
-  background: var(--color-blue, #0071e3);
-  color: #ffffff;
-}
-
 /* LOB hero buy button: filled, 7.6875rem × 3.125rem */
 .plp-product-row--lob .plp-product-row__buy-btn {
   background: none;
@@ -161,8 +156,8 @@
 
 .plp-product-row--lob .plp-product-row__buy-btn:hover {
   background: none;
-  border: 1.4px solid #0071E3 !important;
-  color: #0071E3;
+  border: 1.4px solid #0054A8 !important;
+  color: #0054A8;
   text-decoration: underline;
 }
 

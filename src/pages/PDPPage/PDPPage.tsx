@@ -1098,8 +1098,11 @@ export const PDPPage = () => {
             onClick={() => setFinancingOpen(true)}
             aria-label="เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน"
           >
-            เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน{" "}
+            เรียนรู้เพิ่มเติมเกี่ยวกับการชำระเงิน
             <FontAwesomeIcon icon={faAngleRight} className="billboard_icon" />
+          </button>
+          <button>
+            
           </button>
         </div>
       </section>
@@ -1114,8 +1117,10 @@ export const PDPPage = () => {
 
       {/* ── 2-column layout ────────────────────────────────────────────── */}
       <div className="pdp__layout">
-        {/* Left — Gallery */}
-        <Gallery media={product.media} name={displayName} />
+        {/* Left — Gallery (sticky wrapper bounds the sticky zone) */}
+        <div className="pdp__gallery-sticky">
+          <Gallery media={product.media} name={displayName} />
+        </div>
 
         {/* Right — Config panel */}
         <div className="pdp__panel">
@@ -1406,7 +1411,7 @@ export const PDPPage = () => {
       </div>
 
       {/* ── แนะนำซื้อคู่กัน ─────────────────────────────────────────────── */}
-      <section className="pdp__bundle">
+      {/* <section className="pdp__bundle">
         <h2 className="pdp__bundle-title">{content.bundleTitle}</h2>
         <div className="pdp__bundle-list">
           {bundleItems.map(item => (
@@ -1431,7 +1436,7 @@ export const PDPPage = () => {
             </div>
           ))}
         </div>
-      </section>
+      </section> */}
 
       {/* ── Order Summary ───────────────────────────────────────────────── */}
       <section className="pdp__summary">

@@ -356,7 +356,6 @@ input.nosubmit:active {
     border-color: currentcolor;
     border-image: initial;
     padding: 0px;
-    color: rgb(0, 102, 204);
     cursor: pointer;
     display: flex;
     align-items: center;

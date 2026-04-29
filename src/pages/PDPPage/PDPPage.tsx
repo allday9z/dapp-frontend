@@ -5,6 +5,7 @@ import { AddOnNavbarMobile } from "./AddOnNavbarMobile";
 import { FamilyStripe } from "@/components/organisms/FamilyStripe/FamilyStripe";
 import { macbookProFamilyItems } from "@/components/organisms/FamilyStripe/familyStripeData";
 import { ToggleRow } from "@/components/ToggleRow/ToggleRow";
+import { PDPOrderSummary } from "@/components/organisms/PDPOrderSummary/PDPOrderSummary";
 import rawData from "@/data/products/macbook-pro-14-m5-pdp.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -1439,102 +1440,41 @@ export const PDPPage = () => {
       </section> */}
 
       {/* ── Order Summary ───────────────────────────────────────────────── */}
-      <section className="pdp__summary">
-        <div className="pdp__summary-inner">
-          {/* Product image */}
-          <div className="pdp__summary-img-wrap">
-            <img
-              src={heroImage}
-              alt={displayName}
-              className="pdp__summary-img"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          {/* Details */}
-          <div className="pdp__summary-details">
-            <h2 className="pdp__summary-heading">
-              {content.summaryHeadingPrefix} {product.name}.
-            </h2>
-            <p className="pdp__summary-tagline">{product.tagline}</p>
-
-            <div className="pdp__summary-name">{displayName} M5</div>
-
-            <dl className="pdp__summary-config">
-              {customizeGroups.map(group => {
-                const selectedOption = getSelectedCustomizeOption(group);
-                return (
-                  <div key={group.key} className="pdp__summary-config-row">
-                    <dt>{group.label}</dt>
-                    <dd>
-                      {selectedOption?.label}
-                      {selectedOption?.sublabel &&
-                        ` ${selectedOption.sublabel}`}
-                    </dd>
-                  </div>
-                );
-              })}
-              {appleCare && (
-                <div className="pdp__summary-config-row">
-                  <dt>{content.summaryAppleCareLabel}</dt>
-                  <dd>{content.summaryAppleCareValue}</dd>
-                </div>
-              )}
-            </dl>
-
-            <div className="pdp__summary-price">
-              {fmt(totalPrice)} {product.currency}
-            </div>
-
-            {/* Qty */}
-            <div className="pdp__qty-row">
-              <label className="pdp__qty-label" htmlFor="pdp-qty">
-                {content.qtyLabel}
-              </label>
-              <div className="pdp__qty-ctrl">
-                <button
-                  className="pdp__qty-btn"
-                  onClick={() => setQty(q => Math.max(1, q - 1))}
-                  aria-label="ลดจำนวน"
-                >
-                  −
-                </button>
-                <input
-                  id="pdp-qty"
-                  className="pdp__qty-input"
-                  type="number"
-                  value={qty}
-                  min={1}
-                  readOnly
-                />
-                <button
-                  className="pdp__qty-btn"
-                  onClick={() => setQty(q => q + 1)}
-                  aria-label="เพิ่มจำนวน"
-                >
-                  +
-                </button>
-              </div>
-            </div>
-
-            <a
-              href={content.stockAvailabilityHref}
-              className="pdp__summary-avail"
-            >
-              {content.stockAvailabilityLabel}
-            </a>
-
-            {product.available ? (
-              <button className="pdp__btn-buy">
-                {content.buyNowLabel} {product.currency}
-              </button>
-            ) : (
-              <button className="pdp__btn-notify">{content.notifyLabel}</button>
-            )}
-          </div>
-        </div>
-      </section>
+      <PDPOrderSummary
+        headingPrefix={`${content.summaryHeadingPrefix} ${product.size ?? ""}`}
+        productName={`${product.name}.`}
+        tagline={product.tagline}
+        heroImage={heroImage}
+        heroImageAlt={displayName}
+        displayName={`${displayName} M5`}
+        configRows={[
+          ...customizeGroups.map(group => ({
+            label: group.label,
+            value: (() => {
+              const opt = getSelectedCustomizeOption(group);
+              return [opt?.label, opt?.sublabel].filter(Boolean).join(" ");
+            })(),
+          })),
+          ...(appleCare
+            ? [{ label: content.summaryAppleCareLabel, value: content.summaryAppleCareValue }]
+            : []),
+        ]}
+        qty={qty}
+        onQtyChange={setQty}
+        qtyLabel={content.qtyLabel}
+        price={fmt(totalPrice)}
+        currency={product.currency}
+        paymentLabel={content.payInFullLabel}
+        ujoyPoints={Math.round(totalPrice * 0.04)}
+        pickupLinkLabel="View store availability"
+        pickupHref={content.stockAvailabilityHref}
+        shippingLabel="Shipping unavailable"
+        availabilityLabel={content.stockAvailabilityLabel}
+        availabilityHref={content.stockAvailabilityHref}
+        available={product.available}
+        buyLabel={content.buyNowLabel}
+        notifyLabel={content.notifyLabel}
+      />
 
       {/* ── Accordions ──────────────────────────────────────────────────── */}
       <div className="pdp__accordions">

@@ -1489,19 +1489,15 @@
 ──────────────────────────────────────────────────────────────────────── */
 @media (min-width: 1024px) {
   .pdp__breadcrumbs {
-    padding: 14px 22px 0;
-    max-width: 1264px;
-    margin: 0 auto;
+    padding: 14px max(1rem, calc((100% - 76.25rem) / 2)) 0;
   }
 
   .pdp__desktop-hero {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    max-width: 1264px;
-    padding: 0px 16px;
+    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
     gap: 32px;
-    margin: 0 auto;
     align-items: center;
   }
 
@@ -1596,9 +1592,7 @@
 
   .pdp__layout {
     flex-direction: row;
-    max-width: 1264px;
-    margin: 0 auto;
-    padding: 0px 16px;
+    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
     flex-direction: row;
     gap: calc(100% * 60 / 1240);
     align-items: flex-start;
@@ -1674,9 +1668,7 @@
 
   /* Bundle — full-width below fold */
   .pdp__bundle {
-    max-width: 1264px;
-    margin: 0 auto;
-    padding: 32px 22px 24px;
+    padding: 32px max(1rem, calc((100% - 76.25rem) / 2)) 24px;
   }
   .pdp__bundle-list {
     flex-direction: row;
@@ -1701,9 +1693,8 @@
 
   /* Summary */
   .pdp__summary {
-    max-width: 1264px;
-    margin: 0 auto;
-    padding: 32px 22px 40px;
+    padding: 32px max(1rem, calc((100% - 76.25rem) / 2)) 40px;
+    margin-top: 32px;
   }
   .pdp__summary-inner {
     gap: 48px;
@@ -1722,14 +1713,13 @@
 
   /* Accordions */
   .pdp__accordions {
-    max-width: 1264px;
-    margin: 0 auto;
+    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
   }
   .pdp__accordion-toggle {
-    padding: 18px 22px;
+    padding: 18px 0;
   }
   .pdp__accordion-body {
-    padding: 0 22px 24px;
+    padding: 0 0 24px;
   }
 }
 

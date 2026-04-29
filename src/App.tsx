@@ -8,6 +8,7 @@ const PLPPage        = lazy(() => import('@/pages/PLPPage/PLPPage').then(m => ({
 const LOBPage        = lazy(() => import('@/pages/LOBPage/LOBPage').then(m => ({ default: m.LOBPage })));
 const PDPPage        = lazy(() => import('@/pages/PDPPage/PDPPage').then(m => ({ default: m.PDPPage })));
 const SearchPage     = lazy(() => import('@/pages/SearchPage/SearchPage').then(m => ({ default: m.SearchPage })));
+const CartPage     = lazy(() => import('@/pages/CartPage/CartPage').then(m => ({ default: m.CartPage })));
 const StoreLocatorPage = lazy(() => import('@/pages/StoreLocatorPage/StoreLocatorPage').then(m => ({ default: m.StoreLocatorPage })));
 
 /**
@@ -23,6 +24,7 @@ function currentPage() {
   if (path === '/pages/view-all-mac') return <LOBPage />;
   if (path === '/pages/store-locator') return <StoreLocatorPage />;
   if (path === '/search') return <SearchPage />;
+  if (path === '/cart') return <CartPage/>;
   if (path === '/collections/macbook-air') return <PLPPage collection="macbook-air" />;
   if (path === '/collections/macbook-pro') return <PLPPage collection="macbook-pro" />;
   if (path === '/products/macbook-pro-14') return <PDPPage />;

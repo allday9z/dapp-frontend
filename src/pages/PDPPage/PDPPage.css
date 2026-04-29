@@ -1489,14 +1489,14 @@
 ──────────────────────────────────────────────────────────────────────── */
 @media (min-width: 1024px) {
   .pdp__breadcrumbs {
-    padding: 14px max(1rem, calc((100% - 76.25rem) / 2)) 0;
+    padding: 14px max(1rem, calc((100% - 1240px) / 2)) 0;
   }
 
   .pdp__desktop-hero {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
+    padding: 0 max(1rem, calc((100% - 1240px) / 2));
     gap: 32px;
     align-items: center;
   }
@@ -1508,7 +1508,7 @@
     right: 0;
     z-index: 25;
     max-width: none;
-    padding: 12px 16px;
+    padding: 12px max(1rem, calc((100% - 1240px) / 2));
     background: rgba(255, 255, 255, 0.98);
     border-bottom: 0.5px solid #d2d2d7;
     transition:
@@ -1592,7 +1592,7 @@
 
   .pdp__layout {
     flex-direction: row;
-    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
+    padding: 0 max(1rem, calc((100% - 1240px) / 2));
     flex-direction: row;
     gap: calc(100% * 60 / 1240);
     align-items: flex-start;
@@ -1668,7 +1668,7 @@
 
   /* Bundle — full-width below fold */
   .pdp__bundle {
-    padding: 32px max(1rem, calc((100% - 76.25rem) / 2)) 24px;
+    padding: 32px max(1rem, calc((100% - 1240px) / 2)) 24px;
   }
   .pdp__bundle-list {
     flex-direction: row;
@@ -1693,7 +1693,7 @@
 
   /* Summary */
   .pdp__summary {
-    padding: 32px max(1rem, calc((100% - 76.25rem) / 2)) 40px;
+    padding: 32px max(1rem, calc((100% - 1240px) / 2)) 40px;
     margin-top: 32px;
   }
   .pdp__summary-inner {
@@ -1713,7 +1713,7 @@
 
   /* Accordions */
   .pdp__accordions {
-    padding: 0 max(1rem, calc((100% - 76.25rem) / 2));
+    padding: 0 max(1rem, calc((100% - 1240px) / 2));
   }
   .pdp__accordion-toggle {
     padding: 18px 0;

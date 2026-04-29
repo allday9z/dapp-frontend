@@ -154,10 +154,13 @@ export function PDPOrderSummary({
           {ujoyPoints != null && ujoyPoints > 0 && (
             <div className="pdpos__ujoy" aria-label={`รับ ${ujoyPoints} U•Joy points`}>
               <span className="pdpos__ujoy-coin" aria-hidden="true">
-                <svg viewBox="0 0 16 16" fill="currentColor" width="16" height="16">
-                  <circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2" />
-                  <path d="M5 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm6 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                </svg>
+                <img
+                  src="/coin.png"
+                  alt=""
+                  className="pdpos__ujoy-coin-img"
+                  loading="lazy"
+                  decoding="async"
+                />
               </span>
               <span className="pdpos__ujoy-text">Earn {ujoyPoints.toLocaleString("th-TH")} U•Joy points</span>
             </div>

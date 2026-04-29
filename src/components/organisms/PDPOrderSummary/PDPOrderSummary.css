@@ -414,7 +414,7 @@
     grid-template-columns: auto 1fr 22.5rem;
     gap: 3rem;
     align-items: start;
-    padding: 2.5rem 0;
+    padding: 2.5rem max(1rem, calc((100% - 1240px) / 2));
   }
 
   .pdpos__left {

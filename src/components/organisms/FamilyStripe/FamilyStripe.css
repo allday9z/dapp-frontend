@@ -60,7 +60,7 @@
   align-items: center;
   gap: 10px;
   height: 100%;
-  min-width: 260px;
+  width: 264px;
   padding: 8px 12px;
   text-decoration: none;
   border-radius: 0.75rem;
@@ -106,8 +106,7 @@
 }
 
 .family-stripe__tile-badge-wrap {
-  min-height: 12px;
-  /* margin-bottom: 4px; */
+  min-height: 19px;
 }
 
 .family-stripe__tile-badge {

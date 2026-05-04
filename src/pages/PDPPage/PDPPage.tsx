@@ -218,7 +218,7 @@ const DEFAULT_CONTENT: PDPContent = {
   summaryStorageLabel: "Storage",
   summaryAppleCareLabel: "AppleCare+",
   summaryAppleCareValue: "เพิ่มแล้ว",
-  qtyLabel: "Qty",
+  qtyLabel: "Quantity",
   stockAvailabilityLabel: "ดูข้อมูล stock availability ›",
   stockAvailabilityHref: "#",
   buyNowLabel: "ซื้อเลย",
@@ -606,6 +606,15 @@ function Gallery({ media, name }: { media: MediaItem[]; name: string }) {
 
 // ── ColorGallery ───────────────────────────────────────────────────────────
 const COLOR_SLIDE_W = 292;
+const COLOR_GALLERY_HIDE_MIN_WIDTH = 1024;
+
+const shouldHideColorGallery = () => {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.innerWidth >= COLOR_GALLERY_HIDE_MIN_WIDTH;
+};
 
 function ColorGallery({ media, name }: { media: MediaItem[]; name: string }) {
   const [idx, setIdx] = useState(0);
@@ -879,6 +888,9 @@ export const PDPPage = () => {
   const [paymentOpt, setPaymentOpt] = useState<"financing" | "pay-full">(
     "financing",
   );
+  const [hideColorGallery, setHideColorGallery] = useState(
+    shouldHideColorGallery,
+  );
   const [isStickyDesktopHero, setIsStickyDesktopHero] = useState(false);
   const [isStickyDesktopHeroVisible, setIsStickyDesktopHeroVisible] =
     useState(false);
@@ -928,11 +940,39 @@ export const PDPPage = () => {
   }, []);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(min-width: 1024px)");
+    const mediaQuery = window.matchMedia(
+      `(min-width: ${COLOR_GALLERY_HIDE_MIN_WIDTH}px)`,
+    );
+
+    const syncColorGalleryVisibility = (event?: MediaQueryListEvent) => {
+      setHideColorGallery(event ? event.matches : mediaQuery.matches);
+    };
+
+    syncColorGalleryVisibility();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", syncColorGalleryVisibility);
+
+      return () => {
+        mediaQuery.removeEventListener("change", syncColorGalleryVisibility);
+      };
+    }
+
+    mediaQuery.addListener(syncColorGalleryVisibility);
+
+    return () => {
+      mediaQuery.removeListener(syncColorGalleryVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      `(min-width: ${COLOR_GALLERY_HIDE_MIN_WIDTH}px)`,
+    );
     let lastScrollY = window.scrollY;
 
     const evaluateStickyVisibility = () => {
-      if (!mediaQuery.matches || !desktopHeroRef.current) {
+      if (mediaQuery.matches || !desktopHeroRef.current) {
         setIsStickyDesktopHero(false);
         setIsStickyDesktopHeroVisible(false);
         lastScrollY = window.scrollY;
@@ -1193,7 +1233,7 @@ export const PDPPage = () => {
                         />
                       ))}
                     </div>
-                    {group.key === "color" && (
+                    {group.key === "color" && !hideColorGallery && (
                       <ColorGallery media={product.media} name={displayName} />
                     )}
                   </>
